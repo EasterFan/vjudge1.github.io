@@ -88,6 +88,12 @@
         }
     }
 }
+
+.navbar-fixed-top {
+    border-bottom: 1px solid $navbar-default-border;
+    box-shadow: 0px 1px 3px $navbar-default-border;
+}
+
 // Both navbar header and collapse
 //
 // When a container is present, change the behavior of the header and collapse.
@@ -214,6 +220,10 @@
         padding-bottom: 10px;
 
         line-height: $line-height-computed;
+
+        i {
+            line-height: $line-height-computed;
+        }
     }
     @media (max-width: $grid-float-breakpoint-max) {
         // Dropdowns get custom display when collapsed
@@ -355,7 +365,7 @@
 // --------------------------------------------------
 // Default navbar
 .navbar-default {
-    border-color: $navbar-default-border;
+    //border-color: $navbar-default-border;
     background-color: $navbar-default-bg;
     .navbar-brand {
         color: $navbar-default-brand-color;

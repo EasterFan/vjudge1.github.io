@@ -1,6 +1,6 @@
-'use strict';
-
 module.exports = function(grunt) {
+    'use strict';
+
     var git_user = 'vjudge1';
 
     // Show elapsed time after tasks run
@@ -22,7 +22,7 @@ module.exports = function(grunt) {
                 tasks: ['sass:server', 'autoprefixer']
             },
             scripts: {
-                files: ['<%= app.source %>/_assets/js/**/*.{js}'],
+                files: ['<%= app.source %>/_assets/js/**/*.js'],
                 tasks: ['uglify']
             },
             jekyll: {
@@ -31,7 +31,7 @@ module.exports = function(grunt) {
             },
             images: {
                 files: ['<%= app.source %>/img/**/*.{gif,jpg,jpeg,png,svg,webp}',
-                        '<%= app.source %>/js/**/*.{js}'],
+                        '<%= app.source %>/js/**/*.js'],
                 tasks: ['copy:server']
             },
             livereload: {

@@ -9,7 +9,6 @@ $navbar-nav-padding: 7px;
 $nbsp:               "\00a0";
 $sidebar-bg-color:   #222;
 
-// Import partials from `sass_dir` (defaults to `_sass`)
 @import "layout";
 @import "bootstrap";
 @import "components";

@@ -57,11 +57,17 @@
 
         $body.width(width);
 
+        var top = $body.scrollTop();
+
         $mask.css('opacity', '0');
         $mask.css('left', '0');
+        $mask.css('top', top.toString() + 'px');
+        $mask.css('bottom', '-' + top.toString() + 'px');
         $mask.width(width);
 
         $sidebar.css('left', width.toString() + 'px');
+        $sidebar.css('top', top.toString() + 'px');
+        $sidebar.css('bottom', '-' + top.toString() + 'px');
         $sidebar.width(sidebar_width);
 
         $element.show();

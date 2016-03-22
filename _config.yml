@@ -1,11 +1,3 @@
-# Grunt handles images and assets.
-exclude: ['img', 'css', 'js', 'fonts',
-          '**.png', '**.jpg', '**.jpeg', '**.gif', '**.webp', '**.svg', '**.ico']
-
-# _config.build.yml sets future and show_drafts to false on `grunt build`
-future: true
-show_drafts: true
-
 # Site settings
 title: Unorz
 email: vjudge404@gmail.com
@@ -29,7 +21,6 @@ github_username: vjudge1
 #qqqun_name: "QQ 群"
 #qqqun_idkey:
 #weibo_username:
-#qq:
 #weibo_userid:
 
 host: 0.0.0.0
@@ -94,3 +85,10 @@ footer_links:
   name: wikitrans
   url: https://wikitrans-1245.appspot.com/
 
+# Grunt handles images and assets.
+exclude: ['img', 'css', 'js', 'fonts',
+          '**.png', '**.jpg', '**.jpeg', '**.gif', '**.webp', '**.svg', '**.ico']
+
+# _config.build.yml sets future and show_drafts to false on `grunt build`
+future: true
+show_drafts: true
