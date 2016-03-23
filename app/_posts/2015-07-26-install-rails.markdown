@@ -2,7 +2,7 @@
 layout: post
 title: "Install Rails (Mac/Cygwin/Windows)"
 author: vjudge1
-categories: Ruby Mac
+categories: Mac
 tags: Rails
 ---
 * content

@@ -2,7 +2,7 @@
 layout: post
 title:  "Chrome插件推荐"
 author: vjudge1
-categories: 系统维护
+categories: 其他
 tags: ["插件"]
 ---
 * contents

@@ -2,7 +2,7 @@
 layout: post
 title:  "Atom编辑器插件推荐"
 author: vjudge1
-categories: 系统维护
+categories: 编程软件
 tags: ["插件"]
 ---
 * contents

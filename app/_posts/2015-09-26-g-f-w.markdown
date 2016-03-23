@@ -2,7 +2,8 @@
 layout: post
 title:  "［科普］网络故障"
 author: vjudge1
-categories: 网络 赵氏春秋
+categories: 赵氏春秋
+tags: 墙
 ---
 * content
 {:toc}

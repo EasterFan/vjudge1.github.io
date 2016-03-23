@@ -3,8 +3,8 @@ layout: post
 title: "配置 LaTeX 环境"
 date: 2015-05-22 18:37:06
 author: vjudge1
-categories: Linux Mac
-tags: LaTeX
+categories: 编程软件
+tags: LaTeX Linux Mac
 ---
 * contents
 {:toc}

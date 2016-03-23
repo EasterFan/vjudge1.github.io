@@ -2,7 +2,8 @@
 layout: post
 title:  "易班"
 author: vjudge1
-categories: 其他 赵氏春秋
+categories: 赵氏春秋
+tags: 电幕
 ---
 * contents
 {:toc}
