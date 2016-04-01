@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "从C++转向Java的快速入门教程（未完待续）"
+title:  "从C++转向Java的快速入门教程"
 author: vjudge1
 categories: 编程
 tags: Java
@@ -8,12 +8,14 @@ tags: Java
 * contents
 {:toc}
 
-如果学过C++但是没学过Java，希望看完本文能快速入门。
+如果学过C++，那么从C++过渡到Java很快就能入门。
 
 
 
 
-因为网上有一大堆介绍配置Java环境的教程，本文就不再复述了。推荐一个好用的IDE——IntelliJ IDEA。这个IDE有社区版和旗舰版，社区版免费但是不支持Web开发。
+因为网上有一大堆介绍配置Java开发环境的教程，本文就不再复述了。
+
+推荐一个好用的IDE——IntelliJ IDEA。这个IDE分为社区版和旗舰版，旗舰版要花钱<span class="blackout">网上一堆激活服务器，随便挑一个就能激活。</span>，社区版免费而且开源，只不过社区版不支持Web开发。
 
 # 运行机制
 
@@ -24,6 +26,8 @@ C++和Java都需要编译才能运行，不同的是，Java程序是编译成中
 ## 垃圾回收
 
 C++需要手动实现垃圾回收，而Java是自动垃圾回收。虚拟机内部维护一个计数器，当引用计数为零之后自动释放实例的存储空间。
+
+因为自动垃圾回收，所以Java的对象几乎不需要析构函数，但是在驻守型程序中仍然需要注意内存泄漏问题。
 
 # Hello world
 
@@ -288,6 +292,7 @@ public void fun() {
 * Object的equals()方法用于判断是否为同一实例。不过，String等类重写了equals方法，用于比较变量的值是否相等。所以**比较字符串是否相等要用equals()而不是“==”。**
 * hashCode()用于生成散列码。
 * toString()不解释了。
+* clone()：用=赋值只是一个引用，用clone才是副本。
 
 ## String
 
@@ -741,6 +746,8 @@ InputStreamReader/OutputStreamWriter、FileReader/FileWriter，可指定编码�
 
 BufferedReader/BufferedWriter
 
+BufferedReader有readLine()。
+
 ## PrintStream、PrintWriter
 
 支持自动刷新（flush）。
@@ -774,6 +781,393 @@ File类即可用于单个文件（实例化），又可用于文件操作（静�
 
 # 并发
 
+## 创建和启动线程
+
+两种方法：继承Thread类或实现Runnable接口。此处为了省篇幅就写成匿名类了。
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        Thread thread = new Thread() {
+            @Override
+            public void run() {
+                for (int i=0; i<10; i++) {
+                    System.out.println(currentThread().getName() + ":" + i);
+                    try {
+                        sleep(100);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
+        };
+        thread.start();
+        // 再启动一个
+        thread.run();
+    }
+}
+```
+
+或者
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        Runnable target = new Runnable() {
+            public void run() {
+                for (int i=0; i<10; i++) {
+                    System.out.println(Thread.currentThread().getName() + ":" + i);
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
+        };
+        Thread thread = new Thread(target);
+        thread.start();
+        // 再启动一个
+        thread.run();
+    }
+}
+```
+
+注意，运行结果是不可预测的。
+
+## 线程状态与调度
+
+状态：新建（New，尚未开始运行）、就绪（Runnable，就绪或正在运行）、阻塞（Blocked）、死亡（Dead）
+
+调度：
+
+* setPriority()
+* sleep()：不考虑优先级，直接让行；阻塞当前线程。
+* yield()：让给同优先级或高级的，不阻塞当前线程。
+
+合并：join()，暂停当前线程，直到目标线程结束。
+
+设为守护线程：setDaemon()
+
+## 线程安全
+
+### synchronized
+
+```java
+synchronized (对象) {
+    ....
+}
+
+public synchronized void fun() {
+    ...
+}
+```
+
+### Lock
+
+java.util.concurrent.locks.Lock
+
+```java
+Lock locker = new ReentrantLock();
+...
+locker.lock();
+try {
+    ...
+} finally {
+    locker.unlock();
+}
+```
+
+## 生产者/消费者
+
+wait()/notify()/notifyAll()，必须配合使用，否则容易死锁。
+
+这三个方法是Object的，但必须在synchronized代码块中才能使用。wait通常放在while里。
+
 # 网络
 
+## TCP
+
+一个简单的聊天软件。如果想多人聊天，服务器端显然需要多线程。
+
+服务器端：
+
+```java
+import java.io.*;
+import java.net.*;
+
+public class TCPServer {
+    private static DataInputStream dis = null;
+
+    public static void main(String [] args) {
+        boolean started = false;
+        Socket socket = null;
+        ServerSocket ss = null;
+
+        try {
+            ss = new ServerSocket(9999);
+            System.out.println("Listening at 127.0.0.1:9999...");
+        } catch (BindException e) {
+            System.err.println("Can't bind.");
+            System.exit(1);
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(2);
+        }
+
+        try {
+            started = true;
+            while (started) {
+                boolean connected = false;
+                socket = ss.accept();
+                connected = true;
+
+                dis = new DataInputStream(socket.getInputStream());
+
+                while (connected) {
+                    String str = dis.readUTF();
+                    System.out.println("Get: " + str);
+                }
+            }
+        } catch (EOFException e) {
+            System.out.println("Client disconnected");
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (dis != null) {
+                    dis.close();
+                }
+                if (socket != null) {
+                    socket.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+```
+
+客户端：
+
+```java
+import java.io.*;
+import java.net.*;
+
+public class TCPClient {
+    public static void main(String [] args) {
+        Socket socket = null;
+        DataOutputStream dos = null;
+
+        try {
+            socket = new Socket("127.0.0.1", 9999);
+            dos = new DataOutputStream(socket.getOutputStream());
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(1);
+        }
+
+        BufferedReader stream = new BufferedReader(new InputStreamReader(System.in));
+        String line;
+        try {
+            while (!(line = stream.readLine()).isEmpty()) {
+                dos.writeUTF(line);
+                dos.flush();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                dos.close();
+                socket.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+```
+
+## UDP
+
+UDP是面向无连接的，无需多线程。
+
+服务器端：
+
+```java
+import java.io.*;
+import java.net.*;
+
+public class UDPServer {
+    public static void main(String[] args) {
+        DatagramSocket socket = null;
+
+        try {
+            socket = new DatagramSocket(9998);
+        } catch (SocketException e) {
+            System.err.println("Can't bind.");
+            System.exit(1);
+        }
+
+        byte[] buffer = new byte[1024];
+        DatagramPacket rPacket = null;
+
+        try {
+            while (true) {          // 按Ctrl+C结束
+                rPacket = new DatagramPacket(buffer, 1024);
+                socket.receive(rPacket);
+
+                String text = new String(rPacket.getData(), rPacket.getOffset(), rPacket.getLength());
+                System.out.println("Get " + text);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+客户端：
+
+```java
+import java.io.*;
+import java.net.*;
+
+public class UDPClient {
+    public static void main(String[] args) {
+        BufferedReader stream = new BufferedReader(new InputStreamReader(System.in));
+        String line;
+
+        try {
+            while (!(line = stream.readLine()).isEmpty()) {
+                byte[] buffer = line.getBytes();
+                DatagramPacket sPacket = new DatagramPacket(buffer,
+                        buffer.length, InetAddress.getByName("127.0.0.1"), 9998);
+                DatagramSocket socket = new DatagramSocket();
+                socket.send(sPacket);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+## URL
+
+URL类：
+
+```java
+import java.io.*;
+import java.net.*;
+
+public class URLTest {
+    public static void main(String[] args) throws IOException {
+        URL url = new URL("https://www.google.com");
+        BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()));
+        String s;
+        while ((s = reader.readLine()) != null) {
+            System.out.println(s);
+        }
+        reader.close();
+    }
+}
+```
+
+URLConnection类：
+
+```java
+import java.io.*;
+import java.net.*;
+
+public class URLTest {
+    public static void main(String[] args) throws IOException {
+        URL url = new URL("https://www.google.com");
+        URLConnection conn = url.openConnection();
+
+        System.out.println("GET " + url.getHost() + " PORT " + url.getDefaultPort());
+        System.out.println("Content-Length: " + conn.getContentLength());
+
+        BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+        String s;
+        while ((s = reader.readLine()) != null) {
+            System.out.println(s);
+        }
+        reader.close();
+    }
+}
+```
+
 # 数据库
+
+以MySQL为例。
+
+```java
+import java.sql.*;
+
+public class MySQLTest {
+    public static void main(String[] args) {
+        Connection conn = null;
+        Statement stmt = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+
+            // 连接
+            conn = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/database", "root", "12345678");
+
+            // 访问
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery("SELECT * FROM table");
+            while (rs.next()) {
+                System.out.print(rs.getInt("id"));
+                System.out.println(rs.getString("name"));
+            }
+
+            // 记录处理
+            stmt.executeUpdate("UPDATE table SET name='wang' WHERE id=5");
+            stmt.executeUpdate("DELETE FROM table WHERE id=6");
+
+            // 预处理和批处理
+            pstmt = conn.prepareStatement("INSERT INTO table VALUES (?, ?)");
+            pstmt.setInt(1, 100);
+            pstmt.setString(2, "name");
+            pstmt.addBatch();
+            ...
+            pstmt.executeBatch();
+
+            // 事务处理
+            stmt = conn.createStatement();
+            stmt.addBatch("INSERT INTO table VALUES (1, 'aaa')");
+            stmt.executeBatch();
+            conn.commit();
+            conn.setAutoCommit(true);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+                if (stmt != null) {
+                    stmt.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+```
