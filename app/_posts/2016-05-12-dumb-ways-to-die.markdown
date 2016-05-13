@@ -11,9 +11,12 @@ tags: 这届人民不行
 
 
 
+人家老外做的原版：
+
 <iframe width="560" height="315" src="https://www.youtube.com/embed/IJNR2EpS0jw" frameborder="0" allowfullscreen></iframe>（墙内转载：[http://www.bilibili.com/video/av1423856/](http://www.bilibili.com/video/av1423856/)）
 
-<br>
+中国特色的现实版：
+
 [出门忘带身份证](https://zh.wikipedia.org/wiki/%E5%AD%99%E5%BF%97%E5%88%9A%E4%BA%8B%E4%BB%B6)<br>
 [跟室友玩了躲猫猫](http://news.163.com/special/00013729/HideandSeek.html)<br>
 [睡晚觉姿势不对](http://news.163.com/09/0411/23/56LGJEOG00011229.html)<br>
