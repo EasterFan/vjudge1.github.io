@@ -39,9 +39,15 @@ SCIM 显得比较古老了，我们就不提了。
 
 官网：[http://rime.im](http://rime.im)。
 
-Rime 既支持 iBus 又支持 fcitx，所以非常省事儿。不过输入法默认出来的是繁体中文，需要调成<s>残</s>简体中文。
+Rime 既支持 iBus 又支持 fcitx，所以非常省事儿。不过输入法默认出来的是繁体中文，按<kbd>Ctrl+`</kbd>就能在弹出的选单里调成<s>残</s>简体中文。
 
 # 安装搜狗拼音输入法
+
+{% callout %}
+#### 建议用中州韵
+
+个人意见
+{% endcallout %}
 
 ## Ubuntu
 
