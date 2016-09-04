@@ -4,6 +4,8 @@
     padding-top: 12px !important;
     padding-bottom: 19px;
     background-color: $jumbotron-bg;
+    background-image: url('/img/tile2.png');
+    background-repeat: repeat;
 
     @include on-mobile() {
         margin-bottom: 20px !important;
