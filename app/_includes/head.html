@@ -2,14 +2,6 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    {% if site.force_https %}
-    <script type="text/javascript">
-        var host = "{{ site.force_https }}";
-        if ((host == window.location.host) && (window.location.protocol != "https:")) {
-            window.location.protocol = "https";
-        }
-    </script>
-    {% endif %}
     <title>
         {% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}
     </title>

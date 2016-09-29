@@ -25,9 +25,6 @@ github_username: vjudge1
 
 host: 0.0.0.0
 
-# force https
-force_https: vjudge1.github.io
-
 statistics: '//s95.cnzz.com/z_stat.php?id=1256463916&web_id=1256463916'
 
 # Gems
