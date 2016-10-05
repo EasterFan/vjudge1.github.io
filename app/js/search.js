@@ -55,7 +55,7 @@ var doSearch = function(keyword, callback, errorCallback) {
 $(function () {
 	'use strict';
 
-	var keyword = $.request.queryString['s'];
+	var keyword = $.request.queryString.s;
 
 	$('#keyword').val(keyword);
 	$('#keywordlabel').text(keyword);
