@@ -1,11 +1,11 @@
 # Site settings
-title: Unorz
+title: ⑨rz
 email: vjudge404@gmail.com
 description: 我不姓赵，我不嫖娼
 footnote: >
-  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a> by vjudge1
+  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a> by 某个Cirno
 brand: >
-  <i class="fa fa-github-alt"></i> Unorz
+  <img src="/img/newmoon.png" style="display:inline;" width="20">rz
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "https://vjudge1.github.io" # the base hostname & protocol for your site
 permalink: /:year/:month/:day/:title.html
@@ -64,8 +64,8 @@ external_links:
   name: 环宇的博客
   url: http://www.lihuanyu.com
 -
-  name: 微尘风景
-  url: http://wangchenyu.net.cn
+  name: 王晨宇个人博客
+  url: https://wangchenyu.net.cn
 -
   name: Jerry Yuan
   url: http://jerry.weighingproduct.com
@@ -78,6 +78,9 @@ footer_links:
 -
   name: 让我帮你百度一下
   url: https://vjudge1.github.io/kuso/sos/
+-
+  name: 维基百科小工具
+  url: https://zh.wikipedia.org/wiki/User:%E9%80%86%E8%A5%B2%E7%9A%84%E5%A4%A9%E9%82%AA%E9%AC%BC/Scripts
 
 # Grunt handles images and assets.
 exclude: ['img', 'css', 'js', 'fonts',
