@@ -1,0 +1,226 @@
+---
+layout: post
+title: "Google App Engine入门（Python）"
+author: vjudge1
+categories: 网络
+tags: GAE
+---
+* contents
+{:toc}
+
+Google App Engine其实是一个非常不错的应用引擎，免费，不用处理审核备案之类的麻烦事，而且文档丰富，感觉上要比新浪SAE或百度BAE好多了。虽说以前用GAE只是为了[GoAgent](https://zh.wikipedia.org/zh/GoAgent)，而且GAE被墙了，但是它免费啊，而且自己可以自行翻墙啊，因此仍然可以拿它做一些个人专用的或者给老外用的应用。
+
+GAE的文档很全，不过内容全是英语，对于我这种英语不好的来说简直就是在赎罪。此外GAE也是个巨坑，在探索过程中我也碰了不少灰，所以正好在本文总结一下坑点。
+
+
+
+
+# 基础配置
+
+为了免去很多不必要的麻烦，建议用Linux/Mac系统。我就用Mac了。
+
+首先肯定要注册Google账号了。
+
+{% callout danger %}
+#### 大坑注意
+
+在墙内Google账号很有可能无法通过手机验证（换多少个电话都不好使），所以建议找海外的人帮忙注册，或者先搜一下“手机无法用于验证”，总结一下注意事项，然后做好失败的精神准备。
+{% endcallout %}
+
+然后得做一些最起码的事情，例如给自己系统装上Python（2.7）和Git，然后把代理配置好。我个人建议使用HTTP代理（我使用的是[COW](https://github.com/cyfdecyf/cow)），并且在终端中把`HTTP_PROXY`和`HTTPS_PROXY`设置好，免得麻烦。
+
+接下来需要[下载SDK](https://cloud.google.com/appengine/docs/python/download)。SDK有两种，一种是旧的SDK（下载按钮下面的那个“Optionally, ……”），图形界面的，还有一种是新的SDK（蓝色的DOWNLOAD按钮），纯命令行的。两者都行，不过我用的是后者。
+
+别被花钱的Google Cloud Platform吓到，其实App Engine和它是一起的。新建项目的时候瞅准点就行——我们用的是App Engine。如果你不小心搞了一个Cloud，花钱了，不要来找我。
+
+点击蓝色的DOWNLOAD按钮，就会跳转到新SDK下载处。下载，把它扔到一个固定的位置（我的意思是，装完之后就是那个目录了，所以别放桌面上），`./install.sh`。如果放`/usr/local`一类的地方，别忘了sudo。
+
+{% callout %}
+#### 代理
+
+如果不是通过环境变量设置的代理，那么需要对gcloud配置一下，例如：
+
+    gcloud config set proxy/address 127.0.0.1
+    gcloud config set proxy/port 1080
+    gcloud config set proxy/type socks5
+{% endcallout %}
+
+既然是Python，那么需要再安装一个本地调试用的扩展。输入
+
+    gcloud components install app-engine-python
+
+其他的话可以用`gcloud components list`来查看。
+
+安装完成后，需要连接到自己的谷歌账号。输入`gcloud init`即可登录。
+
+# 编程
+
+GAE对Python的支持怎么说呢？大多数框架还是支持的，例如Django和Flask等等都可以直接跑。但是仍然有很多限制，例如：
+
+1. 在本地建数据库被禁用。
+2. subprocesses被禁用。
+3. 多线程被禁止。
+4. 大多数基于C语言的模块被禁止。
+5. 系统调用被禁止。
+
+{% callout %}
+#### 免费版限制
+
+如果不花钱的话……
+
+1. socket模块无法使用。也就是说，凡是用到import socket的东西都会出错。
+2. 每天流量1GB，北京时间下午4点重置。urlfetch每分钟22M，传入传出带宽每分钟56M……所以GoAgent翻墙会有流量限制，而且这并不应当由GoAgent背锅。
+{% endcallout %}
+
+## Hello World
+
+以最简单的基于Flask的Hello World为例。一个GAE项目基本上要有自己的程序、app.yaml、appengine_config.py、requirements.txt。
+
+### hello.py
+
+```python
+import sys
+import os
+sys.path.append(os.path.join(os.path.abspath('.'), 'venv/Lib/site-packages'))
+
+from flask import Flask, request
+app = Flask(__name__)
+
+@app.route('/')
+def index():
+    return 'It doesn\'t work!'
+```
+
+### app.yaml
+
+```yaml
+runtime: python27
+api_version: 1
+threadsafe: yes
+handlers:
+- url: .*
+  script: hello.app
+```
+
+其中hello.app对应hello.py。以前需要写应用名和version，现在不需要，而且不能写。如果从别的地方复制的代码中含有application和version，现在可以删掉了。
+
+handlers相当于路由表。静态文件可以（而且应当）直接处理，例如：
+
+```yaml
+- url: /favicon\.ico
+  static_files: static/images/favicon.ico
+  upload: static/images/favicon\.ico
+```
+
+有一些特殊的库因为很常用，所以不需要自行安装，例如ssl等。[这些库](https://cloud.google.com/appengine/docs/python/tools/built-in-libraries-27)可以在app.yaml中添加：
+
+```yaml
+libraries:
+- name: ssl
+  version: 2.7
+```
+
+### requirements.txt
+
+因为我们用到了flask，不是Python自带的，也不是GAE自带的，所以需要安装。在文件中输入：
+
+    Flask>=0.10.1
+
+### appengine_config.py
+
+通过该文件，我们可以告诉GAE在import的时候应该到哪里去找库。输入：
+
+```python
+from google.appengine.ext import vendor
+vendor.add('lib')
+```
+
+### 其他
+
+如果想跑定期运行的任务（cron），可以看[cron文档](https://cloud.google.com/appengine/docs/python/config/cron)。
+
+## 本地调试
+
+打开终端，进入项目所在目录。
+
+把依赖库装上：
+
+    pip install -t lib -r requirements.txt
+
+{% callout warning %}
+#### Homebrew
+
+官方文档中指出基于Homebrew的Python可能会出问题。我用的MacPorts，而且直接把系统Python干掉了（要不然Vim插件ycmd无法加载），所以不知道是什么情况。
+{% endcallout %}
+
+输入以下命令即可运行：
+
+    dev_appserver.py .
+
+屏幕会提示`http://localhost:8080`，那就是调试用的网站了。网站遇到错误的时候终端直接就会有提示（所以我建议用终端版的SDK，看起来方便）。另外还有个8000是后台。
+
+{% callout warning %}
+#### 坑
+
+如果程序运行结果与预想结果不符的话，不妨试试`rm *.pyc`。刚开始的时候我就被pyc坑苦了。
+{% endcallout %}
+
+实际上，以上命令在GAE的在线命令行里面敲同样是好使的。
+
+# 部署
+
+如果想让网站在GAE上正式跑起来，首先需要在GAE上开个代码库，然后通过gcloud命令部署。
+
+## 代码库
+
+进到GAE网站，在左面的菜单中找到“开发”，点进去，可以看到“源代码”，Source Tools。GAE的代码库既可以从GitHub导入，也可以直接开一个。
+
+开一个新代码库之后，GAE会告诉你如何上传代码。你可以选择把空仓库`git clone`到本地，也可以选择在本地`git init`然后再上传。
+
+## 上传
+
+我选择在GAE建立一个新代码库，通过`git init`推过去。
+
+首先得把当前目录变成Git仓库：
+
+    git init
+
+建立一个`.gitignore`，在其中输入`*.pyc`和`*/*.pyc`。没必要把这类文件加到仓库里面。
+
+如果有lib目录的话，当然不要把lib目录扔了，否则程序没法运行。把代码上传到GitHub的时候应当把lib删掉，但是调试和部署的时候还是得把lib弄回来。
+
+然后是git的一套：
+
+    git add *
+    git commit -m 'First'
+
+接下来照敲GAE给你的命令：
+
+    git config credential.helper gcloud.sh
+    git remote add google https://source.developers.google.com/...（换成你自己的地址）
+    git push --all google
+
+前两条命令只需要敲一次。以后只需要把git的那一套弄好（add、rm、commit等等），直接push即可。
+
+{% callout %}
+#### 坑
+
+第一次会问你Google账号密码。如果你确定输入无误，但是上传失败，过一会儿再试就可以了。当然，别忘了代理。
+{% endcallout %}
+
+## 部署
+部署很简单，在本地敲一行命令，然后在提示中敲“y”即可：
+
+    gcloud app deploy
+
+小项目的话等几分钟就可以完成部署。有的时候可能比较慢，实际上是因为正在建立Docker的映像……
+
+# 删除
+删除网站时，首先要进入App Engine界面，到设置中把它停止，然后再到Dashboard（不叫dashboard但是是这种Dashboard或Overview的意思）中找到它，删除。一开始我找了半天，后来发现，最好还是先手动停止一下，这样“删除”就比较好找了。删除动作不是马上进行的，GAE会给你一个期限，在此期间可以反悔。
+
+# 后续
+
+还有些东西没去折腾，以后有机会再填坑（不排除弃坑的可能）：
+
+1. GAE的数据库和Storage怎么折腾？
+2. GAE新支持了Ruby和Node.js，怎么折腾？花不花钱？
