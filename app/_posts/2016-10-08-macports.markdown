@@ -8,7 +8,7 @@ tags: MacPorts
 * contents
 {:toc}
 
-Mac下常用的软件包管理器有MacPorts和Homebrew等。我用的是MacPorts。
+Mac下常用的软件包管理器有MacPorts和Homebrew等。我用的是MacPorts。用上它们之后，就有一种在用Linux的感觉……
 
 
 
@@ -36,17 +36,21 @@ MacPorts的安装很简单，到[官方网站](https://www.macports.org/install.
 
 # 安装、卸载与清理软件包
 
-安装软件包之前可以先`sudo port -v selfupdate`更新索引。
+安装软件包之前建议先`sudo port -v selfupdate`更新索引。
 
 1. 安装软件包：`sudo port install 软件包`
 2. 搜索软件包：`port search 关键词`
 3. 卸载软件包：`sudo port unistall 软件包`
-4. 查看可以升级的软件包：`port list outdated`
-5. 升级软件包：`sudo port selfupdate && sudo port upgrade outdated`
+4. 查看可以升级的软件包：`port outdated`
+5. 升级某个软件包：`sudo port upgrade 软件包`
+6. 升级所有软件包：`sudo port upgrade outdated`
+7. 查看某个软件包的详细信息：`port info 软件包`
 
-在升级之后，旧软件包不会被删除，可以用`sudo port uninstall outdated`命令清理。
+如果在安装过程中按了<kbd>Control+C</kbd>，可以先通过`sudo port clean --all 软件包`进行清理，然后再重新安装。
 
-在删除某一软件包之后，有些软件包可能不再被使用（例如安装某软件包时附带的一堆依赖），可以通过`sudo port uninstall leaves`清理。如果垃圾太多，那么这个命令可能需要执行多次才能清理干净。
+在升级之后，旧软件包并不会被删除。可以用`sudo port uninstall outdated`命令清理。
+
+在删除某一软件包之后，有些软件包可能不再被使用（例如安装某软件包时附带的一堆依赖），可以通过`sudo port uninstall leaves`全部清理掉。垃圾太多的话，那么可能需要执行多次这个命令才能清理干净。如果不希望某个软件包被清理掉，可以先输入`port echo leaves`可以查看这些软件包名称，接下来输入`sudo port setrequested 软件包`，然后再进行清理。
 
 # 注意事项
 
@@ -57,15 +61,17 @@ MacPorts的安装很简单，到[官方网站](https://www.macports.org/install.
 2. 将默认版本设置为3.x：`sudo port select --set python python35`
 
 ## 修复PATH环境变量
-MacPorts安装程序会自动在Shell的配置文件中把`/opt/local/bin:/opt/local/sbin`补上。但是，不通过命令行执行的程序（例如在Dock上面点的，或者从LaunchPad上面选的），他们并不会找Shell的配置文件——这些程序仍然会以为PATH是`/usr/bin:/bin:/usr/sbin:/sbin`，所以需要在终端中执行（10.10或以上系统）：
+MacPorts安装程序会自动在shell的配置文件中把`/opt/local/bin:/opt/local/sbin`补上。但是，在Mac系统中，不通过命令行执行的程序（例如在Dock上面点的，或者从LaunchPad上面选的），他们并不会找shell的配置文件——这些程序仍然会以为PATH是`/usr/bin:/bin:/usr/sbin:/sbin`，所以需要在终端中执行（10.10或以上系统）：
 
-    sudo launchctl config user path $PATH
+```bash
+sudo launchctl config user path $PATH
+```
 
-重启之后生效。这样的话，即使不在命令行打开程序，PATH同样有效。
+重启之后生效。这样的话，即使不在命令行打开程序，PATH同样有效。另外，该命令会对系统内的所有用户起作用。
 
 ## MacPorts的Python与系统的Python
 
-系统自带Python，其实这是一件很恶心的事情——没法升级，pip还会搞混。在我电脑上，使用系统Python的话，Vim插件（YouCompleteMe）和zsh插件（Powerline）都会挂掉，因此需要把系统Python屏蔽掉。
+系统自带Python，其实这是一件很恶心的事情——没法升级，还会对Ports带的Python造成负面影响：在我电脑上，使用系统Python的话，Vim插件（YouCompleteMe）和Powerline都会崩溃，因此需要把系统Python屏蔽掉。
 
 除了在PATH中把`/opt/local/bin`放到`/usr/bin`前面，你还需要——
 
@@ -73,12 +79,14 @@ MacPorts安装程序会自动在Shell的配置文件中把`/opt/local/bin:/opt/l
 
 有一个简单粗暴的办法，把`/usr/bin/python`改成到`/opt/local/bin/python`的软链接，然后把`/System/Library/Frameworks/Python.framework/Versions/2.7`改为到`/opt/local/Library/Frameworks/Python.framework/Versions/2.7`的软链接，完整命令如下：
 
-    cd /usr/bin
-    sudo mv python python_backup
-    sudo ln -s /opt/local/bin/python python
-    cd /System/Library/Frameworks/Python.framework/Versions
-    sudo mv 2.7 2.7_backup
-    sudo ln -s /opt/local/Library/Frameworks/Python.framework/Versions/2.7 2.7
+```bash
+cd /usr/bin
+sudo mv python python_backup
+sudo ln -s /opt/local/bin/python python
+cd /System/Library/Frameworks/Python.framework/Versions
+sudo mv 2.7 2.7_backup
+sudo ln -s /opt/local/Library/Frameworks/Python.framework/Versions/2.7 2.7
+```
 
 但是，对于白苹果（10.11或更高版本）来说，因为SIP（System Integrity Protection）的存在，这种暴力并不能被直接施加，所以还得先进入Recovery模式（开机时按<kbd>Command+R</kbd>），在终端中输入`csrutil disable`，关掉SIP功能。
 
@@ -86,7 +94,9 @@ MacPorts安装程序会自动在Shell的配置文件中把`/opt/local/bin:/opt/l
 
 如果不想诉诸暴力，那么也可以“特事特办”——
 
-    install_name_tool -change /System/Library/Frameworks/Python.framework/Versions/2.7/Python /opt/local/Library/Frameworks/Python.framework/Versions/2.7/Python /Applications/MacVim.app/Contents/MacOS/Vim
+```bash
+install_name_tool -change /System/Library/Frameworks/Python.framework/Versions/2.7/Python /opt/local/Library/Frameworks/Python.framework/Versions/2.7/Python /Applications/MacVim.app/Contents/MacOS/Vim
+```
 
 ## 系统升级
 系统升级（例如10.11→10.12）之后，需要执行以下步骤：
@@ -95,3 +105,10 @@ MacPorts安装程序会自动在Shell的配置文件中把`/opt/local/bin:/opt/l
 2. 重新到官网上下载MacPorts安装包，重新安装。
 3. 通过`sudo port selfupdate && sudo port upgrade outdated`重新安装软件包。（不像官网说得那样麻烦）
 
+## 卸载MacPorts
+如果想抛弃MacPorts，投入Homebrew的怀抱，或者从此告别软件包管理器，可以按照以下方法卸载：
+
+```bash
+sudo port -fp uninstall installed
+sudo rm -rf /opt/local /Applications/MacPorts ~/.macports
+```

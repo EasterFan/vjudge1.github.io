@@ -48,7 +48,7 @@ categories: 编程软件
 
 打开a.txt，看看里面哪些安装包是不需要的（注意，里面不光有VS，还有其他软件），总结出一些关键词。
 
-接下来编辑TotalUninstaller.exe.config，里面应该有`<ProductsToUninstall>`，我把它改成了
+接下来编辑TotalUninstaller.exe.config，里面应该有`<ProductsToUninstall>`，我把它改成了（**注意，不要照抄，否则后果会很惨！**）
 
 ```xml
 <ProductsToUninstall>
@@ -81,6 +81,8 @@ categories: 编程软件
 
 最后，`C:\ProgramData\Package Cache`是当然要消灭的！能够省下近3GB空间！
 
+消灭的时候注意，不要直接删光，否则以后Visual Studio安装程序无法正常打开。用`del C:\ProgramData\Package Cache\*.cab /s /q /f`删会好一些。
+
 因为脑袋正常的人不会天天在那儿玩Visual Studio安装程序，所以，以后真的需要修改或修复的时候，重新下载安装程序就行了。
 
-<s>当然，把文件夹挪到别的盘上，再用mklink命令建立个链接也是可行的。</s>经过试验发现这样不行。
+经过试验，试图通过建立符号链接来转移文件的方法是不可行的。

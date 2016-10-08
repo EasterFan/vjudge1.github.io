@@ -8,7 +8,7 @@ tags: 维基百科 API Scripting
 * contents
 {:toc}
 
-最近维基百科严重上瘾，除了写条目和[搞破坏](https://zh.wikipedia.org/wiki/Wikipedia:%E7%A0%B4%E5%9D%8F)，还写了一点脚本。像我这种[电脑高级中手](https://wiki.esu.moe/曹国祥)，有了心得之后，在自己博客上随便写点什么算了，不往百科用户页里面写了（其实是因为版权不兼容）。维基百科内有很详细的文档，而且高手非常多，不会的话可以问他们。
+最近维基百科严重上瘾，除了写条目和[搞破坏](https://zh.wikipedia.org/wiki/Wikipedia:%E7%A0%B4%E5%9D%8F)，还写了一点脚本。像我这种[电脑高级中手](https://wiki.esu.moe/曹国祥)，有了心得之后，在自己博客上随便写点什么算了，不往百科用户页里面写了。维基百科内有很详细的文档，而且高手非常多，不会的话可以问他们。
 
 
 
@@ -242,7 +242,7 @@ local text = frame.args[1]
 local info = frame.args.info
 ```
 
-获取某个页面的内容（注意，模板已被展开）：
+获取某个页面的内容（注意，有些模板会被展开）：
 
 ```lua
 local content = mw.title.new('Wikipedia:首页'):getContent()
