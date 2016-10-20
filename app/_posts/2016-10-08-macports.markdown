@@ -32,7 +32,7 @@ MacPorts的安装很简单，到[官方网站](https://www.macports.org/install.
     rsync_server    mirrors.ustc.edu.cn
     rsync_dir       macports/base/
 
-然后执行`sudo port -v selfupdate`即可更新索引。
+然后执行`sudo port -v selfupdate`即可更新索引。但是USTC的镜像仅限于索引，软件包还会从墙外网站下载。嫌慢的话代理还是必不可少的。
 
 # 安装、卸载与清理软件包
 
