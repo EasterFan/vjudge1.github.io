@@ -143,6 +143,8 @@ function edit(pageName, text, summary) {
             } else if (data && data.error) {
                 if (data.error.code === 'protectedpage') {
                     alert('页面被保护');
+                } else if (data.error.code === 'blocked') {
+                    alert('你已被封禁');
                 } else {
                     alert('错误' + data.error.code + '：' + data.error.info);
                 }
