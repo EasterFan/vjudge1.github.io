@@ -41,7 +41,7 @@ importScript('User:和平奮鬥救地球/link-ts.js');
 这样做的话，脚本的加载时机是不同的。正常情况下，用户脚本（common.js）是在皮肤脚本加载完成后加载的，这时网页内容已经差不多加载完了。使用油猴的话会早一些。
 
 ## API
-目前维基百科自带jQuery，版本1.11.3，拿去用就行了。
+目前维基百科自带jQuery，版本1.11.3，拿去用就行了。维基百科还提供了jQuery UI等组件，可以通过类似`mw.loader.using('jquery.ui.dialog');`的代码来加载。
 
 MediaWiki提供了很多API，用于获取信息、更改内容等。所有JavaScript API都在`mw`之中，而API都通过`https://zh.wikipedia.org/w/api.php`调用，详细内容可以见[JS参考手册](https://doc.wikimedia.org/mediawiki-core/master/js/#!/api/mw-property-config)和[API参考](https://www.mediawiki.org/wiki/API:Main_page/zh)。
 

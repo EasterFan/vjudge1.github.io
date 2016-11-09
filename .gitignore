@@ -3,10 +3,11 @@ app/_drafts/*
 .sass-cache
 .jekyll-metadata
 .jekyll
+.bundle
 .tmp
 bower_components
 dist
 node_modules
-
+npm-debug.log
 .sublime-grunt.cache
 Gemfile.lock

@@ -37,7 +37,7 @@ Linux 世界出现了三种解决方案：
     sudo apt-get update
     sudo apt-get install wine1.7
 
-其他系统可以略过。
+其他系统（Fedora、Archlinux等等）可以略过。
 
 # 下载和安装 WineQQ
 
@@ -60,7 +60,7 @@ Linux 世界出现了三种解决方案：
 建立一个文件 ~/.local/share/applications/qq.desktop，用文本编辑器将其打开，并输入
 
 {% highlight ini %}
-[Desktop]
+[Desktop Entry]
 Type=Application
 Categories=Network;InstantMessaging;
 Comment=
