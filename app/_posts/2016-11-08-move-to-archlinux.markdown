@@ -25,10 +25,35 @@ tags: Linux wine 東方Project
 [Desktop Entry]
 Type=Application
 Name=meow
-Exec=/home/li/MEOW
+Exec=/home/xxx/MEOW
+```
+
+为了在命令行中享受到代理，可以在自己的shell的配置文件中加入：
+
+```bash
+export HTTP_PROXY=http://127.0.0.1:7777
+export HTTPS_PROXY=http://127.0.0.1:7777
 ```
 
 当然，跑pacman和滚Arch的时候没必要走代理，所以可以把镜像站的网址放到白名单里。
+
+### npm
+
+npm不用代理，直接换[淘宝镜像](https://npm.taobao.org/)：
+
+```
+npm config set registry https://registry.npm.taobao.org
+npm config set disturl https://npm.taobao.org/dist
+```
+
+### gem
+
+换用[Ruby China的镜像](https://gems.ruby-china.org)：
+
+```
+gem sources --add https://gems.ruby-china.org/ --remove https://rubygems.org/
+bundle config mirror.https://rubygems.org https://gems.ruby-china.org
+```
 
 ## AUR
 为了能够多装些东西，我安装了yaourt。具体操作网上有。唯一的问题就是得挂代理。
@@ -84,14 +109,14 @@ sudo pacman -Rns $(pacman -Qtdq)
 ## Vim
 [我的Vim配置文件](https://github.com/vjudge1/misc/blob/master/config/vimrc)是过去写好的，所以直接搬来用了。
 
-大致的情况就是使用Vundle作为插件管理器，然后塞了一大堆插件。其中最难配置的就是YouCompleteMe，不过在Linux中的配置可比在Windows和Mac系统中轻松多了。
+大致的情况就是使用Vundle作为插件管理器，然后塞了一大堆插件。其中最难配置的就是[YouCompleteMe](https://github.com/Valloric/YouCompleteMe)，不过在Linux中的配置可比在Windows和Mac系统中轻松多了。
 
 ## Sublime Text
 不要`yaourt -S sublime-text-dev`，那个版本没法敲汉字。我们应当`yaourt -S sublime-text-dev-imfix`。
 
 如果PATH变量是在`.zshrc`中设置的，那么Sublime Text可能会注意不到（废话）。对于某些插件来说，你需要修复一下这个问题，或者手动给它们指定PATH。这个症状在Mac中也会出现。
 
-提示“软件包冲突”的话，那么你可以改一下PKGBUILD，在sublime-text-dev-zh_CN和zh_TW之中去掉一个——这根本就是大陆版的“九二共识”嘛。
+提示“软件包冲突”的话，那么你可以改一下PKGBUILD，去掉zh_CN和zh_TW中的一个——去掉zh_TW的话就是大陆版的“九二共识”，去掉zh_CN的话就是大陆版的“台独”。
 
 ## Atom
 Sublime Text的输入法问题实在令人头疼，即使把iBus换成fcitx有时候还是不好使。另外Atom本身也是个很棒的编辑器，所以自然要跟Sublime Text换着用。
@@ -109,7 +134,7 @@ apm config proxy http://127.0.0.1:7777
 apm config https-proxy http://127.0.0.1:7777
 ```
 
-顺便提一下npm也是这样配置代理的。
+因为npm经常卡死，所以我的做法是先在终端中启动代理软件，一卡死就重新启动代理软件……
 
 ## Python
 Arch默认的Python是3.x，而且没有提供一种切换Python版本的工具。为了使2.x成为默认Python，按照官方给出的方法，我是这样做的：
@@ -124,7 +149,7 @@ ln -s /usr/bin/python2-config ~/.bin/python-config
 最后在PATH中保证`/home/xxx/.bin`排在`/usr/bin`前面即可。
 
 ## 关于本博客
-敲`grunt serve`的时候突然冒出满屏幕的“Warning: watch ENOSPC”警告，根本无法预览，所以搜到了[StackOverflow的解决方案](http://stackoverflow.com/questions/16748737/grunt-watch-error-waiting-fatal-error-watch-enospc)。他们的系统敲的是：
+敲`grunt serve`的时候突然冒出满屏幕的“Warning: watch ... ENOSPC”警告，根本无法预览，所以搜到了[StackOverflow的解决方案](http://stackoverflow.com/questions/16748737/grunt-watch-error-waiting-fatal-error-watch-enospc)。他们的系统敲的是：
 
 ```
 echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
@@ -164,6 +189,7 @@ Include = /etc/pacman.d/mirrorlist
 然后装wine和解码器（32位系统直接去掉命令中的“lib32”）：
 
 ```
+sudo pacman -Ss
 sudo pacman -S wine
 sudo pacman -S lib32-alsa-lib lib32-pulse-lib lib32-libpulse lib32-alsa-plugins lib32-mpg123 lib32-sdl lib32-openal lib32-gst-plugins-base lib32-gstreamer gst-libav lib32-gst-plugins-good
 ```
@@ -171,10 +197,10 @@ sudo pacman -S lib32-alsa-lib lib32-pulse-lib lib32-libpulse lib32-alsa-plugins 
 然后就OK了。
 
 注意：
-1. 如果游戏乱码，请设置LC_ALL变量，例如：`LC_ALL=zh_CN.UTF-8 wine th06.exe`。在Mac系统也是这样处理。不要听网上说改LANG，没用的。
+1. 如果游戏乱码，请设置LC_ALL变量，例如：`LC_ALL=zh_CN.UTF-8 wine th06.exe`。Mac系统也是这样处理的。不要听网上说改LANG，没用的。
 2. 想全屏游戏的话，桌面不要用Wayland，而是应当换回Xorg，否则不仅进不去而且还会崩终端或桌面。
 
-## Steam（未完待续）
+## Steam
 
 只需要：
 
@@ -182,6 +208,25 @@ sudo pacman -S lib32-alsa-lib lib32-pulse-lib lib32-libpulse lib32-alsa-plugins 
 yaourt -S steam steam-native-runtime
 ```
 
-不过Steam没法通过optirun来启动。所以我暂时想到的方法是：挂着Steam不管，自己手动通过optirun来运行游戏。
+不过Steam没法通过optirun来启动。所以我暂时想到的方法是：把Steam放在那里挂着，然后自己手动通过optirun来运行游戏：
 
-不幸的是，《传送门》、《传送门2》等等游戏只能玩英文版本，否则连豆腐块都看不到——直接是“无字天书”。以后再解决这个问题。
+```
+optirun ~/.steam/steam/steamapps/common/Portal\ 2/portal2.sh -game portal2 -steam
+```
+
+不幸的是，对于《半条命2》、《传送门》等起源引擎游戏，中文可能连豆腐块都看不到——直接是“无字天书”。这是因为游戏引擎把字体名称写死了，测量中文字符时直接宽度为零，所以我们要做个字体替换，把写死的“Nimbus Sans”字体换成文泉驿：
+
+```xml
+<?xml version="1.0"?>
+<!DOCTYPE fontconfig SYSTEM "fonts.dtd">
+<fontconfig>
+
+<match target="pattern">
+   <test qual="any" name="family"><string>Nimbus Sans</string></test>
+   <edit name="family" mode="assign" binding="same"><string>WenQuanYi Zen Hei</string></edit>
+</match>
+
+</fontconfig>
+```
+
+保存到`/etc/fonts/conf.d/99-fix-steam.conf`，这样就能显示汉字了。
