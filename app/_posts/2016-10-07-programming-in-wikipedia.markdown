@@ -13,6 +13,12 @@ tags: 维基百科 API Scripting
 
 
 
+{% callout %}
+#### 更新日志
+
+2016年11月21日：把“机器人”一节补完。
+{% endcallout %}
+
 维基百科基于MediaWiki系统，这个系统提供了很多API，所以对维基百科编程（例如写点小工具等）其实很容易。当然，不要拿去搞破坏，否则会被一群认真狂魔给封禁。
 
 为了体验编程的乐趣，必须要注册账号。注册满七天和50次编辑即可变为自动确认用户。如果想刷编辑次数的话，记住，做正经编辑，或者至少不要在正经场合捣乱和冲刷“最近编辑”，否则也会被封禁。
@@ -262,12 +268,91 @@ f.fun()
 
 注意不要侵权。
 
-# 机器人（未完待续）
-详细内容可以见[Wikipedia:制作机器人](https://zh.wikipedia.org/wiki/Wikipedia:%E8%A3%BD%E4%BD%9C%E6%A9%9F%E5%99%A8%E4%BA%BA)。先挖个坑，改天开动机器人进行[破坏](https://zh.wikipedia.org/wiki/Wikipedia:%E7%A0%B4%E5%9D%8F)之后再填坑。
+# 机器人
+详细内容可以见[Wikipedia:制作机器人](https://zh.wikipedia.org/wiki/Wikipedia:%E8%A3%BD%E4%BD%9C%E6%A9%9F%E5%99%A8%E4%BA%BA)。
 
+## 原理
 前面JavaScript一节已经给出了机器人的基本原理——那段代码其实已经可以当作人工辅助机器人来用。
 
-有些机器人的作者公开了源代码，例如[Cewbot](https://zh.wikipedia.org/wiki/User:Cewbot)（Node.js）、[Antigng-bot](https://zh.wikipedia.org/wiki/User:Antigng-bot)（C语言orz）等，可以前去膜拜一下。
+维基百科要求自动化程序必须使用自己的User-Agent，没有User-Agent或者伪装成浏览器会导致403。
+
+机器人在实作之前需要登录，而且访问API的脚本需要保存Cookie否则无法保持登录状态。登录当然不应该使用帐号本身的密码：最安全的方法是通过OAuth，不过一般情况下[生成机器人密码](https://zh.wikipedia.org/wiki/Special:BotPasswords)足矣（前者需要申请，后者不需要）。
+
+以使用[request](https://github.com/request/request)库的Node.js代码为例：
+
+```js
+var request = require('request').defaults({jar: true});
+request.post({
+    url: url,
+    headers: {
+        'User-Agent': USERAGENT
+    },
+    form: {
+        action: 'query',
+        meta: 'tokens',
+        type: 'login',
+        format: 'json'
+    }
+}, function (error, response, body) {
+    if (!error && response.statusCode === 200) {
+        var token = JSON.parse(body).query.tokens.logintoken;
+
+        request.post({
+            url: url,
+            headers: {
+                'User-Agent': USERAGENT
+            },
+            form: {
+                action: 'login',
+                lgname: '用户名',       // 如果使用机器人密码，那么用户名中含有“@”号。
+                lgpassword: '密码',
+                lgtoken: token,
+                format: 'json'
+            }
+        }, function (error, response, body) {
+            if (!error && response.statusCode === 200) {
+                var result = JSON.parse(body).login.result;
+                if (result === 'Success') {
+                    // 登录成功
+                } else {
+                    // 登录失败，例如用户不存在、密码错误等，详见
+                    // https://www.mediawiki.org/wiki/API:Login#The_login_action
+                }
+            } else {
+                // 错误
+            }
+        });
+    } else {
+        // 错误
+    }
+});
+```
+
+有些机器人的作者公开了源代码，例如[Cewbot](https://zh.wikipedia.org/wiki/User:Cewbot)（Node.js）、[Antigng-bot](https://zh.wikipedia.org/wiki/User:Antigng-bot)（C语言orz）等，可以前去膜拜一下。另外，在Tools Lab上运行的机器人必须使用采用自由软件许可的项目。
+
+## Tools Lab
+维基媒体基金会提供了一个免费空间，大家可以在上面进行架网站、跑机器人等活动，当然，得和维基媒体基金会的计划有关。只需要到[Wikitech](https://wikitech.wikimedia.org/wiki/Main_Page)注册一个账户，然后申请Tools权限。之后管理员审核通过后会赋予你shell权限。把自己的SSH公钥加入到Wikitech的系统设置中就可以通过ssh登录。
+
+Tools Lab的规矩比较多（而且大伙儿都在同一个主机上面登录），所以在实际操作之前应该仔细阅读各项说明文件，以免意外翻车。
+
+Lab各软件配置：
+
+软件     | 版本
+--------|-------
+系统     | Ubuntu 14.04.4
+Linux   | 3.13.0
+Python  | 2.7.6 / 3.4.3
+Ruby    | 1.9.3
+PHP     | 5.5.9
+Node.js | 0.10.25
+Perl    | 5.18.2
+
+用jsub（常驻型程序必须通过jsub运行）跑Node.js时记得给内存分大一点，否则肯定会挂。
+
+## 注意事项
+维基百科不允许未经批准的机器人进行编辑（但是可以在不会对维基百科造成任何影响的地方例如沙盒进行测试），即使已有机器人权限也要严格按照申请进行，所以进行每一种正式编辑之前都要进行申请。
+
+此外也可以到[test2wiki](https://test2.wikipedia.org)进行测试。
 
 # 其他问题
 
@@ -279,7 +364,7 @@ f.fun()
 * [Antigng](https://zh.wikipedia.org/wiki/User:Antigng)：Orz
 * [妹空酱](https://zh.moegirl.org/User_talk:妹空酱)/[镜音铃](https://zh.wikipedia.org/wiki/User:镜音铃)：Wikiplus作者，Orz
 * [Kanashimi](https://zh.wikipedia.org/wiki/User:Kanashimi)：Orz
-* 还有一堆潜水的大神们……比如USTC Linux的人（我发现，无论走到哪里都能看见这群邪教徒），Orz。
+* 还有一堆潜水的大神们……Orz。
 
 详见[机器人列表](https://zh.wikipedia.org/wiki/Special:%E7%94%A8%E6%88%B7%E5%88%97%E8%A1%A8/bot)。
 
@@ -293,6 +378,6 @@ f.fun()
 ## 关于自动化修改和破坏
 如果想对很多页面进行修改的话，可以申请自动维基浏览器使用权，也可以申请机器人，或者请求其他人用机器人进行修改。实施自动化或半自动化修改应当先申请或打招呼，保证自己的修改不会引发争议，否则容易招致封禁。
 
-如果纯粹是想通过编程来破坏维基百科的话，建议不要这样做，因为破坏很快就能被恢复，而且自己会被管理员给收拾一顿（封禁）。真想搞破坏的话，应当做好充分的技术准备，制定周密的计划，然后再进行行动——像[曹大佐](https://wiki.esu.moe/曹国祥)那样搞是不行的。
+如果纯粹是想通过编程来破坏维基百科的话，建议不要这样做，因为破坏很快就能被恢复，而且自己会被管理员给收拾一顿（封禁）。真想搞破坏的话，应当做好充分的技术准备，制定周密的计划，然后再进行行动——像[这位](https://wiki.esu.moe/张祥如)或[这位](https://wiki.esu.moe/曹国祥)那样洗版是不行的。
 
 如果不想引起任何争议的话，可以在自己电脑上架个MediaWiki，这样的话无论如何破坏和滥权都没问题（曹国铁路除外——只要架个网站就会迅速坠毁，回归虚无）。维基百科所使用的插件见[Special:版本](https://zh.wikipedia.org/wiki/Special:%E7%89%88%E6%9C%AC)。
