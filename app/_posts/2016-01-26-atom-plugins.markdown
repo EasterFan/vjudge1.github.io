@@ -21,12 +21,12 @@ Atom是由GitHub推出的文本编辑器，虽然比新一代的编辑器之神S
 
 ## 必备插件
 
-* `atom-fix-path`：Atom编辑器在Mac系统中有个bug（不能正确获取PATH变量的值），可以通过这个插件修复。
+* `atom-fix-path`：Atom编辑器在Mac系统中有个bug（不能正确获取PATH变量的值），可以通过这个插件修复（备注：也可以通过`sudo launchctl config user path $PATH`处理）。
 * `highlight-selected`和`minimap-highlight-selected`：选中变量之后，文件中其他相同变量名均被高亮。
 * :kissing_heart:`minimap`：代码地图，必备插件。
 * :kissing_heart:`script`：必备插件——随手写了一段代码，然后轻轻一按<kbd>⌘I</kbd>（<kbd>Ctrl+I</kbd>），代码就执行了！支持多种脚本语言，还支持C语言等（仅限于Mac）。它还支持自定义运行参数，以及“运行到光标处”（仅限部分语言）。
     * 目前该插件还不支持从stdin读入，所以不要用此插件运行需要输入的程序。
-* `terminal-plus`：在编辑器底下会出现一个“＋”，点击之后，一个shell，很方便。
+* :kissing_heart:<del>`terminal-plus`</del> `platformio-ide-terminal`：在编辑器底下会出现一个“＋”，点击之后，一个shell，很方便。
 * :kissing_heart:`vim-mode`和`ex-mode`：谁才是“编辑器之神”？Vim！（因为Vim对于中文输入而言不太方便所以我没使用）
 * `atom-beauity`：代码美化只在<kbd>⌃⌥B</kbd>（<kbd>Ctrl+Alt+B</kbd>）一瞬间。
 
