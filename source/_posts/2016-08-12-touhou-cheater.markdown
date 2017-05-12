@@ -108,7 +108,7 @@ AdjustTokenPrivileges hToken, False, tkp, Len(tkpNewButIgnored), tkpNewButIgnore
 
 辉针城残机数量的地址是4F5864，首先用追踪功能（<s>新手嘛，用Game Master试的</s>还是OllyDbg便于装酷）找到写入该地址的代码。
 
-![1](/img/2016-08-02-touhou/1.png)
+{% asset_img 1.png %}
 
 看到那个`dec eax`（EAX减1）了吗？直接改成90（NOP，空指令）试一下。
 
@@ -129,7 +129,7 @@ AdjustTokenPrivileges hToken, False, tkp, Len(tkpNewButIgnored), tkpNewButIgnore
 
 首先定位到残机数量减一这里（下图）。
 
-![2](/img/2016-08-02-touhou/2.png)
+<span style="display:none;">` `</span>{% asset_img 2.png %}
 
 减生命值的指令位于一小坨代码中。这小坨指令的第一条位于44F5E0。给44F5E0上断点，发现在Miss之后会经历一个很短暂的时间，然后才会触发断点。不过，这也可以说明这段代码确实与Miss有关。
 
@@ -139,13 +139,13 @@ AdjustTokenPrivileges hToken, False, tkp, Len(tkpNewButIgnored), tkpNewButIgnore
 
 接下来追踪调用44F5E0的代码，找到了44DD91（下图的`call 0044F5E0`）。
 
-![3](/img/2016-08-02-touhou/3.png)
+<span style="display:none;">` `</span>{% asset_img 3.png %}
 
 在这里，死亡已经是既定事实，所以需要继续往前追溯。在44DD84处（CMP）下断点，发现要做8次比较之后才会调用44F5E0。这就是经过一小段延迟之后才播放Miss效果、残机数量减一。
 
 那么44DD84处的CMP是从哪里跳过来的呢？继续跟踪，找到了44DBF8（下图的JMP）。
 
-![4](/img/2016-08-02-touhou/4.png)
+{% asset_img 4.png %}
 
 JMP的目标地址不是固定的，而是与EAX有关。这大概是个指向函数的指针吧。
 
@@ -155,7 +155,7 @@ JMP的目标地址不是固定的，而是与EAX有关。这大概是个指向�
 
 设置条件断点，一旦向0D4906CC写入数值就中断，结果找到了44F871（下图MOV）。
 
-![5](/img/2016-08-02-touhou/5.png)
+{% asset_img 5.png %}
 
 这部分应该都是和死亡判定有关的了。定位到这坨代码的开头（44F7A0），直接改成C3（RET）。OK！
 
@@ -167,33 +167,33 @@ JMP的目标地址不是固定的，而是与EAX有关。这大概是个指向�
 
 先猜一下，大概应该从捡到Power道具开始，然后再慢慢回溯。按照猜想，首先定位到了Power增长（4390DD），发现开头是4390C0，寻找CALL，于是发现了：
 
-![6](/img/2016-08-02-touhou/6.png)
+{% asset_img 6.png %}
 
 注意438B4A处的JMP，有点`switch () { ... }`的意思。应该是自机捡到了一个道具，然后判断道具种类，然后给予不同的奖励。
 
 往上看438B3E（MOV），这条语句说明道具种类就存在[EDI+0BF4]里面，因此处理道具的时候也一定会碰到这个地址。开启高亮功能，往前翻，直到找到另一个[EDI+0BF4]为止：
 
-![7](/img/2016-08-02-touhou/7.png)
+{% asset_img 7.png %}
 
 设置断点，继续<del>泡妹子</del>打游戏，发现当道具离自机有一定距离时就会触发43897E，直到接触到道具才会触发438B3E。在438B3E前面有几个JA（下图），如果距离不够就直接跳出去了：
 
-![8](/img/2016-08-02-touhou/8.png)
+{% asset_img 8.png %}
 
 这时我开始听天由命，胡乱搞了——如果能随时触发43897E处的代码，离自动捡道具不就近了一步嘛。为什么会这样想呢？不知道，反正就这样干了——至少离“参考答案”又近了一步。
 
 注意上图底下有个“Jump from 438838”，就是这个样子：
 
-![9](/img/2016-08-02-touhou/9.png)
+{% asset_img 9.png %}
 
 直接把“0F84”改成“2EE9”（JMP）会怎样呢？没反应。
 
 再回到43897E处，发现438965也是JMP们的目标地址（438965~43897E之间没有跳转了，肯定是一块儿的）：
 
-![10](/img/2016-08-02-touhou/10.png)
+{% asset_img 10.png %}
 
 啥也别说了，直接用排除法，挨个定位，把条件跳转都改成直接跳转JMP，然后回到游戏看看到底发生了什么变化：
 
-![11](/img/2016-08-02-touhou/11.png)
+{% asset_img 11.png %}
 
 结果出人意料，居然自动捡道具了。
 
@@ -207,7 +207,7 @@ JMP的目标地址不是固定的，而是与EAX有关。这大概是个指向�
 
 为了赶紧投入到萝莉们的怀抱中，我决定，直接下载一个现成的作弊器。
 
-![boring](/img/2016-08-02-touhou/boring.jpg)
+{% asset_img boring.jpg %}
 
 東方有毒啊！
 

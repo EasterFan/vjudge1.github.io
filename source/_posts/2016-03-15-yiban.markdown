@@ -51,10 +51,7 @@ tags: 电幕
 
 推荐大家先读一读《一九八四》，然后再来回答这些问题……
 
-<div class="text-center">
-<img src="{{site.baseurl}}/img/telescreen.jpg" style="width:300px;"><br>
-BIG BROTHER IS WATCHING YOU
-</div><br>
+{% asset_img telescreen.jpg "BIG BROTHER IS WATCHING YOU" %}
 
 本文作者正处于恐惧之中，那么就以一个轻松点的话题结尾吧：今年的春晚非常奇怪——明明演得很烂，但是新闻媒体却***开足了马力***来称赞春晚演得非常好，“歌颂正能量”、“唱响主旋律”，反映了“百姓的心声”。不知道到底为什么。
 

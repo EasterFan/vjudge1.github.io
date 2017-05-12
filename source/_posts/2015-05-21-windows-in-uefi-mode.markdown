@@ -1,6 +1,6 @@
 ---
 title: "Windows in UEFI Mode"
-categories: 教程
+categories: 经验总结
 tags:
 - 系统维护
 - Windows
@@ -107,19 +107,19 @@ I will only introduce what they "look like". I won't consider SCSI, RAID or dyna
 
 In general, people are used to divide an MBR disk into a primary partition (C:, /dev/sda1) and an extended partition (/dev/sda2). Other partitions are contained in the extended partition (from /dev/sda5).
 
-![mbr](/img/mbr.png)
+{% asset_img mbr.png MBR %}
 
 ## What GPT looks like
 
 All of partitions in GPT disks are primary partition. The first partition using FAT32 filesystem is ESP (EFI System Partition).
 
-![gpt1](/img/gpt1.png)
+{% asset_img gpt1.png "GPT (1)" %}
 
 ## Brand-name Computers
 
 Some brand-name computers have a easy-to-use recovery tool like "OneKey". So there are some dedicated partitions saving recovery programs or original system images. You can't alloc drive letters to these partitions directly.
 
-![gpt2](/img/gpt2.png)
+{% asset_img gpt2.png "GPT (2)" %}
 
 # Windows Support
 

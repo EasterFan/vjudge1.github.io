@@ -1,6 +1,6 @@
 ---
 title: "Install Rails (Mac/Cygwin/Windows)"
-categories: 教程
+categories: 折腾记录
 tags:
 - Mac
 - Rails

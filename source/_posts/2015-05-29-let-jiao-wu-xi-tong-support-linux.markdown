@@ -1,6 +1,6 @@
 ---
 title: "让“强智”教务系统支持 Linux/OS X"
-categories: 教程
+categories: 折腾记录
 tags:
 - Linux
 - 教务系统
@@ -59,11 +59,11 @@ Charles 是一个 HTTP 调试工具，可以抓包也可以代理。
 3. 登一下教务系统，然后会看到一个提示——“不能创建对象！”一会儿我们就让它能创建对象。
 4. 切换到 Charles，可以看到 jwxt.upc.edu.cn。
 
-   ![jwxt](/img/2015-05-29-jwxt/jwxt.png)
+   {% asset_img "jwxt.png" "定位" %}
 
-5. 右击 `core.js`，选择 `Map Local...`，把弹出对话框的 `Local Path` 设置成你刚才下载的那个脚本。
+5. 右击 core.js，选择“Map Local...”，把弹出对话框的“Local Path”设置成你刚才下载的那个脚本。
 
-   ![map](/img/2015-05-29-jwxt/map.png)
+   {% asset_img "map.png" "更换" %}
 
    建议清除一下浏览器缓存，并且在调试期间禁用缓存。现在再访问教务系统，core.js 就是你自己的版本了。
 

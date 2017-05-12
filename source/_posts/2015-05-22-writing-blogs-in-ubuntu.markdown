@@ -1,6 +1,6 @@
 ---
 title: "Setup Jekyll in Ubuntu/Windows"
-categories: 教程
+categories: 折腾记录
 tags:
 - Jekyll
 - Linux
