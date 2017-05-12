@@ -1,0 +1,920 @@
+---
+title:  "从C++转向C#的快速入门教程"
+categories: 教程
+tags: C#
+---
+从C++过渡到C#也能很快入门。
+
+只要你舍得你电脑C盘的空间，C#环境特别容易配置——Visual Studio。
+
+如果你用的是Linux或Mac，你也可以通过装Mono来跑C#，然后拿Xamarin Studio（写安卓和iOS应用需要花钱，写本地应用不要钱）或Code（目前还没出正式版）写程序，只不过没有Windows Forms、ADO.NET以及那些乱七八糟的八百年都用不到的WPF什么的。
+
+早在微软把.Net Core开源之前，就有一伙人（Mono）在模仿.Net。现在.Net开源了，所以也没什么太大区别了。
+
+为了照顾Linux和Mac<span class="blackout">其实是偷懒</span>，本文直接省略Windows Forms内容——反正在这方面VB、C#、C++/CLI是一模一样的，随便捡一本书都通用<span class="blackout">其实我自己学过VB，所以还是偷懒</span>。
+
+# Helloworld
+
+在VS中新建“C#控制台工程”，然后在Program.cs中：
+
+```cs
+using System;
+
+namespace Hello
+{
+    class MainClass
+    {
+        public static void Main(string[] args)
+        {
+            Console.WriteLine("Hello World!");
+            Console.ReadLine();
+        }
+    }
+}
+```
+
+为了防止控制台窗口一闪而过，你可能希望在最后加一行ReadLine()。后面都一样。
+
+# 基本语法
+
+## 命名习惯
+
+和C++不一样，而且C#的命名习惯比较固定，直接Google一下就知道了。
+
+## 数据类型
+
+C#将数据类型分为值类型和引用类型，大意就是当你用=赋值的时候，值类型就是在内存里开个新空间，然后把内容拷一份，而引用类型就相当于一个指针，不用Clone复制的话即使用一百个=赋值其实也只有一个实例。
+
+值类型：
+
+类型     | .Net Framework中的名称  | 取值范围
+--------|------------------------|---------------
+sbyte   | System.SByte           | -128~127
+byte    | System.Byte            | 0~255
+short   | System.Int16           | -32768~32767
+ushort  | System.UInt16          | 0~65535
+int     | System.Int32           | 有符号32位
+uint    | System.UInt32          | 无符号32位
+long    | System.Int64           | 有符号64位
+ulong   | System.UInt64          | 无符号64位
+char    | System.Char            | 无符号16位
+float   | System.Single          | 1.5e-45~3.4e38
+double  | System.Double          | 5.0e-324~1.7e308
+decimal | System.Decimal         | 1.0e-28~7.9e28
+bool    | System.Boolean         | true和false
+
+* 枚举类型也是值类型。
+* 这些类型定义出的变量和类型本身都是可以当成对象来用的。
+* 引用类型：类、object（System.Object）、string（System.String）、数组、接口、委托等
+* 引用类型的变量需要用new分配空间。
+
+### 类型转换
+
+和C语言一样，使用小括号进行类型转换。
+
+或者使用as关键字进行转换（as必须是引用类型。转换失败不会引发异常）：
+
+```cs
+object o = 10;
+T t = o as T;
+```
+
+不过像文本与字符串之间的转换是不能靠小括号实现的。这时候要借助类库了：
+
+```cs
+int a = 10;
+string b = "123";
+
+int b2 = int.Parse(b);
+int b3 = Convert.ToInt32(b);
+string a2 = a.ToString();
+string a3 = Convert.ToString(a);
+```
+
+不过这些转换如果失败那是要引发异常的。
+
+## 参数
+
+函数参数默认情况下是值类型按值传递，引用类型按引用传递。
+
+不过值类型的传递方式是可以改的，例如：
+
+```cs
+namespace HelloCS
+{
+    class MainClass
+    {
+        public static void fun1(ref int i) {
+            i = 10;
+        }
+
+        public static void fun2(out int i) {
+            i = 20;
+        }
+
+        public static void Main(string[] args)
+        {
+            int a = 1;
+            fun1(ref a);        // 不能丢掉ref
+            System.Console.WriteLine(a);
+            fun2(out a);        // 不能丢掉out
+            System.Console.WriteLine(a);
+        }
+    }
+}
+```
+
+ref（引用参数）相当于引用，out（输出参数）也差不多。
+
+此外还有一个params，可接受任意个参数，相当于C++里的“...”。它必须是最后一个参数，且为一维数组。
+
+## 指针和引用
+
+C#没有指针和引用。不过在函数参数中可以用类似的东西——ref。
+
+成员访问没有“->”，只有“.”运算符。
+
+## 控制结构
+
+和C++一样，不过if和while的括号里的东西得是严格的bool类型。
+
+foreach语句：
+
+```cs
+foreach (int a in b)
+{
+    ...
+}
+```
+
+C#的switch语句中，至少要有一个跳出switch结构的语句，例如goto、throw、return、break。
+
+## using
+
+using语句块用于获取一个或多个资源，语句块结束之后释放。对象需要实现IDisposable接口。
+
+例如：
+
+```cs
+class A : IDisposable
+{
+    public void fun()
+    {
+        Console.WriteLine("Hello");
+    }
+
+    void IDisposable.Dispose()
+    {
+        Console.WriteLine("释放资源");
+    }
+}
+...
+using (A a = new A())
+{
+    a.fun();
+}
+```
+
+# 面向对象
+
+## 类
+
+语法和C++略有区别——权限修饰符要跟上：
+
+```cs
+public class A
+{
+    private int n;
+
+    public A(int value)
+    {
+        n = value;
+    }
+
+    public void fun()
+    {
+        n = 10;
+    }
+}
+```
+
+挂上sealed关键字可防止被继承。
+
+## 构造函数和析构函数
+
+和C++差不多。
+
+* 不要写复制构造函数——去实现ICloneable接口吧！
+* 构造函数可以挂static。这样的话在第一次碰到这个类的时候会执行。
+
+## 成员
+
+### 字段
+
+可使用static、readonly等修饰。
+
+### 常量
+
+```cs
+public const int N=10;
+```
+
+### 方法
+
+static、virtual是相同的。
+
+列出几个和C++不同的地方：
+
+* 用virtual声明为虚方法（在C++里叫虚函数），重写虚方法时要写上override关键字。
+* 用sealed override防止被重写。
+* 用abstract表示抽象方法（相当于C++的纯虚函数）。这种类在定义时，class前面也要跟abstract关键字。
+
+### 属性
+
+属性是一个比较特殊的东西，它可以让setter和getter形式变得很简单——想想Java是怎样写的就知道了……
+
+```cs
+public string Name
+{
+    get { return name; }
+    set { name = value; }
+}
+```
+
+假设这个类有个实例叫做a，那么赋值直接就是`a.Name = "xxx";`，取值则是`a.Name`。
+
+### 索引器
+
+就是可以用“[]”来访问——
+
+```cs
+public string this[int index]
+{
+    get { return ...; }
+    set { ... }
+}
+```
+
+### 事件
+
+见后面的“委托”。
+
+### 运算符
+
+C#可以重载运算符。以下是与C++的不同之处：
+
+* 运算符必须为public static成员。
+* 不能重载各种赋值、&&、\|\|、new。
+* 不能重载[]，但是可以定义索引器——也算是重载了吧。
+* 比较运算符必须成对重载：==和!=、&lt;和&gt;、&lt;=和&gt;=。重载其中一个的话必须同时重载另一个。
+* 重载类型转换运算符时要挂上explicit（要求强制转换）或implicit（可以隐式转换）关键字。
+
+## 命名空间
+
+namespace定义命名空间，using引用。
+
+using可定义别名，例如
+
+```cs
+using WF = System.Forms;
+```
+
+## 分部类型
+
+一个类的内容可以被分割到多个文件当中——只要都挂上partial关键字就行了。编译时它们的内容会自动被合并到一起。
+
+## 继承
+
+* C#的继承也是用冒号表示。
+* C#不支持多继承，也不支持挂private、protected什么的。
+* 在实例化子类时，基类的构造函数会被自动调用。
+* 用base表示基类。
+* 如果直接覆盖基类的某个成员，需要加new关键字。要么就用虚函数。
+
+## 虚函数
+
+和C++差不多，不过在子类实现时要加override关键字。
+
+C++的纯虚函数在C#里叫做抽象方法，用abstract关键字修饰。
+
+## 结构
+
+C#也有struct，不过功能弱化很多。
+
+结构是值类型（内存分配在堆栈上，而且使用时不需要new），不支持无参数的构造函数，不能继承，但可以实现接口。
+
+## 接口
+
+如果一个类里面全是抽象函数，那么这个类也可以定义成接口。例如：
+
+```cs
+public interface Testable
+{
+    void Test();
+    string Result();
+}
+```
+
+接口支持多继承。
+
+## 委托
+
+委托有点像C++里的函数指针，但还有些区别——委托是一个类。
+
+### 定义和使用委托
+
+简单例子：
+
+```cs
+using System;
+namespace ConsoleApplication1
+{
+    class Program
+    {
+        public delegate int MyDelegate(int i);
+
+        public static int Fun(int i)
+        {
+            return i * 2;
+        }
+
+        static void Main(string[] args)
+        {
+            MyDelegate d1 = new MyDelegate(Program.Fun);
+            int r = d1(20);
+            Console.WriteLine(r);
+        }
+    }
+}
+```
+
+### 方法列表
+
+委托可以使用+和-运算符。这样通过一个委托就可以依次执行多个方法。例如：
+
+```cs
+using System;
+
+namespace ConsoleApplication1
+{
+    class Program
+    {
+        public delegate void MyDelegate();
+
+        public static void F1()
+        {
+            Console.WriteLine("F1");
+        }
+
+        public static void F2()
+        {
+            Console.WriteLine("F2");
+        }
+
+        static void Main(string[] args)
+        {
+            MyDelegate d1 = new MyDelegate(Program.F1);
+            MyDelegate d2 = new MyDelegate(Program.F2);
+            MyDelegate d3 = d1 + d2;
+            d3();
+        }
+    }
+}
+```
+
+### 事件
+
+类似观察者模式，但是“事件”在语法上使其变得简单很多——用不着定义一堆复杂的类。
+
+事件通过委托实现。
+
+示例：
+
+```cs
+using System;
+
+namespace ConsoleApplication1
+{
+    class EventTest
+    {
+        // 声明事件
+        public event EventHandler Change;
+
+        private int n;
+
+        public int N
+        {
+            get { return n; }
+            set
+            {
+                n = value;
+                // 调用事件
+                if (this.Change != null)
+                {
+                    Change(this, null);
+                }
+            }
+        }
+    }
+
+    class Program
+    {
+        private static void A_Change(object sender, EventArgs e)
+        {
+            Console.WriteLine("N被改变");
+        }
+
+        static void Main(string[] args)
+        {
+            EventTest a = new EventTest();
+            // 注册事件
+            a.Change += A_Change;
+
+            // 改变N时会触发事件
+            a.N = 5;
+
+            // 移除事件
+            a.Change -= A_Change;
+
+            // 没有提示
+            a.N = 6;
+
+            Console.ReadLine();
+        }
+    }
+}
+```
+
+## 泛型
+
+类似C++的模板，不过在C#里不能扔非类型形参。
+
+### 泛型类
+
+```cs
+public class A<T>
+{
+    private T n;
+    public T Fun()
+    {
+        ...
+    }
+    ...
+}
+```
+
+### 泛型方法
+
+```cs
+public void fun<T>(T a)
+{
+    ...
+}
+...
+x.fun<int>(12);
+```
+
+泛型方法也支持abstract、virtual、override和委托。
+
+### 类型形参的约束
+
+```cs
+public class A<T> where T : struct
+{
+    ...
+}
+```
+
+常用的约束有：
+
+* struct：必须是值类型（但不是Nullable）
+* class：必须是引用类型
+* new()：必须有无参数的构造函数
+* 基类名称：必须是这个基类或者其派生类。
+* 接口名称：必须实现指定的接口。
+* T：假如为`A<T1, T2> where T2 : T1`，那么T2的类型必须是T1或由T1派生。
+
+# 数组
+
+## 一维数组
+
+```cs
+int[] arr;
+int[] arr = new int[10];
+int[] arr = {2,4,6};
+```
+
+若不初始化，则元素初值为其类型默认值。
+
+遍历：
+
+```cs
+for (int i=0; i<arr.length; i++)
+{
+    System.Console.WriteLine(arr[i]);
+}
+```
+
+或
+
+```cs
+foreach (int i in arr)
+{
+    System.Console.WriteLine(i);
+}
+```
+
+## 二维数组
+
+```cs
+int[,] arr;
+int[,] arr = new int[5,3];
+```
+
+## 交错数组
+
+交错数组即数组的数组。
+
+```cs
+int[][] arr = new int[10][];
+```
+
+## System.Array
+
+数组的实质是Array类实例。
+
+该类有一个属性Length可获取数组长度。此外该类还有若干静态方法：BinarySearch()、Clear()、Clone()、ConstrainedCopy()、Copy()、FindIndex()、FindLastIndex()、GetUpperBound()、Reverse()、Sort()等。
+
+## System.ArrayList
+
+ArrayList是动态数组。通过其Add()、Insert()、Remove()、RemoveAt()、RemoveRange()等方法进行操作。
+
+# 语法糖
+
+语法糖就是对语言功能没什么影响，但写起来会方便一些的东西。
+
+## 可空类型
+
+可空类型就是可以赋值为null的类型。本质是System.Nullable<T>。
+
+定义一个可空类型的变量有两种方法：
+
+```cs
+System.Nullable<int> a;
+int? b;
+```
+
+获取可空类型的值：
+
+```cs
+int? a = 0;
+int b;
+
+// 方法一
+if (a.HasValue)
+{
+    b = a.Value;
+}
+
+// 方法二
+b = a.GetValueOrDefault(10);
+```
+
+bool?类型的真值表（bool?不能使用&&、\|\|）：
+
+x     | y     | x & y  | x \| y
+------|-------|--------|--------
+true  | null  | null   | true
+false | null  | false  | null
+null  | null  | null   | null
+
+如果a为null，那么!a的结果仍是null。
+
+## 匿名类型
+
+var语句可以自动推断类型，例如
+
+```cs
+var n = 10;         // int
+var arr = new[] { 1, 2, 3, 4 };
+```
+
+通过var可以定义匿名类型：
+
+```cs
+var stu = new { ID = 1, Name = "Alice" };
+Console.WriteLine(stu.ID);
+```
+
+如果不同匿名类型的属性相同，属性的顺序也相同，则会被视为同一类型。
+
+## Lambda表达式
+
+Lambda表达式是一种方便书写的匿名函数，也属于委托。例如：
+
+```cs
+delegate int D(int m);
+...
+D fun = (m) => m * m;
+int a = fun(3);
+```
+
+通常不需要在Lambda表达式里指定参数类型。如果编译器难以推断，也可手动指定。
+
+如果表达式中有多条语句，用花括号{}包一下就好。
+
+如果一个函数的参数要求是委托、Expression类型或Func类型，那么也可传入Lambda表达式，例如统计偶数个数（需要`using System.Linq`）：
+
+```cs
+int[] arr = { 1, 2, 3, 4, 5 };
+Console.WriteLine(arr.Count((x) => x % 2 == 0));
+```
+
+## 匿名方法
+
+```cs
+button.Click += delegate(object sender, EventArgs e)
+{
+    Console.WriteLine("这是匿名方法");
+}
+```
+
+匿名方法也可以作为参数来传递。
+
+## 查询表达式
+
+LINQ查询表达式允许像SQL语句一样操作一个集合（实现IEnumerable接口就行）。
+
+举几个例子感受一下：
+
+```cs
+int[] arr = {12, 5, 7, 6, 10, 9, 3, 2, 11};
+// 挑出大于等于10的数
+var query1 = from n in arr where n >= 10 select n;
+foreach (var i in query1)
+{
+    Console.WriteLine(i);
+}
+
+// 挑出其中的大于4的数，按照奇偶性分成两组，并降序排列
+var query2 =
+    from n in arr
+    let isOdd = (n % 2 == 1)
+    where n > 4
+    orderby n descending
+    group n by isOdd;
+
+foreach (var a in query2)
+{
+    foreach (var i in a)
+    {
+        Console.WriteLine(i);
+    }
+    Console.WriteLine();
+}
+```
+
+还有一个用来联接两个数据源的join子句：
+
+```cs
+int[] arr1 = new int[] { 1, 2, 2, 3, 3, 4, 4, 5, 6, 6, 7, 8, 9, 10 };
+int[] arr2 = new int[] { 2, 3, 5, 7 };
+
+// 内部联接
+var query = from a in arr1
+            join b in arr2 on a equals b
+            select a;
+
+foreach (var n in query)
+{
+    Console.WriteLine(n);
+}
+
+// 分组联接
+var query2 = from a in arr1
+             join b in arr2 on a equals b into g
+             select new
+             {
+                 A = a,
+                 B = g
+             };
+
+foreach (var item in query2)
+{
+    Console.Write("{0}: ", item.A);
+    foreach (var i in item.B)
+    {
+        Console.Write("{0} ", i);
+    }
+    Console.WriteLine();
+}
+
+// 左外部联接
+var query3 = from a in arr1
+             join b in arr2 on a equals b into g
+             from ab in g.DefaultIfEmpty()
+             select ab;
+
+foreach (var n in query3)
+{
+    Console.WriteLine(n);
+}
+```
+
+别忘了`using System.Linq;`
+
+# 异常
+
+捕获异常：
+
+```cs
+try
+{
+    ...
+}
+catch (Exception ex)
+{
+    Console.WriteLine(ex.Message);
+}
+finally
+{
+    ...
+}
+```
+
+自定义异常应当继承System.Exception类。
+
+抛出异常同样是throw语句。
+
+# 字符串
+
+## string
+
+String是不变字符串。String有很多属性和方法：
+
+* Chars属性
+* Length属性
+* Insert()：插入字符串。返回值为处理之后的字符串，下同。
+* Remove()
+* Replace()
+* Concat()
+* static Join()
+* Split()：返回值是数组
+* PadLeft()/PadRight()
+* IndexOf()
+* Substring()
+* static Format()：格式化字符串。使用的是`{0}`一类的格式。
+
+## StringBuilder
+
+StringBuilder类似于C++的stringstream，适合频繁修改的字符串。
+
+```cs
+StringBuilder strb = new StringBuilder();
+strb.Append("Hello");
+strb.Append("World");
+Console.WriteLine(strb);
+```
+
+StringBuilder也有一些属性和方法：
+
+* Length属性
+* Capacity属性
+* MaxCapacity属性
+* Chars属性
+* Insert()
+* Append()
+* Remove()
+* Replace()
+* CopyTo()
+
+## 正则表达式
+
+```cs
+// 简单测试
+Console.WriteLine(Regex.IsMatch("Helloworld", @"\w+"));
+
+// 匹配和提取
+MatchCollection mc = Regex.Matches("a=0\nb=1", @"(\w+)=(.+?)");
+foreach (Match m in mc)
+{
+    Console.WriteLine("{0}: {1}", m.Groups[1], m.Groups[2]);
+}
+
+// 替换
+string r1 = Regex.Replace("The code is 12345", "[a-z]", "");
+// 小写字母统统变成十六进制ASCII码
+string r2 = Regex.Replace("The code is 12345", "[a-z]",
+    (Match match) => Convert.ToString(Convert.ToChar(match.Value), 16));
+Console.WriteLine(r1);
+Console.WriteLine(r2);
+```
+
+既可以使用Regex的静态函数，也可将其实例化。
+
+最后别忘了
+
+```cs
+using System.Text.RegularExpressions;
+```
+
+# 日期/时间
+
+日期时间（时刻）可以用DateTime结构表示，时间间隔用TimeSpan结构表示。
+
+DateTime和TimeSpan有很多属性和方法，可以获取和设置各个细节、追加时间。因为VS的智能感知很强大<span class="blackout">明明是偷懒</span>，这里就不列举了。
+
+获取当前时间：`DateTime.Now`和`DateTime.UtcNow`
+
+# 容器
+
+首先，
+
+```cs
+using System.Collections;
+using System.Collections.Generic;
+```
+
+## 容器
+
+这些容器都不是线程安全的。
+
+* List
+* LinkedList
+* Stack
+* Queue
+* SortedSet
+* SortedList
+* SortedDictionary
+* HashSet
+* Dictionary
+
+## 迭代器
+
+如果想让一个类可以通过foreach进行迭代，则需要实现IEnumerable接口，实现GetEnumerator()方法，然后用yield return语句送值（yield break表示迭代中止）。如果是泛型类，把泛型加上就行。
+
+示例：
+
+```cs
+using System;
+using System.Collections;
+using System.Collections.Generic;
+
+namespace ConsoleApplication1
+{
+    class Fib : IEnumerable
+    {
+        public IEnumerator GetEnumerator()
+        {
+            int x = 0, y = 1, z;
+            for (int i = 0; i < 10; i++)
+            {
+                z = x + y;
+                x = y;
+                y = z;
+                yield return y;
+            }
+        }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Fib fib = new Fib();
+            foreach (var i in fib)
+            {
+                Console.WriteLine(i);
+            }
+        }
+    }
+}
+```
+
+如果使用IEnumerator：
+
+```cs
+IEnumerator ie = fib.GetEnumerator();
+while (ie.MoveNext())
+{
+    Console.WriteLine(ie.Current);
+}
+```
+
+刚GetEnumerator()时，指针指在第一个元素的前面（Current为null）。用Reset()可以恢复到这个位置。
+
+# I/O
+
+## 流
+
+主要有FileStream、MemoryStream和BufferedStream。
+
+这些类既支持读取又支持写入，既支持同步又支持异步。用智能感知就知道那些方法叫什么名字了<span class="blackout">又偷懒</span>。
+
+## 文件操作
+
+主要集中在File类中，基本上都是静态方法。
+
+FileInfo可以获取文件信息，同时也能操作文件。读写时通过FileInfo创建实例，打开文件，然后用FileStream操作就行了。
+
+类似地，Directory和DirectoryInfo类就是操作目录的。

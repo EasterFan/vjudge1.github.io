@@ -1,0 +1,1209 @@
+---
+title:  "从C++转向Java的快速入门教程"
+categories: 教程
+tags: Java
+---
+如果学过C++，那么从C++过渡到Java很快就能入门。
+
+因为网上有一大堆介绍配置Java开发环境的教程，本文就不再复述了。
+
+推荐一个好用的IDE——IntelliJ IDEA。这个IDE分为社区版和旗舰版，旗舰版要花钱<span class="blackout">网上一堆激活服务器，随便挑一个就能激活。</span>，社区版免费而且开源，只不过社区版不支持Web开发。
+
+# 运行机制
+
+## 虚拟机
+
+C++和Java都需要编译才能运行，不同的是，Java程序是编译成中间码，然后由Java虚拟机运行。这也是实现“write once, run anywhere”的技术基础。
+
+## 垃圾回收
+
+C++需要手动实现垃圾回收，而Java是自动垃圾回收。虚拟机内部维护一个计数器，当引用计数为零之后自动释放实例的存储空间。
+
+因为自动垃圾回收，所以Java的对象几乎不需要析构函数，但是在驻守型程序中仍然需要注意内存泄漏问题。
+
+# 文件扩展名
+
+* 源代码：.java
+* 编译后的中间文件：.class
+* .jar：将若干中间文件按照包的结构打成zip包之后的文件。
+
+# Hello world
+
+将文件命名为Hello.java，然后：
+
+```java
+public class Hello {
+     public static void main(String[] args) {
+          System.out.println("Hello, world!");
+     }
+}
+```
+
+编译运行：
+
+     javac Hello.java
+     java Hello
+
+如果有 package：
+
+```java
+package com.hello;
+
+public class Hello {
+     public static void main(String[] args) {
+          System.out.println("Hello, world!");
+     }
+}
+```
+
+文件要保存为 `com/hello/Hello.java`
+
+编译运行：
+
+    javac com/hello/Hello.java
+    java com.hello.Hello
+
+注意两点：
+
+1. Java里一切都是对象。main是通过类的静态函数实现的。
+2. 类名称和文件名要一致，而“包”要和目录名一致。
+
+# 基本语法
+
+## 命名习惯
+
+和C++不一样，而且Java的命名习惯比较固定，直接Google一下就知道了。
+
+大概是这样：
+
+1. 变量等名称用小驼峰，类名、接口名等用大驼峰；
+2. 类中的字段用 getter 和 setter 包装。
+
+## 数据类型
+
+* Java的数据类型分为基本数据类型和对象类型。
+* 基本数据类型包括：boolean、byte、short、int、long、char、float、double。没有signed和unsigned关键字。
+* 一切对象类型都继承自Object类，包括字符串String。
+* 基本数据类型都是值类型，除此之外（包括类、数组等）全部都是引用类型。这两个概念的大意就是当你用=赋值的时候，值类型就是在内存里开个新空间，然后把内容拷一份，而引用类型就相当于是指针，不用clone复制的话即使用一百个=赋值其实也只有一个实例。
+* 引用类型需要用new分配空间之后才能用，数组也是。
+* final相当于C++里的const：`final int N=10;`
+* Java支持Unicode，变量名甚至可以使用汉字！
+* 强制类型转换使用圆括号。
+
+## 条件与循环
+
+条件语句和循环语句和C++是一样的。但是，括号内的表达式必须是严格的boolean类型。
+
+此外Java的for有一种foreach语法：
+
+```java
+int arr[] = {1,2,3,4};
+for (int i: arr) {
+    System.out.println(i);
+}
+```
+
+## 指针和引用
+
+Java没有指针。除了几个基本数据类型以外，其他类型全都相当于指针或引用。
+
+成员访问没有“::”和“->”，只有“.”运算符。
+
+## 函数
+
+因为一切都是面向对象编程，所以调用函数时也要按照面向对象的方法——要么建立一个实例，要么统统static。
+
+# 面向对象
+
+## 类的定义
+
+和C++略有不同——权限修饰符要跟上：
+
+```java
+public class A {
+    private int n;
+
+    Hello() {
+        this.n = 0;
+    }
+
+    Hello(int x) {
+        this.n = x;
+    }
+
+    public void setN(int value) {
+        this.n = value;
+    }
+
+    public int getN() {
+        return this.n;
+    }
+}
+```
+
+实例化：
+
+```java
+A a = new A();
+```
+
+Java会自动对成员变量进行初始化，但不会对局部变量（在栈中分配）初始化。
+
+权限修饰符有四种：什么都不写、private、protected和public，可见范围与包有关。
+
+## 构造函数和析构函数
+
+* 构造函数和C++差不多。
+* 因为自动垃圾回收，所以Java的对象几乎不需要析构函数。
+* 因为类是引用类型，所以不要写复制构造函数——重载clone()会更好。
+* 如果想使用本类签名不同的构造函数，用this(xxx)。
+
+## 重载
+
+和C++一样。但是有一点很坑——Java不能重载运算符（所以那堆ACMer一定对大数感到很不爽……）
+
+Java不支持给函数参数设默认值。Java认为，重载已经足以解决这个问题了。
+
+## static
+
+和C++差不多。不过，Java中可以用static塞代码块，例如：
+
+```java
+public class A {
+     A() {
+          System.out.println("A()");
+     }
+     static {
+          System.out.println("static");
+     }
+}
+```
+
+在调用构造函数之前会依次执行代码块中的代码。
+
+## package和import
+
+在工程中，你的类应该指定一个目录层次，即package语句。把一堆package编译之后整理到一个压缩包中，就产生了jar文件。当然这个工作是用命令完成的。
+
+使用来自其他模块（准确地说，应该叫做包）的类或函数时，需要先import。
+
+如果嫌懒可以用星星，例如`import java.util.*;`，不过这不见得是好事儿。
+
+## 内部类
+
+类里面套一个类。内部类可以直接访问外部类的所有成员（当然别忘了 static 和实例化的问题）。注意this。
+
+```java
+class Outer {
+     private int n=0;          // 1
+     public Inner {
+          private int n=1;     // 2
+          public void fun() {
+               int n=2;        // 3
+               System.out.println(n);               // 3
+               System.out.println(this.n);          // 2
+               System.out.println(Outer.this.n);    // 1
+          }
+     }
+}
+```
+
+实例化：
+
+```java
+Outer outer = new Outer();
+Outer.Inner inner = outer.new Inner();
+
+Outer.Inner inner = new Outer().new Inner();
+```
+
+## 匿名类
+
+匿名类是没有名字的类，它是final类（不能被继承和重写）。例如：
+
+```java
+public class Hello {
+    Hello (int i) {
+        System.out.println("Hello()");
+    }
+
+    public void fun() {
+        System.out.println("Hello.fun()");
+    }
+
+    public static void main(String [] args) {
+        final int a=1;
+        Hello h = new Hello(a) {
+            public void fun() {
+                System.out.println("nofun");
+            }
+        };
+        h.fun();
+    }
+}
+```
+
+匿名类会产生一个类似 JavaScript 的闭包，但在匿名类内部只能访问已经 final 的外部变量。
+
+## 继承
+
+```java
+public class A {
+    ...
+}
+
+public class B extends A {
+    ...
+}
+```
+
+Java不支持多继承，也不支持挂private、protected什么的。
+
+在实例化子类时，基类的构造函数会被自动调用。可以使用super()显式调用基类构造函数（还有一个this()，是自己的其他签名的构造函数）。
+
+## 虚函数
+
+Java没有虚函数的概念——只要没挂上final关键字，都相当于是虚函数。
+
+## 抽象类和抽象函数
+
+抽象函数相当于C++里的纯虚函数，使用abstract修饰。例如：
+
+```java
+abstract class A {
+    abstract void fun();
+}
+```
+
+如果类里面有抽象函数，自然地这个类也要挂abstract。
+
+## 接口
+
+如果一个抽象类的所有方法都是抽象的，也可以定义成接口。
+
+Java不支持多继承，但支持实现多个接口。例如：
+
+```java
+interface Testable {
+    int id=1;
+    void test();
+}
+
+interface Helloable {
+    void hello();
+}
+
+class A implements Testable, Helloable {
+    public void test() {
+        ...
+    }
+
+    public void hello() {
+        ...
+    }
+}
+```
+
+## final
+
+给class挂上final，它就不能再被继承。给函数挂上final，它就不能再被重写。
+
+## 注解
+
+此处只提一个@Override：保证所定义的函数一定是重写基类的，例如：
+
+```java
+@Override
+public void fun() {
+    ...
+}
+```
+
+# 常用类
+
+## Object
+
+所有类都继承了Object。
+
+* Object的equals()方法用于判断是否为同一实例。不过，String等类重写了equals方法，用于比较变量的值是否相等。所以**比较字符串是否相等要用equals()而不是“==”。**
+* hashCode()用于生成散列码。
+* toString()不解释了。
+* clone()：用=赋值只是一个引用，用clone才是副本。
+
+## String
+
+Java中字符串不是“字符的数组”。
+
+* int length()
+* char charAt(int)
+* int compareTo(String)：不要用“<”、“>”比较字符串大小！
+* String concat(String)
+* boolean equals(String)：不要用“==”和“!=”判断字符串是否相等！
+* int indexOf(int)、int indexOf(String)、int lastIndexOf(int)、int lastIndexOf(String)
+* String toUpperCase()、String toLowerCase()
+* String trim()
+* String substring(int)、String substring(int, int)
+* String[] split(String)
+* static String valueOf()：基本数据类型变String。
+
+## StringBuffer
+
+相当于stringstream。如果不需要线程，也可使用StringBuilder。
+
+* append()
+* insert()
+* delete()
+* reverse()
+
+## 包装类
+
+ 基本数据类型 | 对应的包装类
+------------|-----------
+ boolean    | Boolean
+ byte       | Byte
+ char       | Character
+ short      | Short
+ int        | Integer
+ long       | Long
+ float      | Float
+ double     | Double
+
+包装类可以自动装箱和自动拆箱，例如：
+
+```java
+Integer i=1;
+int j=i;
+int k=i+j;
+```
+
+将字符串转为基本类型：
+
+```java
+int a = Integer.parseInt("20");
+```
+
+## Math
+
+数学函数都在这里面。
+
+## Random
+
+用于生成随机数。需要实例化（可以带种子）然后再nextInt()、nextDouble()什么的。
+
+## 日期
+
+* Date类存储日期。
+* DataFormat类表示格式，是抽象类，使用DateFormat.getDateTimeInstance()获取一些标准的格式。使用parse()方法解析。
+* Calendar类可以获取日期的某一部分，或者进行计算。
+
+## 正则表达式
+
+```java
+import java.util.regex.*;
+
+public class RegexTest {
+    public static void main(String [] args) {
+        // 判断是否匹配。不用import
+        System.out.println("Helloworld".matches("\\w+"));
+
+        Pattern p = Pattern.compile("(\\w+)=(.+?)");
+
+        // 匹配和提取
+        Matcher m = p.matcher("a=0\nb=1");
+        while (m.find()) {
+            System.out.println(m.group(1) + ":" + m.group(2));
+        }
+
+        // 替换
+        Pattern p2 = Pattern.compile("test", Pattern.CASE_INSENSITIVE);
+        Matcher m2 = p2.matcher("hello test java TEst c++");
+        StringBuffer buf = new StringBuffer();
+        while (m2.find()) {
+            m2.appendReplacement(buf, "***");
+        }
+        m2.appendTail(buf);
+        System.out.println(buf);
+    }
+}
+```
+
+## Scanner
+
+通过各种next()可以从一堆乱七八糟的文本中提取基本数据类型。例如经典的A+B问题：
+
+```java
+import java.util.Scanner;
+
+public class APlusB {
+    public static void main(String [] args) {
+        Scanner cin = new Scanner(System.in);
+        int a, b;
+        a = cin.nextInt();
+        b = cin.nextInt();
+        System.out.println(a+b);
+    }
+}
+```
+
+# 异常
+
+异常包括必须要检查的异常和非检查的异常（Error和RuntimeException）。如果程序没有对必须要检查的异常进行处理，编译器会报错。
+
+```java
+public class ThrowTest {
+    public int read() throws IOException {
+        int c = System.in.read();
+        if (c != 'a') {
+            throw new IOException("Please Input a");
+        }
+        return c;
+    }
+
+    public static void main(String [] args) {
+        try {
+            ThrowTest a = new ThrowTest();
+            int n = a.read();
+        } catch (IOException ex) {
+            System.out.println(ex);
+        } finally {
+            System.out.println("End");
+        }
+    }
+}
+```
+
+在继承时，在子类方法中的声明抛出异常不能比基类的多。
+
+自定义异常通常继承Exception类。
+
+# 数组
+
+## 定义
+
+一维数组：
+
+```java
+int a[];
+int [] a;
+// int a[100];     // 错误
+int[] a = new int[100];
+int[] a = {1, 2, 3, 4};
+```
+
+二维数组：
+
+```java
+int a[][];
+int [][] a;
+// int a[100][100];     // 错误
+int[][] a = new int[100][100];
+int[][] a = { {1,2,3}, {2,3,4} };
+int[][] a = { {1,2,3}, {2,3} };
+```
+
+## 遍历
+
+普通方式：
+
+```java
+for (int i=0; i<a.length; i++) {
+    System.out.println(a[i]);
+}
+```
+
+foreach语法：
+
+```java
+for (int i: a) {
+    ...
+}
+```
+
+二维数组：
+
+```java
+int[][] a = { {1},{2,4},{3,6,9,15},{4,8,12} };
+for (int i=0; i<a.length; i++) {
+    for (int j=0; j<a[i].length; j++) {
+        System.out.println(a[i][j]);
+    }
+}
+```
+
+## 操作
+
+```java
+import java.util.Arrays;
+...
+// 复制
+System.arraycopy(src, srcPos, dest, destPos, length);
+
+// 排序
+Arrays.sort(a);
+
+// 二分查找。找不到则返回-1。
+Arrays.binarySearch(array, key);
+```
+
+# 枚举
+
+```java
+public enum Week {
+    SUNDAY, MONDAY, TUESDAY, WEDNESDAY;
+}
+
+Week week = Week.MONDAY;
+```
+
+enum的本质是一个final的class，所以也可以有成员方法、构造函数（但必须private）、代码块等。使用 enum 可以很容易地实现一个线程安全的单例。
+
+# 容器
+
+Iterator、Collection都是接口，而List、Set、Queue是基于Collection的接口。
+
+## Collections
+
+Collections是一个类，提供了几个实用方法，例如copy、fill、nCopies、shuffle、sort、min、max、binarySearch等。
+
+## List
+
+常用的List包括ArrayList和LinkedList。
+
+### ArrayList
+
+相当于C++中的vector。
+
+```java
+List<String> list = new ArrayList<String>();
+
+// 添加
+list.add("C");
+list.add("A");
+list.add("B");
+list.add("D");
+
+// 删除
+System.out.println(list.remove(3));
+
+// 访问
+System.out.println(list.get(2));
+System.out.println(list.contains("A"));
+
+// 插入
+List<String> list2 = Arrays.asList("G", "Z", "F");
+list.addAll(2, list2);
+
+// 排序
+Collections.sort(list);
+
+// 遍历
+Iterator<String> it=list.iterator();
+while (it.hasNext()) {
+    System.out.println(it.next());
+}
+```
+
+### LinkedList
+
+相当于C++中的list和deque。
+
+包括addFirst()、addLast()、getFirst()、getLast()、removeFirst()、removeLast()。堆栈和队列均可用LinkedList实现。
+
+### 线程安全
+
+ArrayList和LinkedList都不是线程安全的。
+
+```java
+List lst = Collections.synchronizedList(new ArrayList());
+```
+
+## Queue
+
+LinkedList可以用作普通队列。
+
+PriorityQueue是优先队列。用法：
+
+```java
+PriorityQueue<Integer> queue = new PriorityQueue<Integer>();
+
+// 入队
+queue.offer(4);
+queue.offer(2);
+
+// 出队
+System.out.println(queue.peek());   // 不移除
+System.out.println(queue.poll());   // 移除
+System.out.println(queue.poll());
+```
+
+PriorityQueue也可以扔比较器。如果不扔，则为最小值先出列（但同为最小值时不保证相对顺序）。
+
+PriorityQueue线程不安全。
+
+## Set
+
+常用HashSet、TreeSet和LinkedHashSet。线程不安全。
+
+### HashSet
+
+要求对象在equals返回true时，hashCode也一致。
+
+### TreeSet
+
+TreeSet使用对象的compareTo方法进行比较，所以存储自定义对象时应实现Comparable接口。
+
+如果自定义比较规则，需要定义比较器类，实现Comparator接口，例如：
+
+```java
+import java.util.*;
+
+class AbsoluteComparator implements Comparator<Integer> {
+    @Override
+    public int compare(Integer o1, Integer o2) {
+        int x=Math.abs(o1), y=Math.abs(o2);
+        if (x>y) {
+            return 1;
+        } else if (x<y) {
+            return -1;
+        } else {
+            return 0;
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Set<Integer> set = new TreeSet<Integer> (new AbsoluteComparator());
+        set.addAll(Arrays.asList(3, -7, -4, 2, 8, -5));
+        Iterator<Integer> it = set.iterator();
+        while (it.hasNext()) {
+            System.out.println(it.next());
+        }
+    }
+}
+```
+
+## Map
+
+常用HashMap、TreeMap
+
+```java
+Map<String, Integer> map1 = new HashMap<String, Integer>();
+
+map1.put("A", 1);
+map1.put("B", 2);
+
+System.out.println(map1.containsKey("C"));
+System.out.println(map1.get("A"));
+System.out.println(map1.get("C"));      // 返回null
+System.out.println(map1.remove("A"));
+
+System.out.println(map1.keySet());
+
+TreeMap<String, Integer> map2 = new TreeMap<String, Integer>();
+
+map2.put("C", 1);
+map2.put("A", 2);
+
+System.out.println(map2.firstKey());
+System.out.println(map2.tailMap("A"));      // 生成键值大于等于A的子集
+```
+
+# 泛型
+
+在C++里叫做模板，不过Java里不能扔非类型形参。
+
+## 泛型类
+
+```java
+public class A<T> {
+    private T n;
+    public T getN() {
+        ...
+    }
+    ...
+}
+```
+
+## 泛型方法
+
+```java
+public <T> void fun(T a) {
+    ...
+}
+...
+x.<Integer>fun(12);
+```
+
+## 受限泛型
+
+```java
+public class A<T extends List> {
+    ...
+}
+```
+
+## 通配符
+
+```java
+MyClass<?> a = new MyClass<ClassA>();
+MyClass<? extends List> b;        // 限定类型
+MyClass<? super HashSet> c;        // 限定父类
+```
+
+# I/O
+
+需要
+
+```java
+import java.io.*;
+```
+
+## 字节流
+
+InputStream/OutputStream是抽象类。
+
+* InputStream：read()、skip()、available()、close()
+* OutputStream：write()、flush()、close()
+
+具体类：FileInputStream、ByteArrayInputStream、ObjectInputStream、PipedInputStream、SequenceInputStream等。
+
+## 过滤流
+
+BufferedInputStream/BufferedOutputStream
+
+## 数据流
+
+DataInputStream/DataOutputStream，方法以read/write开头。
+
+## 字符流
+
+InputStreamReader/OutputStreamWriter、FileReader/FileWriter，可指定编码。
+
+BufferedReader/BufferedWriter
+
+BufferedReader有readLine()。
+
+## PrintStream、PrintWriter
+
+支持自动刷新（flush）。
+
+## 标准I/O
+
+System.in、System.out、System.err
+
+重定向：System.setOut(...)
+
+## 随机访问
+
+```java
+RandomAccessFile file = new RandomAccessFile("/home/xxx/file", "rw");
+file.seek(3);
+file.writeByte(10);
+file.close();
+```
+
+## 序列化
+
+一个对象需要实现java.io.Serializable接口（该接口没有具体方法）才能被序列化。
+
+给非静态成员挂transient关键字可防止被序列化。
+
+使用ObjectInputStream/ObjectOutputStream进行序列化。
+
+## File
+
+File类即可用于单个文件（实例化），又可用于文件操作（静态函数）。
+
+# 并发
+
+## 创建和启动线程
+
+两种方法：继承Thread类或实现Runnable接口。此处为了省篇幅就写成匿名类了。
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        Thread thread = new Thread() {
+            @Override
+            public void run() {
+                for (int i=0; i<10; i++) {
+                    System.out.println(currentThread().getName() + ":" + i);
+                    try {
+                        sleep(100);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
+        };
+        thread.start();
+        // 再启动一个
+        thread.run();
+    }
+}
+```
+
+或者
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        Runnable target = new Runnable() {
+            public void run() {
+                for (int i=0; i<10; i++) {
+                    System.out.println(Thread.currentThread().getName() + ":" + i);
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
+        };
+        Thread thread = new Thread(target);
+        thread.start();
+        // 再启动一个
+        thread.run();
+    }
+}
+```
+
+注意，运行结果是不可预测的。
+
+## 线程状态与调度
+
+状态：新建（New，尚未开始运行）、就绪（Runnable，就绪或正在运行）、阻塞（Blocked）、死亡（Dead）
+
+调度：
+
+* setPriority()
+* sleep()：不考虑优先级，直接让行；阻塞当前线程。
+* yield()：让给同优先级或高级的，不阻塞当前线程。
+
+合并：join()，暂停当前线程，直到目标线程结束。
+
+设为守护线程：setDaemon()
+
+## 线程安全
+
+### synchronized
+
+```java
+synchronized (对象) {
+    ....
+}
+
+public synchronized void fun() {
+    ...
+}
+```
+
+### Lock
+
+java.util.concurrent.locks.Lock
+
+```java
+Lock locker = new ReentrantLock();
+...
+locker.lock();
+try {
+    ...
+} finally {
+    locker.unlock();
+}
+```
+
+## 生产者/消费者
+
+wait()/notify()/notifyAll()，必须配合使用，否则容易死锁。
+
+这三个方法是Object的，但必须在synchronized代码块中才能使用。wait通常放在while里。
+
+# 网络
+
+## TCP
+
+一个简单的聊天软件。如果想多人聊天，服务器端显然需要多线程。
+
+服务器端：
+
+```java
+import java.io.*;
+import java.net.*;
+
+public class TCPServer {
+    private static DataInputStream dis = null;
+
+    public static void main(String [] args) {
+        boolean started = false;
+        Socket socket = null;
+        ServerSocket ss = null;
+
+        try {
+            ss = new ServerSocket(9999);
+            System.out.println("Listening at 127.0.0.1:9999...");
+        } catch (BindException e) {
+            System.err.println("Can't bind.");
+            System.exit(1);
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(2);
+        }
+
+        try {
+            started = true;
+            while (started) {
+                boolean connected = false;
+                socket = ss.accept();
+                connected = true;
+
+                dis = new DataInputStream(socket.getInputStream());
+
+                while (connected) {
+                    String str = dis.readUTF();
+                    System.out.println("Get: " + str);
+                }
+            }
+        } catch (EOFException e) {
+            System.out.println("Client disconnected");
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (dis != null) {
+                    dis.close();
+                }
+                if (socket != null) {
+                    socket.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+```
+
+客户端：
+
+```java
+import java.io.*;
+import java.net.*;
+
+public class TCPClient {
+    public static void main(String [] args) {
+        Socket socket = null;
+        DataOutputStream dos = null;
+
+        try {
+            socket = new Socket("127.0.0.1", 9999);
+            dos = new DataOutputStream(socket.getOutputStream());
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(1);
+        }
+
+        BufferedReader stream = new BufferedReader(new InputStreamReader(System.in));
+        String line;
+        try {
+            while (!(line = stream.readLine()).isEmpty()) {
+                dos.writeUTF(line);
+                dos.flush();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                dos.close();
+                socket.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+```
+
+## UDP
+
+UDP是面向无连接的，无需多线程。
+
+服务器端：
+
+```java
+import java.io.*;
+import java.net.*;
+
+public class UDPServer {
+    public static void main(String[] args) {
+        DatagramSocket socket = null;
+
+        try {
+            socket = new DatagramSocket(9998);
+        } catch (SocketException e) {
+            System.err.println("Can't bind.");
+            System.exit(1);
+        }
+
+        byte[] buffer = new byte[1024];
+        DatagramPacket rPacket = null;
+
+        try {
+            while (true) {          // 按Ctrl+C结束
+                rPacket = new DatagramPacket(buffer, 1024);
+                socket.receive(rPacket);
+
+                String text = new String(rPacket.getData(), rPacket.getOffset(), rPacket.getLength());
+                System.out.println("Get " + text);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+客户端：
+
+```java
+import java.io.*;
+import java.net.*;
+
+public class UDPClient {
+    public static void main(String[] args) {
+        BufferedReader stream = new BufferedReader(new InputStreamReader(System.in));
+        String line;
+
+        try {
+            while (!(line = stream.readLine()).isEmpty()) {
+                byte[] buffer = line.getBytes();
+                DatagramPacket sPacket = new DatagramPacket(buffer,
+                        buffer.length, InetAddress.getByName("127.0.0.1"), 9998);
+                DatagramSocket socket = new DatagramSocket();
+                socket.send(sPacket);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+## URL
+
+URL类：
+
+```java
+import java.io.*;
+import java.net.*;
+
+public class URLTest {
+    public static void main(String[] args) throws IOException {
+        URL url = new URL("https://www.google.com");
+        BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()));
+        String s;
+        while ((s = reader.readLine()) != null) {
+            System.out.println(s);
+        }
+        reader.close();
+    }
+}
+```
+
+URLConnection类：
+
+```java
+import java.io.*;
+import java.net.*;
+
+public class URLTest {
+    public static void main(String[] args) throws IOException {
+        URL url = new URL("https://www.google.com");
+        URLConnection conn = url.openConnection();
+
+        System.out.println("GET " + url.getHost() + " PORT " + url.getDefaultPort());
+        System.out.println("Content-Length: " + conn.getContentLength());
+
+        BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+        String s;
+        while ((s = reader.readLine()) != null) {
+            System.out.println(s);
+        }
+        reader.close();
+    }
+}
+```
+
+# 数据库
+
+Java使用JDBC作为统一的接口。假如想连接到MySQL，那么需要先下载[MySQL驱动](https://dev.mysql.com/downloads/connector/j/)，然后：
+
+```java
+import java.sql.*;
+
+public class MySQLTest {
+    public static void main(String[] args) {
+        Connection conn = null;
+        Statement stmt = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+
+            // 连接
+            conn = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/database", "root", "12345678");
+
+            // 访问
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery("SELECT * FROM table");
+            while (rs.next()) {
+                System.out.print(rs.getInt("id"));
+                System.out.println(rs.getString("name"));
+            }
+
+            // 记录处理
+            stmt.executeUpdate("UPDATE table SET name='wang' WHERE id=5");
+            stmt.executeUpdate("DELETE FROM table WHERE id=6");
+
+            // 预处理和批处理
+            pstmt = conn.prepareStatement("INSERT INTO table VALUES (?, ?)");
+            pstmt.setInt(1, 100);
+            pstmt.setString(2, "name");
+            pstmt.addBatch();
+            ...
+            pstmt.executeBatch();
+
+            // 事务处理
+            stmt = conn.createStatement();
+            stmt.addBatch("INSERT INTO table VALUES (1, 'aaa')");
+            stmt.executeBatch();
+            conn.commit();
+            conn.setAutoCommit(true);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+                if (stmt != null) {
+                    stmt.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+```
