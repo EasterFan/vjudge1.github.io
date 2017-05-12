@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Ubuntu 调整笔记本电脑屏幕亮度 | ⑨rz</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="装完 Ubuntu 之后没法给笔记本电脑调亮度了。花了很多时间来探索，最后找到了解决方法。这里我只写一写自己电脑（Lenovo V470，Intel HD3000 + Nvidia GT540M）的情况，更详细的资料可见 Archlinux Wiki。 调亮度在“系统设置”中拖动滑块，没用。于是我试了一下 echo 500 &amp;gt; /sys/class/backlight/intel_backl">
+<meta name="keywords" content="Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu 调整笔记本电脑屏幕亮度">
+<meta property="og:url" content="https://vjudge1.github.io/2014/02/10/laptop-brightness-in-linux/index.html">
+<meta property="og:site_name" content="⑨rz">
+<meta property="og:description" content="装完 Ubuntu 之后没法给笔记本电脑调亮度了。花了很多时间来探索，最后找到了解决方法。这里我只写一写自己电脑（Lenovo V470，Intel HD3000 + Nvidia GT540M）的情况，更详细的资料可见 Archlinux Wiki。 调亮度在“系统设置”中拖动滑块，没用。于是我试了一下 echo 500 &amp;gt; /sys/class/backlight/intel_backl">
+<meta property="og:updated_time" content="2017-05-12T18:25:37.230Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Ubuntu 调整笔记本电脑屏幕亮度">
+<meta name="twitter:description" content="装完 Ubuntu 之后没法给笔记本电脑调亮度了。花了很多时间来探索，最后找到了解决方法。这里我只写一写自己电脑（Lenovo V470，Intel HD3000 + Nvidia GT540M）的情况，更详细的资料可见 Archlinux Wiki。 调亮度在“系统设置”中拖动滑块，没用。于是我试了一下 echo 500 &amp;gt; /sys/class/backlight/intel_backl">
+  
+    <link rel="alternate" href="/atom.xml" title="⑨rz" type="application/atom+xml">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="/css/styles.css">
+  
+
+</head>
+
+<body>
+  <nav class="navbar navbar-inverse">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="main-menu-navbar">
+      <ul class="nav navbar-nav">
+        
+          <li><a class=""
+                 href="/index.html">Home</a></li>
+        
+          <li><a class=""
+                 href="/archives/">Archives</a></li>
+        
+      </ul>
+
+      <!--
+      <ul class="nav navbar-nav navbar-right">
+        
+          <li><a href="/atom.xml" title="RSS Feed"><i class="fa fa-rss"></i></a></li>
+        
+      </ul>
+      -->
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+  <div class="container">
+    <div class="blog-header">
+  <h1 class="blog-title">⑨rz</h1>
+  
+</div>
+
+    <div class="row">
+        <div class="col-sm-8 blog-main">
+          <article id="post-laptop-brightness-in-linux" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <header class="article-header">
+    
+  
+    <h1 class="article-title" itemprop="name">
+      Ubuntu 调整笔记本电脑屏幕亮度
+    </h1>
+  
+
+
+  </header>
+
+  <div class="article-meta">
+    <div class="article-datetime">
+  <a href="/2014/02/10/laptop-brightness-in-linux/" class="article-date"><time datetime="2014-02-09T16:00:00.000Z" itemprop="datePublished">2014-02-10</time></a>
+</div>
+
+    
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/教程/">教程</a>
+  </div>
+
+
+  </div>
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>装完 Ubuntu 之后没法给笔记本电脑调亮度了。花了很多时间来探索，最后找到了解决方法。这里我只写一写自己电脑（Lenovo V470，Intel HD3000 + Nvidia GT540M）的情况，更详细的资料可见 <a href="https://wiki.archlinux.org/index.php/Backlight" target="_blank" rel="external">Archlinux Wiki</a>。</p>
+<h1 id="调亮度"><a href="#调亮度" class="headerlink" title="调亮度"></a>调亮度</h1><p>在“系统设置”中拖动滑块，没用。于是我试了一下</p>
+<pre><code>echo 500 &gt; /sys/class/backlight/intel_backlight/brightness
+</code></pre><p>还是不行。接下来我改了一下内核参数——修改<code>/etc/default/grub</code>中的<code>GRUB_CMDLINE_LINUX</code>，加入</p>
+<pre><code>acpi_osi=Linux acpi_backlight=vendor
+</code></pre><p>运行<code>sudo update-grub</code>命令。重启之后能通过“系统设置”调亮度了。</p>
+<h1 id="按键"><a href="#按键" class="headerlink" title="按键"></a>按键</h1><p>可以调亮度了，但是<kbd>Fn+Up</kbd>和<kbd>Fn+Down</kbd>不对，按完之后屏幕亮度没改，而且还敲出了一个“±”。我猜大概是热键映射有问题，于是运行了<code>xev</code>命令，按一下按键，观察终端输出结果：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">KeyPress event, serial 36, synthetic NO, window 0x4400001,</div><div class="line">    root 0xc0, subw 0x0, time 1819651, (328,228), root:(1136,430),</div><div class="line">    state 0x0, keycode 126 (keysym 0xb1, plusminus), same_screen YES,</div><div class="line">    XLookupString gives 2 bytes: (c2 b1) &quot;±&quot;</div><div class="line">    XmbLookupString gives 2 bytes: (c2 b1) &quot;±&quot;</div><div class="line">    XFilterEvent returns: False</div><div class="line"></div><div class="line">KeyRelease event, serial 36, synthetic NO, window 0x4400001,</div><div class="line">    root 0xc0, subw 0x0, time 1819657, (328,228), root:(1136,430),</div><div class="line">    state 0x0, keycode 126 (keysym 0xb1, plusminus), same_screen YES,</div><div class="line">    XLookupString gives 2 bytes: (c2 b1) &quot;±&quot;</div><div class="line">    XFilterEvent returns: False</div><div class="line"></div><div class="line">KeyPress event, serial 36, synthetic NO, window 0x4400001,</div><div class="line">    root 0xc0, subw 0x0, time 1826429, (328,228), root:(1136,430),</div><div class="line">    state 0x0, keycode 120 (keysym 0x0, NoSymbol), same_screen YES,</div><div class="line">    XLookupString gives 0 bytes:</div><div class="line">    XmbLookupString gives 0 bytes:</div><div class="line">    XFilterEvent returns: False</div><div class="line"></div><div class="line">KeyRelease event, serial 36, synthetic NO, window 0x4400001,</div><div class="line">    root 0xc0, subw 0x0, time 1826435, (328,228), root:(1136,430),</div><div class="line">    state 0x0, keycode 120 (keysym 0x0, NoSymbol), same_screen YES,</div><div class="line">    XLookupString gives 0 bytes:</div><div class="line">    XFilterEvent returns: False</div></pre></td></tr></table></figure>
+<p>很明显错了。再敲两条命令</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">sudo xmodmap <span class="_">-e</span> <span class="string">"keycode 126 = XF86MonBrightnessUp"</span></div><div class="line">sudo xmodmap <span class="_">-e</span> <span class="string">"keycode 120 = XF86MonBrightnessDown"</span></div></pre></td></tr></table></figure>
+<p>好了。把这两条命令做成启动脚本，问题搞定。（但是放到<code>/etc/rc.local</code>的话不行）</p>
+<h1 id="后续（2017年）"><a href="#后续（2017年）" class="headerlink" title="后续（2017年）"></a>后续（2017年）</h1><p>现在我用的是 Archlinux，还是那台电脑，但遇到的问题和三年前不同：“系统设置”无效，通过 sysfs 或 xbacklight 修改有效。我按照<a href="https://wiki.archlinux.org/index.php/Backlight#sysfs_modified_but_no_brightness_change" target="_blank" rel="external">Archlinux Wiki 相关文章</a>最低下那条方法进行修改，弄了一个 xbacklightmon，然后把它设置成 systemd 服务，于是就好了。</p>
+<p>启动脚本这样做：先按 Archlinux Wiki 把 xbacklightmon 做好，建立<code>/usr/lib/systemd/user/xbacklightmon.service</code>：</p>
+<figure class="highlight ini"><table><tr><td class="code"><pre><div class="line"><span class="section">[Unit]</span></div><div class="line"><span class="attr">Description</span>=xbacklightmon</div><div class="line"><span class="section"></span></div><div class="line">[Service]</div><div class="line"><span class="attr">ExecStart</span>=/usr/local/bin/xbacklightmon</div><div class="line"><span class="section"></span></div><div class="line">[Install]</div><div class="line"><span class="attr">WantedBy</span>=default.target</div></pre></td></tr></table></figure>
+<p>接下来输入</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">systemctl <span class="built_in">enable</span> xbacklightmon --user</div><div class="line">systemctl start xbacklightmon --user</div></pre></td></tr></table></figure>
+<p>OK。</p>
+
+      
+    </div>
+
+    
+      
+
+    
+
+    <footer class="article-footer">
+      <a data-url="https://vjudge1.github.io/2014/02/10/laptop-brightness-in-linux/" data-id="cj2m7q6fv00049ccm3wgmbyyw" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
+      
+        <a href="https://vjudge1.github.io/2014/02/10/laptop-brightness-in-linux/#disqus_thread" class="article-comment-link">
+          <i class="fa fa-comment"></i> Comments
+        </a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+    
+<ul id="article-nav" class="nav nav-pills nav-justified">
+  
+  <li role="presentation">
+    <a href="/2013/01/01/sentences/" id="article-nav-older" class="article-nav-link-wrap">
+      <i class="fa fa-chevron-left pull-left"></i>
+      <span class="article-nav-link-title">那些不正确的“名言”们</span>
+    </a>
+  </li>
+  
+  
+  <li role="presentation">
+    <a href="/2014/04/01/type-chinese-in-linux/" id="article-nav-newer" class="article-nav-link-wrap">
+      <span class="article-nav-link-title">解决 Linux 和 Qt 的中文输入问题</span>
+      <i class="fa fa-chevron-right pull-right"></i>
+    </a>
+  </li>
+  
+</ul>
+
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+
+
+        </div>
+        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+          
+  
+  <div class="sidebar-module">
+    <h4>Categories</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/个人心得/">个人心得</a><span class="sidebar-module-list-count">5</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/其他/">其他</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/备忘录/">备忘录</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/折腾记录/">折腾记录</a><span class="sidebar-module-list-count">6</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/教程/">教程</a><span class="sidebar-module-list-count">13</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/经验总结/">经验总结</a><span class="sidebar-module-list-count">7</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Archives</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/05/">五月 2017</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/11/">十一月 2016</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/10/">十月 2016</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/08/">八月 2016</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/04/">四月 2016</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/03/">三月 2016</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/01/">一月 2016</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/12/">十二月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/11/">十一月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/09/">九月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/08/">八月 2015</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/07/">七月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/05/">五月 2015</a><span class="sidebar-module-list-count">5</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/04/">四月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/02/">二月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/12/">十二月 2014</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/04/">四月 2014</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/02/">二月 2014</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2013/01/">一月 2013</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2012/08/">八月 2012</a><span class="sidebar-module-list-count">1</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Recents</h4>
+    <ul class="sidebar-module-list">
+      
+        <li>
+          <a href="/2017/05/13/change-to-hexo/">换成 Hexo</a>
+        </li>
+      
+        <li>
+          <a href="/2016/11/08/move-to-archlinux/">换成Arch Linux系统的一些记录</a>
+        </li>
+      
+        <li>
+          <a href="/2016/10/08/macports/">MacPorts的安装与使用</a>
+        </li>
+      
+        <li>
+          <a href="/2016/10/07/programming-in-wikipedia/">维基百科编程笔记</a>
+        </li>
+      
+        <li>
+          <a href="/2016/10/04/gae/">Google App Engine入门（Python）</a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+  
+  <div class="sidebar-module">
+    <h4>Tags</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/API/">API</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Atom/">Atom</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/C/">C</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/C/">C#</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/GAE/">GAE</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/GUI/">GUI</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Hackintosh/">Hackintosh</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Hexo/">Hexo</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Java/">Java</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/JavaScript/">JavaScript</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Jekyll/">Jekyll</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/LaTeX/">LaTeX</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Linux/">Linux</a><span class="sidebar-module-list-count">9</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Mac/">Mac</a><span class="sidebar-module-list-count">9</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/MacPorts/">MacPorts</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/NTFS/">NTFS</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Python/">Python</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/QQ/">QQ</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Rails/">Rails</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/UEFI/">UEFI</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/VPS/">VPS</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Visual-Studio/">Visual Studio</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Windows/">Windows</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/npm/">npm</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/wine/">wine</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/zsh/">zsh</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/中文/">中文</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/云/">云</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/单片机/">单片机</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/反汇编/">反汇编</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/平板/">平板</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/插件/">插件</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/教务系统/">教务系统</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/東方Project/">東方Project</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/电幕/">电幕</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/系统维护/">系统维护</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/维基百科/">维基百科</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/编程/">编程</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/语文/">语文</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/输入法/">输入法</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/配置/">配置</a><span class="sidebar-module-list-count">1</span></li></ul>
+  </div>
+
+
+
+
+        </div>
+    </div>
+  </div>
+  <footer class="blog-footer">
+  <div class="container">
+    <div id="footer-info" class="inner">
+      &copy; 2017 vjudge1<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+  
+<script>
+  var disqus_shortname = 'vjudge1';
+  
+  var disqus_url = 'https://vjudge1.github.io/2014/02/10/laptop-brightness-in-linux/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" integrity="sha384-8gBf6Y4YYq7Jx97PIqmTwLPin4hxIzQw5aDmUg/DDhul9fFpbbLcLh3nTIIDJKhx" crossorigin="anonymous"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+
+
+<script src="/js/script.js"></script>
+
+</body>
+</html>

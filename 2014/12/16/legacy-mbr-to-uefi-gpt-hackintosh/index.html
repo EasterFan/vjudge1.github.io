@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Migration from Legacy+MBR to UEFI+GPT | ⑨rz</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="This article is written for my Hackintosh. But ideas in the text can be used for other systems. Notes before reading USE AT YOUR OWN RISK! TWO IMPORTANT THINGS: Hackintosh is working well. Your comput">
+<meta name="keywords" content="Hackintosh,Mac,UEFI">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Migration from Legacy+MBR to UEFI+GPT">
+<meta property="og:url" content="https://vjudge1.github.io/2014/12/16/legacy-mbr-to-uefi-gpt-hackintosh/index.html">
+<meta property="og:site_name" content="⑨rz">
+<meta property="og:description" content="This article is written for my Hackintosh. But ideas in the text can be used for other systems. Notes before reading USE AT YOUR OWN RISK! TWO IMPORTANT THINGS: Hackintosh is working well. Your comput">
+<meta property="og:updated_time" content="2017-05-12T18:25:13.620Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Migration from Legacy+MBR to UEFI+GPT">
+<meta name="twitter:description" content="This article is written for my Hackintosh. But ideas in the text can be used for other systems. Notes before reading USE AT YOUR OWN RISK! TWO IMPORTANT THINGS: Hackintosh is working well. Your comput">
+  
+    <link rel="alternate" href="/atom.xml" title="⑨rz" type="application/atom+xml">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="/css/styles.css">
+  
+
+</head>
+
+<body>
+  <nav class="navbar navbar-inverse">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="main-menu-navbar">
+      <ul class="nav navbar-nav">
+        
+          <li><a class=""
+                 href="/index.html">Home</a></li>
+        
+          <li><a class=""
+                 href="/archives/">Archives</a></li>
+        
+      </ul>
+
+      <!--
+      <ul class="nav navbar-nav navbar-right">
+        
+          <li><a href="/atom.xml" title="RSS Feed"><i class="fa fa-rss"></i></a></li>
+        
+      </ul>
+      -->
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+  <div class="container">
+    <div class="blog-header">
+  <h1 class="blog-title">⑨rz</h1>
+  
+</div>
+
+    <div class="row">
+        <div class="col-sm-8 blog-main">
+          <article id="post-legacy-mbr-to-uefi-gpt-hackintosh" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <header class="article-header">
+    
+  
+    <h1 class="article-title" itemprop="name">
+      Migration from Legacy+MBR to UEFI+GPT
+    </h1>
+  
+
+
+  </header>
+
+  <div class="article-meta">
+    <div class="article-datetime">
+  <a href="/2014/12/16/legacy-mbr-to-uefi-gpt-hackintosh/" class="article-date"><time datetime="2014-12-15T16:00:00.000Z" itemprop="datePublished">2014-12-16</time></a>
+</div>
+
+    
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/经验总结/">经验总结</a>
+  </div>
+
+
+  </div>
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>This article is written for my Hackintosh. But ideas in the text can be used for other systems.</p>
+<h1 id="Notes-before-reading"><a href="#Notes-before-reading" class="headerlink" title="Notes before reading"></a>Notes before reading</h1><ol>
+<li>USE AT YOUR OWN RISK!</li>
+<li>TWO IMPORTANT THINGS:<ol>
+<li>Hackintosh is working well.</li>
+<li>Your computer supports UEFI. There’s maybe no such options in BIOS Setup but the computer really supports EFI in fact, for example, my Lenovo V470.</li>
+</ol>
+</li>
+<li>This article aims to the migration without reinstalling anything. It may be a bit tricky. So the easiest way to change is recreate the partition table and everything will begin in the new world.</li>
+<li>There is no Windows in my computer so anything on Windows is just my conjecture.</li>
+<li>I use a Chinese disk tool.</li>
+</ol>
+<h1 id="Important-Knowledges"><a href="#Important-Knowledges" class="headerlink" title="Important Knowledges"></a>Important Knowledges</h1><h2 id="UEFI-amp-Legacy"><a href="#UEFI-amp-Legacy" class="headerlink" title="UEFI &amp; Legacy"></a>UEFI &amp; Legacy</h2><p>UEFI is a new firmware interface in order to replace BIOS. Apple computers adopt to EFI. It’s obvious that UEFI is more advanced than BIOS.</p>
+<h2 id="MBR-amp-GPT"><a href="#MBR-amp-GPT" class="headerlink" title="MBR &amp; GPT"></a>MBR &amp; GPT</h2><p>You can consider that MBR and GPT are two formats of the partition table.</p>
+<p>There are at most 4 main partitions in MBR drives (In general, we divide the disk into a main partition and an extended partition with several logical partitions inside). MBR doesn’t support partitions which is greater than 2TB.</p>
+<p>OS X only supports GPT drives officially. You must crack the kernel if you want to install OS X to a MBR drive and it will be dangerous to upgrade the system.</p>
+<p>Windows only supports UEFI+GPT and Legacy+MBR.</p>
+<h2 id="Chameleon-amp-Clover"><a href="#Chameleon-amp-Clover" class="headerlink" title="Chameleon &amp; Clover"></a>Chameleon &amp; Clover</h2><p>These two things are bootloaders for Hackintosh. <code>Chameleon</code> works in Legacy Mode. <code>Clover</code> supports both Legacy and UEFI mode.</p>
+<h2 id="What-GPT-looks-like"><a href="#What-GPT-looks-like" class="headerlink" title="What GPT looks like"></a>What GPT looks like</h2><ol>
+<li>ESP (about 200MB, FAT32 filesystem): It has a special flag so you can’t see ESP in Windows. UEFI will boot from \EFI\Boot\bootx64.efi by default.</li>
+<li>MSR (128MB, unknown filesystem): Required by Windows under EFI Mode.</li>
+<li>Your system and data partitions.</li>
+<li>Dedicated, such as WinRE, System Images…</li>
+</ol>
+<h1 id="Past-amp-Now"><a href="#Past-amp-Now" class="headerlink" title="Past &amp; Now"></a>Past &amp; Now</h1><ol>
+<li>Past (Legacy + MBR)<ul>
+<li>Bootloader: GRUB2 -&gt; Chameleon -&gt; Hackintosh</li>
+<li>OS: Linux (Ubuntu) + OS X Mavericks</li>
+</ul>
+</li>
+<li>Now（EFI + GPT）<ul>
+<li>Bootloader: Clover</li>
+<li>Note: I use a USB flash disk with GRUB2 installed to boot Linux. I’ll repair GRUB2 then.</li>
+</ul>
+</li>
+</ol>
+<p>This is the profile of my laptop:</p>
+<ul>
+<li>Laptop: Lenovo V470</li>
+<li>CPU: Intel Core i5 2430M</li>
+<li>Chipset: Intel HM65</li>
+<li>Memory: 4GB 1600Mhz DDR3 x 2 (Kingston＋Hynix)</li>
+<li>Hard drive: WD 750GB 5400r</li>
+<li>Video cards: Intel HD 3000 (Works well. Video memory is 512MB. Brightness can be adjusted after modifying DSDT) ＋ Nvidia GT540M (Useless)</li>
+<li>Audio card: ALC272 (using VoodooHDA)</li>
+<li>Fignerprint: No drivers but can be used in virtual machines.</li>
+<li>Card reader: RTS5139, no drivers. (can be used in virtual machines)</li>
+<li>USB3.0: No</li>
+<li>Wireless: BCM4322 (changed manually. BIOS flashing required because of restrictions of Lenovo). No need for extra drivers.</li>
+<li>Ethernet: RTL8111E (use drivers from Realtek)</li>
+<li>Camera: No need for extra drivers.</li>
+<li>Touchpad: VoodooPS2Controller in the newest version. Multifinger is not well supported.</li>
+<li>HDMI: Only video is OK.</li>
+<li>VGA Port: Useless</li>
+<li>Battery: Battery drivers</li>
+<li>AppleIntelCPUPowerManagement: Yes (Set <code>AsusAICPUPM=yes</code> in config.plist)</li>
+</ul>
+<h1 id="Steps"><a href="#Steps" class="headerlink" title="Steps"></a>Steps</h1><h2 id="Make-a-bootable-USB-drive"><a href="#Make-a-bootable-USB-drive" class="headerlink" title="Make a bootable USB drive"></a>Make a bootable USB drive</h2><p>WinPE + <a href="http://diskgenius.cn" target="_blank" rel="external">DiskGenius</a>.</p>
+<p>Click on “免费下载” (Free Download), find “32 位版本” (32-bit Version) and download links are rightward. It’s just a “免费版” (free version) however it’s enough for converting.</p>
+<p>DiskGenius can convert MBR to GPT without data loss.</p>
+<h2 id="Install-Clover"><a href="#Install-Clover" class="headerlink" title="Install Clover"></a>Install Clover</h2><p>Download and Install <a href="http://sourceforge.net/projects/cloverefiboot/files/?source=navbar" target="_blank" rel="external">Clover</a> in OS X.</p>
+<p>Installer will copy files to /EFI only because no GPT drives here.</p>
+<p>You should learn how to configure Clover. I’m afraid to make mistakes so I read lots of posts about Clover. In fact, OS X should be able to start in default settings (without power management drivers and so on).</p>
+<p>You need a <code>HFSPlus-64.efi</code> rather than vboxhfs64.efi. HFSPlus-64.efi can be downloaded via <code>Clover Configurator</code>. Clover may fail to boot the system and get stucked with a row of ‘+’ with VBoxHFS64.efi.</p>
+<p>Now,</p>
+<ol>
+<li>Copy everything in <code>EE</code> (/Extra/Extensions) to <code>/EFI/CLOVER/kexts/10.9/</code>.</li>
+<li>Copy <code>DSDT</code> &amp; <code>SSDT</code> to <code>/EFI/CLOVER/ACPI/patched/</code> and name them to <code>DSDT.aml</code> &amp; <code>SSDT.aml</code>.</li>
+<li>Create a directory <code>/EFI/BOOT</code> and copy <code>/EFI/CLOVER/CLOVERX64.efi</code> to <code>/EFI/BOOT/BOOTX64.efi</code>.</li>
+</ol>
+<p>The following list is about files in <code>/EFI/CLOVER/drivers64UEFI</code> directory in my computer: DataHubDxe-64.efi, EmnVariableUefi-64.efi, FSInject-64.efi, HFSPlus-64.efi (Download by yourself), OsxAptioFixDrv-64.efi, OsxFatBinaryDrv-64.efi, PartitionDxe-64.efi. (Learn how to configure Clover and decide which to use.)</p>
+<p>Copy the whole /EFI directory to a USB flash drive. We’ll move them to the new ESP partition.</p>
+<h2 id="Create-Partitions"><a href="#Create-Partitions" class="headerlink" title="Create Partitions"></a>Create Partitions</h2><p>Boot to your WinPE. Use your partition tool to create a 200MB, <code>FAT32</code> partition in the beginning of the drive.</p>
+<p>If you have a Windows, go on creating a 128-MB partition.</p>
+<p>Copy the EFI directory created just now to the first FAT32 partition.</p>
+<h2 id="Convert"><a href="#Convert" class="headerlink" title="Convert!"></a>Convert!</h2><p>I only know DiskGenius. In fact, there are several tools which can convert loselessly.</p>
+<p>Open DiskGenius, click on “硬盘(D)” (Drive), “转换分区表类型为 GUID 格式” (Convert the partition table to GUID format), “确定” (OK). Then, click on “保存更改” (Save changes) on the toolbar. OK.</p>
+<p>It’s recommended to reboot after converting to let the system detect GPT correctly.</p>
+<h2 id="Repair-Partition-ID"><a href="#Repair-Partition-ID" class="headerlink" title="Repair Partition ID"></a>Repair Partition ID</h2><p>Boot to the WinPE again. Open <code>Command Prompt</code>, enter <code>diskpart</code>, and then type:</p>
+<pre><code>list disk
+sel disk 0
+list part
+sel part 9 (Change &apos;9&apos; and numbers below to your own option)
+set id=48465300-0000-11AA-AA11-00306543ECAC
+sel part 0
+set id=C12A7328-F81F-11D2-BA4B-00A0C93EC93B
+sel part 1
+set id=E3C9E316-0B5C-4DB8-817D-F92DF00215AE
+</code></pre><ul>
+<li><code>48465300-0000-11AA-AA11-00306543ECAC</code> represents HFS+.</li>
+<li><code>C12A7328-F81F-11D2-BA4B-00A0C93EC93B</code> represents ESP.</li>
+<li><code>E3C9E316-0B5C-4DB8-817D-F92DF00215AE</code> represents MSP.</li>
+</ul>
+<h2 id="Repair-Windows-Boot"><a href="#Repair-Windows-Boot" class="headerlink" title="Repair Windows Boot"></a>Repair Windows Boot</h2><p>If you have a Windows, use <code>bcdboot</code> to repair the bootloader of Windows.</p>
+<p>Just like this:</p>
+<pre><code>bcdboot C:\Windows /s Z: /f UEFI
+</code></pre><p>(Z: represents ESP.)</p>
+<p><code>bcdboot</code> will replace EFI\BOOT\BOOTX64.efi. Backup it and replace it with <code>EFI\CLOVER\CLOVERX64.efi</code>.</p>
+<h2 id="Check"><a href="#Check" class="headerlink" title="Check"></a>Check</h2><p>Reboot, enter the BIOS setup, and change <code>Boot Mode</code> to <code>UEFI</code>.</p>
+<p>Congratulations! (If OS X works well, …)</p>
+<p>After booting, I configured Clover (<code>EFI/CLOVER/config.plist</code>) to make OS X work perfectly. Then I upgraded my OS X to 10.10 via App Store directly and no errors occured.</p>
+<p>Of course, I hope you have an OS (software) which can modify files in HFS+ partition before upgrading.</p>
+
+      
+    </div>
+
+    
+      
+
+    
+
+    <footer class="article-footer">
+      <a data-url="https://vjudge1.github.io/2014/12/16/legacy-mbr-to-uefi-gpt-hackintosh/" data-id="cj2m7q6g300069ccmhxhqkhd4" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
+      
+        <a href="https://vjudge1.github.io/2014/12/16/legacy-mbr-to-uefi-gpt-hackintosh/#disqus_thread" class="article-comment-link">
+          <i class="fa fa-comment"></i> Comments
+        </a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hackintosh/">Hackintosh</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mac/">Mac</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/UEFI/">UEFI</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+    
+<ul id="article-nav" class="nav nav-pills nav-justified">
+  
+  <li role="presentation">
+    <a href="/2014/04/01/type-chinese-in-linux/" id="article-nav-older" class="article-nav-link-wrap">
+      <i class="fa fa-chevron-left pull-left"></i>
+      <span class="article-nav-link-title">解决 Linux 和 Qt 的中文输入问题</span>
+    </a>
+  </li>
+  
+  
+  <li role="presentation">
+    <a href="/2014/12/17/flash-stc-in--nix/" id="article-nav-newer" class="article-nav-link-wrap">
+      <span class="article-nav-link-title">Linux/Mac 下烧录 STC 单片机</span>
+      <i class="fa fa-chevron-right pull-right"></i>
+    </a>
+  </li>
+  
+</ul>
+
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+
+
+        </div>
+        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+          
+  
+  <div class="sidebar-module">
+    <h4>Categories</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/个人心得/">个人心得</a><span class="sidebar-module-list-count">5</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/其他/">其他</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/备忘录/">备忘录</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/折腾记录/">折腾记录</a><span class="sidebar-module-list-count">6</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/教程/">教程</a><span class="sidebar-module-list-count">13</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/经验总结/">经验总结</a><span class="sidebar-module-list-count">7</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Archives</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/05/">五月 2017</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/11/">十一月 2016</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/10/">十月 2016</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/08/">八月 2016</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/04/">四月 2016</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/03/">三月 2016</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/01/">一月 2016</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/12/">十二月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/11/">十一月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/09/">九月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/08/">八月 2015</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/07/">七月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/05/">五月 2015</a><span class="sidebar-module-list-count">5</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/04/">四月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/02/">二月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/12/">十二月 2014</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/04/">四月 2014</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/02/">二月 2014</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2013/01/">一月 2013</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2012/08/">八月 2012</a><span class="sidebar-module-list-count">1</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Recents</h4>
+    <ul class="sidebar-module-list">
+      
+        <li>
+          <a href="/2017/05/13/change-to-hexo/">换成 Hexo</a>
+        </li>
+      
+        <li>
+          <a href="/2016/11/08/move-to-archlinux/">换成Arch Linux系统的一些记录</a>
+        </li>
+      
+        <li>
+          <a href="/2016/10/08/macports/">MacPorts的安装与使用</a>
+        </li>
+      
+        <li>
+          <a href="/2016/10/07/programming-in-wikipedia/">维基百科编程笔记</a>
+        </li>
+      
+        <li>
+          <a href="/2016/10/04/gae/">Google App Engine入门（Python）</a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+  
+  <div class="sidebar-module">
+    <h4>Tags</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/API/">API</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Atom/">Atom</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/C/">C</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/C/">C#</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/GAE/">GAE</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/GUI/">GUI</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Hackintosh/">Hackintosh</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Hexo/">Hexo</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Java/">Java</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/JavaScript/">JavaScript</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Jekyll/">Jekyll</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/LaTeX/">LaTeX</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Linux/">Linux</a><span class="sidebar-module-list-count">9</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Mac/">Mac</a><span class="sidebar-module-list-count">9</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/MacPorts/">MacPorts</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/NTFS/">NTFS</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Python/">Python</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/QQ/">QQ</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Rails/">Rails</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/UEFI/">UEFI</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/VPS/">VPS</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Visual-Studio/">Visual Studio</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Windows/">Windows</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/npm/">npm</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/wine/">wine</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/zsh/">zsh</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/中文/">中文</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/云/">云</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/单片机/">单片机</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/反汇编/">反汇编</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/平板/">平板</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/插件/">插件</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/教务系统/">教务系统</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/東方Project/">東方Project</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/电幕/">电幕</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/系统维护/">系统维护</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/维基百科/">维基百科</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/编程/">编程</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/语文/">语文</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/输入法/">输入法</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/配置/">配置</a><span class="sidebar-module-list-count">1</span></li></ul>
+  </div>
+
+
+
+
+        </div>
+    </div>
+  </div>
+  <footer class="blog-footer">
+  <div class="container">
+    <div id="footer-info" class="inner">
+      &copy; 2017 vjudge1<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+  
+<script>
+  var disqus_shortname = 'vjudge1';
+  
+  var disqus_url = 'https://vjudge1.github.io/2014/12/16/legacy-mbr-to-uefi-gpt-hackintosh/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" integrity="sha384-8gBf6Y4YYq7Jx97PIqmTwLPin4hxIzQw5aDmUg/DDhul9fFpbbLcLh3nTIIDJKhx" crossorigin="anonymous"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+
+
+<script src="/js/script.js"></script>
+
+</body>
+</html>

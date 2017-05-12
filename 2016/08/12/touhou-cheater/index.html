@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>自己动手写東方Project作弊器（一） | ⑨rz</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="很久没写程序了，甚至很久没和计算机代码打交道了。为了证明自己没被查水表，我就随便写点什么吧。 最近发现了東方Project，不幸的是，由于天生手残，就连打Easy都有些吃力（除了永夜抄和辉针城）。作为一个猥琐大叔，就这样被萝莉们欺负，能爽吗？所以，为了把她们统统推倒，我要写东方的作弊器（修改器）了！ 原理如果想直接作弊的话，只要搜一下东方的修改器，或者装个金山游侠、Cheat Engine或Gam">
+<meta name="keywords" content="東方Project,反汇编">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自己动手写東方Project作弊器（一）">
+<meta property="og:url" content="https://vjudge1.github.io/2016/08/12/touhou-cheater/index.html">
+<meta property="og:site_name" content="⑨rz">
+<meta property="og:description" content="很久没写程序了，甚至很久没和计算机代码打交道了。为了证明自己没被查水表，我就随便写点什么吧。 最近发现了東方Project，不幸的是，由于天生手残，就连打Easy都有些吃力（除了永夜抄和辉针城）。作为一个猥琐大叔，就这样被萝莉们欺负，能爽吗？所以，为了把她们统统推倒，我要写东方的作弊器（修改器）了！ 原理如果想直接作弊的话，只要搜一下东方的修改器，或者装个金山游侠、Cheat Engine或Gam">
+<meta property="og:image" content="https://vjudge1.github.io/2016/08/12/touhou-cheater/1.png">
+<meta property="og:image" content="https://vjudge1.github.io/2016/08/12/touhou-cheater/2.png">
+<meta property="og:image" content="https://vjudge1.github.io/2016/08/12/touhou-cheater/3.png">
+<meta property="og:image" content="https://vjudge1.github.io/2016/08/12/touhou-cheater/4.png">
+<meta property="og:image" content="https://vjudge1.github.io/2016/08/12/touhou-cheater/5.png">
+<meta property="og:image" content="https://vjudge1.github.io/2016/08/12/touhou-cheater/6.png">
+<meta property="og:image" content="https://vjudge1.github.io/2016/08/12/touhou-cheater/7.png">
+<meta property="og:image" content="https://vjudge1.github.io/2016/08/12/touhou-cheater/8.png">
+<meta property="og:image" content="https://vjudge1.github.io/2016/08/12/touhou-cheater/9.png">
+<meta property="og:image" content="https://vjudge1.github.io/2016/08/12/touhou-cheater/10.png">
+<meta property="og:image" content="https://vjudge1.github.io/2016/08/12/touhou-cheater/11.png">
+<meta property="og:image" content="https://vjudge1.github.io/2016/08/12/touhou-cheater/boring.jpg">
+<meta property="og:updated_time" content="2017-05-12T19:32:06.773Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="自己动手写東方Project作弊器（一）">
+<meta name="twitter:description" content="很久没写程序了，甚至很久没和计算机代码打交道了。为了证明自己没被查水表，我就随便写点什么吧。 最近发现了東方Project，不幸的是，由于天生手残，就连打Easy都有些吃力（除了永夜抄和辉针城）。作为一个猥琐大叔，就这样被萝莉们欺负，能爽吗？所以，为了把她们统统推倒，我要写东方的作弊器（修改器）了！ 原理如果想直接作弊的话，只要搜一下东方的修改器，或者装个金山游侠、Cheat Engine或Gam">
+<meta name="twitter:image" content="https://vjudge1.github.io/2016/08/12/touhou-cheater/1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="⑨rz" type="application/atom+xml">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="/css/styles.css">
+  
+
+</head>
+
+<body>
+  <nav class="navbar navbar-inverse">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="main-menu-navbar">
+      <ul class="nav navbar-nav">
+        
+          <li><a class=""
+                 href="/index.html">Home</a></li>
+        
+          <li><a class=""
+                 href="/archives/">Archives</a></li>
+        
+      </ul>
+
+      <!--
+      <ul class="nav navbar-nav navbar-right">
+        
+          <li><a href="/atom.xml" title="RSS Feed"><i class="fa fa-rss"></i></a></li>
+        
+      </ul>
+      -->
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+  <div class="container">
+    <div class="blog-header">
+  <h1 class="blog-title">⑨rz</h1>
+  
+</div>
+
+    <div class="row">
+        <div class="col-sm-8 blog-main">
+          <article id="post-touhou-cheater" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <header class="article-header">
+    
+  
+    <h1 class="article-title" itemprop="name">
+      自己动手写東方Project作弊器（一）
+    </h1>
+  
+
+
+  </header>
+
+  <div class="article-meta">
+    <div class="article-datetime">
+  <a href="/2016/08/12/touhou-cheater/" class="article-date"><time datetime="2016-08-11T16:00:00.000Z" itemprop="datePublished">2016-08-12</time></a>
+</div>
+
+    
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/折腾记录/">折腾记录</a>
+  </div>
+
+
+  </div>
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>很久没写程序了，甚至很久没和计算机代码打交道了。为了证明自己没被查水表，我就随便写点什么吧。</p>
+<p>最近发现了<a href="https://zh.wikipedia.org/wiki/%E6%9D%B1%E6%96%B9Project" target="_blank" rel="external">東方Project</a>，不幸的是，由于天生手残，就连打Easy都有些吃力（除了永夜抄和辉针城）。作为一个猥琐大叔，就这样被萝莉们欺负，能爽吗？所以，为了把她们统统<a href="http://cn.uncyclopedia.wikia.com/wiki/%E6%8E%A8%E5%80%92" target="_blank" rel="external">推倒</a>，我要写东方的作弊器（修改器）了！</p>
+<h1 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h1><p>如果想直接作弊的话，只要搜一下东方的修改器，或者装个金山游侠、Cheat Engine或Game Master，然后改数据就可以了。如果自己写修改器，其实也不难，因为东方正作，除了妖妖梦和永夜抄，那些参数的地址都是固定的，只要记住地址，把数据写进去就OK了。妖妖梦和永夜抄比较特殊，<a href="/2016/08/18/touhou-cheater-2/">下一篇文章</a>再单独分析（其实也没什么太特殊的东西）。</p>
+<p>修改器这种东西，用VB6写会比较简单。虽然VB6早就过时了，但是不得不说它是最简单实用的解决方案，没有之一。修改器的代码很多，网上随便找一个就能改造成XXX专用修改器了。</p>
+<h2 id="修改内存数据"><a href="#修改内存数据" class="headerlink" title="修改内存数据"></a>修改内存数据</h2><p>修改内存数据的话，需要使用Windows API。核心函数就是WriteProcessMemory。</p>
+<p>具体思路如下：</p>
+<p>获取进程PID。比如寻找名为“th10.exe”的进程，或者通过FindWindow函数找到游戏窗口，再通过GetWindowThreadProcessId获取PID：</p>
+<figure class="highlight vb"><table><tr><td class="code"><pre><div class="line"><span class="keyword">Dim</span> hwnd <span class="keyword">As</span> <span class="built_in">Long</span></div><div class="line"><span class="keyword">Dim</span> pid <span class="keyword">As</span> <span class="built_in">Long</span></div><div class="line"></div><div class="line">hwnd = FindWindow(<span class="string">"BASE"</span>, vbNullString)</div><div class="line"><span class="keyword">If</span> hwnd = <span class="number">0</span> <span class="keyword">Then</span> <span class="keyword">Exit</span> <span class="keyword">Sub</span></div><div class="line"></div><div class="line">GetWindowThreadProcessId hwnd, pid</div></pre></td></tr></table></figure>
+<p>接下来进行写入：</p>
+<figure class="highlight vb"><table><tr><td class="code"><pre><div class="line"><span class="keyword">Dim</span> pHandle <span class="keyword">As</span> <span class="built_in">Long</span></div><div class="line">pHandle = OpenProcess(PROCESS_ALL_ACCESS, <span class="literal">False</span>, lppid)</div><div class="line">WriteProcessMemory pHandle, <span class="keyword">ByVal</span> 目标地址, <span class="keyword">ByVal</span> VarPtr(目标值), 字节数, <span class="number">0</span>&amp;</div><div class="line">CloseHandle pHandle</div></pre></td></tr></table></figure>
+<p>如果写入多个字节，可以开个Byte数组（例如叫做Arr），然后传入ByVal VarPtr(Arr(0))。</p>
+<p>当然，在实际操作过程中要搞清楚运行的到底是哪一款游戏。我个人是通过GetWindowText获取窗口标题栏文字，然后检查有没有英文关键词（例如风神录是“Mountain of Faith”）来判断游戏版本的。反正不会特意去玩体验版，所以不用管它了。</p>
+<h2 id="提权"><a href="#提权" class="headerlink" title="提权"></a>提权</h2><p>直接用WriteProcessMemory是无法修改其他进程数据的。在修改之前，需要给进程提权。提权很简单，照抄现成代码就行：</p>
+<figure class="highlight vb"><table><tr><td class="code"><pre><div class="line"><span class="keyword">Dim</span> hToken <span class="keyword">As</span> <span class="built_in">Long</span></div><div class="line"><span class="keyword">Dim</span> tmpLuid <span class="keyword">As</span> LUID</div><div class="line"><span class="keyword">Dim</span> tkp <span class="keyword">As</span> TOKEN_PRIVILEGES</div><div class="line"><span class="keyword">Dim</span> tkpNewButIgnored <span class="keyword">As</span> TOKEN_PRIVILEGES</div><div class="line"><span class="keyword">Dim</span> lBufferNeeded <span class="keyword">As</span> <span class="built_in">Long</span></div><div class="line">OpenProcessToken GetCurrentProcess(), TOKEN_ALL_ACCESS, hToken</div><div class="line">LookupPrivilegeValue <span class="string">""</span>, <span class="string">"SeDebugPrivilege"</span>, tmpLuid</div><div class="line">tkp.PrivilegeCount = <span class="number">1</span></div><div class="line">tkp.Privileges(<span class="number">0</span>).pLuid = tmpLuid</div><div class="line">tkp.Privileges(<span class="number">0</span>).Attributes = SE_PRIVILEGE_ENABLED</div><div class="line">AdjustTokenPrivileges hToken, <span class="literal">False</span>, tkp, Len(tkpNewButIgnored), tkpNewButIgnored, lBufferNeeded</div></pre></td></tr></table></figure>
+<p>不过最终的程序并不需要管理员权限。</p>
+<h2 id="寻找地址"><a href="#寻找地址" class="headerlink" title="寻找地址"></a>寻找地址</h2><p>即使要自己写修改器，金山游侠一类软件还是要用的，要不然怎样找到地址呢？</p>
+<p>现在修改器用起来非常简单：刚开局残机数量为2，我们就搜索一下“2”；自杀，再搜索一下“1”；再自杀，搜索“0”；如果还有一大堆结果，那么就复活一下，继续搜索，直到只剩下一个搜索结果。最后留下来的这个结果就是残机数量——只管改数就行了。</p>
+<h1 id="直接改值"><a href="#直接改值" class="headerlink" title="直接改值"></a>直接改值</h1><p>送给拿来主义者——其实自己用游侠跑几遍就出来了。如果没有特殊说明，数据均为十六进制，数据大小都是1字节。</p>
+<table>
+<thead>
+<tr>
+<th>游戏</th>
+<th>版本</th>
+<th>残机</th>
+<th>BOMB</th>
+<th>Power</th>
+<th>其他</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>红魔乡</td>
+<td>1.02</td>
+<td>69D4BA</td>
+<td>69D4BB</td>
+<td>69D4B0，最大0x80</td>
+<td></td>
+</tr>
+<tr>
+<td>风神录</td>
+<td>1.00a</td>
+<td>474C70</td>
+<td></td>
+<td>474C48，示数除以0.05，最大0x64</td>
+<td></td>
+</tr>
+<tr>
+<td>地灵殿</td>
+<td>1.00a</td>
+<td>4A5718</td>
+<td></td>
+<td>4A56E8，示数除以0.05，最大0x64<br>（魔理沙＋爱丽丝最大0xC8）</td>
+<td></td>
+</tr>
+<tr>
+<td>星莲船</td>
+<td>1.00b</td>
+<td>4B0C98</td>
+<td>4B0CA0</td>
+<td>4B0C48（2字节），示数乘100，最大0x190</td>
+<td></td>
+</tr>
+<tr>
+<td>神灵庙</td>
+<td>1.00c</td>
+<td>4BE7F4</td>
+<td>4BE800</td>
+<td>4BE7E8（2字节），最大0x190</td>
+<td></td>
+</tr>
+<tr>
+<td>辉针城</td>
+<td>1.00b</td>
+<td>4F5864</td>
+<td>4F5870</td>
+<td>4F5858（2字节），最大0x190</td>
+<td></td>
+</tr>
+<tr>
+<td>绀珠传</td>
+<td>1.00b</td>
+<td>4E7450</td>
+<td>4E745C</td>
+<td>4E7440（2字节），最大0x190</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>改Power的时候建议先改成最大值减去一个数，否则自机火力容易不正常。</p>
+<p>如何想锁定残机的话，用一个Timer来反复修改，就能达到锁定的效果了。</p>
+<h1 id="改指令"><a href="#改指令" class="headerlink" title="改指令"></a>改指令</h1><p>深入地思考一下，既然能改残机数，为什么不直接通过修改程序来防止掉残机，或者干脆直接撞不到子弹呢？</p>
+<p>怀着这样猥琐的目的，我草草地学了一下汇编语言。以前看机器码完全看不懂，借助几篇文章（见结尾“参考资料”），终于进步到看着头大的程度了。（说明教程作者具有<em>操纵看代码头疼程度的能力</em>。）</p>
+<p>因为辉针城通关了（Easy不要鄙视我），所以就拿辉针城（版本1.00b）进行一下修改器的探索。其他大作的原理都一样。</p>
+<div class="bs-callout bs-callout-info"><h4 id="高手和拿来主义者"><a href="#高手和拿来主义者" class="headerlink" title="高手和拿来主义者"></a>高手和拿来主义者</h4><p>作为没学过汇编的初学者，我详细地记录了自己的探索过程。如果你是高手或者想直接找地址，可以直接找结尾的“参考资料”。</p>
+</div>
+<h2 id="残机数量不减"><a href="#残机数量不减" class="headerlink" title="残机数量不减"></a>残机数量不减</h2><p>辉针城残机数量的地址是4F5864，首先用追踪功能（<s>新手嘛，用Game Master试的</s>还是OllyDbg便于装酷）找到写入该地址的代码。</p>
+<img src="/2016/08/12/touhou-cheater/1.png" alt="1.png" title="">
+<p>看到那个<code>dec eax</code>（EAX减1）了吗？直接改成90（NOP，空指令）试一下。</p>
+<p>改完之后可以主动撞一下，果然残机数不减了。</p>
+<h2 id="无敌"><a href="#无敌" class="headerlink" title="无敌"></a>无敌</h2><p>无敌不是一下子就能追踪出来的，因此要有耐心（废话），多设置一些断点，观察设置断点与NOP前后游戏画面的变化（正经话）。</p>
+<p>首先猜想一下，在撞子弹的一瞬间会发生什么事情。想不出来也没关系，在后面的探索过程中也要去总结：</p>
+<ol>
+<li>判定中弹</li>
+<li>播放中弹声音、自机失去控制、播放中弹动画、自机数量减一（顺序不确定）</li>
+<li>消弹</li>
+<li>恢复正常状态</li>
+</ol>
+<p>中弹之后会处于短暂的无敌状态。在装弹的一瞬间一定会判定这个状态，因此可能要从判定方面下手。</p>
+<p>首先定位到残机数量减一这里（下图）。</p>
+<p><span style="display:none;"><code> </code></span><img src="/2016/08/12/touhou-cheater/2.png" alt="2.png" title=""></p>
+<p>减生命值的指令位于一小坨代码中。这小坨指令的第一条位于44F5E0。给44F5E0上断点，发现在Miss之后会经历一个很短暂的时间，然后才会触发断点。不过，这也可以说明这段代码确实与Miss有关。</p>
+<p>将44F5E0处的指令改为C3（RET），发现还会Miss，但是不会播放中弹的动画效果，残机数量也不会减少了。</p>
+<p>为了方便后面调试，先把44F5E0改回来，然后把44F617改成90（NOP），免得满身疮痍（Game Over）。</p>
+<p>接下来追踪调用44F5E0的代码，找到了44DD91（下图的<code>call 0044F5E0</code>）。</p>
+<p><span style="display:none;"><code> </code></span><img src="/2016/08/12/touhou-cheater/3.png" alt="3.png" title=""></p>
+<p>在这里，死亡已经是既定事实，所以需要继续往前追溯。在44DD84处（CMP）下断点，发现要做8次比较之后才会调用44F5E0。这就是经过一小段延迟之后才播放Miss效果、残机数量减一。</p>
+<p>那么44DD84处的CMP是从哪里跳过来的呢？继续跟踪，找到了44DBF8（下图的JMP）。</p>
+<img src="/2016/08/12/touhou-cheater/4.png" alt="4.png" title="">
+<p>JMP的目标地址不是固定的，而是与EAX有关。这大概是个指向函数的指针吧。</p>
+<p>在44DBE9处（MOV）下断点，观察EAX值和那个EDI+684的地址。经过反复尝试，可以发现，EDI+684的值是0D4906CC（备注：动态分配的空间，每次都不一样），里面存着主角的状态，大概是0（无）、1（正常/金身）、2（已经挂掉）、4（正在挂掉），而且在撞弹的一瞬间，这个地址的值会变成4。</p>
+<p>因此可以做出一个假设：只要阻止这个地址变成4（的子程序），主角就不会撞弹了。</p>
+<p>设置条件断点，一旦向0D4906CC写入数值就中断，结果找到了44F871（下图MOV）。</p>
+<img src="/2016/08/12/touhou-cheater/5.png" alt="5.png" title="">
+<p>这部分应该都是和死亡判定有关的了。定位到这坨代码的开头（44F7A0），直接改成C3（RET）。OK！</p>
+<p>我的<a href="https://zh.moegirl.org/zh/%E5%8D%9A%E4%B8%BD%E7%81%B5%E6%A2%A6" target="_blank" rel="external">灵梦</a>再也不怕撞弹了……</p>
+<h2 id="自动捡道具"><a href="#自动捡道具" class="headerlink" title="自动捡道具"></a>自动捡道具</h2><p>这个有点歪打正着了——全凭看<a href="http://cheater.seesaa.net/article/369899074.html" target="_blank" rel="external">答案</a>和碰运气。</p>
+<p>先猜一下，大概应该从捡到Power道具开始，然后再慢慢回溯。按照猜想，首先定位到了Power增长（4390DD），发现开头是4390C0，寻找CALL，于是发现了：</p>
+<img src="/2016/08/12/touhou-cheater/6.png" alt="6.png" title="">
+<p>注意438B4A处的JMP，有点<code>switch () { ... }</code>的意思。应该是自机捡到了一个道具，然后判断道具种类，然后给予不同的奖励。</p>
+<p>往上看438B3E（MOV），这条语句说明道具种类就存在[EDI+0BF4]里面，因此处理道具的时候也一定会碰到这个地址。开启高亮功能，往前翻，直到找到另一个[EDI+0BF4]为止：</p>
+<img src="/2016/08/12/touhou-cheater/7.png" alt="7.png" title="">
+<p>设置断点，继续<del>泡妹子</del>打游戏，发现当道具离自机有一定距离时就会触发43897E，直到接触到道具才会触发438B3E。在438B3E前面有几个JA（下图），如果距离不够就直接跳出去了：</p>
+<img src="/2016/08/12/touhou-cheater/8.png" alt="8.png" title="">
+<p>这时我开始听天由命，胡乱搞了——如果能随时触发43897E处的代码，离自动捡道具不就近了一步嘛。为什么会这样想呢？不知道，反正就这样干了——至少离“参考答案”又近了一步。</p>
+<p>注意上图底下有个“Jump from 438838”，就是这个样子：</p>
+<img src="/2016/08/12/touhou-cheater/9.png" alt="9.png" title="">
+<p>直接把“0F84”改成“2EE9”（JMP）会怎样呢？没反应。</p>
+<p>再回到43897E处，发现438965也是JMP们的目标地址（438965~43897E之间没有跳转了，肯定是一块儿的）：</p>
+<img src="/2016/08/12/touhou-cheater/10.png" alt="10.png" title="">
+<p>啥也别说了，直接用排除法，挨个定位，把条件跳转都改成直接跳转JMP，然后回到游戏看看到底发生了什么变化：</p>
+<img src="/2016/08/12/touhou-cheater/11.png" alt="11.png" title="">
+<p>结果出人意料，居然自动捡道具了。</p>
+<p>果然是歪打正着。我改的是438689，“参考答案”改的是4386B0，也不知道我会搞出什么副作用（补充：没有副作用——怎么改都能跳到438965那儿），毕竟我只是草草地看了一遍汇编语言教材。</p>
+<p>话说回来，这回该让我的<a href="https://zh.moegirl.org/zh/%E9%9B%BE%E9%9B%A8%E9%AD%94%E7%90%86%E6%B2%99" target="_blank" rel="external">魔理沙</a>出场了吧……</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>本文本来是要讲“如何写作弊器”来着，结果写成了“如何寻找作弊码”……</p>
+<p>为了赶紧投入到萝莉们的怀抱中，我决定，直接下载一个现成的作弊器。</p>
+<img src="/2016/08/12/touhou-cheater/boring.jpg" alt="boring.jpg" title="">
+<p>東方有毒啊！</p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<li><a href="http://cheater.seesaa.net/category/9478192-1.html" target="_blank" rel="external">東方改造: Nice cheat.</a><ul>
+<li><a href="http://cheater.seesaa.net/article/169529488.html" target="_blank" rel="external">东方绀珠传作弊</a></li>
+</ul>
+</li>
+<li><a href="http://tieba.baidu.com/p/1271755034" target="_blank" rel="external">永夜抄自机、bomb、power内存地址</a></li>
+<li><a href="http://tieba.baidu.com/p/1270485699" target="_blank" rel="external">关于妖妖梦作弊…….</a></li>
+</ul>
+
+      
+    </div>
+
+    
+      
+
+    
+
+    <footer class="article-footer">
+      <a data-url="https://vjudge1.github.io/2016/08/12/touhou-cheater/" data-id="cj2m7q6ie00239ccm3q1abjfl" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
+      
+        <a href="https://vjudge1.github.io/2016/08/12/touhou-cheater/#disqus_thread" class="article-comment-link">
+          <i class="fa fa-comment"></i> Comments
+        </a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/反汇编/">反汇编</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/東方Project/">東方Project</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+    
+<ul id="article-nav" class="nav nav-pills nav-justified">
+  
+  <li role="presentation">
+    <a href="/2016/04/02/cpp2cs/" id="article-nav-older" class="article-nav-link-wrap">
+      <i class="fa fa-chevron-left pull-left"></i>
+      <span class="article-nav-link-title">从C++转向C#的快速入门教程</span>
+    </a>
+  </li>
+  
+  
+  <li role="presentation">
+    <a href="/2016/08/18/touhou-cheater-2/" id="article-nav-newer" class="article-nav-link-wrap">
+      <span class="article-nav-link-title">自己动手写東方Project作弊器（二）</span>
+      <i class="fa fa-chevron-right pull-right"></i>
+    </a>
+  </li>
+  
+</ul>
+
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+
+
+        </div>
+        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+          
+  
+  <div class="sidebar-module">
+    <h4>Categories</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/个人心得/">个人心得</a><span class="sidebar-module-list-count">5</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/其他/">其他</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/备忘录/">备忘录</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/折腾记录/">折腾记录</a><span class="sidebar-module-list-count">6</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/教程/">教程</a><span class="sidebar-module-list-count">13</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/经验总结/">经验总结</a><span class="sidebar-module-list-count">7</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Archives</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/05/">五月 2017</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/11/">十一月 2016</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/10/">十月 2016</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/08/">八月 2016</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/04/">四月 2016</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/03/">三月 2016</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/01/">一月 2016</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/12/">十二月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/11/">十一月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/09/">九月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/08/">八月 2015</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/07/">七月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/05/">五月 2015</a><span class="sidebar-module-list-count">5</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/04/">四月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/02/">二月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/12/">十二月 2014</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/04/">四月 2014</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/02/">二月 2014</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2013/01/">一月 2013</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2012/08/">八月 2012</a><span class="sidebar-module-list-count">1</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Recents</h4>
+    <ul class="sidebar-module-list">
+      
+        <li>
+          <a href="/2017/05/13/change-to-hexo/">换成 Hexo</a>
+        </li>
+      
+        <li>
+          <a href="/2016/11/08/move-to-archlinux/">换成Arch Linux系统的一些记录</a>
+        </li>
+      
+        <li>
+          <a href="/2016/10/08/macports/">MacPorts的安装与使用</a>
+        </li>
+      
+        <li>
+          <a href="/2016/10/07/programming-in-wikipedia/">维基百科编程笔记</a>
+        </li>
+      
+        <li>
+          <a href="/2016/10/04/gae/">Google App Engine入门（Python）</a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+  
+  <div class="sidebar-module">
+    <h4>Tags</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/API/">API</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Atom/">Atom</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/C/">C</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/C/">C#</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/GAE/">GAE</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/GUI/">GUI</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Hackintosh/">Hackintosh</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Hexo/">Hexo</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Java/">Java</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/JavaScript/">JavaScript</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Jekyll/">Jekyll</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/LaTeX/">LaTeX</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Linux/">Linux</a><span class="sidebar-module-list-count">9</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Mac/">Mac</a><span class="sidebar-module-list-count">9</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/MacPorts/">MacPorts</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/NTFS/">NTFS</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Python/">Python</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/QQ/">QQ</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Rails/">Rails</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/UEFI/">UEFI</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/VPS/">VPS</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Visual-Studio/">Visual Studio</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Windows/">Windows</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/npm/">npm</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/wine/">wine</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/zsh/">zsh</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/中文/">中文</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/云/">云</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/单片机/">单片机</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/反汇编/">反汇编</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/平板/">平板</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/插件/">插件</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/教务系统/">教务系统</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/東方Project/">東方Project</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/电幕/">电幕</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/系统维护/">系统维护</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/维基百科/">维基百科</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/编程/">编程</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/语文/">语文</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/输入法/">输入法</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/配置/">配置</a><span class="sidebar-module-list-count">1</span></li></ul>
+  </div>
+
+
+
+
+        </div>
+    </div>
+  </div>
+  <footer class="blog-footer">
+  <div class="container">
+    <div id="footer-info" class="inner">
+      &copy; 2017 vjudge1<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+  
+<script>
+  var disqus_shortname = 'vjudge1';
+  
+  var disqus_url = 'https://vjudge1.github.io/2016/08/12/touhou-cheater/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" integrity="sha384-8gBf6Y4YYq7Jx97PIqmTwLPin4hxIzQw5aDmUg/DDhul9fFpbbLcLh3nTIIDJKhx" crossorigin="anonymous"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+
+
+<script src="/js/script.js"></script>
+
+</body>
+</html>

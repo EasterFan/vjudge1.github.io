@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Linux/Mac 下烧录 STC 单片机 | ⑨rz</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="据说单片机高手都是鄙视 STC 单片机的，因为 STC 的老姚 (姚永平) 喜欢到处 Tree New Bee。不过拿 STC 单片机入门还是很好的，毕竟它又简单又便宜，最重要的是，它可以拿 USB 直接下载。 但是老姚的烧录软件只有 Windows 版 (并且烧录软件里面也是到处吹牛皮)，所以在 Linux 或 Mac 系统下要麻烦一下了…… 下面讲的是在纯 Linux/Mac 环境下烧单片机。">
+<meta name="keywords" content="Linux,Mac,单片机">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux&#x2F;Mac 下烧录 STC 单片机">
+<meta property="og:url" content="https://vjudge1.github.io/2014/12/17/flash-stc-in--nix/index.html">
+<meta property="og:site_name" content="⑨rz">
+<meta property="og:description" content="据说单片机高手都是鄙视 STC 单片机的，因为 STC 的老姚 (姚永平) 喜欢到处 Tree New Bee。不过拿 STC 单片机入门还是很好的，毕竟它又简单又便宜，最重要的是，它可以拿 USB 直接下载。 但是老姚的烧录软件只有 Windows 版 (并且烧录软件里面也是到处吹牛皮)，所以在 Linux 或 Mac 系统下要麻烦一下了…… 下面讲的是在纯 Linux/Mac 环境下烧单片机。">
+<meta property="og:updated_time" content="2017-05-12T18:25:00.144Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux&#x2F;Mac 下烧录 STC 单片机">
+<meta name="twitter:description" content="据说单片机高手都是鄙视 STC 单片机的，因为 STC 的老姚 (姚永平) 喜欢到处 Tree New Bee。不过拿 STC 单片机入门还是很好的，毕竟它又简单又便宜，最重要的是，它可以拿 USB 直接下载。 但是老姚的烧录软件只有 Windows 版 (并且烧录软件里面也是到处吹牛皮)，所以在 Linux 或 Mac 系统下要麻烦一下了…… 下面讲的是在纯 Linux/Mac 环境下烧单片机。">
+  
+    <link rel="alternate" href="/atom.xml" title="⑨rz" type="application/atom+xml">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="/css/styles.css">
+  
+
+</head>
+
+<body>
+  <nav class="navbar navbar-inverse">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="main-menu-navbar">
+      <ul class="nav navbar-nav">
+        
+          <li><a class=""
+                 href="/index.html">Home</a></li>
+        
+          <li><a class=""
+                 href="/archives/">Archives</a></li>
+        
+      </ul>
+
+      <!--
+      <ul class="nav navbar-nav navbar-right">
+        
+          <li><a href="/atom.xml" title="RSS Feed"><i class="fa fa-rss"></i></a></li>
+        
+      </ul>
+      -->
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+  <div class="container">
+    <div class="blog-header">
+  <h1 class="blog-title">⑨rz</h1>
+  
+</div>
+
+    <div class="row">
+        <div class="col-sm-8 blog-main">
+          <article id="post-flash-stc-in--nix" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <header class="article-header">
+    
+  
+    <h1 class="article-title" itemprop="name">
+      Linux/Mac 下烧录 STC 单片机
+    </h1>
+  
+
+
+  </header>
+
+  <div class="article-meta">
+    <div class="article-datetime">
+  <a href="/2014/12/17/flash-stc-in--nix/" class="article-date"><time datetime="2014-12-16T16:00:00.000Z" itemprop="datePublished">2014-12-17</time></a>
+</div>
+
+    
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/教程/">教程</a>
+  </div>
+
+
+  </div>
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>据说单片机高手都是鄙视 STC 单片机的，因为 STC 的老姚 (姚永平) 喜欢到处 Tree New Bee。不过拿 STC 单片机入门还是很好的，毕竟它又简单又便宜，最重要的是，它可以拿 USB 直接下载。</p>
+<p>但是老姚的烧录软件只有 Windows 版 (并且烧录软件里面也是到处吹牛皮)，所以在 Linux 或 Mac 系统下要麻烦一下了……</p>
+<p>下面讲的是在纯 Linux/Mac 环境下烧单片机。如果嫌麻烦，你可以装虚拟机然后在里面跑 Windows。</p>
+<p>单片机：STC89C52RC</p>
+<p>使用了开发板，支持在线下载，串口芯片为 PL2303HX。</p>
+<h1 id="和-Windows-环境的区别"><a href="#和-Windows-环境的区别" class="headerlink" title="和 Windows 环境的区别"></a>和 Windows 环境的区别</h1><ul>
+<li>Windows 下用的是 Keil 和 STC-ISP，前者是编程软件（带编译器），后者是官方的下载软件。所以只要找到这两个的替代品，剩下的就都 ok 了。<ul>
+<li>Keil 的替代品是 sdcc。不过二者语法有些不同，程序不能直接拿来编译。</li>
+<li>Keil 在 wine 中不能正常工作，但是编译器可以。</li>
+<li>STC-ISP 的替代品有 gSTCISP、stcflash，前者是图形界面程序。由于 STC 的烧录方法是不公开的，所以这两个软件并不支持所有种类的 STC。不过 89C5x 都是没问题的。</li>
+</ul>
+</li>
+<li>代码可以用 Vim 写，然后写 Makefile 编译。当然，怎么搞都行。</li>
+</ul>
+<h1 id="Ubuntu-的配置"><a href="#Ubuntu-的配置" class="headerlink" title="Ubuntu 的配置"></a>Ubuntu 的配置</h1><p>其他 Linux 发行版思路类似。</p>
+<p>一般下载器都是 PL2303 芯片，此芯片免驱，所以不用安装了。默认情况下串口可能是<code>/dev/ttyUSB0</code>。</p>
+<p>用以下命令安装编译器：</p>
+<pre><code>sudo apt-get install sdcc
+</code></pre><h2 id="stcflash-推荐"><a href="#stcflash-推荐" class="headerlink" title="stcflash (推荐)"></a>stcflash (推荐)</h2><p>stcflash 可以从 <a href="https://github.com/laborer/stcflash" target="_blank" rel="external">GitHub</a> 下载。我对这个程序稍微做了修改，所以现在可以直接烧录 .hex 格式的程序了。</p>
+<p>stcflash 需要 pySerial，所以：</p>
+<pre><code>sudo apt-get install python-serial
+</code></pre><p>也可以源码安装，只要你愿意折腾。</p>
+<p>为了方便，可以把它复制到 /usr/local/bin 中：</p>
+<pre><code>sudo cp stcflash.py /usr/local/bin/stcflash
+sudo chmod +x /usr/local/bin/stcflash
+</code></pre><p>我个人感觉 stcflash 用起来会舒服一些，因为是命令行工具，便于写 Makefile。</p>
+<h2 id="gSTCISP"><a href="#gSTCISP" class="headerlink" title="gSTCISP"></a>gSTCISP</h2><ol>
+<li><p>先执行下面这条命令，编译时要用</p>
+<pre><code>sudo apt-get install libvte-dev
+</code></pre></li>
+<li><p>百度 gSTC-ISP_v1.0.tar.gz 的<a href="http://forum.ubuntu.org.cn/download/file.php?id=104628&amp;sid=767b624faf73a36c71fcd4f8111773e" target="_blank" rel="external">源代码</a>，解压</p>
+<pre><code>tar xvf gSTC-ISP_v1.0.tar.gz
+</code></pre></li>
+<li><p>接下来把 <code>/usr/include/vte-0.0/vte</code> 中与 vte 有关的所有文件拷到解压后的 <code>gSTC-ISP_v1.0/src</code> 中。</p>
+</li>
+<li>把 gSTC-ISP_v1.0/src/main.c 中的 <code>#include &lt;vte/vte.h&gt;</code> 改为 <code>#include &quot;vte.h&quot;</code>。</li>
+<li>接下来就可以 <code>./configure &amp;&amp; make &amp;&amp; make install</code> 了。</li>
+<li>为了方便，可以把它复制到 /usr/local/bin 中：sudo cp gSTCISP /usr/local/bin</li>
+</ol>
+<p>很麻烦是吧？毕竟是支持图形界面的……还是命令行更简单！</p>
+<h1 id="OS-X-的配置"><a href="#OS-X-的配置" class="headerlink" title="OS X 的配置"></a>OS X 的配置</h1><p>为了省事儿，还是用 <a href="https://github.com/laborer/stcflash" target="_blank" rel="external">stcflash</a> 吧。</p>
+<ol>
+<li>PL2303 当然有 <a href="http://www.prolific.com.tw/US/ShowProduct.aspx?p_id=229&amp;pcid=41" target="_blank" rel="external">Mac 的驱动</a>，下载安装然后重启就能用了。默认情况下串口可能是<code>/dev/tty.usbserial</code>。</li>
+<li><p>安装 sdcc 编译器：需要安装一个软件——MacPorts (其实 brew 也行)<br>我直接用 MacPorts 了——</p>
+<pre><code>sudo port install binutils sdcc
+</code></pre></li>
+<li><p>需要安装 pySerial。首先要<a href="https://pypi.python.org/packages/source/p/pyserial/pyserial-2.7.tar.gz#md5=794506184df83ef2290de0d18803dd11" target="_blank" rel="external">下载代码</a>，解压。<br>安装其实很简单，只要</p>
+<pre><code>sudo python setup.py install
+</code></pre><p>就 OK 了。</p>
+</li>
+<li><p>下载 stcflash。为了方便，可以复制到 /usr/local/bin 中：</p>
+<pre><code>sudo cp stcflash.py /usr/local/bin/stcflash
+sudo chmod +x /usr/local/bin/stcflash
+</code></pre></li>
+</ol>
+<p>我没试过 gSTCISP 和 kSTCISP，毕竟那是针对 Linux 的。我觉得在装了 X11 之后应该是能用的。</p>
+<h1 id="烧录-blink"><a href="#烧录-blink" class="headerlink" title="烧录 blink"></a>烧录 blink</h1><h2 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h2><p>建个文件夹，然后建立个文件，叫 led.c：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;8052.h&gt;</span></span></div><div class="line">__sbit __at <span class="number">0x80</span> LED;</div><div class="line"><span class="comment">// or</span></div><div class="line"><span class="comment">// #define LED  P0_0</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> i=<span class="number">0</span>;</div><div class="line"></div><div class="line">    <span class="keyword">while</span> (<span class="number">1</span>)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;<span class="number">10000</span>; i++);</div><div class="line">        LED = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;<span class="number">10000</span>; i++);</div><div class="line">        LED = <span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="获得-bin-格式"><a href="#获得-bin-格式" class="headerlink" title="获得 bin 格式"></a>获得 bin 格式</h2><p>如果要求 .bin 格式，那么就输入以下命令：</p>
+<pre><code>sdcc led.c
+packihx led.ihx &gt; led.hex
+objcopy -I ihex -O binary led.hex led.bin
+</code></pre><p>当然你可以写成脚本或 Makefile，用起来方便。</p>
+<p>那么如何下载呢？gSTCISP 是图形界面程序，需要先打开，然后在里面操作。如果是 stcflash，那么在命令后面接上编译出来的玩意儿的路径就行了 (–help 查看帮助)。</p>
+<p>对于 OS X，需要利用 port 或什么装一个 binutil，然后把上面命令中的 objcopy 换成 gobjcopy。</p>
+<h2 id="stcflash"><a href="#stcflash" class="headerlink" title="stcflash"></a>stcflash</h2><p>幸运的是，stcflash 已经支持 .hex 格式，所以用 stcflash 烧录更简单——</p>
+<pre><code>sdcc led.c
+stcflash led.ihx
+</code></pre><p>烧录的时候还是老规矩，先断电再重新上电。</p>
+<p>如果串口路径不是默认的路径 (如 /dev/tty.usbserial-abcdef)，那么你需要在 stcflash 后面加个 -p 参数来指定串口位置。</p>
+<p>这只是个简单例子。还是需要仔细查找 sdcc 的用法。</p>
+<p>By the way，虽然 Keil 不能在 wine 下正常运行，但是编译器可以 wine。</p>
+
+      
+    </div>
+
+    
+      
+
+    
+
+    <footer class="article-footer">
+      <a data-url="https://vjudge1.github.io/2014/12/17/flash-stc-in--nix/" data-id="cj2m7q6g9000a9ccmhyv0dbf8" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
+      
+        <a href="https://vjudge1.github.io/2014/12/17/flash-stc-in--nix/#disqus_thread" class="article-comment-link">
+          <i class="fa fa-comment"></i> Comments
+        </a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mac/">Mac</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/单片机/">单片机</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+    
+<ul id="article-nav" class="nav nav-pills nav-justified">
+  
+  <li role="presentation">
+    <a href="/2014/12/16/legacy-mbr-to-uefi-gpt-hackintosh/" id="article-nav-older" class="article-nav-link-wrap">
+      <i class="fa fa-chevron-left pull-left"></i>
+      <span class="article-nav-link-title">Migration from Legacy+MBR to UEFI+GPT</span>
+    </a>
+  </li>
+  
+  
+  <li role="presentation">
+    <a href="/2015/02/24/hackintosh-journal/" id="article-nav-newer" class="article-nav-link-wrap">
+      <span class="article-nav-link-title">［备份用］黑苹果安装记录</span>
+      <i class="fa fa-chevron-right pull-right"></i>
+    </a>
+  </li>
+  
+</ul>
+
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+
+
+        </div>
+        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+          
+  
+  <div class="sidebar-module">
+    <h4>Categories</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/个人心得/">个人心得</a><span class="sidebar-module-list-count">5</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/其他/">其他</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/备忘录/">备忘录</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/折腾记录/">折腾记录</a><span class="sidebar-module-list-count">6</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/教程/">教程</a><span class="sidebar-module-list-count">13</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/经验总结/">经验总结</a><span class="sidebar-module-list-count">7</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Archives</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/05/">五月 2017</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/11/">十一月 2016</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/10/">十月 2016</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/08/">八月 2016</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/04/">四月 2016</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/03/">三月 2016</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/01/">一月 2016</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/12/">十二月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/11/">十一月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/09/">九月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/08/">八月 2015</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/07/">七月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/05/">五月 2015</a><span class="sidebar-module-list-count">5</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/04/">四月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/02/">二月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/12/">十二月 2014</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/04/">四月 2014</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/02/">二月 2014</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2013/01/">一月 2013</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2012/08/">八月 2012</a><span class="sidebar-module-list-count">1</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Recents</h4>
+    <ul class="sidebar-module-list">
+      
+        <li>
+          <a href="/2017/05/13/change-to-hexo/">换成 Hexo</a>
+        </li>
+      
+        <li>
+          <a href="/2016/11/08/move-to-archlinux/">换成Arch Linux系统的一些记录</a>
+        </li>
+      
+        <li>
+          <a href="/2016/10/08/macports/">MacPorts的安装与使用</a>
+        </li>
+      
+        <li>
+          <a href="/2016/10/07/programming-in-wikipedia/">维基百科编程笔记</a>
+        </li>
+      
+        <li>
+          <a href="/2016/10/04/gae/">Google App Engine入门（Python）</a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+  
+  <div class="sidebar-module">
+    <h4>Tags</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/API/">API</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Atom/">Atom</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/C/">C</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/C/">C#</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/GAE/">GAE</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/GUI/">GUI</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Hackintosh/">Hackintosh</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Hexo/">Hexo</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Java/">Java</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/JavaScript/">JavaScript</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Jekyll/">Jekyll</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/LaTeX/">LaTeX</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Linux/">Linux</a><span class="sidebar-module-list-count">9</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Mac/">Mac</a><span class="sidebar-module-list-count">9</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/MacPorts/">MacPorts</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/NTFS/">NTFS</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Python/">Python</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/QQ/">QQ</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Rails/">Rails</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/UEFI/">UEFI</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/VPS/">VPS</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Visual-Studio/">Visual Studio</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Windows/">Windows</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/npm/">npm</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/wine/">wine</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/zsh/">zsh</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/中文/">中文</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/云/">云</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/单片机/">单片机</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/反汇编/">反汇编</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/平板/">平板</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/插件/">插件</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/教务系统/">教务系统</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/東方Project/">東方Project</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/电幕/">电幕</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/系统维护/">系统维护</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/维基百科/">维基百科</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/编程/">编程</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/语文/">语文</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/输入法/">输入法</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/配置/">配置</a><span class="sidebar-module-list-count">1</span></li></ul>
+  </div>
+
+
+
+
+        </div>
+    </div>
+  </div>
+  <footer class="blog-footer">
+  <div class="container">
+    <div id="footer-info" class="inner">
+      &copy; 2017 vjudge1<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+  
+<script>
+  var disqus_shortname = 'vjudge1';
+  
+  var disqus_url = 'https://vjudge1.github.io/2014/12/17/flash-stc-in--nix/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" integrity="sha384-8gBf6Y4YYq7Jx97PIqmTwLPin4hxIzQw5aDmUg/DDhul9fFpbbLcLh3nTIIDJKhx" crossorigin="anonymous"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+
+
+<script src="/js/script.js"></script>
+
+</body>
+</html>

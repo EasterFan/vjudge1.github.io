@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>自己动手写東方Project作弊器（二） | ⑨rz</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="東方的射击类游戏还没修改完。接着折腾。（没有耐心的话可以直接看结尾附带的链接。） 东方红魔乡红魔乡似乎加壳了。虽然对作弊器研究没有影响，但是上一篇文章提到的“参考资料”的作者研究了脱壳的问题，所以我直接贴个地址：东方红魔乡脱壳 东方妖妖梦 &amp;amp; 东方永夜抄 （版本：妖妖梦1.00b，永夜抄1.00d） 妖妖梦和永夜抄的作弊与其他正作略有区别。不同之处在于：  残机、BOMB、Power等数据">
+<meta name="keywords" content="東方Project,反汇编">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自己动手写東方Project作弊器（二）">
+<meta property="og:url" content="https://vjudge1.github.io/2016/08/18/touhou-cheater-2/index.html">
+<meta property="og:site_name" content="⑨rz">
+<meta property="og:description" content="東方的射击类游戏还没修改完。接着折腾。（没有耐心的话可以直接看结尾附带的链接。） 东方红魔乡红魔乡似乎加壳了。虽然对作弊器研究没有影响，但是上一篇文章提到的“参考资料”的作者研究了脱壳的问题，所以我直接贴个地址：东方红魔乡脱壳 东方妖妖梦 &amp;amp; 东方永夜抄 （版本：妖妖梦1.00b，永夜抄1.00d） 妖妖梦和永夜抄的作弊与其他正作略有区别。不同之处在于：  残机、BOMB、Power等数据">
+<meta property="og:image" content="https://static.mengniang.org/common/2/29/Th135Youmu%26Yuyuko.gif">
+<meta property="og:image" content="https://vjudge1.github.io/2016/08/18/touhou-cheater-2/th8_1.png">
+<meta property="og:image" content="https://vjudge1.github.io/2016/08/18/touhou-cheater-2/th8_2.png">
+<meta property="og:image" content="https://vjudge1.github.io/2016/08/18/touhou-cheater-2/th8_3.png">
+<meta property="og:image" content="https://vjudge1.github.io/2016/08/18/touhou-cheater-2/th8_4.png">
+<meta property="og:image" content="https://vjudge1.github.io/2016/08/18/touhou-cheater-2/th9_1.png">
+<meta property="og:image" content="https://vjudge1.github.io/2016/08/18/touhou-cheater-2/th9_2.png">
+<meta property="og:image" content="https://vjudge1.github.io/2016/08/18/touhou-cheater-2/th9_3.png">
+<meta property="og:image" content="https://vjudge1.github.io/2016/08/18/touhou-cheater-2/th128_1.png">
+<meta property="og:image" content="https://vjudge1.github.io/2016/08/18/touhou-cheater-2/th128_2.png">
+<meta property="og:updated_time" content="2017-05-12T19:32:44.800Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="自己动手写東方Project作弊器（二）">
+<meta name="twitter:description" content="東方的射击类游戏还没修改完。接着折腾。（没有耐心的话可以直接看结尾附带的链接。） 东方红魔乡红魔乡似乎加壳了。虽然对作弊器研究没有影响，但是上一篇文章提到的“参考资料”的作者研究了脱壳的问题，所以我直接贴个地址：东方红魔乡脱壳 东方妖妖梦 &amp;amp; 东方永夜抄 （版本：妖妖梦1.00b，永夜抄1.00d） 妖妖梦和永夜抄的作弊与其他正作略有区别。不同之处在于：  残机、BOMB、Power等数据">
+<meta name="twitter:image" content="https://static.mengniang.org/common/2/29/Th135Youmu%26Yuyuko.gif">
+  
+    <link rel="alternate" href="/atom.xml" title="⑨rz" type="application/atom+xml">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="/css/styles.css">
+  
+
+</head>
+
+<body>
+  <nav class="navbar navbar-inverse">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="main-menu-navbar">
+      <ul class="nav navbar-nav">
+        
+          <li><a class=""
+                 href="/index.html">Home</a></li>
+        
+          <li><a class=""
+                 href="/archives/">Archives</a></li>
+        
+      </ul>
+
+      <!--
+      <ul class="nav navbar-nav navbar-right">
+        
+          <li><a href="/atom.xml" title="RSS Feed"><i class="fa fa-rss"></i></a></li>
+        
+      </ul>
+      -->
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+  <div class="container">
+    <div class="blog-header">
+  <h1 class="blog-title">⑨rz</h1>
+  
+</div>
+
+    <div class="row">
+        <div class="col-sm-8 blog-main">
+          <article id="post-touhou-cheater-2" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <header class="article-header">
+    
+  
+    <h1 class="article-title" itemprop="name">
+      自己动手写東方Project作弊器（二）
+    </h1>
+  
+
+
+  </header>
+
+  <div class="article-meta">
+    <div class="article-datetime">
+  <a href="/2016/08/18/touhou-cheater-2/" class="article-date"><time datetime="2016-08-17T16:00:00.000Z" itemprop="datePublished">2016-08-18</time></a>
+</div>
+
+    
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/折腾记录/">折腾记录</a>
+  </div>
+
+
+  </div>
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>東方的射击类游戏还没修改完。接着折腾。（没有耐心的话可以直接看结尾附带的链接。）</p>
+<h1 id="东方红魔乡"><a href="#东方红魔乡" class="headerlink" title="东方红魔乡"></a>东方红魔乡</h1><p>红魔乡似乎加壳了。虽然对作弊器研究没有影响，但是上一篇文章提到的“参考资料”的作者研究了脱壳的问题，所以我直接贴个地址：<a href="http://tieba.baidu.com/p/3730028296" target="_blank" rel="external">东方红魔乡脱壳</a></p>
+<h1 id="东方妖妖梦-amp-东方永夜抄"><a href="#东方妖妖梦-amp-东方永夜抄" class="headerlink" title="东方妖妖梦 &amp; 东方永夜抄"></a>东方妖妖梦 &amp; 东方永夜抄</h1><p><img src="https://static.mengniang.org/common/2/29/Th135Youmu%26Yuyuko.gif" alt="吃货"></p>
+<p>（版本：妖妖梦1.00b，永夜抄1.00d）</p>
+<p>妖妖梦和永夜抄的作弊与其他正作略有区别。不同之处在于：</p>
+<ol>
+<li>残机、BOMB、Power等数据以浮点数形式储存（不知为何ZUN神主突然想拿float当int使）。</li>
+<li>地址是动态的，即使是续关，地址都会发生变化。</li>
+<li>直接改数值的话游戏会崩掉。</li>
+</ol>
+<p>了解这些情况之后，应当先练习一下妖妖梦和永夜抄，至少要撑到第三四关（囧），否则很可能搜不到数据。练得差不多之后继续开修改器搜索。但是，找到数据之后，不要停止游戏，而是应当立马开启追踪。然后，剩下的事情就和其他作品差不多了。</p>
+<p>以永夜抄为例：</p>
+<p>通过搜索，找到了存放生命值的地址是2D0EB84。</p>
+<img src="/2016/08/18/touhou-cheater-2/th8_1.png" alt="th8_1.png" title="">
+<p>追踪对这个地址的读写（注意float是4字节），找到两个地址43C66D和43C676。</p>
+<img src="/2016/08/18/touhou-cheater-2/th8_2.png" alt="th8_2.png" title="">
+<img src="/2016/08/18/touhou-cheater-2/th8_3.png" alt="th8_3.png" title="">
+<p><del>对于那个FILD指令，加残机的时候进去的数字是1，掉残机时进去的数字是-1。</del>何必管它呢？直接把43C676处的指令（FSTP那个）填成3个90（NOP），这样改就不掉残机数了（不过也不增加了）。</p>
+<p>稍微深入地跟踪一下，发现Miss时是由44D100处调用改残机数的指令，前面（44D0F9处）有个<code>push -1</code>——经过试验，将44D0FA改成00也能不掉残机数。</p>
+<p>大胆地往前找call，反复加断点，并结合<a href="/2016/08/12/touhou-cheater/">上篇文章</a>的经验（判定时会读写自机的状态），可以发现：</p>
+<p><span style="display:none;"><code> </code></span><img src="/2016/08/18/touhou-cheater-2/th8_4.png" alt="th8_4.png" title=""></p>
+<p>在Miss过程中，44C48A（<code>call 0044CBF0</code>）会被不断地调用。44C482处的<code>cmp edx, 2</code>是判断自机状态（由前文经验得知），也就是说，状态2表示“正在挂掉”。继续追踪，发现这个状态被写在了17D5EF8里面，而且这个地址是固定的。不过这次不要再野蛮地改成RET了，否则游戏会崩——改成NOP就行了。</p>
+<p>备注：在永夜抄中，自机Miss的一瞬间会有一个短暂的暂停——等待玩家发动决死。有人给出了跳过这段等待时间的方法，照着改就行：<a href="http://tieba.baidu.com/p/1271755034" target="_blank" rel="external">永夜抄自机、bomb、power内存地址</a>。</p>
+<h1 id="东方花映塚"><a href="#东方花映塚" class="headerlink" title="东方花映塚"></a>东方花映塚</h1><p>（版本：1.50a）</p>
+<p>花映塚的作弊和格斗类游戏的作弊有一点相似——双方掉血都是由同一指令操作的。详细思路见<a href="/2016/08/20/touhou-cheater-3/">下一篇文章</a>。</p>
+<p>花映塚的人数是浮点数。经过搜索，它位于Bxxxxx（动态地址），追踪后发现417AAF（<code>fld dword ptr [ecx]</code>），接下来一句是<code>fsub dword ptr [0x48e2a4]</code>。冲到48E2A4那里一看，里面果然存着一个浮点数1，但这个数字不能改，否则游戏会崩。回到417AB1（fsub dword ptr [48E2A4]），我们干脆把它NOP掉（改成6个90），于是再也不会没人了。</p>
+<p>再谈对战的问题。通过搜血量（满血是10），找到血的地址（把它记住，然后别死掉，后面还要用），跟踪到41E5FE，血是在这里扣的，地址存在了<code>[ESI+0A8]</code>里——指针。</p>
+<img src="/2016/08/18/touhou-cheater-2/th9_1.png" alt="th9_1.png" title="">
+<p>下断点，使用内存搜索搜ESI的值（可以换GameMaster搜），自己血量的地址存在4A7D94里，对手血量的地址存在4A7DCC里。</p>
+<p>往前追几行（注意跳转的来源），我们简单粗暴一点，把41E46A改成<code>mov esi, dword ptr [4A7DCC]</code>（<code>8B 35 CC 7D 4A 00</code>），接下来的两条指令全部NOP掉（改为9个90）——撞弹直接赢。</p>
+<p><span style="display:none;"><code> </code></span><img src="/2016/08/18/touhou-cheater-2/th9_2.png" alt="th9_2.png" title=""></p>
+<p>直接让对方挂掉确实有点太损了，还是只让自己无敌比较好。那么回到41E5FE，往前翻，子程序从41E420开始。它是由41E8EC调用的，说明在这里已经准备好扣血了。</p>
+<p>接下来要搞清楚一个问题：人物状态存在了哪里？</p>
+<img src="/2016/08/18/touhou-cheater-2/th9_3.png" alt="th9_3.png" title="">
+<p>在上图中下了多个断点，发现41E8B0这段子程序也会按1P和2P轮流调用。在41E8B7处，EAX的值就是自机和敌机状态（1正常、4正在挂掉、2已经挂掉），因此改变自机状态的子程序很可能就在435EC0里面。</p>
+<p>想得挺美——其实435EC0里面只有一个<code>mov eax, dword ptr [ecx]</code>。说明这句话实际上是想把[ecx]里面存的状态送给eax。</p>
+<p>我们试一下，如果把41E8B2改为<code>mov eax, 1</code>（B801000000），双方是否都会无敌呢？</p>
+<p>果然敌我双方都无敌了。</p>
+<p>这样的话，我们就可以写一个子程序，<del>如果ecx是[4A7DC8]，那么就不要让eax等于4，如果ecx是[4A7DCC]，那么就照常执行<code>mov eax, dword ptr [ecx]</code></del>（实践证明这不好使，暂时还没想明白为什么）。附近没有地方写子程序，“答案”给出了一个方案，那就是到程序末尾随便找个空间。下面直接贴出“答案”：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">;地址   汇编指令                      机器码</div><div class="line">48DB20: cmp dword ptr [4A7EA4], 4    ;83 3D A4 7E 4A 00 04</div><div class="line">48DB27: je short 0048DB2E            ;74 05</div><div class="line">48DB29: cmp ebx, 0B                  ;83 FB 0B</div><div class="line">48DB2C: je short 0048DB30            ;74 02</div><div class="line">48DB2E: mov eax, dword ptr [ecx]     ;8B 01</div><div class="line">48DB30: retn                         ;C3</div></pre></td></tr></table></figure>
+<p>最后别忘了把41E8B2改成<code>call 0048DB20</code>（E8 69 F2 06 00）。</p>
+<h1 id="妖精大战争"><a href="#妖精大战争" class="headerlink" title="妖精大战争"></a>妖精大战争</h1><p><del>我的<a href="https://zh.moegirl.org/%E7%90%AA%E9%9C%B2%E8%AF%BA" target="_blank" rel="external">琪露诺</a>那么强，用得着作弊吗？</del></p>
+<p>（版本：1.00a）</p>
+<p>妖精大战争的作弊比较容易，不过干劲的设定与残机数量略有区别。最初的干劲是200%，实际上在内存中的数值是20000（十进制）。</p>
+<p>很容易就能搜到具体地址4B4D64，固定的。追踪发现，干劲上升和下降都是同一指令在起作用（下图42729C）。</p>
+<img src="/2016/08/18/touhou-cheater-2/th128_1.png" alt="th128_1.png" title="">
+<p>如果不想上升也不想下降，直接写入6个90（NOP）就可以了。如果想上升不想下降，我们注意ECX的值，还有427277处的指令，可以发现干劲的变化值被存到堆栈里面了。继续追踪调用这段代码的CALL，找到了43CDDF（下图）。</p>
+<img src="/2016/08/18/touhou-cheater-2/th128_2.png" alt="th128_2.png" title="">
+<p>看到43CDD8处的<code>push -2710</code>了吗？Miss一下就掉100%干劲，乘100再转成十六进制，正好2710。所以改成<code>push 0</code>就完事儿了。需要注意的是，在EX关，魔理沙的大招（激光）也会让小<a href="https://zh.moegirl.org/%E7%90%AA%E9%9C%B2%E8%AF%BA#.E2.80.9C.E2.91.A8.E2.80.9D.E5.8F.8A.E2.80.9C.E7.AC.A8.E8.9B.8B.E2.80.9D.E4.B9.8B.E5.90.8D.E7.9A.84.E7.94.B1.E6.9D.A5" target="_blank" rel="external">⑨</a>掉干劲。想作的彻底一点的话就自己研究吧。</p>
+<p>妖精大战争的无敌方法和<a href="/2016/08/12/touhou-cheater/">前文</a>完全一样，本文不再重复叙述了。直接给出“答案”：把43D0C0处改为C2 04 00（<code>retn 4</code>）。</p>
+<h1 id="弹幕天邪鬼"><a href="#弹幕天邪鬼" class="headerlink" title="弹幕天邪鬼"></a>弹幕天邪鬼</h1><p>（版本：1.00a）</p>
+<p>弹幕天邪鬼的作弊稍微麻烦一点，因为Miss之后直接Game Over了，所以不能向其他作品那样靠撞弹定位指令。</p>
+<p>道具数量很好改，开搜索之后能搜到两个地址，这两个都是动态地址，均是道具数量，代码跟踪之后可以找到457860（<code>DEC DWORD PTR [EDI+18]</code>），NOP掉就行（改成90 90 90）。</p>
+<p>接下来是无敌。</p>
+<h2 id="第一次研究（失败）"><a href="#第一次研究（失败）" class="headerlink" title="第一次研究（失败）"></a>第一次研究（失败）</h2><p>这次从擦弹入手。</p>
+<p>弹幕天邪鬼的分数由多部分组成，例如射击分数、擦弹分数，这些分数在内存中是分开放置的，直到显示的时候才会求和。因此在搜索擦弹数量的时候要专心擦弹，不要射击或者用道具。每10分是1个子弹。</p>
+<p>擦弹分数也保存在两个不同的地址中，一个是动态的，另一个是4E46F8。追踪对4E46F8的写入，可定位到41970B（<code>MOV DWORD PTR [4E46F8], ECX</code>）。找到对这部分指令的CALL，便来到435801。</p>
+<p>一直往前翻，直到这部分代码的开头，可以一直翻到4350E0。对这里下断点，发现这部分代码是可能游戏的主循环，或者是主循环的一部分。</p>
+<p>后面的事情就很无聊了：下断点（建议对所有CALL和不在范围内的JMP下断点，然后记录调用顺序），打游戏，等死，定位……一帧一帧地玩。</p>
+<p>结果发现这段循环根本与判定无关。实际上，它是擦弹并且离开之后才被调用的，中间还隔着Windows API，对我这样的初学者来说根本没法玩。</p>
+<h2 id="第二次研究（成功）"><a href="#第二次研究（成功）" class="headerlink" title="第二次研究（成功）"></a>第二次研究（成功）</h2><p>这次又是碰运气与投机取巧的结合体。</p>
+<p>经过多次作弊，我发现东方每部射击作品都用01234这几个数字来表示自机状态（未出场、正常状态、正在死亡和已经死亡）。正常状态和已经死亡的状态是比较持久的，即使满身疮痍，那个死亡的状态仍在内存里面保存着，并且直接续关之后地址不变。因此，我们可以尝试反复搜索两种状态，直到找到地址为止。</p>
+<p>现在有一个小问题，就是不知道“正常”和“死亡”分别是几。</p>
+<p>考虑到弹幕天邪鬼是辉针城的后作，那么我们可以偷个懒，先尝试用辉针城的状态来搜天邪鬼，也就是说，活着的时候反复搜索1，死了之后反复搜索2。当然，不要一出场或者一死亡就点搜索按钮，因为还有0和4两个状态。</p>
+<p>经过观察，状态确实是用1和2表示的，因为死亡一瞬间那个地址的数值一下子变成了4，然后很快就变成了2。得到的地址是0Axxxxxx（每次都变化的），追踪对这个地址的写入，撞弹，发现确实能找到一个对其写入4的指令，其地址为44F26C（<code>mov dword ptr [edi+684], 4</code>）。</p>
+<p>所以剩下的事情和辉针城一模一样了——往前翻，直到这个子程序的开头44F140，把它改成C3（RET），这样写入死亡状态的子程序就全被屏蔽了。</p>
+<h1 id="东方文花帖-amp-DS"><a href="#东方文花帖-amp-DS" class="headerlink" title="东方文花帖 &amp; DS"></a>东方文花帖 &amp; DS</h1><p>（文花帖版本1.02a，DS文花帖版本1.00a）</p>
+<p>东方文花帖和DS作什么弊呢？还是不死吧。</p>
+<p>因为和天邪鬼一样都是撞弹就满身疮痍，所以还是直接搜状态。</p>
+<p>经过试验，文花帖和DS文花帖都用1表示活着，用2表示死亡，并且没有“正在死亡”的状态。那么剩下的事情就和天邪鬼一模一样了。直接给结论：文花帖是把4306D0改成C3，DS文花帖是把436C20改成C3。</p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<li><a href="http://cheater.seesaa.net/category/9478192-1.html" target="_blank" rel="external">東方改造: Nice cheat.</a><ul>
+<li><a href="http://cheater.seesaa.net/article/169529488.html" target="_blank" rel="external">东方绀珠传作弊</a></li>
+</ul>
+</li>
+<li><a href="http://tieba.baidu.com/p/1271755034" target="_blank" rel="external">永夜抄自机、bomb、power内存地址</a></li>
+<li><a href="http://tieba.baidu.com/p/1270485699" target="_blank" rel="external">关于妖妖梦作弊…….</a></li>
+<li><a href="http://tieba.baidu.com/p/3730028296" target="_blank" rel="external">东方红魔乡脱壳</a></li>
+</ul>
+
+      
+    </div>
+
+    
+      
+
+    
+
+    <footer class="article-footer">
+      <a data-url="https://vjudge1.github.io/2016/08/18/touhou-cheater-2/" data-id="cj2m7q6ib00219ccm7zh1a3um" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
+      
+        <a href="https://vjudge1.github.io/2016/08/18/touhou-cheater-2/#disqus_thread" class="article-comment-link">
+          <i class="fa fa-comment"></i> Comments
+        </a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/反汇编/">反汇编</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/東方Project/">東方Project</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+    
+<ul id="article-nav" class="nav nav-pills nav-justified">
+  
+  <li role="presentation">
+    <a href="/2016/08/12/touhou-cheater/" id="article-nav-older" class="article-nav-link-wrap">
+      <i class="fa fa-chevron-left pull-left"></i>
+      <span class="article-nav-link-title">自己动手写東方Project作弊器（一）</span>
+    </a>
+  </li>
+  
+  
+  <li role="presentation">
+    <a href="/2016/08/20/touhou-cheater-3/" id="article-nav-newer" class="article-nav-link-wrap">
+      <span class="article-nav-link-title">自己动手写東方Project作弊器（三）</span>
+      <i class="fa fa-chevron-right pull-right"></i>
+    </a>
+  </li>
+  
+</ul>
+
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+
+
+        </div>
+        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+          
+  
+  <div class="sidebar-module">
+    <h4>Categories</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/个人心得/">个人心得</a><span class="sidebar-module-list-count">5</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/其他/">其他</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/备忘录/">备忘录</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/折腾记录/">折腾记录</a><span class="sidebar-module-list-count">6</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/教程/">教程</a><span class="sidebar-module-list-count">13</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/经验总结/">经验总结</a><span class="sidebar-module-list-count">7</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Archives</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/05/">五月 2017</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/11/">十一月 2016</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/10/">十月 2016</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/08/">八月 2016</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/04/">四月 2016</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/03/">三月 2016</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/01/">一月 2016</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/12/">十二月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/11/">十一月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/09/">九月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/08/">八月 2015</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/07/">七月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/05/">五月 2015</a><span class="sidebar-module-list-count">5</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/04/">四月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/02/">二月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/12/">十二月 2014</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/04/">四月 2014</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/02/">二月 2014</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2013/01/">一月 2013</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2012/08/">八月 2012</a><span class="sidebar-module-list-count">1</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Recents</h4>
+    <ul class="sidebar-module-list">
+      
+        <li>
+          <a href="/2017/05/13/change-to-hexo/">换成 Hexo</a>
+        </li>
+      
+        <li>
+          <a href="/2016/11/08/move-to-archlinux/">换成Arch Linux系统的一些记录</a>
+        </li>
+      
+        <li>
+          <a href="/2016/10/08/macports/">MacPorts的安装与使用</a>
+        </li>
+      
+        <li>
+          <a href="/2016/10/07/programming-in-wikipedia/">维基百科编程笔记</a>
+        </li>
+      
+        <li>
+          <a href="/2016/10/04/gae/">Google App Engine入门（Python）</a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+  
+  <div class="sidebar-module">
+    <h4>Tags</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/API/">API</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Atom/">Atom</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/C/">C</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/C/">C#</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/GAE/">GAE</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/GUI/">GUI</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Hackintosh/">Hackintosh</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Hexo/">Hexo</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Java/">Java</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/JavaScript/">JavaScript</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Jekyll/">Jekyll</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/LaTeX/">LaTeX</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Linux/">Linux</a><span class="sidebar-module-list-count">9</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Mac/">Mac</a><span class="sidebar-module-list-count">9</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/MacPorts/">MacPorts</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/NTFS/">NTFS</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Python/">Python</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/QQ/">QQ</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Rails/">Rails</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/UEFI/">UEFI</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/VPS/">VPS</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Visual-Studio/">Visual Studio</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Windows/">Windows</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/npm/">npm</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/wine/">wine</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/zsh/">zsh</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/中文/">中文</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/云/">云</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/单片机/">单片机</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/反汇编/">反汇编</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/平板/">平板</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/插件/">插件</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/教务系统/">教务系统</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/東方Project/">東方Project</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/电幕/">电幕</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/系统维护/">系统维护</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/维基百科/">维基百科</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/编程/">编程</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/语文/">语文</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/输入法/">输入法</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/配置/">配置</a><span class="sidebar-module-list-count">1</span></li></ul>
+  </div>
+
+
+
+
+        </div>
+    </div>
+  </div>
+  <footer class="blog-footer">
+  <div class="container">
+    <div id="footer-info" class="inner">
+      &copy; 2017 vjudge1<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+  
+<script>
+  var disqus_shortname = 'vjudge1';
+  
+  var disqus_url = 'https://vjudge1.github.io/2016/08/18/touhou-cheater-2/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" integrity="sha384-8gBf6Y4YYq7Jx97PIqmTwLPin4hxIzQw5aDmUg/DDhul9fFpbbLcLh3nTIIDJKhx" crossorigin="anonymous"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+
+
+<script src="/js/script.js"></script>
+
+</body>
+</html>

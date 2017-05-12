@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>［备份用］黑苹果安装记录 | ⑨rz</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="写本文纯粹是为了给自己留个备份。不同电脑不一样，思路可以借鉴，步骤不要照抄！ 基本信息 Lenovo V470 Legacy+MBR，故使用懒人版，并按照懒人版教程进行安装 启动器 Chameleon  安装盘的处理将教程中有关 SNB 的文件复制到 /Extra。 /System/Library/Extensions 删除以下两个文件：  AppleIntelCPUPowerManagement">
+<meta name="keywords" content="Hackintosh,Mac">
+<meta property="og:type" content="article">
+<meta property="og:title" content="［备份用］黑苹果安装记录">
+<meta property="og:url" content="https://vjudge1.github.io/2015/02/24/hackintosh-journal/index.html">
+<meta property="og:site_name" content="⑨rz">
+<meta property="og:description" content="写本文纯粹是为了给自己留个备份。不同电脑不一样，思路可以借鉴，步骤不要照抄！ 基本信息 Lenovo V470 Legacy+MBR，故使用懒人版，并按照懒人版教程进行安装 启动器 Chameleon  安装盘的处理将教程中有关 SNB 的文件复制到 /Extra。 /System/Library/Extensions 删除以下两个文件：  AppleIntelCPUPowerManagement">
+<meta property="og:updated_time" content="2017-05-12T18:24:35.774Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="［备份用］黑苹果安装记录">
+<meta name="twitter:description" content="写本文纯粹是为了给自己留个备份。不同电脑不一样，思路可以借鉴，步骤不要照抄！ 基本信息 Lenovo V470 Legacy+MBR，故使用懒人版，并按照懒人版教程进行安装 启动器 Chameleon  安装盘的处理将教程中有关 SNB 的文件复制到 /Extra。 /System/Library/Extensions 删除以下两个文件：  AppleIntelCPUPowerManagement">
+  
+    <link rel="alternate" href="/atom.xml" title="⑨rz" type="application/atom+xml">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="/css/styles.css">
+  
+
+</head>
+
+<body>
+  <nav class="navbar navbar-inverse">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="main-menu-navbar">
+      <ul class="nav navbar-nav">
+        
+          <li><a class=""
+                 href="/index.html">Home</a></li>
+        
+          <li><a class=""
+                 href="/archives/">Archives</a></li>
+        
+      </ul>
+
+      <!--
+      <ul class="nav navbar-nav navbar-right">
+        
+          <li><a href="/atom.xml" title="RSS Feed"><i class="fa fa-rss"></i></a></li>
+        
+      </ul>
+      -->
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+  <div class="container">
+    <div class="blog-header">
+  <h1 class="blog-title">⑨rz</h1>
+  
+</div>
+
+    <div class="row">
+        <div class="col-sm-8 blog-main">
+          <article id="post-hackintosh-journal" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <header class="article-header">
+    
+  
+    <h1 class="article-title" itemprop="name">
+      ［备份用］黑苹果安装记录
+    </h1>
+  
+
+
+  </header>
+
+  <div class="article-meta">
+    <div class="article-datetime">
+  <a href="/2015/02/24/hackintosh-journal/" class="article-date"><time datetime="2015-02-23T16:00:00.000Z" itemprop="datePublished">2015-02-24</time></a>
+</div>
+
+    
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/备忘录/">备忘录</a>
+  </div>
+
+
+  </div>
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>写本文纯粹是为了给自己留个备份。不同电脑不一样，思路可以借鉴，步骤不要照抄！</p>
+<h1 id="基本信息"><a href="#基本信息" class="headerlink" title="基本信息"></a>基本信息</h1><ul>
+<li>Lenovo V470</li>
+<li>Legacy+MBR，故使用懒人版，并按照懒人版教程进行安装</li>
+<li>启动器 Chameleon</li>
+</ul>
+<h1 id="安装盘的处理"><a href="#安装盘的处理" class="headerlink" title="安装盘的处理"></a>安装盘的处理</h1><p>将教程中有关 SNB 的文件复制到 /Extra。</p>
+<p>/System/Library/Extensions 删除以下两个文件：</p>
+<ul>
+<li>AppleIntelCPUPowerManagement.kext</li>
+<li>AppleIntelCPUPowerManagementClient.kext</li>
+</ul>
+<div class="bs-callout bs-callout-default"><h4 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h4><p>这两个驱动也可以通过 NullCPUPowerManagement 来屏蔽。</p>
+</div>
+<p>下面驱动在没有问题的情况下不用删：</p>
+<ul>
+<li>AMD 开头的所有文件</li>
+<li>AppleThunderbolt 开头的 6 个文件</li>
+<li>NV 开头的 8 个文件</li>
+<li>IOBluetooth 开头的所有文件</li>
+</ul>
+<h1 id="安装完成"><a href="#安装完成" class="headerlink" title="安装完成"></a>安装完成</h1><p>进入安装盘，再次把有关文件复制到 /Extra 中。</p>
+<p>以下驱动酌情删除：</p>
+<ul>
+<li>AppleIntelCPUPowerManagement.kext（必删，除非有 NullCPUPowerManagement））</li>
+<li>AppleIntelCPUPowerManagementClient.kext（必删，除非有 NullCPUPowerManagement）</li>
+<li>AppleSmartBatteryManager.kext</li>
+<li>AppleIntelHDGraphics 开头的 5 个文件</li>
+<li>AppleThunderbolt 开头的 6 个文件</li>
+<li>GeForce 开头的 7 个文件</li>
+<li>NV 开头的 7 个文件（笔记本双显卡的请删除——其实不用删）</li>
+<li>AppleHDA.kext（必删，除非以后你想仿冒声卡）</li>
+<li>AMD 开头的 15 个文件</li>
+<li>ATIRadeon 开头的 4 个文件</li>
+<li>IOBluetooth 开头的所有文件（注意这个是蓝牙驱动，要是不删可以进入系统并且想使用蓝牙的留着吧）</li>
+</ul>
+<div class="bs-callout bs-callout-default"><h4 id="事实"><a href="#事实" class="headerlink" title="事实"></a>事实</h4><p>一开始对苹果的底细一点都不清楚，心里感到害怕，就照着教程删了。后来偶然将系统升级，发现以上各驱动其实完全没必要删。</p>
+</div>
+<h1 id="驱动"><a href="#驱动" class="headerlink" title="驱动"></a>驱动</h1><h2 id="声卡"><a href="#声卡" class="headerlink" title="声卡"></a>声卡</h2><p>VoodooHDA</p>
+<h2 id="网卡"><a href="#网卡" class="headerlink" title="网卡"></a>网卡</h2><p>有线网卡：RTL8111E 有驱动。</p>
+<p>无线网卡：刷白名单，换成免驱的 BCM4322（详细参数：DEV 432B、VEN 14E4、SUBSYS 000D1028，刷机时用）。</p>
+<h2 id="DSDT"><a href="#DSDT" class="headerlink" title="DSDT"></a>DSDT</h2><p>DSDT 和 SSDT 内容可在 Linux 系统中查看。DSDT 位于 /sys/firmware/acpi/tables 里。SSDT 也是。</p>
+<p>不过需要反编译一下才能进行修改。</p>
+<h2 id="屏幕亮度-DSDT"><a href="#屏幕亮度-DSDT" class="headerlink" title="屏幕亮度 DSDT"></a>屏幕亮度 DSDT</h2><p>(1) <code>Device (GFX0) { Name (ADR, ….)</code> 的下一行加入：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">Method (_DSM, <span class="number">4</span>, NotSerialized)</div><div class="line">&#123;</div><div class="line">    Store (Package (<span class="number">0x12</span>)</div><div class="line">    &#123;</div><div class="line">        <span class="string">"device-id"</span>,</div><div class="line">        Buffer (<span class="number">0x04</span>)</div><div class="line">        &#123;</div><div class="line">            <span class="number">0x06</span>, <span class="number">0x01</span>, <span class="number">0x00</span>, <span class="number">0x00</span></div><div class="line">        &#125;,</div><div class="line">        <span class="string">"model"</span>,</div><div class="line">        Buffer (<span class="number">0x17</span>)</div><div class="line">        &#123;</div><div class="line">            <span class="string">"Intel HD Graphics 3000"</span></div><div class="line">        &#125;,</div><div class="line">        <span class="string">"hda-gfx"</span>,</div><div class="line">        Buffer (<span class="number">0x0A</span>)</div><div class="line">        &#123;</div><div class="line">            <span class="string">"onboard-2"</span></div><div class="line">        &#125;,</div><div class="line">        <span class="string">"AAPL,HasPanel"</span>,</div><div class="line">        Buffer (<span class="number">0x04</span>)</div><div class="line">        &#123;</div><div class="line">            <span class="number">0x01</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span></div><div class="line">        &#125;,</div><div class="line">        <span class="string">"AAPL,Haslid"</span>,</div><div class="line">        Buffer (<span class="number">0x04</span>)</div><div class="line">        &#123;</div><div class="line">            <span class="number">0x01</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span></div><div class="line">        &#125;,</div><div class="line">        <span class="string">"AAPL,backlight-control"</span>,</div><div class="line">        Buffer (<span class="number">0x04</span>)</div><div class="line">        &#123;</div><div class="line">            <span class="number">0x01</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span></div><div class="line">        &#125;,</div><div class="line">        <span class="string">"@0,backlight-control"</span>,</div><div class="line">        Buffer (<span class="number">0x04</span>)</div><div class="line">        &#123;</div><div class="line">            <span class="number">0x01</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span></div><div class="line">        &#125;,</div><div class="line">        <span class="string">"@0,AAPL,boot-display"</span>,</div><div class="line">        Buffer (<span class="number">0x04</span>)</div><div class="line">        &#123;</div><div class="line">            <span class="number">0x01</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span></div><div class="line">        &#125;,</div><div class="line">        <span class="string">"@0,built-in"</span>,</div><div class="line">        Buffer (One)</div><div class="line">        &#123;</div><div class="line">            <span class="number">0x01</span></div><div class="line">        &#125;</div><div class="line">    &#125;, Local0)</div><div class="line">    DTGP (Arg0, Arg1, Arg2, Arg3, RefOf (Local0))</div><div class="line">    Return (Local0)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>(2) <code>Scope (\_SB)</code> 后面加入</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">Device (PNLF)</div><div class="line">&#123;</div><div class="line">    Name (_HID, EisaId (<span class="string">"APP0002"</span>))</div><div class="line">    Name (_CID, <span class="string">"backlight"</span>)</div><div class="line">    Name (_UID, <span class="number">0x0A</span>)</div><div class="line">    Name (_STA, <span class="number">0x0B</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>(3) DTGP: 放到<code>Method (GETB, 3, Serialized)</code>的前面。DTGP 是一个非常常用的函数，不过我电脑没有。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">Method (DTGP, <span class="number">5</span>, NotSerialized)</div><div class="line">&#123;</div><div class="line">    If (LEqual (Arg0, Buffer (<span class="number">0x10</span>)</div><div class="line">        &#123;</div><div class="line">        <span class="comment">/* 0000 */</span>    <span class="number">0xC6</span>, <span class="number">0xB7</span>, <span class="number">0xB5</span>, <span class="number">0xA0</span>, <span class="number">0x18</span>, <span class="number">0x13</span>, <span class="number">0x1C</span>, <span class="number">0x44</span>,</div><div class="line">        <span class="comment">/* 0008 */</span>    <span class="number">0xB0</span>, <span class="number">0xC9</span>, <span class="number">0xFE</span>, <span class="number">0x69</span>, <span class="number">0x5E</span>, <span class="number">0xAF</span>, <span class="number">0x94</span>, <span class="number">0x9B</span></div><div class="line">        &#125;))</div><div class="line">    &#123;</div><div class="line">        If (LEqual (Arg1, One))</div><div class="line">        &#123;</div><div class="line">            If (LEqual (Arg2, Zero))</div><div class="line">            &#123;</div><div class="line">                Store (Buffer (One)</div><div class="line">                &#123;</div><div class="line">                    <span class="number">0x03</span></div><div class="line">                &#125;, Arg4)</div><div class="line">                Return (One)</div><div class="line">            &#125;</div><div class="line">            If (LEqual (Arg2, One))</div><div class="line">            &#123;</div><div class="line">                Return (One)</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    Store (Buffer (One)</div><div class="line">    &#123;</div><div class="line">        <span class="number">0x00</span></div><div class="line">    &#125;, Arg4)</div><div class="line">    Return (Zero)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>(4) 改亮度快捷键：Fn+Home、Fn+PageUp</p>
+<h2 id="电池电量"><a href="#电池电量" class="headerlink" title="电池电量"></a>电池电量</h2><p>直接安装 ACPIBatteryManager，搞定。</p>
+<p>下面是按照论坛贴子（PCBeta，请善用搜索）的教程进行的操作，只不过结果是完败。</p>
+<p>思路：首先找到电池的函数。我的电脑电池函数与其他电脑不同——它是调用了其他函数。</p>
+<p>记住所有涉及的变量名称，把多字节的变量全部拆成单字节的。</p>
+<p>首先是拆字节需要的函数 B1B2 一类的——</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">Method (B1B2, <span class="number">2</span>, NotSerialized)</div><div class="line">&#123;</div><div class="line">    Or (ShiftLeft (Arg1, <span class="number">0x08</span>), Arg0, Local0)</div><div class="line">    Return (Local0)</div><div class="line">&#125;</div><div class="line">Method (B1B4, <span class="number">4</span>, NotSerialized)</div><div class="line">&#123;</div><div class="line">    Or (ShiftLeft (Arg1, <span class="number">0x08</span>), Arg0, Local0)</div><div class="line">    Or (ShiftLeft (Arg2, <span class="number">0x10</span>), Local0, Local0)</div><div class="line">    Or (ShiftLeft (Arg3, <span class="number">0x18</span>), Local0, Local0)</div><div class="line">    Return (Local0)</div><div class="line">&#125;</div><div class="line">Method (L1L4, <span class="number">4</span>, NotSerialized)</div><div class="line">&#123;</div><div class="line">    Or (ShiftLeft (Arg1, <span class="number">0x20</span>), Arg0, Local0)</div><div class="line">    Or (ShiftLeft (Arg2, <span class="number">0x40</span>), Local0, Local0)</div><div class="line">    Or (ShiftLeft (Arg3, <span class="number">0x60</span>), Local0, Local0)</div><div class="line">    Return (Local0)</div><div class="line">&#125;</div><div class="line">Method (L1L6, <span class="number">6</span>, NotSerialized)</div><div class="line">&#123;</div><div class="line">    Or (ShiftLeft (Arg1, <span class="number">0x20</span>), Arg0, Local0)</div><div class="line">    Or (ShiftLeft (Arg2, <span class="number">0x40</span>), Local0, Local0)</div><div class="line">    Or (ShiftLeft (Arg3, <span class="number">0x60</span>), Local0, Local0)</div><div class="line">    Or (ShiftLeft (Arg4, <span class="number">0x80</span>), Local0, Local0)</div><div class="line">    Or (ShiftLeft (Arg5, <span class="number">0xA0</span>), Local0, Local0)</div><div class="line">    Return (Local0)</div><div class="line">&#125;</div><div class="line">Method (D2D4, <span class="number">2</span>, NotSerialized)</div><div class="line">&#123;</div><div class="line">    Or (ShiftLeft (Arg1, <span class="number">0x80</span>), Arg0, Local0)</div><div class="line">    Return (Local0)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>按照论坛教程的模板，对不同字节变量进行替换即可。一共需要改数十处。</p>
+<h2 id="HDMI-VGA"><a href="#HDMI-VGA" class="headerlink" title="HDMI/VGA"></a>HDMI/VGA</h2><p>备注：这个修改仅对 Intel HD 3000 有效。</p>
+<p>改 AppleIntelSNBGraphicsFB。</p>
+<p>找到其中的：</p>
+<pre><code>01020400 10070000 10070000  # 4 代表 4 个接口
+05030000 02000000 30000000  # 优先使用内建LCD
+02050000 00040000 07000000  # HDMI
+03040000 00040000 09000000  # DVI－A
+04060000 00040000 09000000  # DVI－D
+</code></pre><p>此外还有</p>
+<pre><code>06020000 10000000 09000000  # 表示VGA
+</code></pre><p>根据实际需要进行替换即可。</p>
+<p>后来我改用了 Clover。因为它可以间接地改文件，所以不会对系统造成破坏。</p>
+<h1 id="Clover-设置"><a href="#Clover-设置" class="headerlink" title="Clover 设置"></a>Clover 设置</h1><p>自从把 Legacy+MBR 换成 UEFI+GPT，感觉完美多了。</p>
+<h2 id="kexts"><a href="#kexts" class="headerlink" title="kexts"></a>kexts</h2><ul>
+<li>ACPIBatteryManager：电池电量驱动</li>
+<li>ElliottForgeLegacyRTC：防重置驱动</li>
+<li>FakeSMC：不用解释了吧</li>
+<li>VoodooHDA：万能声卡驱动</li>
+<li>VoodooPS2Controller：键鼠驱动</li>
+</ul>
+<h2 id="drivers64UEFI"><a href="#drivers64UEFI" class="headerlink" title="drivers64UEFI"></a>drivers64UEFI</h2><ul>
+<li>DataHubDxe-64.efi</li>
+<li>EmuVariableUefi-64.efi</li>
+<li>FSInject-64.efi</li>
+<li>HFSPlus-64.efi</li>
+<li>OsxAptioFixDrv-64.efi</li>
+<li>OsxFatBinaryDrv-64.efi</li>
+<li>PartitionDxe-64.efi</li>
+</ul>
+<p>其中 HFSPlus-64.efi 需要到论坛里搜。虽然 Clover Configuration 里面也有，只不过一方面系统还未启动，另一方面下载地址被墙了。</p>
+<h2 id="config-plist"><a href="#config-plist" class="headerlink" title="config.plist"></a>config.plist</h2><ul>
+<li>ACPI<ul>
+<li>DSDT<ul>
+<li>Name: DSDT.aml</li>
+</ul>
+</li>
+<li>PatchAPIC: Yes</li>
+</ul>
+</li>
+<li>KernelAndKextPatches<ul>
+<li>AppleRTC: Yes</li>
+<li>AsusAICPUPM: Yes（因为这个 Yes，我用上了原生电源管理）</li>
+</ul>
+</li>
+</ul>
+<p>序列号可以用一个叫 Clover Configuration 的软件生成。需要改两处：</p>
+<ul>
+<li>RtVariables 的 ROM</li>
+<li>SMBIOS</li>
+</ul>
+<p>改完验证一下，通过之后就可以给苹果客服打电话修复 iMessage 和 FaceTime 了。</p>
+
+      
+    </div>
+
+    
+      
+
+    
+
+    <footer class="article-footer">
+      <a data-url="https://vjudge1.github.io/2015/02/24/hackintosh-journal/" data-id="cj2m7q6gc000c9ccmto8nkjif" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
+      
+        <a href="https://vjudge1.github.io/2015/02/24/hackintosh-journal/#disqus_thread" class="article-comment-link">
+          <i class="fa fa-comment"></i> Comments
+        </a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hackintosh/">Hackintosh</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mac/">Mac</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+    
+<ul id="article-nav" class="nav nav-pills nav-justified">
+  
+  <li role="presentation">
+    <a href="/2014/12/17/flash-stc-in--nix/" id="article-nav-older" class="article-nav-link-wrap">
+      <i class="fa fa-chevron-left pull-left"></i>
+      <span class="article-nav-link-title">Linux/Mac 下烧录 STC 单片机</span>
+    </a>
+  </li>
+  
+  
+  <li role="presentation">
+    <a href="/2015/04/11/maintainance/" id="article-nav-newer" class="article-nav-link-wrap">
+      <span class="article-nav-link-title">计算机维护杂谈</span>
+      <i class="fa fa-chevron-right pull-right"></i>
+    </a>
+  </li>
+  
+</ul>
+
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+
+
+        </div>
+        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+          
+  
+  <div class="sidebar-module">
+    <h4>Categories</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/个人心得/">个人心得</a><span class="sidebar-module-list-count">5</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/其他/">其他</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/备忘录/">备忘录</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/折腾记录/">折腾记录</a><span class="sidebar-module-list-count">6</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/教程/">教程</a><span class="sidebar-module-list-count">13</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/经验总结/">经验总结</a><span class="sidebar-module-list-count">7</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Archives</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/05/">五月 2017</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/11/">十一月 2016</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/10/">十月 2016</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/08/">八月 2016</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/04/">四月 2016</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/03/">三月 2016</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/01/">一月 2016</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/12/">十二月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/11/">十一月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/09/">九月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/08/">八月 2015</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/07/">七月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/05/">五月 2015</a><span class="sidebar-module-list-count">5</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/04/">四月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/02/">二月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/12/">十二月 2014</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/04/">四月 2014</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/02/">二月 2014</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2013/01/">一月 2013</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2012/08/">八月 2012</a><span class="sidebar-module-list-count">1</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Recents</h4>
+    <ul class="sidebar-module-list">
+      
+        <li>
+          <a href="/2017/05/13/change-to-hexo/">换成 Hexo</a>
+        </li>
+      
+        <li>
+          <a href="/2016/11/08/move-to-archlinux/">换成Arch Linux系统的一些记录</a>
+        </li>
+      
+        <li>
+          <a href="/2016/10/08/macports/">MacPorts的安装与使用</a>
+        </li>
+      
+        <li>
+          <a href="/2016/10/07/programming-in-wikipedia/">维基百科编程笔记</a>
+        </li>
+      
+        <li>
+          <a href="/2016/10/04/gae/">Google App Engine入门（Python）</a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+  
+  <div class="sidebar-module">
+    <h4>Tags</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/API/">API</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Atom/">Atom</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/C/">C</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/C/">C#</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/GAE/">GAE</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/GUI/">GUI</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Hackintosh/">Hackintosh</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Hexo/">Hexo</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Java/">Java</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/JavaScript/">JavaScript</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Jekyll/">Jekyll</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/LaTeX/">LaTeX</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Linux/">Linux</a><span class="sidebar-module-list-count">9</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Mac/">Mac</a><span class="sidebar-module-list-count">9</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/MacPorts/">MacPorts</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/NTFS/">NTFS</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Python/">Python</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/QQ/">QQ</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Rails/">Rails</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/UEFI/">UEFI</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/VPS/">VPS</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Visual-Studio/">Visual Studio</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Windows/">Windows</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/npm/">npm</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/wine/">wine</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/zsh/">zsh</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/中文/">中文</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/云/">云</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/单片机/">单片机</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/反汇编/">反汇编</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/平板/">平板</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/插件/">插件</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/教务系统/">教务系统</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/東方Project/">東方Project</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/电幕/">电幕</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/系统维护/">系统维护</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/维基百科/">维基百科</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/编程/">编程</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/语文/">语文</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/输入法/">输入法</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/配置/">配置</a><span class="sidebar-module-list-count">1</span></li></ul>
+  </div>
+
+
+
+
+        </div>
+    </div>
+  </div>
+  <footer class="blog-footer">
+  <div class="container">
+    <div id="footer-info" class="inner">
+      &copy; 2017 vjudge1<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+  
+<script>
+  var disqus_shortname = 'vjudge1';
+  
+  var disqus_url = 'https://vjudge1.github.io/2015/02/24/hackintosh-journal/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" integrity="sha384-8gBf6Y4YYq7Jx97PIqmTwLPin4hxIzQw5aDmUg/DDhul9fFpbbLcLh3nTIIDJKhx" crossorigin="anonymous"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+
+
+<script src="/js/script.js"></script>
+
+</body>
+</html>

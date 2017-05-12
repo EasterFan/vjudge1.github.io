@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>编写图形界面程序 | ⑨rz</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="买了个 Windows 10 平板电脑，发现不能刷 Linux（因为各种没驱动），然后就遇到了一个问题——如果想随手写一个实用的 GUI 程序，用哪个比较好呢？ 为了方便叙述，先把条件摆上：  没有被现在的操作系统抛弃。 不要太占地方，因为平板一共才 60G。 能够快速开发——最起码得有个界面设计器。 最好能跨平台，因为我个人 Windows/Linux/Mac 经常换着用。  条件 1 是针对">
+<meta name="keywords" content="GUI">
+<meta property="og:type" content="article">
+<meta property="og:title" content="编写图形界面程序">
+<meta property="og:url" content="https://vjudge1.github.io/2015/11/23/gui/index.html">
+<meta property="og:site_name" content="⑨rz">
+<meta property="og:description" content="买了个 Windows 10 平板电脑，发现不能刷 Linux（因为各种没驱动），然后就遇到了一个问题——如果想随手写一个实用的 GUI 程序，用哪个比较好呢？ 为了方便叙述，先把条件摆上：  没有被现在的操作系统抛弃。 不要太占地方，因为平板一共才 60G。 能够快速开发——最起码得有个界面设计器。 最好能跨平台，因为我个人 Windows/Linux/Mac 经常换着用。  条件 1 是针对">
+<meta property="og:updated_time" content="2017-05-12T18:21:52.203Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="编写图形界面程序">
+<meta name="twitter:description" content="买了个 Windows 10 平板电脑，发现不能刷 Linux（因为各种没驱动），然后就遇到了一个问题——如果想随手写一个实用的 GUI 程序，用哪个比较好呢？ 为了方便叙述，先把条件摆上：  没有被现在的操作系统抛弃。 不要太占地方，因为平板一共才 60G。 能够快速开发——最起码得有个界面设计器。 最好能跨平台，因为我个人 Windows/Linux/Mac 经常换着用。  条件 1 是针对">
+  
+    <link rel="alternate" href="/atom.xml" title="⑨rz" type="application/atom+xml">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="/css/styles.css">
+  
+
+</head>
+
+<body>
+  <nav class="navbar navbar-inverse">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="main-menu-navbar">
+      <ul class="nav navbar-nav">
+        
+          <li><a class=""
+                 href="/index.html">Home</a></li>
+        
+          <li><a class=""
+                 href="/archives/">Archives</a></li>
+        
+      </ul>
+
+      <!--
+      <ul class="nav navbar-nav navbar-right">
+        
+          <li><a href="/atom.xml" title="RSS Feed"><i class="fa fa-rss"></i></a></li>
+        
+      </ul>
+      -->
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+  <div class="container">
+    <div class="blog-header">
+  <h1 class="blog-title">⑨rz</h1>
+  
+</div>
+
+    <div class="row">
+        <div class="col-sm-8 blog-main">
+          <article id="post-gui" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <header class="article-header">
+    
+  
+    <h1 class="article-title" itemprop="name">
+      编写图形界面程序
+    </h1>
+  
+
+
+  </header>
+
+  <div class="article-meta">
+    <div class="article-datetime">
+  <a href="/2015/11/23/gui/" class="article-date"><time datetime="2015-11-22T16:00:00.000Z" itemprop="datePublished">2015-11-23</time></a>
+</div>
+
+    
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/经验总结/">经验总结</a>
+  </div>
+
+
+  </div>
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>买了个 Windows 10 平板电脑，发现不能刷 Linux（因为各种没驱动），然后就遇到了一个问题——如果想随手写一个实用的 GUI 程序，用哪个比较好呢？</p>
+<p>为了方便叙述，先把条件摆上：</p>
+<ol>
+<li>没有被现在的操作系统抛弃。</li>
+<li>不要太占地方，因为平板一共才 60G。</li>
+<li>能够快速开发——最起码得有个界面设计器。</li>
+<li>最好能跨平台，因为我个人 Windows/Linux/Mac 经常换着用。</li>
+</ol>
+<p>条件 1 是针对 VB6 和易语言说的。这两个非常适合随手写随手用（快速应用开发，RAD），可惜它们都过时了。</p>
+<p>条件 2 是针对 Visual Studio 的。VS 非常好用，可惜占空间太大了。即使是 Community 或者 Express 也不能选择只安装单一语言，只能看着不需要的东西在那儿白白占地方。</p>
+<p>虽然很多事情通过一个脚本就能搞定，虽然现在是 Web 的时代，不过有些时候还是有个窗口对话框比较好用，因此我对常见的框架进行了一系列考察。</p>
+<h1 id="Qt"><a href="#Qt" class="headerlink" title="Qt"></a>Qt</h1><p>Qt 是个跨平台的 C++ 框架。</p>
+<p>Qt Creator 集成了代码编辑器、界面设计器等功能，新建一个项目之后就可以拿界面设计器画窗口，而且控件（VB 的叫法）自动实例化，所以不用像 MFC 那样需要手动添加变量，再加上布局管理、信号和槽等机制，非常方便，可以做到随手画随手写然后就随手拿去用。</p>
+<p>不过 Qt 也非常占地方，大约需要 3GB——因为 Windows 没有 C++ 编译器，只能用 Qt 自带的 MinGW，或者把 Visual Studio 装上然后用它的编译器……</p>
+<h1 id="Swing"><a href="#Swing" class="headerlink" title="Swing"></a>Swing</h1><p>Java 是跨平台的——是地球人就知道。所以说，用 Java 写的 GUI 程序也是。</p>
+<p>虽然 Java 的 IDE 非常多，但是并不是所有 IDE 都有界面设计器，所以感觉真的很蛋疼。而且写 Java 代码同样蛋疼。</p>
+<h1 id="Gtk"><a href="#Gtk" class="headerlink" title="Gtk"></a>Gtk</h1><p>即使抛弃 VS，C# 也是不错的选择。只不过，肯定不是 Windows Forms 框架了（Windows Forms 没开源）。</p>
+<p>很多人都在找 Xamarin Studio 破解版，不过要是开发桌面应用的话，根本不用花钱（其实他们都写 Android 应用，那个可是价格不菲）。至于图形界面，就只好用跨平台的 Gtk# 了。</p>
+<p>Xamarin Studio 的代码编辑和图形界面比 VS 逊色很多，不过它的只有几百兆的体积可比 VS 好多了。因为 Gtk# 也是 .Net 平台（其实是 Mono），所以 .Net 本身的东西（例如<code>System</code>）都是一样的，不过在 Gtk 那边我得摸着石头过河了，毕竟 Gtk# 不是那么主流。</p>
+<p>备注：</p>
+<ol>
+<li>虽然新建工程里面写着 VB 其实它根本不支持 VB。</li>
+<li>IDE 本身有一些 bug，例如不能调语言……中英文混合的界面实在蛋疼。</li>
+<li>如果不需要界面设计器，可以拿着 Xamarin Studio 写 ASP.NET 应用。等开源的那个 ASP.NET 出正式版我就打算试试。</li>
+</ol>
+<h1 id="PyQt-PySide"><a href="#PyQt-PySide" class="headerlink" title="PyQt/PySide"></a>PyQt/PySide</h1><p>PyQt = Python + Qt，既然 Python 和 Qt 都是跨平台的，那么 PyQt 当然也是跨平台的。</p>
+<p>PyQt 官网提供了附带 Qt 框架的 PyQt。不过反正都是闲着，而且已经装了 Qt，我就自己编译了——在 Windows 中编译，要事先把 PATH 环境变量设置好，然后做好找不到头文件的精神准备。只要准备充分，不比 Linux 中麻烦多少。</p>
+<p>PyQt 除了把编程语言换成了 Python 以外，其他东西都是一样的。</p>
+<p>不过，Qt 有一个集成的开发环境，PyQt 可没有——PyQt 提供了一个 Qt Designer，但是每次修改都需要自己运行代码生成器 PyUIC，这样就比较麻烦。比方说，如果建立了一个叫做 hello 的窗口（其中有一个按钮），运行了一遍 PyUIC，那么 helloworld 程序就需要这样写——</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="keyword">import</span> sys</div><div class="line"><span class="keyword">from</span> PyQt5 <span class="keyword">import</span> QtWidgets</div><div class="line"><span class="keyword">from</span> PyQt5 <span class="keyword">import</span> QtCore</div><div class="line"><span class="keyword">import</span> hello</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">HelloWindow</span><span class="params">(QtWidgets.QWidget, hello.Ui_Hello)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></div><div class="line">        super(HelloWindow, self).__init__()</div><div class="line">        self.setupUi(self)</div><div class="line">        self.pushButton.clicked.connect(self.say_hello)</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">say_hello</span><span class="params">(self)</span>:</span></div><div class="line">        QtWidgets.QMessageBox.information(self, <span class="string">"Hello"</span>, <span class="string">"Hello, world!"</span>)</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    app = QtWidgets.QApplication(sys.argv)</div><div class="line">    f = HelloWindow()</div><div class="line">    f.show()</div><div class="line">    sys.exit(app.exec_())</div></pre></td></tr></table></figure>
+<p>有人说 PyQt 和 Python 没多大关系，全都是 Qt。不过既然放着 C++ 不用，那肯定是冲着 Python 来的嘛——什么时候想给 Python 程序加个高大上的界面的时候就可以考虑一下了（其实还是想借 Python 的光）。</p>
+<h1 id="Lazarus"><a href="#Lazarus" class="headerlink" title="Lazarus"></a>Lazarus</h1><p>若干年前，Delphi 是一个很火的编程软件，不知为何，后来逐渐淡出了人们的视线（不过 Delphi 一直在开发，从来未弃坑）。</p>
+<p>Delphi 是要钱的。在这个讲究开源的时代，谁乐意为了一个写 helloworld 级别的程序而掏钱啊。所以 Xojo 也是没必要在乎的。</p>
+<p>但是 Lazarus 就不一样了。它是社区搞的，自由软件，跨平台，而且一直在“山寨” Delphi。所以，直接找本 Delphi 的教材就可以进行学习了。</p>
+<p>Lazarus 和 Delphi 新建工程之后都是直接出现一个窗口，然后就可以直接用鼠标画控件，就像 VB 和易语言那样，非常迅速、方便。只不过 Pascal 的语法和其他语言很不一样（比如赋值符号<code>:=</code>），所以可能除了那些打过信息学竞赛（不是 ACM）的人听过，其他人都没听过。</p>
+<h1 id="Web-技术"><a href="#Web-技术" class="headerlink" title="Web 技术"></a>Web 技术</h1><p>Web 这么火，肯定有人想把 Web 那一套搬到桌面应用上。这样的例子很多，比如 Atom 和有抄袭嫌疑的 Visual Studio Code。</p>
+<p>这一类框架使用 Node.js、Chromium、HTML5/CSS3/JavaScript——因为 Node.js 跨平台，浏览器跨平台（而且还是钦点的），那么这种应用当然也跨平台了。</p>
+<p>因为我考察这些框架是为了随手写一个能用的程序（想想做网页的过程有多么痛苦），而且带着个大浏览器，编程和调试都很麻烦，所以当然不会拿这种框架来开发本地应用了。</p>
+<p>再次强调，不是因为这种技术不好，而是不够轻巧。</p>
+<h1 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h1><p>最后的结果是：留下 Qt、PyQt、Xamarin Studio 和 Lazarus。</p>
+<p>Lazarus 启动就能动手编，很随意。在 Windows 中还有 Windows API 用。</p>
+<p>拿 Qt 可以写点像样的东西。（备注：没说拿 Lazarus 不行）</p>
+<p>PyQt……有人说那是 Qt，其实是用来抱 Python 大腿的。</p>
+<p>Xamarin Studio 就留给将来学习 ASP.NET 用了。（如果 Visual Studio Code 不差的话可能还要换着用）</p>
+<h1 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h1><p>出于现实的需要，我用 Java 了……</p>
+
+      
+    </div>
+
+    
+      
+
+    
+
+    <footer class="article-footer">
+      <a data-url="https://vjudge1.github.io/2015/11/23/gui/" data-id="cj2m7q6hh00179ccm28scthop" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
+      
+        <a href="https://vjudge1.github.io/2015/11/23/gui/#disqus_thread" class="article-comment-link">
+          <i class="fa fa-comment"></i> Comments
+        </a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GUI/">GUI</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+    
+<ul id="article-nav" class="nav nav-pills nav-justified">
+  
+  <li role="presentation">
+    <a href="/2015/09/13/hackintosh/" id="article-nav-older" class="article-nav-link-wrap">
+      <i class="fa fa-chevron-left pull-left"></i>
+      <span class="article-nav-link-title">黑苹果安装心得</span>
+    </a>
+  </li>
+  
+  
+  <li role="presentation">
+    <a href="/2015/12/30/learn-c/" id="article-nav-newer" class="article-nav-link-wrap">
+      <span class="article-nav-link-title">如何学习C语言（非计算机专业）</span>
+      <i class="fa fa-chevron-right pull-right"></i>
+    </a>
+  </li>
+  
+</ul>
+
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+
+
+        </div>
+        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+          
+  
+  <div class="sidebar-module">
+    <h4>Categories</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/个人心得/">个人心得</a><span class="sidebar-module-list-count">5</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/其他/">其他</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/备忘录/">备忘录</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/折腾记录/">折腾记录</a><span class="sidebar-module-list-count">6</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/教程/">教程</a><span class="sidebar-module-list-count">13</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/经验总结/">经验总结</a><span class="sidebar-module-list-count">7</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Archives</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/05/">五月 2017</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/11/">十一月 2016</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/10/">十月 2016</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/08/">八月 2016</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/04/">四月 2016</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/03/">三月 2016</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/01/">一月 2016</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/12/">十二月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/11/">十一月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/09/">九月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/08/">八月 2015</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/07/">七月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/05/">五月 2015</a><span class="sidebar-module-list-count">5</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/04/">四月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/02/">二月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/12/">十二月 2014</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/04/">四月 2014</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/02/">二月 2014</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2013/01/">一月 2013</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2012/08/">八月 2012</a><span class="sidebar-module-list-count">1</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Recents</h4>
+    <ul class="sidebar-module-list">
+      
+        <li>
+          <a href="/2017/05/13/change-to-hexo/">换成 Hexo</a>
+        </li>
+      
+        <li>
+          <a href="/2016/11/08/move-to-archlinux/">换成Arch Linux系统的一些记录</a>
+        </li>
+      
+        <li>
+          <a href="/2016/10/08/macports/">MacPorts的安装与使用</a>
+        </li>
+      
+        <li>
+          <a href="/2016/10/07/programming-in-wikipedia/">维基百科编程笔记</a>
+        </li>
+      
+        <li>
+          <a href="/2016/10/04/gae/">Google App Engine入门（Python）</a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+  
+  <div class="sidebar-module">
+    <h4>Tags</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/API/">API</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Atom/">Atom</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/C/">C</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/C/">C#</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/GAE/">GAE</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/GUI/">GUI</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Hackintosh/">Hackintosh</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Hexo/">Hexo</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Java/">Java</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/JavaScript/">JavaScript</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Jekyll/">Jekyll</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/LaTeX/">LaTeX</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Linux/">Linux</a><span class="sidebar-module-list-count">9</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Mac/">Mac</a><span class="sidebar-module-list-count">9</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/MacPorts/">MacPorts</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/NTFS/">NTFS</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Python/">Python</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/QQ/">QQ</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Rails/">Rails</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/UEFI/">UEFI</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/VPS/">VPS</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Visual-Studio/">Visual Studio</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Windows/">Windows</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/npm/">npm</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/wine/">wine</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/zsh/">zsh</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/中文/">中文</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/云/">云</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/单片机/">单片机</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/反汇编/">反汇编</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/平板/">平板</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/插件/">插件</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/教务系统/">教务系统</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/東方Project/">東方Project</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/电幕/">电幕</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/系统维护/">系统维护</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/维基百科/">维基百科</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/编程/">编程</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/语文/">语文</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/输入法/">输入法</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/配置/">配置</a><span class="sidebar-module-list-count">1</span></li></ul>
+  </div>
+
+
+
+
+        </div>
+    </div>
+  </div>
+  <footer class="blog-footer">
+  <div class="container">
+    <div id="footer-info" class="inner">
+      &copy; 2017 vjudge1<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+  
+<script>
+  var disqus_shortname = 'vjudge1';
+  
+  var disqus_url = 'https://vjudge1.github.io/2015/11/23/gui/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" integrity="sha384-8gBf6Y4YYq7Jx97PIqmTwLPin4hxIzQw5aDmUg/DDhul9fFpbbLcLh3nTIIDJKhx" crossorigin="anonymous"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+
+
+<script src="/js/script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>配置 LaTeX 环境 | ⑨rz</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="用 Word 写论文的只有两种人：一种是井底之蛙，另一种是被迫用 Word 的人。 用 LaTeX 写论文才是王道。不过，毕竟是老外开发的软件，所以需要配置配置才能正常使用中文。 安装WindowsWindows 下的配置是最轻松的：  下载并安装 CTEX。建议下载完整版，免得麻烦。 CTEX 附带的两个编辑器很不好用，其中一个还要钱 (不仅要钱而且对 UTF-8 支持还很差劲)。你可以自己下载">
+<meta name="keywords" content="Linux,Mac,LaTeX">
+<meta property="og:type" content="article">
+<meta property="og:title" content="配置 LaTeX 环境">
+<meta property="og:url" content="https://vjudge1.github.io/2015/05/20/install-latex/index.html">
+<meta property="og:site_name" content="⑨rz">
+<meta property="og:description" content="用 Word 写论文的只有两种人：一种是井底之蛙，另一种是被迫用 Word 的人。 用 LaTeX 写论文才是王道。不过，毕竟是老外开发的软件，所以需要配置配置才能正常使用中文。 安装WindowsWindows 下的配置是最轻松的：  下载并安装 CTEX。建议下载完整版，免得麻烦。 CTEX 附带的两个编辑器很不好用，其中一个还要钱 (不仅要钱而且对 UTF-8 支持还很差劲)。你可以自己下载">
+<meta property="og:updated_time" content="2017-05-12T18:23:54.813Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="配置 LaTeX 环境">
+<meta name="twitter:description" content="用 Word 写论文的只有两种人：一种是井底之蛙，另一种是被迫用 Word 的人。 用 LaTeX 写论文才是王道。不过，毕竟是老外开发的软件，所以需要配置配置才能正常使用中文。 安装WindowsWindows 下的配置是最轻松的：  下载并安装 CTEX。建议下载完整版，免得麻烦。 CTEX 附带的两个编辑器很不好用，其中一个还要钱 (不仅要钱而且对 UTF-8 支持还很差劲)。你可以自己下载">
+  
+    <link rel="alternate" href="/atom.xml" title="⑨rz" type="application/atom+xml">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="/css/styles.css">
+  
+
+</head>
+
+<body>
+  <nav class="navbar navbar-inverse">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="main-menu-navbar">
+      <ul class="nav navbar-nav">
+        
+          <li><a class=""
+                 href="/index.html">Home</a></li>
+        
+          <li><a class=""
+                 href="/archives/">Archives</a></li>
+        
+      </ul>
+
+      <!--
+      <ul class="nav navbar-nav navbar-right">
+        
+          <li><a href="/atom.xml" title="RSS Feed"><i class="fa fa-rss"></i></a></li>
+        
+      </ul>
+      -->
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+  <div class="container">
+    <div class="blog-header">
+  <h1 class="blog-title">⑨rz</h1>
+  
+</div>
+
+    <div class="row">
+        <div class="col-sm-8 blog-main">
+          <article id="post-install-latex" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <header class="article-header">
+    
+  
+    <h1 class="article-title" itemprop="name">
+      配置 LaTeX 环境
+    </h1>
+  
+
+
+  </header>
+
+  <div class="article-meta">
+    <div class="article-datetime">
+  <a href="/2015/05/20/install-latex/" class="article-date"><time datetime="2015-05-19T16:00:00.000Z" itemprop="datePublished">2015-05-20</time></a>
+</div>
+
+    
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/教程/">教程</a>
+  </div>
+
+
+  </div>
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>用 Word 写论文的只有两种人：一种是井底之蛙，另一种是被迫用 Word 的人。</p>
+<p>用 LaTeX 写论文才是王道。不过，毕竟是老外开发的软件，所以需要配置配置才能正常使用中文。</p>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><h2 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h2><p>Windows 下的配置是最轻松的：</p>
+<ol>
+<li>下载并安装 <a href="http://www.ctex.org/CTeXDownload" target="_blank" rel="external">CTEX</a>。建议下载完整版，免得麻烦。</li>
+<li>CTEX 附带的两个编辑器很不好用，其中一个还要钱 (不仅要钱而且对 UTF-8 支持还很差劲)。你可以自己下载 <code>TexStudio</code>。</li>
+</ol>
+<h2 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h2><p>以 Ubuntu 为例。</p>
+<ol>
+<li>安装 <code>texlive-full</code> 软件包。</li>
+<li>安装 <code>texstudio</code> 软件包。</li>
+<li>这时候可以编译英文文档了，但是中文文档还不可以，因为缺中文字体。<ul>
+<li>到 Windows 系统盘的 Windows\Fonts 目录中找到宋体 (SIMSUN.ttc)、楷体 (SIMKAI.ttf)、黑体 (SIMHEI.ttf)、仿宋 (SIMFANG.ttf) 四种字体。</li>
+<li>把这四种字体复制到 <code>/usr/share/texlive/texmf-dist/fonts/truetype/public</code> 中，不要改名。</li>
+<li>运行 <code>sudo texconfig</code>，选择其中的 <code>REHASH</code>，使系统检测到刚复制的四个字体。</li>
+</ul>
+</li>
+</ol>
+<h2 id="OS-X"><a href="#OS-X" class="headerlink" title="OS X"></a>OS X</h2><ol>
+<li>下载并安装 <code>MacTex</code>。</li>
+<li>下载并安装 <code>TexStudio</code>。</li>
+<li><p>同样要把四种中文字体的问题解决。因为我觉得把 Windows 的基本汉字字体拿过来安装有些危险，所以选择了改 ctex 宏包。</p>
+<p>因为我只用 XeLaTeX 编译器，因此我只改了 <code>/usr/local/texlive/2014/texmf-dist/tex/latex/ctex/fontset/ctex-xecjk-winfonts.def</code>，并做了以下改动：</p>
+</li>
+</ol>
+<figure class="highlight tex"><table><tr><td class="code"><pre><div class="line"><span class="tag">\<span class="name">setCJKmainfont</span><span class="string">[BoldFont=&#123;STHeiti&#125;,ItalicFont=&#123;Kaiti SC&#125;]</span><span class="string">&#123;Songti SC&#125;</span></span></div><div class="line"><span class="tag">\<span class="name">setCJKsansfont</span><span class="string">&#123;Songti SC&#125;</span></span></div><div class="line"><span class="tag">\<span class="name">setCJKmonofont</span><span class="string">&#123;STFangsong&#125;</span></span></div><div class="line"></div><div class="line"><span class="tag">\<span class="name">setCJKfamilyfont</span><span class="string">&#123;zhsong&#125;</span><span class="string">&#123;Songti SC&#125;</span></span></div><div class="line"><span class="tag">\<span class="name">setCJKfamilyfont</span><span class="string">&#123;zhhei&#125;</span><span class="string">&#123;STHeiti&#125;</span></span></div><div class="line"><span class="tag">\<span class="name">setCJKfamilyfont</span><span class="string">&#123;zhkai&#125;</span><span class="string">&#123;Kaiti SC&#125;</span></span></div><div class="line"><span class="tag">\<span class="name">setCJKfamilyfont</span><span class="string">&#123;zhfs&#125;</span><span class="string">&#123;STFangsong&#125;</span></span></div><div class="line"></div><div class="line"><span class="tag">\<span class="name">newcommand*</span><span class="string">&#123;\songti&#125;</span><span class="string">&#123;\CJKfamily&#123;zhsong&#125;</span></span>&#125; <span class="comment">% 宋体</span></div><div class="line"><span class="tag">\<span class="name">newcommand*</span><span class="string">&#123;\heiti&#125;</span><span class="string">&#123;\CJKfamily&#123;zhhei&#125;</span></span>&#125;   <span class="comment">% 黑体</span></div><div class="line"><span class="tag">\<span class="name">newcommand*</span><span class="string">&#123;\kaishu&#125;</span><span class="string">&#123;\CJKfamily&#123;zhkai&#125;</span></span>&#125;  <span class="comment">% 楷书</span></div><div class="line"><span class="tag">\<span class="name">newcommand*</span><span class="string">&#123;\fangsong&#125;</span><span class="string">&#123;\CJKfamily&#123;zhfs&#125;</span></span>&#125; <span class="comment">% 仿宋</span></div><div class="line"><span class="tag">\<span class="name">endinput</span></span></div></pre></td></tr></table></figure>
+<h1 id="中文问题"><a href="#中文问题" class="headerlink" title="中文问题"></a>中文问题</h1><p>只需要在文档的导言区加一句：</p>
+<figure class="highlight tex"><table><tr><td class="code"><pre><div class="line"><span class="tag">\<span class="name">usepackage</span><span class="string">[UTF8,hyperref]</span><span class="string">&#123;ctexcap&#125;</span></span></div></pre></td></tr></table></figure>
+<p>然后就能输出中文了。</p>
+<p>编译的时候，建议大家用 XeLaTeX，因为这个对中文的支持更好。</p>
+<h1 id="作弊"><a href="#作弊" class="headerlink" title="作弊"></a>作弊</h1><p>如果公式、图形或表格非常复杂，那么与其苦苦研究和调试 LaTeX 语句，不如找个简单方法直接解决问题。毕竟天朝人有钱，不怕商业软件价格贵。</p>
+<h2 id="数学公式"><a href="#数学公式" class="headerlink" title="数学公式"></a>数学公式</h2><p>对于复杂数学公式，不妨直接用 <code>MathType</code>。MathType 可以直接以 LaTeX 格式来输入公式，也可以把公式直接复制成 LaTeX 格式。对于不容易写出代码的复杂数学公式来说，非常方便。</p>
+<h2 id="复杂图形"><a href="#复杂图形" class="headerlink" title="复杂图形"></a>复杂图形</h2><p>最简单的办法——用 Illustrator 或什么矢量图绘制软件（Inkscape）把图画好，保存成 pdf 或 svg 格式，然后插入到文档中。</p>
+<h2 id="复杂表格"><a href="#复杂表格" class="headerlink" title="复杂表格"></a>复杂表格</h2><p>对于非常复杂的表格，我们可以拿 Word 做好，保存成 PDF 格式，用 Illustrator 或其他矢量图软件进行适当处理，然后插入到文档中。</p>
+<p>但是这样字体看着就不匹配了，怎么办？</p>
+<p>去 LaTeX 安装目录里找 <code>texgyrepagella</code> 字体，把它装上，然后到 Word 里把字体设成 <code>TeX Gyre Pagella</code>。</p>
+<h2 id="Lyx"><a href="#Lyx" class="headerlink" title="Lyx"></a>Lyx</h2><p>Lyx 是一个类似 Word 的可视化编辑软件。</p>
+<p>Lyx 基于 LaTeX，用 Lyx 编辑的文本也使用 LaTeX 编译，因此 Lyx 适合“代码恐惧症”患者。</p>
+<h1 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h1><p>我的毕业论文也是用 Word 写的……我属于第三种：只想混个顺利毕业的人。</p>
+
+      
+    </div>
+
+    
+      
+
+    
+
+    <footer class="article-footer">
+      <a data-url="https://vjudge1.github.io/2015/05/20/install-latex/" data-id="cj2m7q6gn000j9ccmsn64bmi5" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
+      
+        <a href="https://vjudge1.github.io/2015/05/20/install-latex/#disqus_thread" class="article-comment-link">
+          <i class="fa fa-comment"></i> Comments
+        </a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LaTeX/">LaTeX</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mac/">Mac</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+    
+<ul id="article-nav" class="nav nav-pills nav-justified">
+  
+  <li role="presentation">
+    <a href="/2015/04/11/maintainance/" id="article-nav-older" class="article-nav-link-wrap">
+      <i class="fa fa-chevron-left pull-left"></i>
+      <span class="article-nav-link-title">计算机维护杂谈</span>
+    </a>
+  </li>
+  
+  
+  <li role="presentation">
+    <a href="/2015/05/21/windows-in-uefi-mode/" id="article-nav-newer" class="article-nav-link-wrap">
+      <span class="article-nav-link-title">Windows in UEFI Mode</span>
+      <i class="fa fa-chevron-right pull-right"></i>
+    </a>
+  </li>
+  
+</ul>
+
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+
+
+        </div>
+        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+          
+  
+  <div class="sidebar-module">
+    <h4>Categories</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/个人心得/">个人心得</a><span class="sidebar-module-list-count">5</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/其他/">其他</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/备忘录/">备忘录</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/折腾记录/">折腾记录</a><span class="sidebar-module-list-count">6</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/教程/">教程</a><span class="sidebar-module-list-count">13</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/经验总结/">经验总结</a><span class="sidebar-module-list-count">7</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Archives</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/05/">五月 2017</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/11/">十一月 2016</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/10/">十月 2016</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/08/">八月 2016</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/04/">四月 2016</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/03/">三月 2016</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/01/">一月 2016</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/12/">十二月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/11/">十一月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/09/">九月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/08/">八月 2015</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/07/">七月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/05/">五月 2015</a><span class="sidebar-module-list-count">5</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/04/">四月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/02/">二月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/12/">十二月 2014</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/04/">四月 2014</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/02/">二月 2014</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2013/01/">一月 2013</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2012/08/">八月 2012</a><span class="sidebar-module-list-count">1</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Recents</h4>
+    <ul class="sidebar-module-list">
+      
+        <li>
+          <a href="/2017/05/13/change-to-hexo/">换成 Hexo</a>
+        </li>
+      
+        <li>
+          <a href="/2016/11/08/move-to-archlinux/">换成Arch Linux系统的一些记录</a>
+        </li>
+      
+        <li>
+          <a href="/2016/10/08/macports/">MacPorts的安装与使用</a>
+        </li>
+      
+        <li>
+          <a href="/2016/10/07/programming-in-wikipedia/">维基百科编程笔记</a>
+        </li>
+      
+        <li>
+          <a href="/2016/10/04/gae/">Google App Engine入门（Python）</a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+  
+  <div class="sidebar-module">
+    <h4>Tags</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/API/">API</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Atom/">Atom</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/C/">C</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/C/">C#</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/GAE/">GAE</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/GUI/">GUI</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Hackintosh/">Hackintosh</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Hexo/">Hexo</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Java/">Java</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/JavaScript/">JavaScript</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Jekyll/">Jekyll</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/LaTeX/">LaTeX</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Linux/">Linux</a><span class="sidebar-module-list-count">9</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Mac/">Mac</a><span class="sidebar-module-list-count">9</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/MacPorts/">MacPorts</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/NTFS/">NTFS</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Python/">Python</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/QQ/">QQ</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Rails/">Rails</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/UEFI/">UEFI</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/VPS/">VPS</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Visual-Studio/">Visual Studio</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Windows/">Windows</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/npm/">npm</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/wine/">wine</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/zsh/">zsh</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/中文/">中文</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/云/">云</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/单片机/">单片机</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/反汇编/">反汇编</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/平板/">平板</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/插件/">插件</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/教务系统/">教务系统</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/東方Project/">東方Project</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/电幕/">电幕</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/系统维护/">系统维护</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/维基百科/">维基百科</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/编程/">编程</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/语文/">语文</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/输入法/">输入法</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/配置/">配置</a><span class="sidebar-module-list-count">1</span></li></ul>
+  </div>
+
+
+
+
+        </div>
+    </div>
+  </div>
+  <footer class="blog-footer">
+  <div class="container">
+    <div id="footer-info" class="inner">
+      &copy; 2017 vjudge1<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+  
+<script>
+  var disqus_shortname = 'vjudge1';
+  
+  var disqus_url = 'https://vjudge1.github.io/2015/05/20/install-latex/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" integrity="sha384-8gBf6Y4YYq7Jx97PIqmTwLPin4hxIzQw5aDmUg/DDhul9fFpbbLcLh3nTIIDJKhx" crossorigin="anonymous"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+
+
+<script src="/js/script.js"></script>
+
+</body>
+</html>

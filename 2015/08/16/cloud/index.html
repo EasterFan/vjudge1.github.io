@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>常见的云服务器 | ⑨rz</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="做出一个网站，到哪里去找一个合适的服务器呢？ 原作者本文原是课戴表王晨宇写的，稍微整理了一下格式。转载请标明原作者！  云主机没有用过 benchmark 来跑分，但是我用 php 探针检测，腾讯云的可能因为是共享核吧的计算时间比列表中的参考值要大，阿里云的计算时间就比列表中的参考值都要小。我见网上很多人评论阿里云的硬盘速度慢，不过实际上网站的速度决定于 CPU 运算时间长短还有内存够不够用——除">
+<meta name="keywords" content="云,VPS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="常见的云服务器">
+<meta property="og:url" content="https://vjudge1.github.io/2015/08/16/cloud/index.html">
+<meta property="og:site_name" content="⑨rz">
+<meta property="og:description" content="做出一个网站，到哪里去找一个合适的服务器呢？ 原作者本文原是课戴表王晨宇写的，稍微整理了一下格式。转载请标明原作者！  云主机没有用过 benchmark 来跑分，但是我用 php 探针检测，腾讯云的可能因为是共享核吧的计算时间比列表中的参考值要大，阿里云的计算时间就比列表中的参考值都要小。我见网上很多人评论阿里云的硬盘速度慢，不过实际上网站的速度决定于 CPU 运算时间长短还有内存够不够用——除">
+<meta property="og:updated_time" content="2017-05-12T18:22:32.420Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="常见的云服务器">
+<meta name="twitter:description" content="做出一个网站，到哪里去找一个合适的服务器呢？ 原作者本文原是课戴表王晨宇写的，稍微整理了一下格式。转载请标明原作者！  云主机没有用过 benchmark 来跑分，但是我用 php 探针检测，腾讯云的可能因为是共享核吧的计算时间比列表中的参考值要大，阿里云的计算时间就比列表中的参考值都要小。我见网上很多人评论阿里云的硬盘速度慢，不过实际上网站的速度决定于 CPU 运算时间长短还有内存够不够用——除">
+  
+    <link rel="alternate" href="/atom.xml" title="⑨rz" type="application/atom+xml">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="/css/styles.css">
+  
+
+</head>
+
+<body>
+  <nav class="navbar navbar-inverse">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="main-menu-navbar">
+      <ul class="nav navbar-nav">
+        
+          <li><a class=""
+                 href="/index.html">Home</a></li>
+        
+          <li><a class=""
+                 href="/archives/">Archives</a></li>
+        
+      </ul>
+
+      <!--
+      <ul class="nav navbar-nav navbar-right">
+        
+          <li><a href="/atom.xml" title="RSS Feed"><i class="fa fa-rss"></i></a></li>
+        
+      </ul>
+      -->
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+  <div class="container">
+    <div class="blog-header">
+  <h1 class="blog-title">⑨rz</h1>
+  
+</div>
+
+    <div class="row">
+        <div class="col-sm-8 blog-main">
+          <article id="post-cloud" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <header class="article-header">
+    
+  
+    <h1 class="article-title" itemprop="name">
+      常见的云服务器
+    </h1>
+  
+
+
+  </header>
+
+  <div class="article-meta">
+    <div class="article-datetime">
+  <a href="/2015/08/16/cloud/" class="article-date"><time datetime="2015-08-15T16:00:00.000Z" itemprop="datePublished">2015-08-16</time></a>
+</div>
+
+    
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/经验总结/">经验总结</a>
+  </div>
+
+
+  </div>
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>做出一个网站，到哪里去找一个合适的服务器呢？</p>
+<div class="bs-callout bs-callout-danger"><h4 id="原作者"><a href="#原作者" class="headerlink" title="原作者"></a>原作者</h4><p>本文原是<a href="http://wangchenyu.net.cn" target="_blank" rel="external">课戴表王晨宇</a>写的，稍微整理了一下格式。转载请标明原作者！</p>
+</div>
+<h1 id="云主机"><a href="#云主机" class="headerlink" title="云主机"></a>云主机</h1><p>没有用过 benchmark 来跑分，但是我用 php 探针检测，腾讯云的可能因为是共享核吧的计算时间比列表中的参考值要大，阿里云的计算时间就比列表中的参考值都要小。我见网上很多人评论阿里云的硬盘速度慢，不过实际上网站的速度决定于 CPU 运算时间长短还有内存够不够用——除非你有别的用处。</p>
+<p>国内的我就用过腾讯云的 512M 共享核、阿里云的 1G 1核、阿里云的 512M 1核。实际上其他的也都不咋地了。</p>
+<p>国外的主机商我用过 DigitalOcean 的 512M 单核、Amazon AWS的各种配置（所有的“通用”型配置都用了一遍）、Windows Azure 4G、7G内存（免费体验嘛…）、vps.me的 128M 单核、HapHost 的 128M 单核、Conoha.jp 日本 1G 双核。</p>
+<p>IBM 的 Softlayer 只能算是应用引擎，所以后面再讲。</p>
+<p>可惜没能用上 Linode，因为不支持我的信用卡。</p>
+<h2 id="阿里云"><a href="#阿里云" class="headerlink" title="阿里云"></a>阿里云</h2><ul>
+<li>价格：512M 单核一年只需 288，但是流量费用另计。不过感觉起来是要比腾讯云划算。</li>
+<li>操控性：可以随意的升级、降级、按月付费。</li>
+<li>网速：下载东西时也是峰值 1~1.5MB/s 良心。不过因为我选择的青岛区域机房，所以在学校（备注：学校在青岛）的 ping 值 10 以下，有时候宿舍甚至是 2ms 1ms 爽。对了，腾讯云的共享核只能选广东。</li>
+<li>系统：可以选择 Debian 5 32位。我选择的是 CentOS，一方面 yum 功能很强大，另一方面阿里云特别优化了 CentOS，装好启动内存在占 14M，我又稍微精简了一下只占 13M。镜像市场比腾讯云丰富的多，甚至有预装了 hhvm 的镜像。</li>
+<li>客服：只能电话或者工单。不过工单一般一天内就回复了，技术类的几分钟就回复。</li>
+<li>赠品：云盾是个好东西，能真的帮忙拦截 web 攻击和 ssh 攻击。不过 ssh 攻击只要主机优化好了也没啥。送 128M 的 OCS（完全兼容 memcached）也是一个大礼，尤其是对于 512M 内存的服务器，简直是雪中送炭。我的网站就在用，目测提速不少。通过 ACE 还可以开通免费的 RDS（rds 可能将来会收费）。</li>
+</ul>
+<h2 id="腾讯云"><a href="#腾讯云" class="headerlink" title="腾讯云"></a>腾讯云</h2><ul>
+<li>价格，一年 360 块钱的共享核能凭借低价吸引很多人。</li>
+<li>操控性：我是贪便宜的上当者，因为买了以后才发现不能升级、不能退款，只能以年为单位续费。所以只好挂一个小网站耗着。也有优点，就是可以直接在后台给 Linux 服务器挂载 SSH 密钥。然而这个小小的优点……有点鸡肋。</li>
+<li>网速：下载东西时 1M 宽带峰值 1~1.5MB/s 良心。</li>
+<li>系统：后台可选择的系统不多，至少没有“专门针对小内存主机”的 Debian 32 位系统。好在服务市场里面免费环境很多。</li>
+<li>客服：比较垃圾。联系很多次有时候等一天都排不上个队。</li>
+</ul>
+<h2 id="DigitalOcean"><a href="#DigitalOcean" class="headerlink" title="DigitalOcean"></a>DigitalOcean</h2><ul>
+<li>网速：网上大批的 do 的评测文章因为邀请一个人注册送 10$，但是国内线路最好的 San Francisco 节点我用起来感觉一点也不好。虽然网速可以达到满但是延迟 200~300 太高，不适合放网站。我装了一个 amh 面板，那个面板打开有时候慢的惊人。</li>
+<li>操控性：提供的系统非常全面，而且可以细分到很多，这一点我非常满意，所以我经常测试各种系统</li>
+<li>价格：512M 的 $5 一个月已经算是非常便宜了。而且推荐别人注册还能送钱。据说容易封号，不过我的账号用了半年了都没被封。</li>
+<li>客服：全英文，不过很友好，回答速度也很快。</li>
+<li>跑分同样是没跑，不过……我就挂了一个 vpn 目前。</li>
+</ul>
+<h2 id="Amazon-AWS"><a href="#Amazon-AWS" class="headerlink" title="Amazon AWS"></a>Amazon AWS</h2><p>因为我在除了 1G 1 核以外其他主机都用的 Windows 系统，所以不说什么了。而且现在没在用，只能凭回忆。不过吐槽一下 4 核 8G 内存的主机挖矿效率很低啊！</p>
+<ul>
+<li>网速：下载速度可以到满速，但是 Oregon 和 San Francisco 到国内延迟就很高，有时候还丢包。东京的很满意，Ping 值有时候 100 左右，而且网速也比较稳定。</li>
+<li>操控性：非常好。可以搜到其他用户共享出来的镜像，所以基本上你想得到的都有。镜像市场更是非常全面。</li>
+<li>客服：一般提交 Ticket 以后就会有客服来打电话，说的英语很标准，而且也很热心。</li>
+<li>赠品：非常多，rds 20G，S3 储存 5G，SSD 磁盘 30G 其他的我都没用过。</li>
+</ul>
+<p>现在注册以后是不能直接用东京节点的服务器的，只能发邮件申请，而且时间相当漫长，好像要一星期。</p>
+<h2 id="免费空间"><a href="#免费空间" class="headerlink" title="免费空间"></a>免费空间</h2><p>vps.me 和 HapHost 我用的都是免费的，性能很垃圾。</p>
+<p>现在 haphost 已经没了，都并入 host1plus 了。</p>
+<p>vps.me 上没有开放ipv4，需要做端口映射，只给了ipv6。</p>
+<p>Conoha.jp 也没怎么用，申请了体验两个月，现在应该还没过期。国内速度可以。操作系统给的很全。因为用的是 kvm，所以可以直接重装系统啊什么的，理论上还能挂一个 Windows 镜像玩玩。只支持信用卡付款。客服没接触过，官网日语难懂，翻译了也难懂。还好系统都是英语的。</p>
+<p>对了，我有两个免费空间十分推荐，提供PHP和Mysql，据我观察他们上面有不少早至2009年就存在的免费网站，简单来说就是他们已经被证实至少6年不删不活跃用户：一个是freehostia.com（注册登陆需要翻墙，但是申请到的空间不需翻墙）一个是summerhost.info（完全开放给国人），summerhost.info 和 byethost.com很类似，都很稳定，不删用户。</p>
+<h1 id="应用引擎"><a href="#应用引擎" class="headerlink" title="应用引擎"></a>应用引擎</h1><p>（此处忘记了 SAE、BAE、GAE、Heroku）</p>
+<p>因为 openshift 支持 ssh 连接，所以基本上算半个 vps 了。</p>
+<p>openshift 用的就是亚马逊的服务器，但是网址被墙了。幸运的是ip没被墙，所以直接ping出来ip然后用一个cdn就能做网站，直接用ip连ssh就能翻墙。提供1.5GRAM和3G的硬盘空间，无限流量，一个用户可以创建3个免费的应用。</p>
+<p>和openshift相似但是没有被屏蔽的有phpcloud appfog 还有一个大家都知道的 SourceForge。</p>
+<ul>
+<li>uhurucloud 支持 .Net。</li>
+<li>Snapphq  asp php mysql</li>
+<li>Jelastic Java php mysql</li>
+<li>CloudBees java php mysql</li>
+<li>Cumulogic java php mysql</li>
+<li>MoPaaS Java Ruby php mysql</li>
+<li>Another Service  Another Service是一个法国的云计算平台</li>
+<li>phpfog和Orchestra和cloudcontrol和dotcloud和pagodabox php+mysql</li>
+<li>Appharbor和Webweb asp asp.net</li>
+</ul>
+<p>需要注意的是，这些免费版（除了 GAE）一般不允许 24 小时连续开机，需要手动启动，除非付钱。</p>
+<p>对了，国内的引擎还有</p>
+<ul>
+<li>阿里的 ACE（目前内侧免费）</li>
+<li>京东的 jae</li>
+<li>腾讯的 cee</li>
+<li>盛大的 CAE</li>
+</ul>
+<h1 id="在线开发平台"><a href="#在线开发平台" class="headerlink" title="在线开发平台"></a>在线开发平台</h1><p>然后就是在线开发平台，比如 cloud9.io、coding.net、nitrous.io、heroku、uhurucloud。值得一提的是这些基本上都支持node.js。</p>
+
+      
+    </div>
+
+    
+      
+
+    
+
+    <footer class="article-footer">
+      <a data-url="https://vjudge1.github.io/2015/08/16/cloud/" data-id="cj2m7q6hb00109ccmg844qsby" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
+      
+        <a href="https://vjudge1.github.io/2015/08/16/cloud/#disqus_thread" class="article-comment-link">
+          <i class="fa fa-comment"></i> Comments
+        </a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/VPS/">VPS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/云/">云</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+    
+<ul id="article-nav" class="nav nav-pills nav-justified">
+  
+  <li role="presentation">
+    <a href="/2015/07/26/install-rails/" id="article-nav-older" class="article-nav-link-wrap">
+      <i class="fa fa-chevron-left pull-left"></i>
+      <span class="article-nav-link-title">Install Rails (Mac/Cygwin/Windows)</span>
+    </a>
+  </li>
+  
+  
+  <li role="presentation">
+    <a href="/2015/08/20/wineqq/" id="article-nav-newer" class="article-nav-link-wrap">
+      <span class="article-nav-link-title">在 Linux 系统中上 QQ</span>
+      <i class="fa fa-chevron-right pull-right"></i>
+    </a>
+  </li>
+  
+</ul>
+
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+
+
+        </div>
+        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+          
+  
+  <div class="sidebar-module">
+    <h4>Categories</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/个人心得/">个人心得</a><span class="sidebar-module-list-count">5</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/其他/">其他</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/备忘录/">备忘录</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/折腾记录/">折腾记录</a><span class="sidebar-module-list-count">6</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/教程/">教程</a><span class="sidebar-module-list-count">13</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/经验总结/">经验总结</a><span class="sidebar-module-list-count">7</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Archives</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/05/">五月 2017</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/11/">十一月 2016</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/10/">十月 2016</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/08/">八月 2016</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/04/">四月 2016</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/03/">三月 2016</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/01/">一月 2016</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/12/">十二月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/11/">十一月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/09/">九月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/08/">八月 2015</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/07/">七月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/05/">五月 2015</a><span class="sidebar-module-list-count">5</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/04/">四月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/02/">二月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/12/">十二月 2014</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/04/">四月 2014</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/02/">二月 2014</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2013/01/">一月 2013</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2012/08/">八月 2012</a><span class="sidebar-module-list-count">1</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Recents</h4>
+    <ul class="sidebar-module-list">
+      
+        <li>
+          <a href="/2017/05/13/change-to-hexo/">换成 Hexo</a>
+        </li>
+      
+        <li>
+          <a href="/2016/11/08/move-to-archlinux/">换成Arch Linux系统的一些记录</a>
+        </li>
+      
+        <li>
+          <a href="/2016/10/08/macports/">MacPorts的安装与使用</a>
+        </li>
+      
+        <li>
+          <a href="/2016/10/07/programming-in-wikipedia/">维基百科编程笔记</a>
+        </li>
+      
+        <li>
+          <a href="/2016/10/04/gae/">Google App Engine入门（Python）</a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+  
+  <div class="sidebar-module">
+    <h4>Tags</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/API/">API</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Atom/">Atom</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/C/">C</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/C/">C#</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/GAE/">GAE</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/GUI/">GUI</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Hackintosh/">Hackintosh</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Hexo/">Hexo</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Java/">Java</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/JavaScript/">JavaScript</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Jekyll/">Jekyll</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/LaTeX/">LaTeX</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Linux/">Linux</a><span class="sidebar-module-list-count">9</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Mac/">Mac</a><span class="sidebar-module-list-count">9</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/MacPorts/">MacPorts</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/NTFS/">NTFS</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Python/">Python</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/QQ/">QQ</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Rails/">Rails</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/UEFI/">UEFI</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/VPS/">VPS</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Visual-Studio/">Visual Studio</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Windows/">Windows</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/npm/">npm</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/wine/">wine</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/zsh/">zsh</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/中文/">中文</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/云/">云</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/单片机/">单片机</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/反汇编/">反汇编</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/平板/">平板</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/插件/">插件</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/教务系统/">教务系统</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/東方Project/">東方Project</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/电幕/">电幕</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/系统维护/">系统维护</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/维基百科/">维基百科</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/编程/">编程</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/语文/">语文</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/输入法/">输入法</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/配置/">配置</a><span class="sidebar-module-list-count">1</span></li></ul>
+  </div>
+
+
+
+
+        </div>
+    </div>
+  </div>
+  <footer class="blog-footer">
+  <div class="container">
+    <div id="footer-info" class="inner">
+      &copy; 2017 vjudge1<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+  
+<script>
+  var disqus_shortname = 'vjudge1';
+  
+  var disqus_url = 'https://vjudge1.github.io/2015/08/16/cloud/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" integrity="sha384-8gBf6Y4YYq7Jx97PIqmTwLPin4hxIzQw5aDmUg/DDhul9fFpbbLcLh3nTIIDJKhx" crossorigin="anonymous"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+
+
+<script src="/js/script.js"></script>
+
+</body>
+</html>

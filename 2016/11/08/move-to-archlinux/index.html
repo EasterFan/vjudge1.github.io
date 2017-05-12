@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>换成Arch Linux系统的一些记录 | ⑨rz</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="又写很水的内容了——突然想把系统换成Arch Linux（64位，GNOME 3桌面），所以记录一下一些配置的要点。当然，具体的安装过程就不写了，网上教程很多，搜一下就能找到。 基本代理稍有常识的人都能看出，如果我们的电脑不挂代理，那些特别的软件难道还能设置得了嘛？ 我推荐使用MEOW，它可以把各种常见的代理转化为HTTP代理，而且是白名单制（只有白名单的网站不走代理），非常方便。 想自动启动的话">
+<meta name="keywords" content="Linux,系统维护,wine,東方Project,npm,配置">
+<meta property="og:type" content="article">
+<meta property="og:title" content="换成Arch Linux系统的一些记录">
+<meta property="og:url" content="https://vjudge1.github.io/2016/11/08/move-to-archlinux/index.html">
+<meta property="og:site_name" content="⑨rz">
+<meta property="og:description" content="又写很水的内容了——突然想把系统换成Arch Linux（64位，GNOME 3桌面），所以记录一下一些配置的要点。当然，具体的安装过程就不写了，网上教程很多，搜一下就能找到。 基本代理稍有常识的人都能看出，如果我们的电脑不挂代理，那些特别的软件难道还能设置得了嘛？ 我推荐使用MEOW，它可以把各种常见的代理转化为HTTP代理，而且是白名单制（只有白名单的网站不走代理），非常方便。 想自动启动的话">
+<meta property="og:updated_time" content="2017-05-12T18:17:41.745Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="换成Arch Linux系统的一些记录">
+<meta name="twitter:description" content="又写很水的内容了——突然想把系统换成Arch Linux（64位，GNOME 3桌面），所以记录一下一些配置的要点。当然，具体的安装过程就不写了，网上教程很多，搜一下就能找到。 基本代理稍有常识的人都能看出，如果我们的电脑不挂代理，那些特别的软件难道还能设置得了嘛？ 我推荐使用MEOW，它可以把各种常见的代理转化为HTTP代理，而且是白名单制（只有白名单的网站不走代理），非常方便。 想自动启动的话">
+  
+    <link rel="alternate" href="/atom.xml" title="⑨rz" type="application/atom+xml">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="/css/styles.css">
+  
+
+</head>
+
+<body>
+  <nav class="navbar navbar-inverse">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="main-menu-navbar">
+      <ul class="nav navbar-nav">
+        
+          <li><a class=""
+                 href="/index.html">Home</a></li>
+        
+          <li><a class=""
+                 href="/archives/">Archives</a></li>
+        
+      </ul>
+
+      <!--
+      <ul class="nav navbar-nav navbar-right">
+        
+          <li><a href="/atom.xml" title="RSS Feed"><i class="fa fa-rss"></i></a></li>
+        
+      </ul>
+      -->
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+  <div class="container">
+    <div class="blog-header">
+  <h1 class="blog-title">⑨rz</h1>
+  
+</div>
+
+    <div class="row">
+        <div class="col-sm-8 blog-main">
+          <article id="post-move-to-archlinux" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <header class="article-header">
+    
+  
+    <h1 class="article-title" itemprop="name">
+      换成Arch Linux系统的一些记录
+    </h1>
+  
+
+
+  </header>
+
+  <div class="article-meta">
+    <div class="article-datetime">
+  <a href="/2016/11/08/move-to-archlinux/" class="article-date"><time datetime="2016-11-07T16:00:00.000Z" itemprop="datePublished">2016-11-08</time></a>
+</div>
+
+    
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/备忘录/">备忘录</a>
+  </div>
+
+
+  </div>
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>又写很水的内容了——突然想把系统换成Arch Linux（64位，GNOME 3桌面），所以记录一下一些配置的要点。当然，具体的安装过程就不写了，网上教程很多，搜一下就能找到。</p>
+<h1 id="基本"><a href="#基本" class="headerlink" title="基本"></a>基本</h1><h2 id="代理"><a href="#代理" class="headerlink" title="代理"></a>代理</h2><p>稍有常识的人都能看出，如果我们的电脑不挂代理，那些特别的软件难道还能设置得了嘛？</p>
+<p>我推荐使用<a href="https://github.com/renzhn/MEOW" target="_blank" rel="external">MEOW</a>，它可以把各种常见的代理转化为HTTP代理，而且是白名单制（只有白名单的网站不走代理），非常方便。</p>
+<p>想自动启动的话，建立一个文件<code>~/.config/autostart/meow.desktop</code>，在其中输入</p>
+<figure class="highlight ini"><table><tr><td class="code"><pre><div class="line"><span class="section">[Desktop Entry]</span></div><div class="line"><span class="attr">Type</span>=Application</div><div class="line"><span class="attr">Name</span>=meow</div><div class="line"><span class="attr">Exec</span>=/home/xxx/MEOW</div></pre></td></tr></table></figure>
+<p>当然也可以做成systemd服务（user）。</p>
+<p>为了在命令行中享受到代理，可以在自己的shell的配置文件中加入：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line"><span class="built_in">export</span> HTTP_PROXY=http://127.0.0.1:7777</div><div class="line"><span class="built_in">export</span> HTTPS_PROXY=http://127.0.0.1:7777</div></pre></td></tr></table></figure>
+<p>当然，跑pacman和滚Arch的时候没必要走代理，所以可以把镜像站的网址放到白名单里。</p>
+<h3 id="npm"><a href="#npm" class="headerlink" title="npm"></a>npm</h3><p>npm不用代理，直接换<a href="https://npm.taobao.org/" target="_blank" rel="external">淘宝镜像</a>：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">npm config set registry https://registry.npm.taobao.org</div><div class="line">npm config set disturl https://npm.taobao.org/dist</div><div class="line"></div><div class="line">npm set registry https://registry.npm.taobao.org</div><div class="line">npm set disturl https://npm.taobao.org/dist</div><div class="line">npm set chromedriver_cdnurl http://cdn.npm.taobao.org/dist/chromedriver</div><div class="line">npm set operadriver_cdnurl http://cdn.npm.taobao.org/dist/operadriver</div><div class="line">npm set phantomjs_cdnurl http://cdn.npm.taobao.org/dist/phantomjs</div><div class="line">npm set fse_binary_host_mirror https://npm.taobao.org/mirrors/fsevents</div><div class="line">npm set sass_binary_site http://cdn.npm.taobao.org/dist/node-sass</div><div class="line">npm set electron_mirror http://cdn.npm.taobao.org/dist/electron/</div></pre></td></tr></table></figure>
+<h3 id="gem"><a href="#gem" class="headerlink" title="gem"></a>gem</h3><p>换用<a href="https://gems.ruby-china.org" target="_blank" rel="external">Ruby China的镜像</a>：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">gem sources --add https://gems.ruby-china.org/ --remove https://rubygems.org/</div><div class="line">bundle config mirror.https://rubygems.org https://gems.ruby-china.org</div></pre></td></tr></table></figure>
+<h2 id="AUR"><a href="#AUR" class="headerlink" title="AUR"></a>AUR</h2><p>为了能够多装些东西，我安装了yaourt。具体操作网上有，可以用archlinuxcn源。</p>
+<p>配置好之后就可以yaourt地安装软件了。</p>
+<h2 id="字体"><a href="#字体" class="headerlink" title="字体"></a>字体</h2><p>在决定手动安装字体之前，可以先到<a href="https://wiki.archlinux.org/index.php/Fonts" target="_blank" rel="external">ArchWiki的“字体”页面</a>上转转——很多字体可以通过pacman和yaourt来搞定。</p>
+<p>我推荐三个编程字体：一个是Monaco（Mac系统的字体），一个是Source Code Pro，还有一个是Windows系统的Consolas。</p>
+<p>对于中文字体，不想用文泉驿的话，我再推荐一个Google制作的Noto Sans CJK字体。不过最后我还是用微软雅黑了。</p>
+<h2 id="输入法"><a href="#输入法" class="headerlink" title="输入法"></a>输入法</h2><p>为了配合Sublime Text等软件，我把输入法平台换成了fcitx。另外我一直使用中州韵输入法（放弃了搜狗），所以：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">sudo pacman -S fcitx fcitx-im fcitx-rime</div></pre></td></tr></table></figure>
+<p>在<code>~/.xprofile</code>（文件名全小写，如果没有该文件那么就新建一个）中输入：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line"><span class="built_in">export</span> GTK_IM_MODULE=fcitx</div><div class="line"><span class="built_in">export</span> QT_IM_MODULE=fcitx</div><div class="line"><span class="built_in">export</span> XMODIFIERS=<span class="string">"@im=fcitx"</span></div></pre></td></tr></table></figure>
+<p>接下来需要禁用iBus。在终端中输入：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">gsettings set org.gnome.settings-daemon.plugins.keyboard active false</div></pre></td></tr></table></figure>
+<p>然后到“系统设置”-&gt;“地区和语言”把所有输入法删掉，这样iBus就不会干扰fcitx了。</p>
+<p>fcitx的界面和GNOME的界面看起来不协调，可以通过<code>sudo pacman -S gnome-tweak-tool</code>安装“GNOME优化工具”，再借助它安装一个名为“Input method panel”的扩展程序来调整。</p>
+<p>中州韵输入法的配置都在<code>~/.config/fcitx/rime</code>中，自己改改就能用了。为了不跟中州韵冲突，fcitx本身的切换输入法键（Shift）和全半角切换键得关掉。</p>
+<h2 id="清理孤立软件包"><a href="#清理孤立软件包" class="headerlink" title="清理孤立软件包"></a>清理孤立软件包</h2><p>滚时间长了，体验然后卸载的软件多了，肯定会产生一些无用的软件包。输入以下命令清理：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">sudo pacman -Rns $(pacman -Qtdq)</div></pre></td></tr></table></figure>
+<p>另外可以通过<code>sudo pacman -Scc</code>来清理缓存。</p>
+<h2 id="界面"><a href="#界面" class="headerlink" title="界面"></a>界面</h2><p>我用的 GTK 主题叫 Arc-Flatabulous，图标主题是 Numix 和 Papirus，Shell 主题是 Dark Mode，这些主题用 yaourt 搜一下就有了。</p>
+<p>一些扩展：Alternatetab、Applications Menu、Dash to dock、Input method panel、Media player indicator、Screenshot locations、Services systemd、Topicons plus、User themes</p>
+<h2 id="终端模拟器"><a href="#终端模拟器" class="headerlink" title="终端模拟器"></a>终端模拟器</h2><p>我现在用的是 Tilix，可以通过 yaourt 安装。另外发现一个叫做 <a href="http://hyper.is/" target="_blank" rel="external">Hyper</a> 的终端模拟器，它可以像 Atom 编辑器那样 Hack，不过我还没开始研究（已知中文会出问题）。</p>
+<h1 id="编程软件"><a href="#编程软件" class="headerlink" title="编程软件"></a>编程软件</h1><h2 id="Vim"><a href="#Vim" class="headerlink" title="Vim"></a>Vim</h2><p><a href="https://github.com/vjudge1/misc/blob/master/config/vimrc" target="_blank" rel="external">我的Vim配置文件</a>是过去写好的，所以直接搬来用了。</p>
+<p>大致的情况就是使用Vundle作为插件管理器，然后塞了一大堆插件。其中最难配置的就是<a href="https://github.com/Valloric/YouCompleteMe" target="_blank" rel="external">YouCompleteMe</a>，不过在Linux中的配置可比在Windows和Mac系统中轻松多了。</p>
+<p>终端版无法正确处理剪贴板，因此也可以<code>yaourt -S vim-clipboard</code>。</p>
+<h2 id="Sublime-Text"><a href="#Sublime-Text" class="headerlink" title="Sublime Text"></a>Sublime Text</h2><p>不要<code>yaourt -S sublime-text-dev</code>，那个版本没法敲汉字。我们应当<code>yaourt -S sublime-text-dev-imfix</code>。</p>
+<p>如果PATH变量是在<code>.zshrc</code>中设置的，那么Sublime Text可能会注意不到（废话）。对于某些插件来说，你需要修复一下这个问题，或者手动给它们指定PATH。这个症状在Mac中也会出现。</p>
+<p>提示“软件包冲突”的话，那么你可以改一下PKGBUILD，去掉zh_CN和zh_TW中的一个——去掉zh_TW的话就是大陆版的“九二共识”，去掉zh_CN的话就是大陆版的“台独”。</p>
+<h2 id="Atom"><a href="#Atom" class="headerlink" title="Atom"></a>Atom</h2><p>Sublime Text的输入法问题实在令人头疼，即使把iBus换成fcitx有时候还是不好使。另外Atom本身也是个很棒的编辑器，所以自然要跟Sublime Text换着用。</p>
+<p>因为Atom很火，直接通过pacman安装就行了：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">sudo pacman -S atom apm</div></pre></td></tr></table></figure>
+<p>在调用apm的时候，你需要挂代理，否则apm就直接废了。具体做法就是</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">apm config proxy http://127.0.0.1:7777</div><div class="line">apm config https-proxy http://127.0.0.1:7777</div><div class="line">apm config set strict-ssl false</div></pre></td></tr></table></figure>
+<h2 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h2><p>Arch默认的Python是3.x，而且没有提供一种切换Python版本的工具。为了使2.x成为默认Python，按照官方给出的方法，我是这样做的：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">mkdir ~/.bin</div><div class="line">ln -s /usr/bin/python2 ~/.bin/python</div><div class="line">ln -s /usr/bin/pip2 ~/.bin/pip</div><div class="line">ln -s /usr/bin/python2-config ~/.bin/python-config</div></pre></td></tr></table></figure>
+<p>最后在PATH中保证<code>/home/xxx/.bin</code>排在<code>/usr/bin</code>前面即可。</p>
+<h2 id="关于本博客（Jekyll-版）"><a href="#关于本博客（Jekyll-版）" class="headerlink" title="关于本博客（Jekyll 版）"></a>关于本博客（Jekyll 版）</h2><p>敲<code>grunt serve</code>的时候突然冒出满屏幕的“Warning: watch … ENOSPC”警告，根本无法预览，所以搜到了<a href="http://stackoverflow.com/questions/16748737/grunt-watch-error-waiting-fatal-error-watch-enospc" target="_blank" rel="external">StackOverflow的解决方案</a>。他们的系统敲的是：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf &amp;&amp; sudo sysctl -p</div></pre></td></tr></table></figure>
+<p>那是Ubuntu系统。我们Arch系统要敲</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.d/99-sysctl.conf &amp;&amp; sudo sysctl --system</div></pre></td></tr></table></figure>
+<p>后来换成 Hexo 就没有这个问题了。</p>
+<h1 id="日常软件"><a href="#日常软件" class="headerlink" title="日常软件"></a>日常软件</h1><h2 id="Google-Chrome"><a href="#Google-Chrome" class="headerlink" title="Google Chrome"></a>Google Chrome</h2><p>就一行命令：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">yaourt -S google-chrome</div></pre></td></tr></table></figure>
+<h2 id="QQ"><a href="#QQ" class="headerlink" title="QQ"></a>QQ</h2><p>我去年写过一个<a href="/2015/08/21/wineqq/">在Linux上面跑QQ的文章</a>，现在那个WineQQ还在，而且仍然好使，照做即可。</p>
+<p>当然，有 AUR 那篇文章就“白写”了。</p>
+<h2 id="Office"><a href="#Office" class="headerlink" title="Office"></a>Office</h2><p>对我来说 LibreOffice 足够用了。我还有个 Windows 平板所以不担心兼容性的问题。</p>
+<h1 id="游戏"><a href="#游戏" class="headerlink" title="游戏"></a>游戏</h1><h2 id="东方Project"><a href="#东方Project" class="headerlink" title="东方Project"></a>东方Project</h2><p>在Arch里玩东方Project只需这样做：开启multilib支持（64位系统才需要），在<code>/etc/pacman.conf</code>里加一句</p>
+<figure class="highlight ini"><table><tr><td class="code"><pre><div class="line"><span class="section">[multilib]</span></div><div class="line"><span class="attr">Include</span> = /etc/pacman.d/mirrorlist</div></pre></td></tr></table></figure>
+<p>然后装wine和解码器（32位系统直接去掉命令中的“lib32”）：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">sudo pacman -S wine</div><div class="line">sudo pacman -S lib32-alsa-lib lib32-pulse-lib lib32-libpulse lib32-alsa-plugins lib32-mpg123 lib32-sdl lib32-openal lib32-gst-plugins-base lib32-gstreamer gst-libav lib32-gst-plugins-good</div></pre></td></tr></table></figure>
+<p>然后就OK了。</p>
+<p>注意：</p>
+<ol>
+<li>如果游戏乱码，请设置LC_ALL变量，例如：<code>LC_ALL=zh_CN.UTF-8 wine th06.exe</code>。Mac系统也是这样处理的。不要听网上说改LANG，没用的。</li>
+<li>想全屏游戏的话，桌面不要用Wayland，而是应当换回Xorg，否则不仅进不去而且还会崩终端或桌面。</li>
+<li>不知道什么原因，新版wine跑辉针城或以上游戏的时候游戏速度会非常快……</li>
+</ol>
+<h2 id="Steam"><a href="#Steam" class="headerlink" title="Steam"></a>Steam</h2><p>只需要：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">yaourt -S steam steam-native-runtime</div></pre></td></tr></table></figure>
+<p>不过Steam没法通过optirun来启动。所以我暂时想到的方法是：把Steam放在那里挂着，然后自己手动通过optirun来运行游戏：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">optirun ~/.steam/steam/steamapps/common/Portal\ 2/portal2.sh -game portal2 -steam</div></pre></td></tr></table></figure>
+<p>不幸的是，对于《半条命2》、《传送门》等起源引擎游戏，中文可能连豆腐块都看不到——直接是“无字天书”。这是因为游戏引擎把字体名称写死了，测量中文字符时直接宽度为零，所以我们要做个字体替换，把写死的“Nimbus Sans”字体换成文泉驿：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><div class="line">&lt;?xml version="1.0"?&gt;</div><div class="line"><span class="meta">&lt;!DOCTYPE fontconfig SYSTEM "fonts.dtd"&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">fontconfig</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">match</span> <span class="attr">target</span>=<span class="string">"pattern"</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">test</span> <span class="attr">qual</span>=<span class="string">"any"</span> <span class="attr">name</span>=<span class="string">"family"</span>&gt;</span><span class="tag">&lt;<span class="name">string</span>&gt;</span>Nimbus Sans<span class="tag">&lt;/<span class="name">string</span>&gt;</span><span class="tag">&lt;/<span class="name">test</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">edit</span> <span class="attr">name</span>=<span class="string">"family"</span> <span class="attr">mode</span>=<span class="string">"assign"</span> <span class="attr">binding</span>=<span class="string">"same"</span>&gt;</span><span class="tag">&lt;<span class="name">string</span>&gt;</span>WenQuanYi Zen Hei<span class="tag">&lt;/<span class="name">string</span>&gt;</span><span class="tag">&lt;/<span class="name">edit</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">match</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">fontconfig</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>保存到<code>~/.config/fontconfig/fonts.conf</code>，这样就能显示汉字了。</p>
+<h2 id="MIDI"><a href="#MIDI" class="headerlink" title="MIDI"></a>MIDI</h2><p>如果需要 MIDI，可以这样配置：</p>
+<ol>
+<li>安装 FluidSynth</li>
+<li>安装一个 SoundFont，例如 Windows 系统的 SoundFont 文件叫做 2gmgsmt.sf2。</li>
+<li>按<a href="https://wiki.archlinux.org/index.php/FluidSynth" target="_blank" rel="external">Archlinux Wiki上面的内容</a>修改<code>/etc/conf.d/fluidsynth</code>，把 SoundFont 文件设置好，并将 FluidSynth 配置成 systemd 服务，启动。</li>
+<li>如果 Wine 程序需要 MIDI，那么还要改一下注册表：<code>HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\MIDIMap</code>（没有就新建一个），新建一个字符串值，名称为<code>CurrentInstrument</code>，并设为“#1”。</li>
+</ol>
+
+      
+    </div>
+
+    
+      
+
+    
+
+    <footer class="article-footer">
+      <a data-url="https://vjudge1.github.io/2016/11/08/move-to-archlinux/" data-id="cj2m7q6iv002i9ccmh58drrmu" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
+      
+        <a href="https://vjudge1.github.io/2016/11/08/move-to-archlinux/#disqus_thread" class="article-comment-link">
+          <i class="fa fa-comment"></i> Comments
+        </a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/npm/">npm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wine/">wine</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/東方Project/">東方Project</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/系统维护/">系统维护</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/配置/">配置</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+    
+<ul id="article-nav" class="nav nav-pills nav-justified">
+  
+  <li role="presentation">
+    <a href="/2016/10/08/macports/" id="article-nav-older" class="article-nav-link-wrap">
+      <i class="fa fa-chevron-left pull-left"></i>
+      <span class="article-nav-link-title">MacPorts的安装与使用</span>
+    </a>
+  </li>
+  
+  
+  <li role="presentation">
+    <a href="/2017/05/13/change-to-hexo/" id="article-nav-newer" class="article-nav-link-wrap">
+      <span class="article-nav-link-title">换成 Hexo</span>
+      <i class="fa fa-chevron-right pull-right"></i>
+    </a>
+  </li>
+  
+</ul>
+
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+
+
+        </div>
+        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+          
+  
+  <div class="sidebar-module">
+    <h4>Categories</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/个人心得/">个人心得</a><span class="sidebar-module-list-count">5</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/其他/">其他</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/备忘录/">备忘录</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/折腾记录/">折腾记录</a><span class="sidebar-module-list-count">6</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/教程/">教程</a><span class="sidebar-module-list-count">13</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/经验总结/">经验总结</a><span class="sidebar-module-list-count">7</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Archives</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/05/">五月 2017</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/11/">十一月 2016</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/10/">十月 2016</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/08/">八月 2016</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/04/">四月 2016</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/03/">三月 2016</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/01/">一月 2016</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/12/">十二月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/11/">十一月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/09/">九月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/08/">八月 2015</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/07/">七月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/05/">五月 2015</a><span class="sidebar-module-list-count">5</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/04/">四月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/02/">二月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/12/">十二月 2014</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/04/">四月 2014</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/02/">二月 2014</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2013/01/">一月 2013</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2012/08/">八月 2012</a><span class="sidebar-module-list-count">1</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Recents</h4>
+    <ul class="sidebar-module-list">
+      
+        <li>
+          <a href="/2017/05/13/change-to-hexo/">换成 Hexo</a>
+        </li>
+      
+        <li>
+          <a href="/2016/11/08/move-to-archlinux/">换成Arch Linux系统的一些记录</a>
+        </li>
+      
+        <li>
+          <a href="/2016/10/08/macports/">MacPorts的安装与使用</a>
+        </li>
+      
+        <li>
+          <a href="/2016/10/07/programming-in-wikipedia/">维基百科编程笔记</a>
+        </li>
+      
+        <li>
+          <a href="/2016/10/04/gae/">Google App Engine入门（Python）</a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+  
+  <div class="sidebar-module">
+    <h4>Tags</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/API/">API</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Atom/">Atom</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/C/">C</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/C/">C#</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/GAE/">GAE</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/GUI/">GUI</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Hackintosh/">Hackintosh</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Hexo/">Hexo</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Java/">Java</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/JavaScript/">JavaScript</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Jekyll/">Jekyll</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/LaTeX/">LaTeX</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Linux/">Linux</a><span class="sidebar-module-list-count">9</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Mac/">Mac</a><span class="sidebar-module-list-count">9</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/MacPorts/">MacPorts</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/NTFS/">NTFS</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Python/">Python</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/QQ/">QQ</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Rails/">Rails</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/UEFI/">UEFI</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/VPS/">VPS</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Visual-Studio/">Visual Studio</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Windows/">Windows</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/npm/">npm</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/wine/">wine</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/zsh/">zsh</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/中文/">中文</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/云/">云</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/单片机/">单片机</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/反汇编/">反汇编</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/平板/">平板</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/插件/">插件</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/教务系统/">教务系统</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/東方Project/">東方Project</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/电幕/">电幕</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/系统维护/">系统维护</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/维基百科/">维基百科</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/编程/">编程</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/语文/">语文</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/输入法/">输入法</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/配置/">配置</a><span class="sidebar-module-list-count">1</span></li></ul>
+  </div>
+
+
+
+
+        </div>
+    </div>
+  </div>
+  <footer class="blog-footer">
+  <div class="container">
+    <div id="footer-info" class="inner">
+      &copy; 2017 vjudge1<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+  
+<script>
+  var disqus_shortname = 'vjudge1';
+  
+  var disqus_url = 'https://vjudge1.github.io/2016/11/08/move-to-archlinux/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" integrity="sha384-8gBf6Y4YYq7Jx97PIqmTwLPin4hxIzQw5aDmUg/DDhul9fFpbbLcLh3nTIIDJKhx" crossorigin="anonymous"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+
+
+<script src="/js/script.js"></script>
+
+</body>
+</html>

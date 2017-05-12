@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Install Rails (Mac/Cygwin/Windows) | ⑨rz</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Macbook is better than computers with Windows or Linux inside because of few developing issues. Except Rails… 中国的朋友们如果在安装过程中遇到了“Connection reset”或“Timeout”的错误，那一定是防火的长城干的敢在这里污蔑当，一定是勾结了境外反华组织。因此，解决方法有三">
+<meta name="keywords" content="Mac,Rails">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Install Rails (Mac&#x2F;Cygwin&#x2F;Windows)">
+<meta property="og:url" content="https://vjudge1.github.io/2015/07/26/install-rails/index.html">
+<meta property="og:site_name" content="⑨rz">
+<meta property="og:description" content="Macbook is better than computers with Windows or Linux inside because of few developing issues. Except Rails… 中国的朋友们如果在安装过程中遇到了“Connection reset”或“Timeout”的错误，那一定是防火的长城干的敢在这里污蔑当，一定是勾结了境外反华组织。因此，解决方法有三">
+<meta property="og:updated_time" content="2017-05-12T19:09:19.560Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Install Rails (Mac&#x2F;Cygwin&#x2F;Windows)">
+<meta name="twitter:description" content="Macbook is better than computers with Windows or Linux inside because of few developing issues. Except Rails… 中国的朋友们如果在安装过程中遇到了“Connection reset”或“Timeout”的错误，那一定是防火的长城干的敢在这里污蔑当，一定是勾结了境外反华组织。因此，解决方法有三">
+  
+    <link rel="alternate" href="/atom.xml" title="⑨rz" type="application/atom+xml">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="/css/styles.css">
+  
+
+</head>
+
+<body>
+  <nav class="navbar navbar-inverse">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="main-menu-navbar">
+      <ul class="nav navbar-nav">
+        
+          <li><a class=""
+                 href="/index.html">Home</a></li>
+        
+          <li><a class=""
+                 href="/archives/">Archives</a></li>
+        
+      </ul>
+
+      <!--
+      <ul class="nav navbar-nav navbar-right">
+        
+          <li><a href="/atom.xml" title="RSS Feed"><i class="fa fa-rss"></i></a></li>
+        
+      </ul>
+      -->
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+  <div class="container">
+    <div class="blog-header">
+  <h1 class="blog-title">⑨rz</h1>
+  
+</div>
+
+    <div class="row">
+        <div class="col-sm-8 blog-main">
+          <article id="post-install-rails" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <header class="article-header">
+    
+  
+    <h1 class="article-title" itemprop="name">
+      Install Rails (Mac/Cygwin/Windows)
+    </h1>
+  
+
+
+  </header>
+
+  <div class="article-meta">
+    <div class="article-datetime">
+  <a href="/2015/07/26/install-rails/" class="article-date"><time datetime="2015-07-25T16:00:00.000Z" itemprop="datePublished">2015-07-26</time></a>
+</div>
+
+    
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/折腾记录/">折腾记录</a>
+  </div>
+
+
+  </div>
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Macbook is better than computers with Windows or Linux inside because of few developing issues. Except Rails…</p>
+<div class="bs-callout bs-callout-info"><h4 id="中国的朋友们"><a href="#中国的朋友们" class="headerlink" title="中国的朋友们"></a>中国的朋友们</h4><p>如果在安装过程中遇到了“Connection reset”或“Timeout”的错误，那一定是防火的长城干的<span class="blackout">敢在这里污蔑当，一定是勾结了境外反华组织</span>。因此，解决方法有三种：</p>
+<ol>
+<li>用你的科学上网工具（设置 HTTP_PROXY 和 HTTPS_PROXY）</li>
+<li><a href="https://ruby.taobao.org" target="_blank" rel="external">淘宝</a>——淘宝除了可以购物，还可以……</li>
+<li><p>改 /etc/hosts：</p>
+<p>   23.235.40.249 rubygems.global.ssl.fastly.net<br>   54.186.104.15 production.cf.rubygems.org<br>   54.186.104.15 production.s3.rubygems.org</p>
+</li>
+</ol>
+<p>这三种方法都可以——怎么方便怎么来就行。</p>
+</div>
+<h1 id="Install-Rails-on-my-Mac"><a href="#Install-Rails-on-my-Mac" class="headerlink" title="Install Rails on my Mac"></a>Install Rails on my Mac</h1><div class="bs-callout bs-callout-danger"><h4 id="A-better-solution-for-Ubuntu-Mac"><a href="#A-better-solution-for-Ubuntu-Mac" class="headerlink" title="A better solution for Ubuntu/Mac"></a>A better solution for Ubuntu/Mac</h4><p>Because it’s hard to install Rails, there are some special websites that introduce how to setup it. For example, <a href="https://gorails.com" target="_blank" rel="external">GoRails</a> and <a href="https://gorails.com/setup/osx/10.10-yosemite" target="_blank" rel="external">guides</a> in it.</p>
+</div>
+<p>What is installed on my Mac:</p>
+<ul>
+<li>MacPorts</li>
+<li>Xcode</li>
+<li>Ruby 2.2.3: installed by MacPorts, and is the default Ruby interpreter.</li>
+</ul>
+<p>First, gcc is required. If you don’t have gcc, just type</p>
+<pre><code>xcode-select --install
+</code></pre><p>Then it’s ready to type</p>
+<pre><code>sudo gem install rails
+</code></pre><p>BUT…</p>
+<h2 id="nokogiri"><a href="#nokogiri" class="headerlink" title="nokogiri"></a>nokogiri</h2><p>nokogiri is the only troublemaker during the whole installation.</p>
+<h3 id="1-FAILED"><a href="#1-FAILED" class="headerlink" title="1 (FAILED)"></a>1 (FAILED)</h3><p>First I installed nokogiri directly so I failed.</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">Building native extensions.  This could take a while...</div><div class="line">ERROR:  Error installing nokogiri:</div><div class="line">ERROR: Failed to build gem native extension.</div><div class="line"></div><div class="line">......</div><div class="line"></div><div class="line">************************************************************************</div><div class="line">IMPORTANT NOTICE:</div><div class="line"></div><div class="line">Building Nokogiri with a packaged version of libxml2-2.9.2</div><div class="line">with the following patches applied:</div><div class="line">    - 0001-Revert-Missing-initialization-for-the-catalog-module.patch</div><div class="line">    - 0002-Fix-missing-entities-after-CVE-2014-3660-fix.patch</div><div class="line"></div><div class="line">Team Nokogiri will keep on doing their best to provide security</div><div class="line">updates in a timely manner, but if this is a concern for you and want</div><div class="line">to use the system library instead; abort this installation process and</div><div class="line">reinstall nokogiri as follows:</div><div class="line"></div><div class="line">    gem install nokogiri -- --use-system-libraries</div><div class="line">        [--with-xml2-config=/path/to/xml2-config]</div><div class="line">        [--with-xslt-config=/path/to/xslt-config]</div><div class="line"></div><div class="line">If you are using Bundler, tell it to use the option:</div><div class="line"></div><div class="line">    bundle config build.nokogiri --use-system-libraries</div><div class="line">    bundle install</div><div class="line"></div><div class="line">Note, however, that nokogiri is not fully compatible with arbitrary</div><div class="line">versions of libxml2 provided by OS/package vendors.</div><div class="line">************************************************************************</div><div class="line">Extracting libxml2-2.9.2.tar.gz into tmp/x86_64-apple-darwin14/ports/libxml2/2.9.2... OK</div><div class="line">Running patch with /Library/Ruby/Gems/2.0.0/gems/nokogiri-1.6.6.2/ports/patches/libxml2/0001-Revert-Missing-initialization-for-the-catalog-module.patch...</div><div class="line">Running &apos;patch&apos; for libxml2 2.9.2... OK</div><div class="line">Running patch with /Library/Ruby/Gems/2.0.0/gems/nokogiri-1.6.6.2/ports/patches/libxml2/0002-Fix-missing-entities-after-CVE-2014-3660-fix.patch...</div><div class="line">Running &apos;patch&apos; for libxml2 2.9.2... OK</div><div class="line">Running &apos;configure&apos; for libxml2 2.9.2... OK</div><div class="line">Running &apos;compile&apos; for libxml2 2.9.2... ERROR, review &apos;/Library/Ruby/Gems/2.0.0/gems/nokogiri-1.6.6.2/ext/nokogiri/tmp/x86_64-apple-darwin14/ports/libxml2/2.9.2/compile.log&apos; to see what happened.</div><div class="line">*** extconf.rb failed ***</div><div class="line">Could not create Makefile due to some reason, probably lack of necessary</div><div class="line">libraries and/or headers.  Check the mkmf.log file for more details.  You may</div><div class="line">need configuration options.</div><div class="line"></div><div class="line">......</div><div class="line"></div><div class="line">Gem files will remain installed in /Library/Ruby/Gems/2.0.0/gems/nokogiri-1.6.6.2 for inspection.</div><div class="line">Results logged to /Library/Ruby/Gems/2.0.0/extensions/universal-darwin-14/2.0.0/nokogiri-1.6.6.2/gem_make.out</div></pre></td></tr></table></figure>
+<p>So I tried to do as what the message said. However, failed again.</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">Building native extensions with: &apos;--use-system-libraries&apos;</div><div class="line">This could take a while...</div><div class="line">Building nokogiri using system libraries.</div><div class="line">ERROR:  Error installing nokogiri:</div><div class="line">    ERROR: Failed to build gem native extension.</div><div class="line"></div><div class="line">    /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/bin/ruby extconf.rb --use-system-libraries --with-xml2-include=/Users/dwt/Library/Homebrew/opt/libxml2/include/libxml2 --with-xml2-lib=/Users/dwt/Library/Homebrew/opt/libxml2/lib --with-xslt-dir=/Users/dwt/Library/Homebrew/opt/libxslt --with-iconv-include=/Users/dwt/Library/Homebrew/opt/libiconv/include/</div><div class="line">Building nokogiri using system libraries.</div><div class="line">libxml2 version 2.9.0 and later is not yet supported, but proceeding anyway.</div><div class="line">checking for xmlParseDoc() in libxml/parser.h... no</div><div class="line">checking for xmlParseDoc() in -lxml2... no</div><div class="line">checking for xmlParseDoc() in -llibxml2... no</div><div class="line">-----</div><div class="line">libxml2 is missing.  please visit http://nokogiri.org/tutorials/installing_nokogiri.html for help with installing dependencies.</div><div class="line">-----</div><div class="line">*** extconf.rb failed ***</div><div class="line">Could not create Makefile due to some reason, probably lack of necessary</div><div class="line">libraries and/or headers.  Check the mkmf.log file for more details.  You may</div><div class="line">need configuration options.</div></pre></td></tr></table></figure>
+<h3 id="2-FAILED"><a href="#2-FAILED" class="headerlink" title="2 (FAILED)"></a>2 (FAILED)</h3><p>I have read installation documents:</p>
+<ul>
+<li><a href="http://www.nokogiri.org/tutorials/installing_nokogiri.html#mac_os_x" target="_blank" rel="external">http://www.nokogiri.org/tutorials/installing_nokogiri.html#mac_os_x</a></li>
+<li><a href="https://github.com/sparklemotion/nokogiri/wiki/What-to-do-if-libxml2-is-being-a-jerk" target="_blank" rel="external">https://github.com/sparklemotion/nokogiri/wiki/What-to-do-if-libxml2-is-being-a-jerk</a></li>
+</ul>
+<p>According to the document, I tried</p>
+<pre><code>sudo port install libxml2 libxslt
+sudo gem install nokogiri -- --with-xml2-include=/opt/local/include/libxml2 --with-xml2-lib=/opt/local/lib --with-xslt-dir=/opt/local
+</code></pre><p>I have also tried</p>
+<pre><code>sudo gem install nokogiri -- --with-xml2-include=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk/usr/include/libxml2 --use-system-libraries
+</code></pre><p>Of course, it failed again and again.</p>
+<h3 id="3-╯°Д°-╯︵-┻━┻"><a href="#3-╯°Д°-╯︵-┻━┻" class="headerlink" title="3 (╯°Д°)╯︵ ┻━┻"></a>3 (╯°Д°)╯︵ ┻━┻</h3><p>Finally, I gave up on trying and decided to use the system version instead.</p>
+<pre><code>sudo gem install nokogiri -v &apos;1.6.6.2&apos; -- --use-system-libraries --with-xml2-include=/usr/include/libxml2 --with-xml2-lib=/usr/lib
+</code></pre><p>(UPDATE: The newest version is 1.6.7.)</p>
+<p>It’s really Pyrrhic victory.</p>
+<h1 id="Install-nokogiri-in-Windows"><a href="#Install-nokogiri-in-Windows" class="headerlink" title="Install nokogiri in Windows"></a>Install nokogiri in Windows</h1><div class="bs-callout bs-callout-warning"><h4 id="WARNING"><a href="#WARNING" class="headerlink" title="WARNING"></a>WARNING</h4><p>Do not use Rails in Windows unless you like the feel of SLOOOOOOOW.</p>
+</div>
+<p>Because it’s hard to compile in Windows. Nokogiri team has already worked for it. Just use</p>
+<pre><code>gem install nokogiri
+</code></pre><p>and everything will be ok.</p>
+<p>If you intend to do everything from scratch:</p>
+<ol>
+<li>Install Ruby and DevKit</li>
+<li>Download libxml2, libxslt (这俩需要翻墙), iconv and zlib. Unzip them, set PATH variable to gcc, and lots of <code>./configure &amp;&amp; make</code>.<ul>
+<li>libxslt needs libxml2, so you need to give correct parameters before running <code>configure</code>. For example, <code>./configure --with-libxml-src=/c/opt/include/libxml2-2.9.2</code>.</li>
+</ul>
+</li>
+<li><p>The final gem command should look like –</p>
+<pre><code>gem install nokogiri --platform=ruby -- --use-system-libraries --with-xml2-include=C:\opt\include\libxml2-2.9.2\include --with-xml2-lib=C:\opt\include\libxml2-2.9.2\.libs --with-xslt-include=C:\opt\include\libxslt-1.1.28 --with-xslt-lib=c:\opt\include\libxslt-1.1.28\libxslt\.libs --with-exslt-include=c:\opt\include\libxslt-1.1.28 --with-exslt-lib=c:\opt\include\libxslt-1.1.28\libexslt\.libs --with-zlib-lib=C:\opt\include\zlib-1.2.8 --with-zlib-include=C:\opt\include\zlib-1.2.8
+</code></pre></li>
+<li>Enter irb, then type <code>require &#39;nokogiri&#39;</code>. If it returned true, CONGRATULATIONS! <span class="blackout">If error messages show up…(╯°Д°)╯︵ ┻━┻</span></li>
+</ol>
+<h1 id="Install-nokogiri-under-Cygwin"><a href="#Install-nokogiri-under-Cygwin" class="headerlink" title="Install nokogiri under Cygwin"></a>Install nokogiri under Cygwin</h1>{% callout warning %}
+#### WARNING
+
+Do not use Rails in Cygwin unless you like the feel of SLOOOOOOOOOOOOOOOOOOOW.
+{% endcallout %}
+<p>Install <code>ruby</code>, <code>gcc</code>, <code>binutils</code> and <code>make</code>.</p>
+<p>Then install <code>libxml2</code>, <code>libxml2-devel</code>, <code>libxslt</code>, <code>libxslt-devel</code>, and type:</p>
+<pre><code>gem install nokogiri -- --use-system-libraries --with-xml2-include=/usr/include/libxml2 --with-xml2-lib=/usr/lib --with-xslt-dir=/usr/include/libxslt
+</code></pre><h1 id="Vagrant"><a href="#Vagrant" class="headerlink" title="Vagrant"></a>Vagrant</h1><p>For Windows users, you can try <a href="https://www.vagrantup.com/" target="_blank" rel="external">Vagrant</a>. It can be used to create an independent developing environment via virtual machines. And RubyMine supports it.</p>
+<p>With Vagrant, SLOOOOOOOW can reduce to SLOW…It’s much better than SLOOOOOOOW and SLOOOOOOOOOOOOOOOOOOOW.</p>
+<p><span class="blackout">Linux大法好，退Windows保平安</span></p>
+
+      
+    </div>
+
+    
+      
+
+    
+
+    <footer class="article-footer">
+      <a data-url="https://vjudge1.github.io/2015/07/26/install-rails/" data-id="cj2m7q6h5000y9ccmtqhb3qwy" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
+      
+        <a href="https://vjudge1.github.io/2015/07/26/install-rails/#disqus_thread" class="article-comment-link">
+          <i class="fa fa-comment"></i> Comments
+        </a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mac/">Mac</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Rails/">Rails</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+    
+<ul id="article-nav" class="nav nav-pills nav-justified">
+  
+  <li role="presentation">
+    <a href="/2015/05/29/let-jiao-wu-xi-tong-support-linux/" id="article-nav-older" class="article-nav-link-wrap">
+      <i class="fa fa-chevron-left pull-left"></i>
+      <span class="article-nav-link-title">让“强智”教务系统支持 Linux/OS X</span>
+    </a>
+  </li>
+  
+  
+  <li role="presentation">
+    <a href="/2015/08/16/cloud/" id="article-nav-newer" class="article-nav-link-wrap">
+      <span class="article-nav-link-title">常见的云服务器</span>
+      <i class="fa fa-chevron-right pull-right"></i>
+    </a>
+  </li>
+  
+</ul>
+
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+
+
+        </div>
+        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+          
+  
+  <div class="sidebar-module">
+    <h4>Categories</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/个人心得/">个人心得</a><span class="sidebar-module-list-count">5</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/其他/">其他</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/备忘录/">备忘录</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/折腾记录/">折腾记录</a><span class="sidebar-module-list-count">6</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/教程/">教程</a><span class="sidebar-module-list-count">13</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/经验总结/">经验总结</a><span class="sidebar-module-list-count">7</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Archives</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/05/">五月 2017</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/11/">十一月 2016</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/10/">十月 2016</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/08/">八月 2016</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/04/">四月 2016</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/03/">三月 2016</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/01/">一月 2016</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/12/">十二月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/11/">十一月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/09/">九月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/08/">八月 2015</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/07/">七月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/05/">五月 2015</a><span class="sidebar-module-list-count">5</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/04/">四月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/02/">二月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/12/">十二月 2014</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/04/">四月 2014</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/02/">二月 2014</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2013/01/">一月 2013</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2012/08/">八月 2012</a><span class="sidebar-module-list-count">1</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Recents</h4>
+    <ul class="sidebar-module-list">
+      
+        <li>
+          <a href="/2017/05/13/change-to-hexo/">换成 Hexo</a>
+        </li>
+      
+        <li>
+          <a href="/2016/11/08/move-to-archlinux/">换成Arch Linux系统的一些记录</a>
+        </li>
+      
+        <li>
+          <a href="/2016/10/08/macports/">MacPorts的安装与使用</a>
+        </li>
+      
+        <li>
+          <a href="/2016/10/07/programming-in-wikipedia/">维基百科编程笔记</a>
+        </li>
+      
+        <li>
+          <a href="/2016/10/04/gae/">Google App Engine入门（Python）</a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+  
+  <div class="sidebar-module">
+    <h4>Tags</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/API/">API</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Atom/">Atom</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/C/">C</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/C/">C#</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/GAE/">GAE</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/GUI/">GUI</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Hackintosh/">Hackintosh</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Hexo/">Hexo</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Java/">Java</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/JavaScript/">JavaScript</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Jekyll/">Jekyll</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/LaTeX/">LaTeX</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Linux/">Linux</a><span class="sidebar-module-list-count">9</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Mac/">Mac</a><span class="sidebar-module-list-count">9</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/MacPorts/">MacPorts</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/NTFS/">NTFS</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Python/">Python</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/QQ/">QQ</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Rails/">Rails</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/UEFI/">UEFI</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/VPS/">VPS</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Visual-Studio/">Visual Studio</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Windows/">Windows</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/npm/">npm</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/wine/">wine</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/zsh/">zsh</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/中文/">中文</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/云/">云</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/单片机/">单片机</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/反汇编/">反汇编</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/平板/">平板</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/插件/">插件</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/教务系统/">教务系统</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/東方Project/">東方Project</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/电幕/">电幕</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/系统维护/">系统维护</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/维基百科/">维基百科</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/编程/">编程</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/语文/">语文</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/输入法/">输入法</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/配置/">配置</a><span class="sidebar-module-list-count">1</span></li></ul>
+  </div>
+
+
+
+
+        </div>
+    </div>
+  </div>
+  <footer class="blog-footer">
+  <div class="container">
+    <div id="footer-info" class="inner">
+      &copy; 2017 vjudge1<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+  
+<script>
+  var disqus_shortname = 'vjudge1';
+  
+  var disqus_url = 'https://vjudge1.github.io/2015/07/26/install-rails/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" integrity="sha384-8gBf6Y4YYq7Jx97PIqmTwLPin4hxIzQw5aDmUg/DDhul9fFpbbLcLh3nTIIDJKhx" crossorigin="anonymous"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+
+
+<script src="/js/script.js"></script>
+
+</body>
+</html>

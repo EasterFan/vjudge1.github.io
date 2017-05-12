@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Setup Jekyll in Ubuntu/Windows | ⑨rz</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="I found that using GitHub Pages and Jekyll to write blogs is really comfortable. I used to blog in OS X. The steps of configuration are quite easy:  Git is a bulit-in command in OS X so we don’t need">
+<meta name="keywords" content="Linux,Jekyll">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Setup Jekyll in Ubuntu&#x2F;Windows">
+<meta property="og:url" content="https://vjudge1.github.io/2015/05/22/writing-blogs-in-ubuntu/index.html">
+<meta property="og:site_name" content="⑨rz">
+<meta property="og:description" content="I found that using GitHub Pages and Jekyll to write blogs is really comfortable. I used to blog in OS X. The steps of configuration are quite easy:  Git is a bulit-in command in OS X so we don’t need">
+<meta property="og:updated_time" content="2017-05-12T19:08:43.207Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Setup Jekyll in Ubuntu&#x2F;Windows">
+<meta name="twitter:description" content="I found that using GitHub Pages and Jekyll to write blogs is really comfortable. I used to blog in OS X. The steps of configuration are quite easy:  Git is a bulit-in command in OS X so we don’t need">
+  
+    <link rel="alternate" href="/atom.xml" title="⑨rz" type="application/atom+xml">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="/css/styles.css">
+  
+
+</head>
+
+<body>
+  <nav class="navbar navbar-inverse">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="main-menu-navbar">
+      <ul class="nav navbar-nav">
+        
+          <li><a class=""
+                 href="/index.html">Home</a></li>
+        
+          <li><a class=""
+                 href="/archives/">Archives</a></li>
+        
+      </ul>
+
+      <!--
+      <ul class="nav navbar-nav navbar-right">
+        
+          <li><a href="/atom.xml" title="RSS Feed"><i class="fa fa-rss"></i></a></li>
+        
+      </ul>
+      -->
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+  <div class="container">
+    <div class="blog-header">
+  <h1 class="blog-title">⑨rz</h1>
+  
+</div>
+
+    <div class="row">
+        <div class="col-sm-8 blog-main">
+          <article id="post-writing-blogs-in-ubuntu" class="article article-type-post" itemscope itemprop="blogPost">
+
+  <header class="article-header">
+    
+  
+    <h1 class="article-title" itemprop="name">
+      Setup Jekyll in Ubuntu/Windows
+    </h1>
+  
+
+
+  </header>
+
+  <div class="article-meta">
+    <div class="article-datetime">
+  <a href="/2015/05/22/writing-blogs-in-ubuntu/" class="article-date"><time datetime="2015-05-21T16:00:00.000Z" itemprop="datePublished">2015-05-22</time></a>
+</div>
+
+    
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/折腾记录/">折腾记录</a>
+  </div>
+
+
+  </div>
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>I found that using GitHub Pages and Jekyll to write blogs is really comfortable.</p>
+<p>I used to blog in OS X. The steps of configuration are quite easy:</p>
+<ol>
+<li>Git is a bulit-in command in OS X so we don’t need to install it.</li>
+<li>Download and install <a href="https://mac.github.com" target="_blank" rel="external">GitHub for Mac</a>.</li>
+<li>Install Jekyll: <code>sudo gem install jekyll</code></li>
+<li>Use a favorite editor to write blogs. Use GitHub for Mac to push them to the remote server.</li>
+</ol>
+<p>However, it’s a bit tricky to do so in Linux, for example, Ubuntu. My Ubuntu is 14.04.</p>
+<h1 id="Configure-Git"><a href="#Configure-Git" class="headerlink" title="Configure Git"></a>Configure Git</h1><ol>
+<li><p>Install Git:</p>
+<pre><code>sudo apt-get install git
+</code></pre></li>
+<li><p>Configure your name and email:</p>
+<pre><code>git config --global --add user.name &quot;Your Name&quot;
+git config --global --add user.email &quot;Your Email&quot;
+</code></pre></li>
+<li><p>Avoid an error prompt:</p>
+<pre><code>git config --global push.default simple
+</code></pre></li>
+<li><p>Add a SSH key:</p>
+<pre><code>ssh-keygen -t rsa -C &quot;GitHub&quot;
+cat ~/.ssh/id_rsa
+</code></pre><p> Login to GitHub, and copy the output to “Settings” -&gt; “SSH keys” -&gt; “Add key”.</p>
+<p> Now you can test it by:</p>
+<pre><code>ssh -T git@github.com
+</code></pre><p> If OK, it will output <code>Hi xxxxx! You&#39;ve successfully authenticated, but GitHub does not provide shell access.</code>.</p>
+<p> If you see <code>Agent admitted failure to sign using the key</code>, please run:</p>
+<pre><code>ssh-add ~/.ssh/id_rsa
+</code></pre></li>
+<li><p>Now you can use <code>git clone</code>, <code>git pull</code>, <code>git push</code> or so on to code.</p>
+</li>
+</ol>
+<h1 id="Setup-Jekyll-in-Ubuntu"><a href="#Setup-Jekyll-in-Ubuntu" class="headerlink" title="Setup Jekyll in Ubuntu"></a>Setup Jekyll in Ubuntu</h1><ol>
+<li><p>Install necessary libraries or Jekyll will fail to work:</p>
+<pre><code>sudo apt-get install ruby-dev nodejs
+</code></pre></li>
+<li><p>Install Jekyll &amp; kramdown (Markdown support):</p>
+<pre><code>sudo gem install jekyll kramdown
+</code></pre></li>
+<li><p>Jekyll will work. Use the following commands to test:</p>
+<pre><code>jekyll new test
+cd test
+jekyll serve
+</code></pre><p> Browse <code>http://localhost:4000</code> to see the new blog.</p>
+</li>
+</ol>
+<h1 id="Setup-Jekyll-in-Windows-Not-recommended"><a href="#Setup-Jekyll-in-Windows-Not-recommended" class="headerlink" title="Setup Jekyll in Windows (Not recommended)"></a>Setup Jekyll in Windows (Not recommended)</h1><p>Because nokogiri 1.6.7 is released, there is no problems about nokogiri.</p>
+<ol>
+<li>Install Ruby and DevKit.</li>
+<li><p>Install Jekyll &amp; kramdown (Markdown support):</p>
+<pre><code>gem install jekyll kramdown
+</code></pre></li>
+<li><p>Jekyll will work. Use the following commands to test:</p>
+<pre><code>chcp 65001
+jekyll new test
+cd test
+jekyll serve
+</code></pre></li>
+</ol>
+<p>NOTES:</p>
+<ol>
+<li>Don’t forget <code>chcp 65001</code> (change the encoding of console to UTF-8) before running jekyll. You can add it in the front of <code>jekyll.cmd</code>.</li>
+<li>File Encoding: UTF-8 without BOM. So Do NOT use Notepad.</li>
+<li>Line Endings: either CRLF or LF is ok.</li>
+</ol>
+<h1 id="Visual-Studio-Code"><a href="#Visual-Studio-Code" class="headerlink" title="Visual Studio Code"></a>Visual Studio Code</h1><p><strong>(UPDATE: Atom Editor is much better because of its Jekyll plugin.)</strong></p>
+<p>I recognize that I’m a little lazy and will feel bored after typing too many commands.</p>
+<p>So, let’s get an easy-to-use editor – <a href="https://code.visualstudio.com" target="_blank" rel="external">Visual Studio Code</a>! In fact, I use Code instead of Vim in OS X while writing and customizing blogs.</p>
+<p>After downloading, type</p>
+<pre><code>sudo unzip VSCode-linux-x64.zip -d /opt/Code
+</code></pre><p>Code will be extracted into <code>/opt/Code</code>. It’s not convenient. So,</p>
+<pre><code>sudo ln -s /opt/Code/Code /usr/local/bin/code
+</code></pre><p>To make it easier in graphical environment, type (I use <code>vim</code> rather than gedit):</p>
+<pre><code>gedit ~/.local/share/applications/code.desktop
+</code></pre><p>Add the following codes and save:</p>
+<figure class="highlight ini"><table><tr><td class="code"><pre><div class="line"><span class="section">[Desktop Entry]</span></div><div class="line"><span class="attr">Comment</span>=</div><div class="line"><span class="attr">Terminal</span>=<span class="literal">false</span></div><div class="line"><span class="attr">Name</span>=Visual Studio Code</div><div class="line"><span class="attr">Exec</span>=/opt/Code/Code %F</div><div class="line"><span class="attr">Type</span>=Application</div><div class="line"><span class="attr">Categories</span>=Development;IDE;</div><div class="line"><span class="attr">Icon</span>=/opt/Code/resources/app/vso.png</div></pre></td></tr></table></figure>
+<p>OK. Enjoy coding! And all things can be done via Visual Studio Code.</p>
+<h1 id="Notes"><a href="#Notes" class="headerlink" title="Notes"></a>Notes</h1><h2 id="Clone-URL"><a href="#Clone-URL" class="headerlink" title="Clone URL"></a>Clone URL</h2><p>GitHub provides 3 kinds of URLs for cloning. It’s recommended to use <code>SSH clone URL</code> because we configured SSH just now.</p>
+<p>I tried to clone with HTTPS URL and find a trouble when pushing. So I clone again with SSH URL and succeed.</p>
+<h2 id="中文输入的问题"><a href="#中文输入的问题" class="headerlink" title="中文输入的问题"></a>中文输入的问题</h2><p>默认情况下，Visual Studio Code 不能正常显示汉字——中国字是方块字，结果中国字真变成“方块字”了。</p>
+<p>可以这样解决问题：点击“File”、“Preferences”、“User Settings”，然后在右侧窗口加入一个属性：</p>
+<pre><code>editor.fontFamily: &quot;Droid Sans Mono, Droid Sans Fallback&quot;
+</code></pre><p>“Droid Sans Mono”可能不太好看，如果你电脑有字体的话，可以考虑<code>Consolas</code>或<code>Mocano</code>。</p>
+<p>此外还有一个问题，输入中文标点的时候可能需要按一下<code>空格</code>才能出现。至少用“搜狗拼音输入法”的时候是这样的。</p>
+<h2 id="Gist-被敏感词"><a href="#Gist-被敏感词" class="headerlink" title="Gist 被敏感词"></a>Gist 被<em>敏感词</em></h2><p>GitHub 曾被天朝<em>敏感词</em>给<em>敏感词</em>了。多亏了<a href="http://weibo.com/kaifulee?stat_date=201301&amp;page=4" target="_blank" rel="external">李开复</a>大哥，自从他抗议之后，GitHub 再也没有被<em>敏感词</em>。</p>
+<p>不过唯独那个 GitHub Gist 还一直被<em>敏感词</em>。所以说，我们应该对我们的<code>/etc/hosts</code>做点小改动:</p>
+<pre><code>192.30.252.143    gist.github.com
+23.235.43.133    gist-assets.github.com
+</code></pre><h1 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h1><p>我改用 Hexo 了。</p>
+
+      
+    </div>
+
+    
+      
+
+    
+
+    <footer class="article-footer">
+      <a data-url="https://vjudge1.github.io/2015/05/22/writing-blogs-in-ubuntu/" data-id="cj2m7q6gq000m9ccmmtq0f6xe" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
+      
+        <a href="https://vjudge1.github.io/2015/05/22/writing-blogs-in-ubuntu/#disqus_thread" class="article-comment-link">
+          <i class="fa fa-comment"></i> Comments
+        </a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jekyll/">Jekyll</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+    
+<ul id="article-nav" class="nav nav-pills nav-justified">
+  
+  <li role="presentation">
+    <a href="/2015/05/21/windows-in-uefi-mode/" id="article-nav-older" class="article-nav-link-wrap">
+      <i class="fa fa-chevron-left pull-left"></i>
+      <span class="article-nav-link-title">Windows in UEFI Mode</span>
+    </a>
+  </li>
+  
+  
+  <li role="presentation">
+    <a href="/2015/05/29/enable-ntfs-writing-support-in-os-x/" id="article-nav-newer" class="article-nav-link-wrap">
+      <span class="article-nav-link-title">Enable NTFS writing support in OS X</span>
+      <i class="fa fa-chevron-right pull-right"></i>
+    </a>
+  </li>
+  
+</ul>
+
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+
+
+        </div>
+        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+          
+  
+  <div class="sidebar-module">
+    <h4>Categories</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/个人心得/">个人心得</a><span class="sidebar-module-list-count">5</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/其他/">其他</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/备忘录/">备忘录</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/折腾记录/">折腾记录</a><span class="sidebar-module-list-count">6</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/教程/">教程</a><span class="sidebar-module-list-count">13</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/经验总结/">经验总结</a><span class="sidebar-module-list-count">7</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Archives</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/05/">五月 2017</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/11/">十一月 2016</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/10/">十月 2016</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/08/">八月 2016</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/04/">四月 2016</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/03/">三月 2016</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/01/">一月 2016</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/12/">十二月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/11/">十一月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/09/">九月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/08/">八月 2015</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/07/">七月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/05/">五月 2015</a><span class="sidebar-module-list-count">5</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/04/">四月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/02/">二月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/12/">十二月 2014</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/04/">四月 2014</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/02/">二月 2014</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2013/01/">一月 2013</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2012/08/">八月 2012</a><span class="sidebar-module-list-count">1</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4>Recents</h4>
+    <ul class="sidebar-module-list">
+      
+        <li>
+          <a href="/2017/05/13/change-to-hexo/">换成 Hexo</a>
+        </li>
+      
+        <li>
+          <a href="/2016/11/08/move-to-archlinux/">换成Arch Linux系统的一些记录</a>
+        </li>
+      
+        <li>
+          <a href="/2016/10/08/macports/">MacPorts的安装与使用</a>
+        </li>
+      
+        <li>
+          <a href="/2016/10/07/programming-in-wikipedia/">维基百科编程笔记</a>
+        </li>
+      
+        <li>
+          <a href="/2016/10/04/gae/">Google App Engine入门（Python）</a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+  
+  <div class="sidebar-module">
+    <h4>Tags</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/API/">API</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Atom/">Atom</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/C/">C</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/C/">C#</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/GAE/">GAE</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/GUI/">GUI</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Hackintosh/">Hackintosh</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Hexo/">Hexo</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Java/">Java</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/JavaScript/">JavaScript</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Jekyll/">Jekyll</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/LaTeX/">LaTeX</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Linux/">Linux</a><span class="sidebar-module-list-count">9</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Mac/">Mac</a><span class="sidebar-module-list-count">9</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/MacPorts/">MacPorts</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/NTFS/">NTFS</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Python/">Python</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/QQ/">QQ</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Rails/">Rails</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/UEFI/">UEFI</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/VPS/">VPS</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Visual-Studio/">Visual Studio</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Windows/">Windows</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/npm/">npm</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/wine/">wine</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/zsh/">zsh</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/中文/">中文</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/云/">云</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/单片机/">单片机</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/反汇编/">反汇编</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/平板/">平板</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/插件/">插件</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/教务系统/">教务系统</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/東方Project/">東方Project</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/电幕/">电幕</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/系统维护/">系统维护</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/维基百科/">维基百科</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/编程/">编程</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/语文/">语文</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/输入法/">输入法</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/配置/">配置</a><span class="sidebar-module-list-count">1</span></li></ul>
+  </div>
+
+
+
+
+        </div>
+    </div>
+  </div>
+  <footer class="blog-footer">
+  <div class="container">
+    <div id="footer-info" class="inner">
+      &copy; 2017 vjudge1<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+  
+<script>
+  var disqus_shortname = 'vjudge1';
+  
+  var disqus_url = 'https://vjudge1.github.io/2015/05/22/writing-blogs-in-ubuntu/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" integrity="sha384-8gBf6Y4YYq7Jx97PIqmTwLPin4hxIzQw5aDmUg/DDhul9fFpbbLcLh3nTIIDJKhx" crossorigin="anonymous"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+
+
+<script src="/js/script.js"></script>
+
+</body>
+</html>
