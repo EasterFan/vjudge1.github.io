@@ -79,6 +79,6 @@ disqus_shortname: vjudge1
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://github.com/vjudge1/vjudge1.github.io
+  repo: git@github.com:vjudge1/vjudge1.github.io.git
   branch: master
 
