@@ -47,9 +47,10 @@
     <link href="https://vjudge1.github.io/2016/11/08/move-to-archlinux/"/>
     <id>https://vjudge1.github.io/2016/11/08/move-to-archlinux/</id>
     <published>2016-11-07T16:00:00.000Z</published>
-    <updated>2017-05-12T19:41:17.064Z</updated>
+    <updated>2017-05-15T18:51:00.270Z</updated>
     
     <content type="html"><![CDATA[<p>又写很水的内容了——突然想把系统换成Arch Linux（64位，GNOME 3桌面），所以记录一下一些配置的要点。当然，具体的安装过程就不写了，网上教程很多，搜一下就能找到。</p>
+<a id="more"></a>
 <h1 id="基本"><a href="#基本" class="headerlink" title="基本"></a>基本</h1><h2 id="代理"><a href="#代理" class="headerlink" title="代理"></a>代理</h2><p>稍有常识的人都能看出，如果我们的电脑不挂代理，那些特别的软件难道还能设置得了嘛？</p>
 <p>我推荐使用<a href="https://github.com/renzhn/MEOW" target="_blank" rel="external">MEOW</a>，它可以把各种常见的代理转化为HTTP代理，而且是白名单制（只有白名单的网站不走代理），非常方便。</p>
 <p>想自动启动的话，建立一个文件<code>~/.config/autostart/meow.desktop</code>，在其中输入</p>
@@ -59,7 +60,7 @@
 <figure class="highlight bash"><table><tr><td class="code"><pre><div class="line"><span class="built_in">export</span> HTTP_PROXY=http://127.0.0.1:7777</div><div class="line"><span class="built_in">export</span> HTTPS_PROXY=http://127.0.0.1:7777</div></pre></td></tr></table></figure>
 <p>当然，跑pacman和滚Arch的时候没必要走代理，所以可以把镜像站的网址放到白名单里。</p>
 <h3 id="npm"><a href="#npm" class="headerlink" title="npm"></a>npm</h3><p>npm不用代理，直接换<a href="https://npm.taobao.org/" target="_blank" rel="external">淘宝镜像</a>：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">npm config set registry https://registry.npm.taobao.org</div><div class="line">npm config set disturl https://npm.taobao.org/dist</div><div class="line"></div><div class="line">npm set registry https://registry.npm.taobao.org</div><div class="line">npm set disturl https://npm.taobao.org/dist</div><div class="line">npm set chromedriver_cdnurl http://cdn.npm.taobao.org/dist/chromedriver</div><div class="line">npm set operadriver_cdnurl http://cdn.npm.taobao.org/dist/operadriver</div><div class="line">npm set phantomjs_cdnurl http://cdn.npm.taobao.org/dist/phantomjs</div><div class="line">npm set fse_binary_host_mirror https://npm.taobao.org/mirrors/fsevents</div><div class="line">npm set sass_binary_site http://cdn.npm.taobao.org/dist/node-sass</div><div class="line">npm set electron_mirror http://cdn.npm.taobao.org/dist/electron/</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">npm config set registry https://registry.npm.taobao.org</div><div class="line">npm config set disturl https://npm.taobao.org/dist</div><div class="line"></div><div class="line">npm config set chromedriver_cdnurl http://cdn.npm.taobao.org/dist/chromedriver</div><div class="line">npm config set operadriver_cdnurl http://cdn.npm.taobao.org/dist/operadriver</div><div class="line">npm config set phantomjs_cdnurl http://cdn.npm.taobao.org/dist/phantomjs</div><div class="line">npm config set fse_binary_host_mirror https://npm.taobao.org/mirrors/fsevents</div><div class="line">npm config set sass_binary_site http://cdn.npm.taobao.org/dist/node-sass</div><div class="line">npm config set electron_mirror http://cdn.npm.taobao.org/dist/electron/</div></pre></td></tr></table></figure>
 <h3 id="gem"><a href="#gem" class="headerlink" title="gem"></a>gem</h3><p>换用<a href="https://gems.ruby-china.org" target="_blank" rel="external">Ruby China的镜像</a>：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">gem sources --add https://gems.ruby-china.org/ --remove https://rubygems.org/</div><div class="line">bundle config mirror.https://rubygems.org https://gems.ruby-china.org</div></pre></td></tr></table></figure>
 <h2 id="AUR"><a href="#AUR" class="headerlink" title="AUR"></a>AUR</h2><p>为了能够多装些东西，我安装了yaourt。具体操作网上有，可以用archlinuxcn源。</p>
@@ -136,7 +137,6 @@
     <summary type="html">
     
       &lt;p&gt;又写很水的内容了——突然想把系统换成Arch Linux（64位，GNOME 3桌面），所以记录一下一些配置的要点。当然，具体的安装过程就不写了，网上教程很多，搜一下就能找到。&lt;/p&gt;
-&lt;h1 id=&quot;基本&quot;&gt;&lt;a href=&quot;#基本&quot; class=&quot;headerlink&quot;
     
     </summary>
     
@@ -162,9 +162,10 @@
     <link href="https://vjudge1.github.io/2016/10/08/macports/"/>
     <id>https://vjudge1.github.io/2016/10/08/macports/</id>
     <published>2016-10-07T16:00:00.000Z</published>
-    <updated>2017-05-12T19:41:17.064Z</updated>
+    <updated>2017-05-15T18:38:31.822Z</updated>
     
     <content type="html"><![CDATA[<p>Mac下常用的软件包管理器有MacPorts和Homebrew等。我用的是MacPorts。用上它们之后，就有一种在用Linux的感觉……</p>
+<a id="more"></a>
 <h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>首先需要到App Store安装Xcode。安装完成后，还要安装Command Line Tools。第一次进入Xcode之后应该有提示。如果没有，也可以<code>xcode-select --install</code>。安装完成后可以试一下<code>gcc</code>能不能执行。</p>
 <p>MacPorts的安装很简单，到<a href="https://www.macports.org/install.php" target="_blank" rel="external">官方网站</a>上面下载并安装即可。</p>
 <p>安装完成后，默认情况下，通过MacPorts安装的软件会被塞到<code>/opt/local</code>之中。</p>
@@ -216,7 +217,6 @@ rsync_dir       macports/base/
     <summary type="html">
     
       &lt;p&gt;Mac下常用的软件包管理器有MacPorts和Homebrew等。我用的是MacPorts。用上它们之后，就有一种在用Linux的感觉……&lt;/p&gt;
-&lt;h1 id=&quot;安装&quot;&gt;&lt;a href=&quot;#安装&quot; class=&quot;headerlink&quot; title=&quot;安装&quot;&gt;&lt;/a&gt;安装&lt;
     
     </summary>
     
@@ -234,9 +234,10 @@ rsync_dir       macports/base/
     <link href="https://vjudge1.github.io/2016/10/07/programming-in-wikipedia/"/>
     <id>https://vjudge1.github.io/2016/10/07/programming-in-wikipedia/</id>
     <published>2016-10-06T16:00:00.000Z</published>
-    <updated>2017-05-12T19:41:17.064Z</updated>
+    <updated>2017-05-15T18:38:39.849Z</updated>
     
     <content type="html"><![CDATA[<p>最近维基百科严重上瘾，除了写条目和<a href="https://zh.wikipedia.org/wiki/Wikipedia:%E7%A0%B4%E5%9D%8F" target="_blank" rel="external">搞破坏</a>，还写了一点脚本。像我这种<a href="https://wiki.esu.moe/曹国祥" target="_blank" rel="external">电脑高级中手</a>，有了心得之后，在自己博客上随便写点什么算了，不往百科用户页里面写了。维基百科内有很详细的文档，而且高手非常多，不会的话可以问他们。</p>
+<a id="more"></a>
 <div class="bs-callout bs-callout-info">
                 <h4 id="更新日志"><a href="#更新日志" class="headerlink" title="更新日志"></a>更新日志</h4><p>2016年11月21日：把“机器人”一节补完。</p>
 
@@ -394,7 +395,7 @@ rsync_dir       macports/base/
     
     <summary type="html">
     
-      &lt;p&gt;最近维基百科严重上瘾，除了写条目和&lt;a href=&quot;https://zh.wikipedia.org/wiki/Wikipedia:%E7%A0%B4%E5%9D%8F&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;搞破坏&lt;/a&gt;，还写了一点脚本。像我这种
+      &lt;p&gt;最近维基百科严重上瘾，除了写条目和&lt;a href=&quot;https://zh.wikipedia.org/wiki/Wikipedia:%E7%A0%B4%E5%9D%8F&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;搞破坏&lt;/a&gt;，还写了一点脚本。像我这种&lt;a href=&quot;https://wiki.esu.moe/曹国祥&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;电脑高级中手&lt;/a&gt;，有了心得之后，在自己博客上随便写点什么算了，不往百科用户页里面写了。维基百科内有很详细的文档，而且高手非常多，不会的话可以问他们。&lt;/p&gt;
     
     </summary>
     
@@ -414,10 +415,11 @@ rsync_dir       macports/base/
     <link href="https://vjudge1.github.io/2016/10/04/gae/"/>
     <id>https://vjudge1.github.io/2016/10/04/gae/</id>
     <published>2016-10-03T16:00:00.000Z</published>
-    <updated>2017-05-12T19:41:17.064Z</updated>
+    <updated>2017-05-15T18:39:07.356Z</updated>
     
     <content type="html"><![CDATA[<p>Google App Engine其实是一个非常不错的应用引擎，免费，不用处理审核备案之类的麻烦事，而且文档丰富，感觉上要比新浪SAE或百度BAE好多了。虽说以前用GAE只是为了<a href="https://zh.wikipedia.org/zh/GoAgent" target="_blank" rel="external">GoAgent</a>，而且GAE被墙了，但是它免费啊，而且自己可以自行翻墙啊，因此仍然可以拿它做一些个人专用的或者给老外用的应用。</p>
 <p>GAE的文档很全，不过内容全是英语，对于我这种英语不好的来说简直就是在赎罪。此外GAE也是个巨坑，在探索过程中我也碰了不少灰，所以正好在本文总结一下坑点。</p>
+<a id="more"></a>
 <h1 id="基础配置"><a href="#基础配置" class="headerlink" title="基础配置"></a>基础配置</h1><p>为了免去很多不必要的麻烦，建议用Linux/Mac系统。我就用Mac了。</p>
 <p>首先肯定要注册Google账号了。</p>
 <div class="bs-callout bs-callout-danger">
@@ -520,11 +522,12 @@ git push --all google
     
     <summary type="html">
     
-      &lt;p&gt;Google App Engine其实是一个非常不错的应用引擎，免费，不用处理审核备案之类的麻烦事，而且文档丰富，感觉上要比新浪SAE或百度BAE好多了。虽说以前用GAE只是为了&lt;a href=&quot;https://zh.wikipedia.org/zh/GoAgent&quot; ta
+      &lt;p&gt;Google App Engine其实是一个非常不错的应用引擎，免费，不用处理审核备案之类的麻烦事，而且文档丰富，感觉上要比新浪SAE或百度BAE好多了。虽说以前用GAE只是为了&lt;a href=&quot;https://zh.wikipedia.org/zh/GoAgent&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;GoAgent&lt;/a&gt;，而且GAE被墙了，但是它免费啊，而且自己可以自行翻墙啊，因此仍然可以拿它做一些个人专用的或者给老外用的应用。&lt;/p&gt;
+&lt;p&gt;GAE的文档很全，不过内容全是英语，对于我这种英语不好的来说简直就是在赎罪。此外GAE也是个巨坑，在探索过程中我也碰了不少灰，所以正好在本文总结一下坑点。&lt;/p&gt;
     
     </summary>
     
-      <category term="教程" scheme="https://vjudge1.github.io/categories/%E6%95%99%E7%A8%8B/"/>
+      <category term="折腾记录" scheme="https://vjudge1.github.io/categories/%E6%8A%98%E8%85%BE%E8%AE%B0%E5%BD%95/"/>
     
     
       <category term="GAE" scheme="https://vjudge1.github.io/tags/GAE/"/>
@@ -538,11 +541,12 @@ git push --all google
     <link href="https://vjudge1.github.io/2016/08/20/touhou-cheater-3/"/>
     <id>https://vjudge1.github.io/2016/08/20/touhou-cheater-3/</id>
     <published>2016-08-19T16:00:00.000Z</published>
-    <updated>2017-05-12T19:41:17.064Z</updated>
+    <updated>2017-05-15T18:39:21.362Z</updated>
     
     <content type="html"><![CDATA[<p>東方Project还有若干格斗游戏，主要由黄昏边境开发。作为有官方设定的歪作，当然也应该通通关。</p>
 <p>虽然黄昏的画风不错，可是，这样一个全是萝莉的格斗游戏居然没有格斗游戏应有的功能<span class="blackout">例如乳摇和爆乳</span>（没法和<a href="http://cn.uncyclopedia.wikia.com/wiki/DOA" target="_blank" rel="external">DOA</a>相比），更过分的是，双方根本就是<strong>8比特的马赛克小人</strong>！所以说，给东方的格斗游戏写个作弊器/修改器也是理所应当的了（坏笑）。</p>
 <p>作弊作到什么程度呢？来个最缺德的——自己不死，对方一击毙命。<span class="blackout">没乳摇还玩啥嘛。</span></p>
+<a id="more"></a>
 <div class="bs-callout bs-callout-info">
                 <h4 id="未完待续"><a href="#未完待续" class="headerlink" title="未完待续"></a>未完待续</h4><p>我没能搞出心绮楼和深秘录的作弊方法orz……</p>
 
@@ -601,7 +605,8 @@ git push --all google
     <summary type="html">
     
       &lt;p&gt;東方Project还有若干格斗游戏，主要由黄昏边境开发。作为有官方设定的歪作，当然也应该通通关。&lt;/p&gt;
-&lt;p&gt;虽然黄昏的画风不错，可是，这样一个全是萝莉的格斗游戏居然没有格斗游戏应有的功能&lt;span class=&quot;blackout&quot;&gt;例如乳摇和爆乳&lt;/span&gt;（没法和&lt;
+&lt;p&gt;虽然黄昏的画风不错，可是，这样一个全是萝莉的格斗游戏居然没有格斗游戏应有的功能&lt;span class=&quot;blackout&quot;&gt;例如乳摇和爆乳&lt;/span&gt;（没法和&lt;a href=&quot;http://cn.uncyclopedia.wikia.com/wiki/DOA&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;DOA&lt;/a&gt;相比），更过分的是，双方根本就是&lt;strong&gt;8比特的马赛克小人&lt;/strong&gt;！所以说，给东方的格斗游戏写个作弊器/修改器也是理所应当的了（坏笑）。&lt;/p&gt;
+&lt;p&gt;作弊作到什么程度呢？来个最缺德的——自己不死，对方一击毙命。&lt;span class=&quot;blackout&quot;&gt;没乳摇还玩啥嘛。&lt;/span&gt;&lt;/p&gt;
     
     </summary>
     
@@ -619,9 +624,10 @@ git push --all google
     <link href="https://vjudge1.github.io/2016/08/18/touhou-cheater-2/"/>
     <id>https://vjudge1.github.io/2016/08/18/touhou-cheater-2/</id>
     <published>2016-08-17T16:00:00.000Z</published>
-    <updated>2017-05-12T19:41:17.064Z</updated>
+    <updated>2017-05-15T18:39:27.472Z</updated>
     
     <content type="html"><![CDATA[<p>東方的射击类游戏还没修改完。接着折腾。（没有耐心的话可以直接看结尾附带的链接。）</p>
+<a id="more"></a>
 <h1 id="东方红魔乡"><a href="#东方红魔乡" class="headerlink" title="东方红魔乡"></a>东方红魔乡</h1><p>红魔乡似乎加壳了。虽然对作弊器研究没有影响，但是上一篇文章提到的“参考资料”的作者研究了脱壳的问题，所以我直接贴个地址：<a href="http://tieba.baidu.com/p/3730028296" target="_blank" rel="external">东方红魔乡脱壳</a></p>
 <h1 id="东方妖妖梦-amp-东方永夜抄"><a href="#东方妖妖梦-amp-东方永夜抄" class="headerlink" title="东方妖妖梦 &amp; 东方永夜抄"></a>东方妖妖梦 &amp; 东方永夜抄</h1><p><img src="https://static.mengniang.org/common/2/29/Th135Youmu%26Yuyuko.gif" alt="吃货"></p>
 <p>（版本：妖妖梦1.00b，永夜抄1.00d）</p>
@@ -705,7 +711,6 @@ git push --all google
     <summary type="html">
     
       &lt;p&gt;東方的射击类游戏还没修改完。接着折腾。（没有耐心的话可以直接看结尾附带的链接。）&lt;/p&gt;
-&lt;h1 id=&quot;东方红魔乡&quot;&gt;&lt;a href=&quot;#东方红魔乡&quot; class=&quot;headerlink&quot; title=&quot;东方红魔乡&quot;&gt;&lt;/a&gt;东方红魔乡&lt;/h1&gt;&lt;p&gt;红魔乡似乎加壳了。虽
     
     </summary>
     
@@ -723,10 +728,11 @@ git push --all google
     <link href="https://vjudge1.github.io/2016/08/12/touhou-cheater/"/>
     <id>https://vjudge1.github.io/2016/08/12/touhou-cheater/</id>
     <published>2016-08-11T16:00:00.000Z</published>
-    <updated>2017-05-12T19:41:17.060Z</updated>
+    <updated>2017-05-15T18:39:31.159Z</updated>
     
     <content type="html"><![CDATA[<p>很久没写程序了，甚至很久没和计算机代码打交道了。为了证明自己没被查水表，我就随便写点什么吧。</p>
 <p>最近发现了<a href="https://zh.wikipedia.org/wiki/%E6%9D%B1%E6%96%B9Project" target="_blank" rel="external">東方Project</a>，不幸的是，由于天生手残，就连打Easy都有些吃力（除了永夜抄和辉针城）。作为一个猥琐大叔，就这样被萝莉们欺负，能爽吗？所以，为了把她们统统<a href="http://cn.uncyclopedia.wikia.com/wiki/%E6%8E%A8%E5%80%92" target="_blank" rel="external">推倒</a>，我要写东方的作弊器（修改器）了！</p>
+<a id="more"></a>
 <h1 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h1><p>如果想直接作弊的话，只要搜一下东方的修改器，或者装个金山游侠、Cheat Engine或Game Master，然后改数据就可以了。如果自己写修改器，其实也不难，因为东方正作，除了妖妖梦和永夜抄，那些参数的地址都是固定的，只要记住地址，把数据写进去就OK了。妖妖梦和永夜抄比较特殊，<a href="/2016/08/18/touhou-cheater-2/">下一篇文章</a>再单独分析（其实也没什么太特殊的东西）。</p>
 <p>修改器这种东西，用VB6写会比较简单。虽然VB6早就过时了，但是不得不说它是最简单实用的解决方案，没有之一。修改器的代码很多，网上随便找一个就能改造成XXX专用修改器了。</p>
 <h2 id="修改内存数据"><a href="#修改内存数据" class="headerlink" title="修改内存数据"></a>修改内存数据</h2><p>修改内存数据的话，需要使用Windows API。核心函数就是WriteProcessMemory。</p>
@@ -888,7 +894,7 @@ git push --all google
     <summary type="html">
     
       &lt;p&gt;很久没写程序了，甚至很久没和计算机代码打交道了。为了证明自己没被查水表，我就随便写点什么吧。&lt;/p&gt;
-&lt;p&gt;最近发现了&lt;a href=&quot;https://zh.wikipedia.org/wiki/%E6%9D%B1%E6%96%B9Project&quot; target=&quot;_bla
+&lt;p&gt;最近发现了&lt;a href=&quot;https://zh.wikipedia.org/wiki/%E6%9D%B1%E6%96%B9Project&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;東方Project&lt;/a&gt;，不幸的是，由于天生手残，就连打Easy都有些吃力（除了永夜抄和辉针城）。作为一个猥琐大叔，就这样被萝莉们欺负，能爽吗？所以，为了把她们统统&lt;a href=&quot;http://cn.uncyclopedia.wikia.com/wiki/%E6%8E%A8%E5%80%92&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;推倒&lt;/a&gt;，我要写东方的作弊器（修改器）了！&lt;/p&gt;
     
     </summary>
     
@@ -906,9 +912,10 @@ git push --all google
     <link href="https://vjudge1.github.io/2016/04/02/cpp2cs/"/>
     <id>https://vjudge1.github.io/2016/04/02/cpp2cs/</id>
     <published>2016-04-01T16:00:00.000Z</published>
-    <updated>2017-05-12T19:41:17.060Z</updated>
+    <updated>2017-05-15T18:39:37.616Z</updated>
     
     <content type="html"><![CDATA[<p>从C++过渡到C#也能很快入门。</p>
+<a id="more"></a>
 <p>只要你舍得你电脑C盘的空间，C#环境特别容易配置——Visual Studio。</p>
 <p>如果你用的是Linux或Mac，你也可以通过装Mono来跑C#，然后拿Xamarin Studio（写安卓和iOS应用需要花钱，写本地应用不要钱）或Code（目前还没出正式版）写程序，只不过没有Windows Forms、ADO.NET以及那些乱七八糟的八百年都用不到的WPF什么的。</p>
 <p>早在微软把.Net Core开源之前，就有一伙人（Mono）在模仿.Net。现在.Net开源了，所以也没什么太大区别了。</p>
@@ -1233,8 +1240,6 @@ git push --all google
     <summary type="html">
     
       &lt;p&gt;从C++过渡到C#也能很快入门。&lt;/p&gt;
-&lt;p&gt;只要你舍得你电脑C盘的空间，C#环境特别容易配置——Visual Studio。&lt;/p&gt;
-&lt;p&gt;如果你用的是Linux或Mac，你也可以通过装Mono来跑C#，然后拿Xamarin Studio（写安卓和iOS应用需要花钱，写
     
     </summary>
     
@@ -1250,9 +1255,10 @@ git push --all google
     <link href="https://vjudge1.github.io/2016/03/31/cpp2java/"/>
     <id>https://vjudge1.github.io/2016/03/31/cpp2java/</id>
     <published>2016-03-30T16:00:00.000Z</published>
-    <updated>2017-05-12T19:41:17.060Z</updated>
+    <updated>2017-05-15T18:39:44.609Z</updated>
     
     <content type="html"><![CDATA[<p>如果学过C++，那么从C++过渡到Java很快就能入门。</p>
+<a id="more"></a>
 <p>因为网上有一大堆介绍配置Java开发环境的教程，本文就不再复述了。</p>
 <p>推荐一个好用的IDE——IntelliJ IDEA。这个IDE分为社区版和旗舰版，旗舰版要花钱<span class="blackout">网上一堆激活服务器，随便挑一个就能激活。</span>，社区版免费而且开源，只不过社区版不支持Web开发。</p>
 <h1 id="运行机制"><a href="#运行机制" class="headerlink" title="运行机制"></a>运行机制</h1><h2 id="虚拟机"><a href="#虚拟机" class="headerlink" title="虚拟机"></a>虚拟机</h2><p>C++和Java都需要编译才能运行，不同的是，Java程序是编译成中间码，然后由Java虚拟机运行。这也是实现“write once, run anywhere”的技术基础。</p>
@@ -1529,8 +1535,6 @@ java com.hello.Hello
     <summary type="html">
     
       &lt;p&gt;如果学过C++，那么从C++过渡到Java很快就能入门。&lt;/p&gt;
-&lt;p&gt;因为网上有一大堆介绍配置Java开发环境的教程，本文就不再复述了。&lt;/p&gt;
-&lt;p&gt;推荐一个好用的IDE——IntelliJ IDEA。这个IDE分为社区版和旗舰版，旗舰版要花钱&lt;span class=&quot;
     
     </summary>
     
@@ -1546,9 +1550,10 @@ java com.hello.Hello
     <link href="https://vjudge1.github.io/2016/03/23/compact-vs/"/>
     <id>https://vjudge1.github.io/2016/03/23/compact-vs/</id>
     <published>2016-03-22T16:00:00.000Z</published>
-    <updated>2017-05-12T19:41:17.060Z</updated>
+    <updated>2017-05-15T18:39:51.206Z</updated>
     
     <content type="html"><![CDATA[<p>一装Visual Studio 2015，几个G的硬盘空间就轻轻松松地消失了。过去的VS还能选择装什么东西，现在似乎基本上没什么可选择的。那么怎样才能精简Visual Studio，把不需要的东西都删除？</p>
+<a id="more"></a>
 <p>两种思路：一种是避免安装不需要的东西，另一种是把不需要的组件删除。</p>
 <div class="bs-callout bs-callout-danger">
                 <h4 id="危险！"><a href="#危险！" class="headerlink" title="危险！"></a>危险！</h4><p>本文内容很危险，而且似乎成效不大。小心操作，如果出错，你将不得不重装VS！</p>
@@ -1584,7 +1589,6 @@ java com.hello.Hello
     <summary type="html">
     
       &lt;p&gt;一装Visual Studio 2015，几个G的硬盘空间就轻轻松松地消失了。过去的VS还能选择装什么东西，现在似乎基本上没什么可选择的。那么怎样才能精简Visual Studio，把不需要的东西都删除？&lt;/p&gt;
-&lt;p&gt;两种思路：一种是避免安装不需要的东西，另一种是把不需要
     
     </summary>
     
@@ -1602,10 +1606,11 @@ java com.hello.Hello
     <link href="https://vjudge1.github.io/2016/03/18/tablet/"/>
     <id>https://vjudge1.github.io/2016/03/18/tablet/</id>
     <published>2016-03-17T16:00:00.000Z</published>
-    <updated>2017-05-12T19:41:17.060Z</updated>
+    <updated>2017-05-15T18:39:55.992Z</updated>
     
     <content type="html"><![CDATA[<p>过去上学流行买笔记本电脑，而现在平板电脑已经比较普及了。有人问我平板电脑怎么样，我觉得不错，而且身边已经有人受我影响，剁手入坑了。</p>
 <p>我不打广告，只写一些自己的体验，所以不推荐任何一款。可以自己到百度上搜测评——到京东上去买，其实都差不太多。</p>
+<a id="more"></a>
 <h1 id="入坑"><a href="#入坑" class="headerlink" title="入坑"></a>入坑</h1><p>我本来不喜欢平板电脑（那时候一般都是Android系统的，或者是iPad），因为那种系统不够灵活，不能随便装软件，而且打字也不方便。</p>
 <p>后来出现了Windows平板，而且看到一哥们买了个Windows 8系统的平板。平板使用Intel Atom处理器，里面装的是32位系统——可以随便折腾嘛！结果就是，我入坑了。</p>
 <p>在那哥们的推荐下，我买了<a href="http://item.jd.com/10000140721.html" target="_blank" rel="external">驰为Vi10（64GB，双系统）</a>。主要配置如下：</p>
@@ -1697,7 +1702,6 @@ java com.hello.Hello
     
       &lt;p&gt;过去上学流行买笔记本电脑，而现在平板电脑已经比较普及了。有人问我平板电脑怎么样，我觉得不错，而且身边已经有人受我影响，剁手入坑了。&lt;/p&gt;
 &lt;p&gt;我不打广告，只写一些自己的体验，所以不推荐任何一款。可以自己到百度上搜测评——到京东上去买，其实都差不太多。&lt;/p&gt;
-&lt;h1 i
     
     </summary>
     
@@ -1713,9 +1717,10 @@ java com.hello.Hello
     <link href="https://vjudge1.github.io/2016/03/15/yiban/"/>
     <id>https://vjudge1.github.io/2016/03/15/yiban/</id>
     <published>2016-03-14T16:00:00.000Z</published>
-    <updated>2017-05-12T19:41:17.060Z</updated>
+    <updated>2017-05-15T18:40:00.206Z</updated>
     
     <content type="html"><![CDATA[<p>易班是一个整合微博、微信、BBS等功能的全能社交应用，跟校内网（现在是人人网）比较像，不过只能由在校学生注册。虽然整合了互联网时代常见的社交网络形式，为什么还会引来一片骂声呢？其中到底有什么问题？</p>
+<a id="more"></a>
 <p>很多学生都在抱怨易班的问题。一方面是这个APP本身并不好用，另一方面。也是最重要的一方面，就是很多高校采取强制措施来“推广”易班，这也是易班在微博、知乎、贴吧等平台招来一片骂声的重要原因。</p>
 <p>很容易就能搜到那些强制措施：比较轻的无非是要求每位学生都注册账号，严重一点的会把学生和班级测评与易班平台活动挂钩，最严重的甚至是“<a href="http://china.huanqiu.com/article/2016-01/8388679.html" target="_blank" rel="external">不注册易班就取消毕业资格</a>”（后来记者一调查，辅导员开始说“是学生误解了”）。</p>
 <p>如果只有个别学校采取强制手段来推广易班，那么评论就很简单了，大致是“辅导员不尊重学生意愿，blahblah”，或者“学生应服从管理，blahblah”。一般情况下辅导员强制要求学生做什么事，学生只能被迫接受，见得多了，也就不奇怪了。当然，多数人最终会选择“不合作”——注册完易班就把它卸载，反正辅导员又不可能挨个要求学生重新装上，或者对卸载的学生给予处分。</p>
@@ -1753,7 +1758,6 @@ java com.hello.Hello
     <summary type="html">
     
       &lt;p&gt;易班是一个整合微博、微信、BBS等功能的全能社交应用，跟校内网（现在是人人网）比较像，不过只能由在校学生注册。虽然整合了互联网时代常见的社交网络形式，为什么还会引来一片骂声呢？其中到底有什么问题？&lt;/p&gt;
-&lt;p&gt;很多学生都在抱怨易班的问题。一方面是这个APP本身并不好用，另
     
     </summary>
     
@@ -1769,9 +1773,10 @@ java com.hello.Hello
     <link href="https://vjudge1.github.io/2016/01/30/zsh-and-powerline/"/>
     <id>https://vjudge1.github.io/2016/01/30/zsh-and-powerline/</id>
     <published>2016-01-29T16:00:00.000Z</published>
-    <updated>2017-05-12T19:41:17.060Z</updated>
+    <updated>2017-05-15T18:40:03.779Z</updated>
     
     <content type="html"><![CDATA[<p>天天用终端，怎么能不搞搞插件呢？</p>
+<a id="more"></a>
 <h1 id="zsh"><a href="#zsh" class="headerlink" title="zsh"></a>zsh</h1><p>Linux和Mac默认的shell是bash。作为拿来主义者，不如换用zsh，因为——oh-my-zsh，一堆现成的主题和插件。</p>
 <p>首先需要安装zsh（Mac自带），然后通过<code>chsh</code>命令切换默认shell：</p>
 <pre><code>chsh -s /bin/zsh
@@ -1816,7 +1821,6 @@ cp /usr/lib/python2.7/site-packages/powerline/bindings/tmux/powerline.conf ~/.tm
     <summary type="html">
     
       &lt;p&gt;天天用终端，怎么能不搞搞插件呢？&lt;/p&gt;
-&lt;h1 id=&quot;zsh&quot;&gt;&lt;a href=&quot;#zsh&quot; class=&quot;headerlink&quot; title=&quot;zsh&quot;&gt;&lt;/a&gt;zsh&lt;/h1&gt;&lt;p&gt;Linux和Mac默认的shell是bash。作为拿来主义者，不如换用zsh，因为—
     
     </summary>
     
@@ -1838,9 +1842,10 @@ cp /usr/lib/python2.7/site-packages/powerline/bindings/tmux/powerline.conf ~/.tm
     <link href="https://vjudge1.github.io/2016/01/26/atom-plugins/"/>
     <id>https://vjudge1.github.io/2016/01/26/atom-plugins/</id>
     <published>2016-01-25T16:00:00.000Z</published>
-    <updated>2017-05-12T19:41:17.060Z</updated>
+    <updated>2017-05-15T18:40:12.049Z</updated>
     
     <content type="html"><![CDATA[<p>Atom是由GitHub推出的文本编辑器，虽然比新一代的编辑器之神Sublime Text逊色一些，但毕竟不要钱也不弹窗（Sublime Text可以在不花钱的情况下无限期试用，只是偶尔会跳弹窗让你掏钱），就一直用了。</p>
+<a id="more"></a>
 <p>即使用其他编辑器，有些内容也值得看一下，尤其是有:kissing_heart:的——在别的编辑器中很可能有类似或同名（甚至同作者）的插件。</p>
 <p>暂时写这些。如果以后发现了哪个插件也不错，或者在生产时用上了，我会接着补充。（2016.1.25）</p>
 <h1 id="语言无关"><a href="#语言无关" class="headerlink" title="语言无关"></a>语言无关</h1><h2 id="必备插件"><a href="#必备插件" class="headerlink" title="必备插件"></a>必备插件</h2><ul>
@@ -1917,7 +1922,6 @@ cp /usr/lib/python2.7/site-packages/powerline/bindings/tmux/powerline.conf ~/.tm
     <summary type="html">
     
       &lt;p&gt;Atom是由GitHub推出的文本编辑器，虽然比新一代的编辑器之神Sublime Text逊色一些，但毕竟不要钱也不弹窗（Sublime Text可以在不花钱的情况下无限期试用，只是偶尔会跳弹窗让你掏钱），就一直用了。&lt;/p&gt;
-&lt;p&gt;即使用其他编辑器，有些内容也值得看一下，
     
     </summary>
     
@@ -1935,11 +1939,12 @@ cp /usr/lib/python2.7/site-packages/powerline/bindings/tmux/powerline.conf ~/.tm
     <link href="https://vjudge1.github.io/2015/12/30/learn-c/"/>
     <id>https://vjudge1.github.io/2015/12/30/learn-c/</id>
     <published>2015-12-29T16:00:00.000Z</published>
-    <updated>2017-05-12T19:41:17.060Z</updated>
+    <updated>2017-05-15T18:40:16.329Z</updated>
     
     <content type="html"><![CDATA[<p>这个问题曾经专门给人做过讲座。不过既然有人<span class="blackout">例如学妹</span>没听过，那我还是把自己的经验感悟写出来吧。</p>
 <p>说实话，现代人都比较功利——既然是非计算机专业的学生，那么C语言基本上是个用不着的东西。可是，它还是门必修课，那最起码不能挂科，对吧？</p>
 <p>内容很长，最好找个时间慢慢读。</p>
+<a id="more"></a>
 <h1 id="FIRST"><a href="#FIRST" class="headerlink" title="FIRST"></a>FIRST</h1><p>稍微了解一下C语言的历史，你就应该知道那个东西绝不是给孩子们入门用的——一开始它的应用是Unix操作系统。</p>
 <p>从这个角度讲，对于非计算机专业的学生来说，Pascal甚至Basic都比C语言靠谱。因为C语言对于他们而言过于灵活，暴露了很多让初学者迷惑的东西。而Pascal和Basic都很简单，而且Visual Basic还很好玩。</p>
 <p>当然，虽然VB又简单又好玩，但是有人<span class="blackout">我们的老师</span>成功地把VB讲成了一个比C语言还困难的语言，而且不是因为内容深，而是<span class="blackout">讲得不好</span>……。由此可见，<strong>编程语言学不好是自己的问题——没找到合适的入门教程</strong>。</p>
@@ -2114,7 +2119,8 @@ cp /usr/lib/python2.7/site-packages/powerline/bindings/tmux/powerline.conf ~/.tm
     <summary type="html">
     
       &lt;p&gt;这个问题曾经专门给人做过讲座。不过既然有人&lt;span class=&quot;blackout&quot;&gt;例如学妹&lt;/span&gt;没听过，那我还是把自己的经验感悟写出来吧。&lt;/p&gt;
-&lt;p&gt;说实话，现代人都比较功利——既然是非计算机专业的学生，那么C语言基本上是个用不着的东西。可是，它还是门必修
+&lt;p&gt;说实话，现代人都比较功利——既然是非计算机专业的学生，那么C语言基本上是个用不着的东西。可是，它还是门必修课，那最起码不能挂科，对吧？&lt;/p&gt;
+&lt;p&gt;内容很长，最好找个时间慢慢读。&lt;/p&gt;
     
     </summary>
     
@@ -2132,9 +2138,10 @@ cp /usr/lib/python2.7/site-packages/powerline/bindings/tmux/powerline.conf ~/.tm
     <link href="https://vjudge1.github.io/2015/11/23/gui/"/>
     <id>https://vjudge1.github.io/2015/11/23/gui/</id>
     <published>2015-11-22T16:00:00.000Z</published>
-    <updated>2017-05-12T19:41:17.060Z</updated>
+    <updated>2017-05-15T18:40:24.259Z</updated>
     
     <content type="html"><![CDATA[<p>买了个 Windows 10 平板电脑，发现不能刷 Linux（因为各种没驱动），然后就遇到了一个问题——如果想随手写一个实用的 GUI 程序，用哪个比较好呢？</p>
+<a id="more"></a>
 <p>为了方便叙述，先把条件摆上：</p>
 <ol>
 <li>没有被现在的操作系统抛弃。</li>
@@ -2184,10 +2191,6 @@ cp /usr/lib/python2.7/site-packages/powerline/bindings/tmux/powerline.conf ~/.tm
     <summary type="html">
     
       &lt;p&gt;买了个 Windows 10 平板电脑，发现不能刷 Linux（因为各种没驱动），然后就遇到了一个问题——如果想随手写一个实用的 GUI 程序，用哪个比较好呢？&lt;/p&gt;
-&lt;p&gt;为了方便叙述，先把条件摆上：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;没有被现在的操作系统抛弃。&lt;/li&gt;
-&lt;l
     
     </summary>
     
@@ -2203,9 +2206,10 @@ cp /usr/lib/python2.7/site-packages/powerline/bindings/tmux/powerline.conf ~/.tm
     <link href="https://vjudge1.github.io/2015/09/13/hackintosh/"/>
     <id>https://vjudge1.github.io/2015/09/13/hackintosh/</id>
     <published>2015-09-12T16:00:00.000Z</published>
-    <updated>2017-05-12T19:41:17.060Z</updated>
+    <updated>2017-05-15T18:40:28.569Z</updated>
     
     <content type="html"><![CDATA[<p>鉴于周围有很多人想体验体验苹果系统，作为一个成功用上黑苹果的人，我随便写点心得吧。</p>
+<a id="more"></a>
 <div class="bs-callout bs-callout-info">
                 <h4 id="什么是黑苹果"><a href="#什么是黑苹果" class="headerlink" title="什么是黑苹果"></a>什么是黑苹果</h4><p>黑苹果就是在自己（非苹果品牌）电脑上面安装的苹果系统。因为苹果官方不允许这样做，所以对于初学者来说，黑苹果的安装绝对比其他系统困难很多。</p>
 
@@ -2422,17 +2426,15 @@ cp /usr/lib/python2.7/site-packages/powerline/bindings/tmux/powerline.conf ~/.tm
     <summary type="html">
     
       &lt;p&gt;鉴于周围有很多人想体验体验苹果系统，作为一个成功用上黑苹果的人，我随便写点心得吧。&lt;/p&gt;
-&lt;div class=&quot;bs-callout bs-callout-info&quot;&gt;
-                &lt;h4 id=&quot;什么是黑苹果&quot;&gt;&lt;a href=&quot;#什么是黑苹果&quot; 
     
     </summary>
     
       <category term="个人心得" scheme="https://vjudge1.github.io/categories/%E4%B8%AA%E4%BA%BA%E5%BF%83%E5%BE%97/"/>
     
     
-      <category term="Hackintosh" scheme="https://vjudge1.github.io/tags/Hackintosh/"/>
-    
       <category term="Mac" scheme="https://vjudge1.github.io/tags/Mac/"/>
+    
+      <category term="Hackintosh" scheme="https://vjudge1.github.io/tags/Hackintosh/"/>
     
   </entry>
   
@@ -2441,9 +2443,10 @@ cp /usr/lib/python2.7/site-packages/powerline/bindings/tmux/powerline.conf ~/.tm
     <link href="https://vjudge1.github.io/2015/08/20/wineqq/"/>
     <id>https://vjudge1.github.io/2015/08/20/wineqq/</id>
     <published>2015-08-19T16:00:00.000Z</published>
-    <updated>2017-05-12T19:41:17.060Z</updated>
+    <updated>2017-05-15T18:40:38.722Z</updated>
     
     <content type="html"><![CDATA[<p>腾讯公司为了商业利益，放弃了 QQ for Linux 的开发。但是中国人又不得不用 QQ，于是……</p>
+<a id="more"></a>
 <p>Linux 世界出现了几种解决方案：</p>
 <ol>
 <li>WebQQ（腾讯同样放弃了）/SmartQQ</li>
@@ -2486,10 +2489,6 @@ Icon=/home/ubuntu/Deepin-QQ/qq.png
     <summary type="html">
     
       &lt;p&gt;腾讯公司为了商业利益，放弃了 QQ for Linux 的开发。但是中国人又不得不用 QQ，于是……&lt;/p&gt;
-&lt;p&gt;Linux 世界出现了几种解决方案：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;WebQQ（腾讯同样放弃了）/SmartQQ&lt;/li&gt;
-&lt;li&gt;分析 WebQQ 或什么的协议
     
     </summary>
     
@@ -2509,9 +2508,10 @@ Icon=/home/ubuntu/Deepin-QQ/qq.png
     <link href="https://vjudge1.github.io/2015/08/16/cloud/"/>
     <id>https://vjudge1.github.io/2015/08/16/cloud/</id>
     <published>2015-08-15T16:00:00.000Z</published>
-    <updated>2017-05-12T19:41:17.060Z</updated>
+    <updated>2017-05-15T18:40:43.422Z</updated>
     
     <content type="html"><![CDATA[<p>做出一个网站，到哪里去找一个合适的服务器呢？</p>
+<a id="more"></a>
 <div class="bs-callout bs-callout-danger">
                 <h4 id="原作者"><a href="#原作者" class="headerlink" title="原作者"></a>原作者</h4><p>本文原是<a href="http://wangchenyu.net.cn" target="_blank" rel="external">课戴表王晨宇</a>写的，稍微整理了一下格式。转载请标明原作者！</p>
 
@@ -2585,8 +2585,6 @@ Icon=/home/ubuntu/Deepin-QQ/qq.png
     <summary type="html">
     
       &lt;p&gt;做出一个网站，到哪里去找一个合适的服务器呢？&lt;/p&gt;
-&lt;div class=&quot;bs-callout bs-callout-danger&quot;&gt;
-                &lt;h4 id=&quot;原作者&quot;&gt;&lt;a href=&quot;#原作者&quot; class=&quot;headerlink&quot; titl
     
     </summary>
     

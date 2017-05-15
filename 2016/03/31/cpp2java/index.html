@@ -4,17 +4,17 @@
   <meta charset="utf-8">
   <title>从C++转向Java的快速入门教程</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="如果学过C++，那么从C++过渡到Java很快就能入门。 因为网上有一大堆介绍配置Java开发环境的教程，本文就不再复述了。 推荐一个好用的IDE——IntelliJ IDEA。这个IDE分为社区版和旗舰版，旗舰版要花钱网上一堆激活服务器，随便挑一个就能激活。，社区版免费而且开源，只不过社区版不支持Web开发。 运行机制虚拟机C++和Java都需要编译才能运行，不同的是，Java程序是编译成中间码">
+  <meta name="description" content="如果学过C++，那么从C++过渡到Java很快就能入门。">
 <meta name="keywords" content="Java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="从C++转向Java的快速入门教程">
 <meta property="og:url" content="https://vjudge1.github.io/2016/03/31/cpp2java/index.html">
 <meta property="og:site_name" content="⑨rz">
-<meta property="og:description" content="如果学过C++，那么从C++过渡到Java很快就能入门。 因为网上有一大堆介绍配置Java开发环境的教程，本文就不再复述了。 推荐一个好用的IDE——IntelliJ IDEA。这个IDE分为社区版和旗舰版，旗舰版要花钱网上一堆激活服务器，随便挑一个就能激活。，社区版免费而且开源，只不过社区版不支持Web开发。 运行机制虚拟机C++和Java都需要编译才能运行，不同的是，Java程序是编译成中间码">
-<meta property="og:updated_time" content="2017-05-12T19:41:17.060Z">
+<meta property="og:description" content="如果学过C++，那么从C++过渡到Java很快就能入门。">
+<meta property="og:updated_time" content="2017-05-15T18:39:44.609Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="从C++转向Java的快速入门教程">
-<meta name="twitter:description" content="如果学过C++，那么从C++过渡到Java很快就能入门。 因为网上有一大堆介绍配置Java开发环境的教程，本文就不再复述了。 推荐一个好用的IDE——IntelliJ IDEA。这个IDE分为社区版和旗舰版，旗舰版要花钱网上一堆激活服务器，随便挑一个就能激活。，社区版免费而且开源，只不过社区版不支持Web开发。 运行机制虚拟机C++和Java都需要编译才能运行，不同的是，Java程序是编译成中间码">
+<meta name="twitter:description" content="如果学过C++，那么从C++过渡到Java很快就能入门。">
   
     
     <link rel="alternate" href="/feed.xml" title="⑨rz" type="application/atom+xml">
@@ -107,12 +107,13 @@
             <div class="col-sm-9 blog-main">
                 <article id="post-cpp2java" class="article article-type-post" itemscope itemprop="blogPost">
 
-  
-  <div class="article-inner">
+    
 
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>如果学过C++，那么从C++过渡到Java很快就能入门。</p>
+    <div class="article-inner">
+        <div class="article-entry" itemprop="articleBody">
+            
+                <p>如果学过C++，那么从C++过渡到Java很快就能入门。</p>
+<a id="more"></a>
 <p>因为网上有一大堆介绍配置Java开发环境的教程，本文就不再复述了。</p>
 <p>推荐一个好用的IDE——IntelliJ IDEA。这个IDE分为社区版和旗舰版，旗舰版要花钱<span class="blackout">网上一堆激活服务器，随便挑一个就能激活。</span>，社区版免费而且开源，只不过社区版不支持Web开发。</p>
 <h1 id="运行机制"><a href="#运行机制" class="headerlink" title="运行机制"></a>运行机制</h1><h2 id="虚拟机"><a href="#虚拟机" class="headerlink" title="虚拟机"></a>虚拟机</h2><p>C++和Java都需要编译才能运行，不同的是，Java程序是编译成中间码，然后由Java虚拟机运行。这也是实现“write once, run anywhere”的技术基础。</p>
@@ -385,71 +386,84 @@ java com.hello.Hello
 <h1 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h1><p>Java使用JDBC作为统一的接口。假如想连接到MySQL，那么需要先下载<a href="https://dev.mysql.com/downloads/connector/j/" target="_blank" rel="external">MySQL驱动</a>，然后：</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><div class="line"><span class="keyword">import</span> java.sql.*;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MySQLTest</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        Connection conn = <span class="keyword">null</span>;</div><div class="line">        Statement stmt = <span class="keyword">null</span>;</div><div class="line">        PreparedStatement pstmt = <span class="keyword">null</span>;</div><div class="line">        ResultSet rs = <span class="keyword">null</span>;</div><div class="line"></div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            Class.forName(<span class="string">"com.mysql.jdbc.Driver"</span>);</div><div class="line"></div><div class="line">            <span class="comment">// 连接</span></div><div class="line">            conn = DriverManager.getConnection(</div><div class="line">                    <span class="string">"jdbc:mysql://localhost:3306/database"</span>, <span class="string">"root"</span>, <span class="string">"12345678"</span>);</div><div class="line"></div><div class="line">            <span class="comment">// 访问</span></div><div class="line">            stmt = conn.createStatement();</div><div class="line">            rs = stmt.executeQuery(<span class="string">"SELECT * FROM table"</span>);</div><div class="line">            <span class="keyword">while</span> (rs.next()) &#123;</div><div class="line">                System.out.print(rs.getInt(<span class="string">"id"</span>));</div><div class="line">                System.out.println(rs.getString(<span class="string">"name"</span>));</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="comment">// 记录处理</span></div><div class="line">            stmt.executeUpdate(<span class="string">"UPDATE table SET name='wang' WHERE id=5"</span>);</div><div class="line">            stmt.executeUpdate(<span class="string">"DELETE FROM table WHERE id=6"</span>);</div><div class="line"></div><div class="line">            <span class="comment">// 预处理和批处理</span></div><div class="line">            pstmt = conn.prepareStatement(<span class="string">"INSERT INTO table VALUES (?, ?)"</span>);</div><div class="line">            pstmt.setInt(<span class="number">1</span>, <span class="number">100</span>);</div><div class="line">            pstmt.setString(<span class="number">2</span>, <span class="string">"name"</span>);</div><div class="line">            pstmt.addBatch();</div><div class="line">            ...</div><div class="line">            pstmt.executeBatch();</div><div class="line"></div><div class="line">            <span class="comment">// 事务处理</span></div><div class="line">            stmt = conn.createStatement();</div><div class="line">            stmt.addBatch(<span class="string">"INSERT INTO table VALUES (1, 'aaa')"</span>);</div><div class="line">            stmt.executeBatch();</div><div class="line">            conn.commit();</div><div class="line">            conn.setAutoCommit(<span class="keyword">true</span>);</div><div class="line">        &#125; <span class="keyword">catch</span> (ClassNotFoundException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125; <span class="keyword">catch</span> (SQLException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125; <span class="keyword">finally</span> &#123;</div><div class="line">            <span class="keyword">try</span> &#123;</div><div class="line">                <span class="keyword">if</span> (rs != <span class="keyword">null</span>) &#123;</div><div class="line">                    rs.close();</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">if</span> (pstmt != <span class="keyword">null</span>) &#123;</div><div class="line">                    pstmt.close();</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">if</span> (stmt != <span class="keyword">null</span>) &#123;</div><div class="line">                    stmt.close();</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">if</span> (conn != <span class="keyword">null</span>) &#123;</div><div class="line">                    conn.close();</div><div class="line">                &#125;</div><div class="line">            &#125; <span class="keyword">catch</span> (SQLException e) &#123;</div><div class="line">                e.printStackTrace();</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
-      
+            
+        </div>
+
+        
+            
+
+        
+
+        <footer class="article-footer">
+            <a data-url="https://vjudge1.github.io/2016/03/31/cpp2java/" data-id="cj2qap19h0028wkcmvf1d3l0m" class="article-share-link">
+                <i class="fa fa-share"></i> Share
+            </a>
+            
+                <a href="https://vjudge1.github.io/2016/03/31/cpp2java/#disqus_thread" class="article-comment-link">
+                    <i class="fa fa-comment"></i> Comments
+                </a>
+            
+        </footer>
     </div>
+    
+        
+    <table id="article-nav">
+        
+            <tr role="presentation">
+                <th>Newer post</th>
+                <td>
+                    <a href="/2016/04/02/cpp2cs/" id="article-nav-newer" class="article-nav-link-wrap">
+                        <span class="article-nav-link-title">从C++转向C#的快速入门教程</span>
+                    </a>
+                </td>
+            </tr>
+        
+        
+            <tr role="presentation">
+                <th>Older post</th>
+                <td>
+                    <a href="/2016/03/23/compact-vs/" id="article-nav-older" class="article-nav-link-wrap">
+
+                        <span class="article-nav-link-title">精简Visual Studio 2015</span>
+                    </a>
+                </td>
+            </tr>
+        
+    </table>
+
 
     
-      
-
-    
-
-    <footer class="article-footer">
-      <a data-url="https://vjudge1.github.io/2016/03/31/cpp2java/" data-id="cj2pxh41y001y76cmbtcoazlz" class="article-share-link">
-        <i class="fa fa-share"></i> Share
-      </a>
-      
-        <a href="https://vjudge1.github.io/2016/03/31/cpp2java/#disqus_thread" class="article-comment-link">
-          <i class="fa fa-comment"></i> Comments
-        </a>
-      
-    </footer>
-  </div>
-  
-    
-<ul id="article-nav" class="nav nav-pills nav-justified">
-  
-  <li role="presentation">
-    <a href="/2016/03/23/compact-vs/" id="article-nav-older" class="article-nav-link-wrap">
-      <i class="fa fa-chevron-left pull-left"></i>
-      <span class="article-nav-link-title">精简Visual Studio 2015</span>
-    </a>
-  </li>
-  
-  
-  <li role="presentation">
-    <a href="/2016/04/02/cpp2cs/" id="article-nav-newer" class="article-nav-link-wrap">
-      <span class="article-nav-link-title">从C++转向C#的快速入门教程</span>
-      <i class="fa fa-chevron-right pull-right"></i>
-    </a>
-  </li>
-  
-</ul>
-
-
-  
 </article>
 
 
 <section id="comments">
-  <div id="disqus_thread">
-    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-  </div>
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
 </section>
 
 
+<script src="/js/anchor.min.js"></script>
+<script type="text/javascript">
+// Anchor.js
+if (anchors) {
+    anchors.options.placement="left";
+    anchors.add('.article-entry h1,h2,h3,h4');
+}
+</script>
 
             </div>
             <div class="col-sm-3 blog-sidebar">
                 
-  
+    
   <div class="sidebar-module">
     <h4><i class="fa fa-th-list"></i> Categories</h4>
-    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/个人心得/">个人心得</a><span class="sidebar-module-list-count">5</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/其他/">其他</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/备忘录/">备忘录</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/折腾记录/">折腾记录</a><span class="sidebar-module-list-count">6</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/教程/">教程</a><span class="sidebar-module-list-count">13</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/经验总结/">经验总结</a><span class="sidebar-module-list-count">7</span></li></ul>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/个人心得/">个人心得</a><span class="sidebar-module-list-count">5</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/其他/">其他</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/备忘录/">备忘录</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/折腾记录/">折腾记录</a><span class="sidebar-module-list-count">8</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/教程/">教程</a><span class="sidebar-module-list-count">11</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/经验总结/">经验总结</a><span class="sidebar-module-list-count">7</span></li></ul>
   </div>
 
 
 
-  
+    
   <div class="sidebar-module">
     <h4><i class="fa fa-archive"></i> Archives</h4>
     <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/05/">五月 2017</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/11/">十一月 2016</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/10/">十月 2016</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/08/">八月 2016</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/04/">四月 2016</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/03/">三月 2016</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/01/">一月 2016</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/12/">十二月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/11/">十一月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/09/">九月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/08/">八月 2015</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/07/">七月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/05/">五月 2015</a><span class="sidebar-module-list-count">5</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/04/">四月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/02/">二月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/12/">十二月 2014</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/04/">四月 2014</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/02/">二月 2014</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2013/01/">一月 2013</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2012/08/">八月 2012</a><span class="sidebar-module-list-count">1</span></li></ul>
@@ -457,9 +471,9 @@ java com.hello.Hello
 
 
 
-  
+    
   <div class="sidebar-module">
-    <h4><i class="fa fa-newspaper-o"></i> Recents</h4>
+    <h4><i class="fa fa-send-o"></i> Recents</h4>
     <ul class="sidebar-module-list">
       
         <li>
@@ -487,7 +501,7 @@ java com.hello.Hello
 
 
 
-  
+    
   <div class="sidebar-module">
     <h4><i class="fa fa-tags"></i> Tags</h4>
     <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/API/">API</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Atom/">Atom</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/C/">C</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/C/">C#</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/GAE/">GAE</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/GUI/">GUI</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Hackintosh/">Hackintosh</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Hexo/">Hexo</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Java/">Java</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/JavaScript/">JavaScript</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Jekyll/">Jekyll</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/LaTeX/">LaTeX</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Linux/">Linux</a><span class="sidebar-module-list-count">9</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Mac/">Mac</a><span class="sidebar-module-list-count">9</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/MacPorts/">MacPorts</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/NTFS/">NTFS</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Python/">Python</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/QQ/">QQ</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Rails/">Rails</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/UEFI/">UEFI</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/VPS/">VPS</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Visual-Studio/">Visual Studio</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Windows/">Windows</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/npm/">npm</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/wine/">wine</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/zsh/">zsh</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/中文/">中文</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/云/">云</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/单片机/">单片机</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/反汇编/">反汇编</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/平板/">平板</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/插件/">插件</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/教务系统/">教务系统</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/東方Project/">東方Project</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/电幕/">电幕</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/系统维护/">系统维护</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/维基百科/">维基百科</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/编程/">编程</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/语文/">语文</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/输入法/">输入法</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/配置/">配置</a><span class="sidebar-module-list-count">1</span></li></ul>
@@ -544,6 +558,13 @@ java com.hello.Hello
     </div>
 </footer>
 
+    <div id="back-to-top" data-toggle="tooltip" data-placement="left" title="Back to top">
+    <a href="javascript:;" title="Back to top">
+        <div class="arrow"></div>
+        <div class="stick"></div>
+    </a>
+</div>
+
     
 <script>
     var disqus_shortname = 'vjudge1';
@@ -567,6 +588,7 @@ java com.hello.Hello
 
 
 <script src="/js/script.js"></script>
+<script src="/js/back-to-top.js"></script>
 
 </body>
 </html>

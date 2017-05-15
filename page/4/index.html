@@ -125,897 +125,298 @@
         <div class="row">
             <div class="col-sm-9 blog-main">
                 
-  
-    <article id="post-learn-c" class="article article-type-post" itemscope itemprop="blogPost">
-
-  
-  <header class="article-header">
     
+        <article id="post-type-chinese-in-linux" class="article article-type-post" itemscope itemprop="blogPost">
+
+    
+        <header class="article-header">
+            
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/12/30/learn-c/">如何学习C语言（非计算机专业）</a>
+      <a class="article-title" href="/2014/04/01/type-chinese-in-linux/">解决 Linux 和 Qt 的中文输入问题</a>
     </h1>
   
 
 
-  </header>
+        </header>
 
-  <div class="article-meta">
-    <div class="article-datetime">
+        <div class="article-meta">
+            <div class="article-datetime">
     <span class="article-date">
-        <time datetime="2015-12-29T16:00:00.000Z" itemprop="datePublished">2015-12-30</time>
+        <time datetime="2014-03-31T16:00:00.000Z" itemprop="datePublished">2014-04-01</time>
     </span>
 </div>
 
-    
-    
-    <div class="article-category">
-        <a class="article-category-link" href="/categories/个人心得/">个人心得</a>
-    </div>
-
-
-    
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/编程/">编程</a></li></ul>
-
-
-  </div>
-  
-  <div class="article-inner">
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>这个问题曾经专门给人做过讲座。不过既然有人<span class="blackout">例如学妹</span>没听过，那我还是把自己的经验感悟写出来吧。</p>
-<p>说实话，现代人都比较功利——既然是非计算机专业的学生，那么C语言基本上是个用不着的东西。可是，它还是门必修课，那最起码不能挂科，对吧？</p>
-<p>内容很长，最好找个时间慢慢读。</p>
-<h1 id="FIRST"><a href="#FIRST" class="headerlink" title="FIRST"></a>FIRST</h1><p>稍微了解一下C语言的历史，你就应该知道那个东西绝不是给孩子们入门用的——一开始它的应用是Unix操作系统。</p>
-<p>从这个角度讲，对于非计算机专业的学生来说，Pascal甚至Basic都比C语言靠谱。因为C语言对于他们而言过于灵活，暴露了很多让初学者迷惑的东西。而Pascal和Basic都很简单，而且Visual Basic还很好玩。</p>
-<p>当然，虽然VB又简单又好玩，但是有人<span class="blackout">我们的老师</span>成功地把VB讲成了一个比C语言还困难的语言，而且不是因为内容深，而是<span class="blackout">讲得不好</span>……。由此可见，<strong>编程语言学不好是自己的问题——没找到合适的入门教程</strong>。</p>
-<p>很多人喜欢看清华大学出版社的谭浩强的书。不要以为清华大学出版社的书有多么好，特别是<strong>绝对不要看谭浩强的C和C++书</strong>！这里绝对不是抹黑他——80年代的时候，谭浩强写了一系列关于BASIC语言的书，为编程语言在中国的普及做出了贡献。然而，C语言可不像BASIC那样简单，而且他自己都没学明白，他的书怎么可能讲明白？结果就是，他的C语言书不仅讲不明白，而且还误导人。</p>
-<p>如果有闲功夫的话，可以拜读一下C语言之父Dennis Ritchie（dmr）的《C程序设计语言》。这本入门书比大多数国产C语言书薄，但是是一部经典。毕竟是C语言亲爹写的。</p>
-<h1 id="如何学习"><a href="#如何学习" class="headerlink" title="如何学习"></a>如何学习</h1><p>回答“只要多努力……”、“只要多练习……”当然没有意义，所以下面写一些个人经验。</p>
-<p>注意，本文有一个前提——“非计算机专业”。因此我假设学完C语言基本上是为了通过考试和二级。</p>
-<h2 id="新思维"><a href="#新思维" class="headerlink" title="新思维"></a>新思维</h2><p>大学每一科目都有自己的思维方式，C语言也一样。</p>
-<p>C语言作为一门“语言”，当然有自己的语法，只不过是人类和机器约定好的、互相都能看得懂的语法。人类可以一目十行，但是对于机器而言，它只能一行一行地读、一句一句地读。</p>
-<p>如果把每一条语句当作一件事儿，那么计算机当然是有条不紊地做事儿。写代码的时候，你当然也要一件事儿一件事儿地做。</p>
-<p>因为我们学的是简单的单文件的C语言，所以实际上代码结构基本都是这样的：</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span></span></div><div class="line">&#123;</div><div class="line">    <span class="comment">// 输入</span></div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n);</div><div class="line">    ...</div><div class="line"></div><div class="line">    <span class="comment">// 处理</span></div><div class="line">    ...</div><div class="line"></div><div class="line">    <span class="comment">// 输出</span></div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, a);</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>做题的时候（编写练习程序和做题类似），按照题目要求逐步完善输入、处理和输出过程。也就是按照题目要求填坑。至于能不能填上，就看你积累了多少“段子”——这和多做数学题积攒解题思路是差不多的。</p>
-<p>填坑的时候有一个技巧：如果遇到困难，尽量先把题目的语言翻译成“像C语言的东西”。例如，“判断n是否为XX数，如果是则输出YES和全部的xxx，否则输出‘NO’”。那么首先应该能够想到，“判断”是if，因此：</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><div class="line"><span class="keyword">if</span> (n是XX数)</div><div class="line">&#123;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"YES\n"</span>);</div><div class="line">    <span class="comment">// 输出全部的xxx</span></div><div class="line">    <span class="built_in">printf</span>(全部xxx);</div><div class="line">&#125;</div><div class="line"><span class="keyword">else</span></div><div class="line">&#123;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"NO\n"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>那什么是“XX数”呢？看题目其他条件，例如“一个数恰好等于因子之和”，那么if语句应该是</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><div class="line"><span class="keyword">if</span> (n == n的因子之和)</div><div class="line">...</div></pre></td></tr></table></figure>
-<p>“因子”之和怎么求呢？按照以往的练习，因子是用for语句找的，所以在if之前最起码得有个for语句：</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><div class="line"><span class="keyword">for</span> (i=<span class="number">1</span>; i&lt;n; i++)</div><div class="line">&#123;</div><div class="line">    <span class="keyword">if</span> (i是因子)</div><div class="line">    &#123;</div><div class="line">        sum=sum+i;    <span class="comment">// 不要忘记前面 sum=0</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">if</span> (n == sum)</div><div class="line">...</div></pre></td></tr></table></figure>
-<p>“是因子”实际上就是整除，即“n%i==0”。</p>
-<p>假如题目还需要输出所有因子。毕竟不是ACM比赛，对性能也没有太高要求，那么我们不妨在找因子的时候把类似代码再敲一遍。</p>
-<p>最后检查一下输入输出格式，把细节完善（见后面的“一一对应”），然后测试、调试，一切OK就可以提交了。如果考试是笔试，实在遇到困难，也可以用类似方法骗分。</p>
-<h2 id="先问搜索引擎"><a href="#先问搜索引擎" class="headerlink" title="先问搜索引擎"></a>先问搜索引擎</h2><p>问问题是一门艺术。在错误的时间、错误的地点找错误的人问了错误的问题，那是要失败的。</p>
-<p>学习编程会遇到很多问题，例如不会搭建开发环境、忘记某个函数的名字或参数、遇到错误，这时候不建议马上去问别人。不妨先自己尝试解决，如果解决不了，再到搜索引擎上搜索。</p>
-<p>如果不会使用搜索引擎，可以<a href="https://vjudge1.github.io/kuso/sos/?wd=%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E">点击这里</a>查看动画演示。</p>
-<p>因为大多数语言和框架（在开发项目时，从零开始是不理智的）是老外写的，对于某些问题，如果你用英文搜索，可能会更快得到结果。这时候你可能就要想办法找谷歌了。</p>
-<p>在技术方面的中文搜索中，百度和谷歌区别不太大。百度经常有误导人的推广，但是在技术话题上这个问题并不明显。</p>
-<p>在英文搜素方面，百度几乎不可用。谷歌最好（直接与StackOverflow整合），如果在网络方面遇到困难，也可以考虑必应。当然，因为很多外国网站使用谷歌服务器来加速（CDN），所以点进链接后可能会卡半天不出内容。遭遇这种情况的话，你还是需要先把网络问题解决一下。</p>
-<p>因为全世界包括那个没有国际互联网<span class="blackout">只对老外和少数特权人士开放</span>的朝鲜都使用C语言，因此搜C语言本身的东西不会遇到太大困难。</p>
-<h2 id="照猫画虎"><a href="#照猫画虎" class="headerlink" title="照猫画虎"></a>照猫画虎</h2><p>不要问别人“xxx怎么写”——照着书上的代码改，或者到搜索引擎上找代码，照着他们的代码改。</p>
-<p>学习一门编程语言，很多时候找个老师不如<strong>找一段示例代码，照着敲一遍，编译运行，观察现象，然后对代码稍作修改，编译运行，观察产生了什么变化……</strong></p>
-<p>需要注意的是，有些东西涉及算法（应该都是简单算法，不涉及数据结构），例如简单素数判断<span class="blackout">（素数测试有很多种）</span>。那么你需要找到一些现成的代码，搞清楚处理过程中哪些变量是输入、哪些是结果，了解大致的思路，然后自己写一遍。这种东西务必亲自上机写一遍，哪怕没有完全理解——光靠背是不现实的。</p>
-<p>因为很多算法的套路是固定的，因此建议学过函数之后，自己编程的时候把它们都扔到函数里，例如：</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">is_prime</span><span class="params">(<span class="keyword">int</span> number)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> i;</div><div class="line">    <span class="keyword">for</span> (i=<span class="number">2</span>; i&lt;number; i++)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">if</span> (number % i == <span class="number">0</span>)</div><div class="line">        &#123;</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>在使用的时候直接<code>is_prime(a)</code>，既方便又避免出错。</p>
-<h2 id="一一对应"><a href="#一一对应" class="headerlink" title="一一对应"></a>一一对应</h2><p>编程是个比较严谨的东西。初学者在写代码的时候，为了避免出错，要注意“一一对应”：</p>
-<ul>
-<li>解答题目的时候，你的代码是否和题目条件、输入输出格式要求对应？</li>
-<li>该写分号的地方是否写分号了？</li>
-<li>不该写分号的地方是不是没写？（例如for (…;…;…)的后面不应该写，如果故意要写，最好用个注释说明一下）</li>
-<li>printf、scanf中的“%d”（或别的什么）是否和后面的变量一一对应？</li>
-<li>假如后面不是int类型，你前面是否还在用“%d”？</li>
-<li>scanf后面有没有“&amp;”？</li>
-<li>int main()、if、while、for等的圆括号是否匹配？后面是否跟了“{”和“}”并且数量匹配？<ul>
-<li>虽然if、while、for后面代码只有一句时可以省略花括号，但是强烈建议你不要偷这个懒。</li>
-</ul>
-</li>
-<li>在使用变量的时候，前面是否已经定义了？（例如要scanf n了，前面是否有int n？按照题目要求是不是应该为int？）</li>
-<li>在使用“++”、“–”、“+=”等符号的时候，前面是否已经初始化了？初始化的值和初始化的位置是否正确？</li>
-<li>数组大小是否不比题目要求的小？<ul>
-<li>为了安全，建议开大点。例如题目说最大100，你就开110甚至是11000。反正贪污和浪费内存不是极大的犯罪（by 毛泽西）。</li>
-</ul>
-</li>
-<li>头文件都写全了吗？<ul>
-<li>为了安全，可以把你听说过的标准库的头文件都写上。ACM比赛经常有这样做的：#include的行数比代码实现的行数都多……</li>
-</ul>
-</li>
-</ul>
-<h2 id="多试验"><a href="#多试验" class="headerlink" title="多试验"></a>多试验</h2><p>别怕试验。多写一些小片段，看看那些代码是怎样运行的。</p>
-<p>举个例子——for循环到底执行了多少次：</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><div class="line"><span class="keyword">for</span> (i=<span class="number">12</span>; i&lt;<span class="number">15</span>; i++)</div><div class="line">&#123;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"A"</span>);</div><div class="line">&#125;</div><div class="line"><span class="built_in">printf</span>(<span class="string">"i=%d\n"</span>, i);</div><div class="line"></div><div class="line"><span class="keyword">for</span> (i=<span class="number">12</span>; i&lt;=<span class="number">15</span>; i++)</div><div class="line">&#123;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"B"</span>);</div><div class="line">&#125;</div><div class="line"><span class="built_in">printf</span>(<span class="string">"i=%d\n"</span>, i);</div></pre></td></tr></table></figure>
-<p>scanf和gets的冲突：scanf和get紧挨着可能在输入数据时遇到问题，这时候需要一个小技巧……</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><div class="line"><span class="built_in">scanf</span>(<span class="string">"%d\n"</span>, &amp;n);</div><div class="line">fgets(str, <span class="number">100</span>, <span class="built_in">stdin</span>);   <span class="comment">// 其实就是 gets(str) 的推荐写法</span></div><div class="line"><span class="built_in">puts</span>(str);                <span class="comment">// 如果那个scanf里没有“\n”，gets的时候……</span></div></pre></td></tr></table></figure>
-<p>再举个例子（指针与一维数组）：</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> a[]=&#123;<span class="number">6</span>, <span class="number">8</span>, <span class="number">10</span>, <span class="number">12</span>, <span class="number">14</span>, <span class="number">16</span>, <span class="number">18</span>, <span class="number">20</span>, <span class="number">22</span>, <span class="number">24</span>&#125;;</div><div class="line">    <span class="keyword">int</span> *p = a;</div><div class="line"></div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, a);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, a[<span class="number">0</span>]);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, &amp;a[<span class="number">0</span>]);</div><div class="line"></div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, p);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, p+<span class="number">1</span>);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, *p);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, *(p+<span class="number">1</span>));</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, *p+<span class="number">1</span>);</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>因为只是为了看个结果，所以，只要自己能把结果弄明白，怎么舒服怎么来。</p>
-<p>（当然有个重要前提——你手头得有个电脑。如果没有，可以买个Win10平板，只需要几百块钱，比手机便宜，又方便又实惠……当然装Linux系统可能会遇到困难）</p>
-<h2 id="调试"><a href="#调试" class="headerlink" title="调试"></a>调试</h2><p>经常有人问“为什么我的代码结果不对”，然后贴上一段代码。这是非常令人讨厌的行为。</p>
-<p>为了不被人鄙视，大家应该学一些调试的技巧。</p>
-<p>作为非专业人士，与其学习那些复杂又难用的调试工具，不如学习又简单又实用的 printf。</p>
-<p>printf有两大作用：定位错误、查看中间值。</p>
-<p>假如程序崩溃了，可以这样调试：</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><div class="line"><span class="keyword">int</span> a[<span class="number">10</span>];</div><div class="line"><span class="keyword">int</span> i, n;</div><div class="line"><span class="built_in">printf</span>(<span class="string">"准备读n\n"</span>);</div><div class="line"><span class="built_in">scanf</span>(<span class="string">"%d"</span>, n);</div><div class="line"><span class="built_in">printf</span>(<span class="string">"准备读a\n"</span>);</div><div class="line"><span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;n; i++)</div><div class="line">&#123;</div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;a[i]);</div><div class="line">&#125;</div><div class="line"><span class="built_in">printf</span>(<span class="string">"开始处理\n"</span>);</div></pre></td></tr></table></figure>
-<p>假如崩溃的时候屏幕上面只有“准备读n”而没有“准备读a”，说明中间夹着的scanf有问题；假如崩溃的时候有“准备读a”而没有“开始处理”，说明中间夹着的for有问题，这样你可以在for语句内部插入一些<code>printf(&quot;a\n&quot;)</code>，从而精确地找到错误的出处（例如，崩溃的时候看到10个a，说明数组开得不够大）。</p>
-<p>如果计算结果不正确，可以这样调试（筛法求素数）：</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><div class="line"><span class="keyword">int</span> i, num, isprime;</div><div class="line">isprime = <span class="number">1</span>;</div><div class="line"><span class="keyword">for</span> (num=<span class="number">2</span>; num&lt;<span class="number">10</span>; num++)</div><div class="line">&#123;</div><div class="line">    <span class="keyword">for</span> (i=<span class="number">2</span>; i&lt;num; i++)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">if</span> (num % i == <span class="number">0</span>)</div><div class="line">        &#123;</div><div class="line">            <span class="built_in">printf</span>(<span class="string">"DEBUG: %d不是素数(╯°Д°)╯︵ ┻━┻\n"</span>, num);</div><div class="line">            isprime = <span class="number">0</span>;</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="built_in">printf</span>(<span class="string">"DEBUG: %d 是素数吗？%d\n"</span>, num, isprime);</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (isprime)</div><div class="line">    &#123;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"%d "</span>, num);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>运行结果只有2和3。通过观察调试输出，发现程序认为5不是素数。按理说，如果不是素数，屏幕会输出一个掀桌子的表情。然而程序认为5不是素数，但是还没有掀桌子表情，说明问题出在isprime变量上面——<code>isprime=1</code>的位置不对。</p>
-<p>当然，交作业的时候别忘了把这种输出删掉。</p>
-<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><p>不要把测试和调试搞混。用一句话概括它们的区别：测试是为了观察“程序结果是否正确”，而调试是为了“找到程序的错误”。</p>
-<p>很多初学者经常不做测试，或者不做充分的测试就提交，然后遇到问题就反复改，反复提交。这样也是不好的。</p>
-<p>Online Judge就是测试的一种：系统预置了一系列数据和答案，按照题目要求解题、提交，系统会自动编译和运行代码，检查程序是否能在规定时间内处理预定输入并得到正确结果。在比赛中，错误提交是要影响成绩的，因此选手必须要学会自己测试，争取一次提交就通过。</p>
-<p>程序编译通过之后，当然要用数据检验一下结果。如果把样例输入敲进去结果都不对，那程序肯定不行。</p>
-<p>光通过样例也是不行的。为了保证通过，你应该自行构造多个输入，观察输出是否正确。应从以下几个角度构造数据：</p>
-<ol>
-<li>守规矩的计算</li>
-<li>不守规矩的计算：如果题目没做保证，那么应假设有非法数据。假如题目没说a一定大于0，那你有没有想到a可以等于0或-1？</li>
-<li>多种情况：假如程序有多种结果（Yes/No），你是否都测试到了？</li>
-<li>边界条件：假如最多100个人，那么你的程序在恰好输入100个人的情况下能否正常工作？<ul>
-<li>没有人或只有1个人呢？</li>
-<li>稍微提一下，假如数组有100个元素（int a[100]），访问a[100]是非法的，但是在你自己电脑上不一定报错。这是一个隐藏的错误。为了避免这种错误，可以把数组开大一些，例如200甚至10000。</li>
-</ul>
-</li>
-</ol>
-<p>除此之外，初学者常常忽略的问题有空格（一个空格、两个空格、多个空格、行末空格）、回车（例如最后一行的回车）、字母大小写和符号全半角，还有不明显的格式差别（例如题目要求用逗号分隔你却用了空格）。因为测试是全文逐字比较的，所以不要犯这种低级错误。</p>
-<h2 id="养成好习惯"><a href="#养成好习惯" class="headerlink" title="养成好习惯"></a>养成好习惯</h2><p>建议大家照做，因为这样可以避免很多不必要的错误：</p>
-<ul>
-<li>如果你不知道全角符号<code>，。、（）</code>和半角符号<code>,.\()</code>有什么区别，那么建议你写代码的时候把输入法关掉，免得出现莫名其妙的错误。</li>
-<li>不同功能（定义变量、输入、数据处理、输出）之间留点空行，也就是按功能分块，就像前面提到的那样。</li>
-<li>接上条，如果代码太长，那么最好多用一些函数，把各功能分离出来。写代码的时候一个功能一个功能地写。没有人喜欢又长又臭的代码。</li>
-<li>缩进，一定要保持代码的缩进。没有缩进的代码难以理解，而且很有可能丢花括号，从而造成不必要的麻烦。</li>
-<li>使用“黑科技”（不解释就难以理解）的时候要加注释。</li>
-<li>if、for等语句后面可以不加花括号对吧？别懒，把花括号加上，免得犯这样的错误：</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="code"><pre><div class="line"><span class="keyword">if</span> (a &gt; b)</div><div class="line">    c=a;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%d"</span>,c);</div><div class="line"><span class="keyword">else</span></div><div class="line">    c=b;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%d"</span>,c);</div></pre></td></tr></table></figure>
-<h1 id="如何通过二级"><a href="#如何通过二级" class="headerlink" title="如何通过二级"></a>如何通过二级</h1><p>这是也很多人关心的问题。虽然事实上计算机二级比英语六级容易通过（对于985、211的学生来说，只要英语三级也就是高考成绩不太烂，英语四级裸奔也能过……），但是很多人还是没通过。这不是他们不刻苦或者学得不好，而是因为他们不知道如何对付一个考证级别的考试。对，和英语四六级有着本质的区别。</p>
-<p>首先用一句话概括通过计算机三级和四级的武林秘籍：去购买高等教育出版社的、封面上带个大大的黄色字母K的官方教材，从头到尾把题刷一遍，该背的（包括试题）背下来，如果还没通过那你肯定是故意的。</p>
-<p>一本官方教材胜过N本练习册。</p>
-<h2 id="基本内容"><a href="#基本内容" class="headerlink" title="基本内容"></a>基本内容</h2><p>虽然二级过了三四级成绩才能算数，但是，之所以先介绍三四级，是因为三四级比二级好过——三四级基本上可以纯背，但二级还是要会点东西的。下面就介绍介绍二级C语言：</p>
-<ul>
-<li>选择题40分，大题（改错、填空、编程）60分。</li>
-<li>上机考试，先做选择题，选择题全部做完才能做大题。做选择的时候电脑屏幕是锁死的，做大题的时候才能使用编程软件。</li>
-<li>题目是从题库里随机抽的，所以不要尝试照旁边的人抄。当然，运气好的话，你会碰到和官方教材中差不多的题。撞大题的概率更高。</li>
-<li>选择题中至少有20~30分来自“二级公共语言基础”，这个“公共语言基础”大致分成两类，一类是“算法与数据结构”，需要你去理解一些东西；另一类不管它是啥，反正是纯粹要背的东西。剩下的选择题和C语言本身有关。</li>
-<li>C语言课的东西够用了，关键是你对考试出题的基本法的了解程度。</li>
-<li>编程软件是钦点的Visual C++ 6.0，虽然它是盗版的，虽然它很可能无法在你自己的电脑上正常运行。</li>
-<li>二级考完只有三种状态：没通过（&lt;60分）、合格（60~89分）、优秀（90~100分）。因此，如果你不打算拿优秀证，考60和考89没有任何区别。（在这一点上，英语四六级就不一样——证书上面把成绩写出来了）</li>
-<li>因为计算机二三四级证书都很水，因此，求职时如果应聘条件没有明确要求，不要指望拿这些证书给自己贴金。虽然二级可能是很多岗位的基本条件之一。</li>
-<li>最后，如果你想考三四级，一定要看清楚对应科目对二级的要求——是要求通过编程语言类的二级还是数据库语言类的二级。如果你二级报的是Office那还是别考三四级了。</li>
-</ul>
-<h2 id="选择题"><a href="#选择题" class="headerlink" title="选择题"></a>选择题</h2><p>如果你觉得大题把握很大，而且没有拿优秀证的打算，那么“二级公共语言基础”的东西就可以少背一点了。反之要多背一些。</p>
-<p>“算法和数据结构”是一个不太容易懂的东西——如果学得很好，没准就可以去打ACM比赛了。既然是个只需要拿60分的考证，那么不妨把官方教材拿出来，看看他们喜欢怎样出题，把相关考点记住即可。</p>
-<p>有关C语言本身的选择题，实在不懂也不必太较真，因为它可能没有意义：例如经典的<code>a+=a-=a*a;</code>和<code>a=a++;</code>都是未定义行为——连C语言标准对这些语句的结果都没有任何保证，所以肯定没有正确答案。</p>
-<h2 id="大题"><a href="#大题" class="headerlink" title="大题"></a>大题</h2><p>大题是一定要会的。如果你没有精心准备，选择题分数可能会惨不忍睹，因此大题要尽量把分数都弄到手。</p>
-<p>为了把分数搞到手，我们要从两方面准备，一方面是正确解答题目，另一方面是正确地解答题目。</p>
-<h3 id="正确解答题目"><a href="#正确解答题目" class="headerlink" title="正确解答题目"></a>正确解答题目</h3><p>大题分为改错、填空、编程。</p>
-<p>改错就很简单了。因为改错的模式都比较固定，只要多看看官方的题目就应该清楚他们会怎样考了。</p>
-<p>填空也一样。一般是让你填一些“单词”，或者是些简单的表达式。填空时候要多留意已经定义和未使用的变量。</p>
-<p>其实吧，改错和填空题很多时候就是<strong>推理</strong>题——不用太清楚程序干嘛，只要保证所有变量都被用过了，该对应的地方都对应了，OK。</p>
-<p>编程题要注意：数组、指针和字符串对于初学者来说比较难理解，对吧？不幸的是，出题人也爱考这些东西。因此，还是要看官方教材，看看他们喜欢怎样出题，并且建议你在做这些题的时候亲自上机练习一下。</p>
-<h3 id="正确地解答题目"><a href="#正确地解答题目" class="headerlink" title="正确地解答题目"></a>正确地解答题目</h3><p>两个要点：一是不犯低级错误，二是要会用Visual C++ 6.0编辑代码。</p>
-<p>不犯低级错误，举个例子，题目提示<code>只修改/******* FOUND *******/下一行的代码</code>，那么你不要改其他地方的代码，也不要把这个注释本身修改或删除。此外尽量不要碰原有代码的其他部分，例如空格和缩进。</p>
-<p>Visual C++ 6.0是一个古老的软件了（1998年发布），在现代操作系统（Windows 8/8.1/10）中会出现兼容性问题，甚至无法启动。因此，平时在自己电脑上练习的时候可以使用其他编程软件，然后考前去一趟机房（机房应该安装了Visual C++ 6.0），学会如何打开和保存代码（考试软件会帮你打开代码）、如何找到<code>int main()</code>、如何编译运行。知道这些就足够了。</p>
-<img src="/2015/12/30/learn-c/vc6.png" alt="会点这三个按钮就够了。" title="会点这三个按钮就够了。">
-<p>会点这三个按钮就够了。</p>
-<h1 id="拓展学习"><a href="#拓展学习" class="headerlink" title="拓展学习"></a>拓展学习</h1><p>对于非计算机专业的学生来说，尽管C语言很难学，尽管C语言<span class="blackout">看起来</span>“不实用”，但是很多编程语言的套路都是类似的，因此学完C语言有助于其他“实用”语言的学习。有些“实用”语言甚至直接向C语言致敬，例如PHP。</p>
-<p>以下是一些当下很流行的、学起来可以“实用”的编程语言，如果有兴趣的话可以学一学。</p>
-<ul>
-<li>HTML+CSS+JavaScript：做网页的一套语言，虽然是三个，但是实际上哪个都不需要学得太深——一方面需要什么东西可以自己去查，另一方面现成框架太多了，很多时候用不着从零开始。我个人建议不要用Dreamweaver，即使用也要用最新的Dreamweaver CC，否则容易落伍。</li>
-<li>PHP：想做个实用网站吗？学吧！就是它大量致敬了C语言的语法！<ul>
-<li>由于PHP学习门槛很低，因此很容易写出有大量安全漏洞的网站。做项目时要多加小心。</li>
-</ul>
-</li>
-<li>Python：Python是个小巧而又强大的脚本语言。建议有兴趣的一定要学。<ul>
-<li>如果想写一个随写随用的程序，当然要找它；</li>
-<li>如果想做一个实用的网站，同样可以找它——可以学习基于Python语言的Django框架；</li>
-<li>如果想做一个带窗口对话框的程序，当然也可以找它——可以学习基于Python语言和Qt的PyQt框架。对于这种情况，建议同时学习PyQt和Qt C++。</li>
-<li>Python有两套版本，一个是2.7.10，一个是3.5。它们两个有些差别，但是实际上不影响学习。遇到困难时到搜索引擎上搜一下就行了。</li>
-</ul>
-</li>
-<li>Visual C#：C++和C#都带个“C”，那它们当然是从C语言衍生过来的……学C语言写不出一个带窗口对话框的程序对吧<span class="blackout">其实C语言有GTK+</span>，没关系，我们可以用一个好学的Visual C#，随手画个窗口出来！</li>
-<li>Qt C++：同样是用来制作带窗口对话框程序的，只不过这个是C++语言。</li>
-<li>Java：Android应用就是拿Java写的……</li>
-<li>Objective-C：iOS应用是拿这个语言写的，只不过进App Store的门槛有点高。</li>
-<li>MATLAB：数值计算、数值模拟必备。一定先把高等数学和线性代数学好然后再学这个……</li>
-</ul>
-<p>我不推荐Pascal和Basic，前者用的人数不多，后者……VB6也是1998年的东西，在现在的系统中已经不能正常运行了，而且学新版VB不如学C#。</p>
-<p>另外还有两个硬件：</p>
-<ul>
-<li>Arduino：Arduino是一个卡片大小的开发板（如果不知道开发板是啥——就是可以让你拿来写程序的电路板），编程的时候基本上就是C或C++。与电路相关的东西都是封装好的，可以直接调用函数，所以不会被一些细枝末节困扰<span>当然对单片机和电路有一定了解之后那些细枝末节还是要学的</span>。虽然玩51单片机的人更多，但是从Arduino入门会容易很多。</li>
-<li>树莓派：树莓派是一个卡片大小的单板电脑。虽然设计者的定位是儿童电脑，不过实际上被极客当成高级玩具了。最新的树莓派2可以跑Linux和Windows 10（物联网版）系统，对物联网感兴趣的可以玩玩。</li>
-</ul>
-<p>我个人的学习建议：</p>
-<ol>
-<li>尽量找外文书的中译本，原因很简单，翻译一本书需要付出大量时间精力，因此能够被拿来翻译的书基本上都是好书。<span>因为写书很容易，因此国内很容易出烂书。外国的月亮也不圆——外国也一样。</span></li>
-<li>把书粗读一遍，大致了解一下基本语法。很多语言的基本结构都差不多，只不过单词不一样罢了。</li>
-<li>细读，看看（特别是翻译本）作者的思想和思路。</li>
-<li>照着教材做个小练习。</li>
-<li>不用强求把所有东西都记住。现在局域网那么发达，有问题可以直接去网上查。</li>
-</ol>
-
-      
-    </div>
-
-    
-      
-
-    
-
-    <footer class="article-footer">
-      <a data-url="https://vjudge1.github.io/2015/12/30/learn-c/" data-id="cj2pxh418001f76cmw4blrsn3" class="article-share-link">
-        <i class="fa fa-share"></i> Share
-      </a>
-      
-        <a href="https://vjudge1.github.io/2015/12/30/learn-c/#disqus_thread" class="article-comment-link">
-          <i class="fa fa-comment"></i> Comments
-        </a>
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-gui" class="article article-type-post" itemscope itemprop="blogPost">
-
-  
-  <header class="article-header">
-    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/11/23/gui/">编写图形界面程序</a>
-    </h1>
-  
-
-
-  </header>
-
-  <div class="article-meta">
-    <div class="article-datetime">
-    <span class="article-date">
-        <time datetime="2015-11-22T16:00:00.000Z" itemprop="datePublished">2015-11-23</time>
-    </span>
-</div>
-
-    
-    
-    <div class="article-category">
-        <a class="article-category-link" href="/categories/经验总结/">经验总结</a>
-    </div>
-
-
-    
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GUI/">GUI</a></li></ul>
-
-
-  </div>
-  
-  <div class="article-inner">
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>买了个 Windows 10 平板电脑，发现不能刷 Linux（因为各种没驱动），然后就遇到了一个问题——如果想随手写一个实用的 GUI 程序，用哪个比较好呢？</p>
-<p>为了方便叙述，先把条件摆上：</p>
-<ol>
-<li>没有被现在的操作系统抛弃。</li>
-<li>不要太占地方，因为平板一共才 60G。</li>
-<li>能够快速开发——最起码得有个界面设计器。</li>
-<li>最好能跨平台，因为我个人 Windows/Linux/Mac 经常换着用。</li>
-</ol>
-<p>条件 1 是针对 VB6 和易语言说的。这两个非常适合随手写随手用（快速应用开发，RAD），可惜它们都过时了。</p>
-<p>条件 2 是针对 Visual Studio 的。VS 非常好用，可惜占空间太大了。即使是 Community 或者 Express 也不能选择只安装单一语言，只能看着不需要的东西在那儿白白占地方。</p>
-<p>虽然很多事情通过一个脚本就能搞定，虽然现在是 Web 的时代，不过有些时候还是有个窗口对话框比较好用，因此我对常见的框架进行了一系列考察。</p>
-<h1 id="Qt"><a href="#Qt" class="headerlink" title="Qt"></a>Qt</h1><p>Qt 是个跨平台的 C++ 框架。</p>
-<p>Qt Creator 集成了代码编辑器、界面设计器等功能，新建一个项目之后就可以拿界面设计器画窗口，而且控件（VB 的叫法）自动实例化，所以不用像 MFC 那样需要手动添加变量，再加上布局管理、信号和槽等机制，非常方便，可以做到随手画随手写然后就随手拿去用。</p>
-<p>不过 Qt 也非常占地方，大约需要 3GB——因为 Windows 没有 C++ 编译器，只能用 Qt 自带的 MinGW，或者把 Visual Studio 装上然后用它的编译器……</p>
-<h1 id="Swing"><a href="#Swing" class="headerlink" title="Swing"></a>Swing</h1><p>Java 是跨平台的——是地球人就知道。所以说，用 Java 写的 GUI 程序也是。</p>
-<p>虽然 Java 的 IDE 非常多，但是并不是所有 IDE 都有界面设计器，所以感觉真的很蛋疼。而且写 Java 代码同样蛋疼。</p>
-<h1 id="Gtk"><a href="#Gtk" class="headerlink" title="Gtk"></a>Gtk</h1><p>即使抛弃 VS，C# 也是不错的选择。只不过，肯定不是 Windows Forms 框架了（Windows Forms 没开源）。</p>
-<p>很多人都在找 Xamarin Studio 破解版，不过要是开发桌面应用的话，根本不用花钱（其实他们都写 Android 应用，那个可是价格不菲）。至于图形界面，就只好用跨平台的 Gtk# 了。</p>
-<p>Xamarin Studio 的代码编辑和图形界面比 VS 逊色很多，不过它的只有几百兆的体积可比 VS 好多了。因为 Gtk# 也是 .Net 平台（其实是 Mono），所以 .Net 本身的东西（例如<code>System</code>）都是一样的，不过在 Gtk 那边我得摸着石头过河了，毕竟 Gtk# 不是那么主流。</p>
-<p>备注：</p>
-<ol>
-<li>虽然新建工程里面写着 VB 其实它根本不支持 VB。</li>
-<li>IDE 本身有一些 bug，例如不能调语言……中英文混合的界面实在蛋疼。</li>
-<li>如果不需要界面设计器，可以拿着 Xamarin Studio 写 ASP.NET 应用。等开源的那个 ASP.NET 出正式版我就打算试试。</li>
-</ol>
-<h1 id="PyQt-PySide"><a href="#PyQt-PySide" class="headerlink" title="PyQt/PySide"></a>PyQt/PySide</h1><p>PyQt = Python + Qt，既然 Python 和 Qt 都是跨平台的，那么 PyQt 当然也是跨平台的。</p>
-<p>PyQt 官网提供了附带 Qt 框架的 PyQt。不过反正都是闲着，而且已经装了 Qt，我就自己编译了——在 Windows 中编译，要事先把 PATH 环境变量设置好，然后做好找不到头文件的精神准备。只要准备充分，不比 Linux 中麻烦多少。</p>
-<p>PyQt 除了把编程语言换成了 Python 以外，其他东西都是一样的。</p>
-<p>不过，Qt 有一个集成的开发环境，PyQt 可没有——PyQt 提供了一个 Qt Designer，但是每次修改都需要自己运行代码生成器 PyUIC，这样就比较麻烦。比方说，如果建立了一个叫做 hello 的窗口（其中有一个按钮），运行了一遍 PyUIC，那么 helloworld 程序就需要这样写——</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><div class="line"><span class="keyword">import</span> sys</div><div class="line"><span class="keyword">from</span> PyQt5 <span class="keyword">import</span> QtWidgets</div><div class="line"><span class="keyword">from</span> PyQt5 <span class="keyword">import</span> QtCore</div><div class="line"><span class="keyword">import</span> hello</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">HelloWindow</span><span class="params">(QtWidgets.QWidget, hello.Ui_Hello)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></div><div class="line">        super(HelloWindow, self).__init__()</div><div class="line">        self.setupUi(self)</div><div class="line">        self.pushButton.clicked.connect(self.say_hello)</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">say_hello</span><span class="params">(self)</span>:</span></div><div class="line">        QtWidgets.QMessageBox.information(self, <span class="string">"Hello"</span>, <span class="string">"Hello, world!"</span>)</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    app = QtWidgets.QApplication(sys.argv)</div><div class="line">    f = HelloWindow()</div><div class="line">    f.show()</div><div class="line">    sys.exit(app.exec_())</div></pre></td></tr></table></figure>
-<p>有人说 PyQt 和 Python 没多大关系，全都是 Qt。不过既然放着 C++ 不用，那肯定是冲着 Python 来的嘛——什么时候想给 Python 程序加个高大上的界面的时候就可以考虑一下了（其实还是想借 Python 的光）。</p>
-<h1 id="Lazarus"><a href="#Lazarus" class="headerlink" title="Lazarus"></a>Lazarus</h1><p>若干年前，Delphi 是一个很火的编程软件，不知为何，后来逐渐淡出了人们的视线（不过 Delphi 一直在开发，从来未弃坑）。</p>
-<p>Delphi 是要钱的。在这个讲究开源的时代，谁乐意为了一个写 helloworld 级别的程序而掏钱啊。所以 Xojo 也是没必要在乎的。</p>
-<p>但是 Lazarus 就不一样了。它是社区搞的，自由软件，跨平台，而且一直在“山寨” Delphi。所以，直接找本 Delphi 的教材就可以进行学习了。</p>
-<p>Lazarus 和 Delphi 新建工程之后都是直接出现一个窗口，然后就可以直接用鼠标画控件，就像 VB 和易语言那样，非常迅速、方便。只不过 Pascal 的语法和其他语言很不一样（比如赋值符号<code>:=</code>），所以可能除了那些打过信息学竞赛（不是 ACM）的人听过，其他人都没听过。</p>
-<h1 id="Web-技术"><a href="#Web-技术" class="headerlink" title="Web 技术"></a>Web 技术</h1><p>Web 这么火，肯定有人想把 Web 那一套搬到桌面应用上。这样的例子很多，比如 Atom 和有抄袭嫌疑的 Visual Studio Code。</p>
-<p>这一类框架使用 Node.js、Chromium、HTML5/CSS3/JavaScript——因为 Node.js 跨平台，浏览器跨平台（而且还是钦点的），那么这种应用当然也跨平台了。</p>
-<p>因为我考察这些框架是为了随手写一个能用的程序（想想做网页的过程有多么痛苦），而且带着个大浏览器，编程和调试都很麻烦，所以当然不会拿这种框架来开发本地应用了。</p>
-<p>再次强调，不是因为这种技术不好，而是不够轻巧。</p>
-<h1 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h1><p>最后的结果是：留下 Qt、PyQt、Xamarin Studio 和 Lazarus。</p>
-<p>Lazarus 启动就能动手编，很随意。在 Windows 中还有 Windows API 用。</p>
-<p>拿 Qt 可以写点像样的东西。（备注：没说拿 Lazarus 不行）</p>
-<p>PyQt……有人说那是 Qt，其实是用来抱 Python 大腿的。</p>
-<p>Xamarin Studio 就留给将来学习 ASP.NET 用了。（如果 Visual Studio Code 不差的话可能还要换着用）</p>
-<h1 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h1><p>出于现实的需要，我用 Java 了……</p>
-
-      
-    </div>
-
-    
-      
-
-    
-
-    <footer class="article-footer">
-      <a data-url="https://vjudge1.github.io/2015/11/23/gui/" data-id="cj2pxh416001b76cm1i41rsha" class="article-share-link">
-        <i class="fa fa-share"></i> Share
-      </a>
-      
-        <a href="https://vjudge1.github.io/2015/11/23/gui/#disqus_thread" class="article-comment-link">
-          <i class="fa fa-comment"></i> Comments
-        </a>
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-hackintosh" class="article article-type-post" itemscope itemprop="blogPost">
-
-  
-  <header class="article-header">
-    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/09/13/hackintosh/">黑苹果安装心得</a>
-    </h1>
-  
-
-
-  </header>
-
-  <div class="article-meta">
-    <div class="article-datetime">
-    <span class="article-date">
-        <time datetime="2015-09-12T16:00:00.000Z" itemprop="datePublished">2015-09-13</time>
-    </span>
-</div>
-
-    
-    
-    <div class="article-category">
-        <a class="article-category-link" href="/categories/个人心得/">个人心得</a>
-    </div>
-
-
-    
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hackintosh/">Hackintosh</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mac/">Mac</a></li></ul>
-
-
-  </div>
-  
-  <div class="article-inner">
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>鉴于周围有很多人想体验体验苹果系统，作为一个成功用上黑苹果的人，我随便写点心得吧。</p>
-<div class="bs-callout bs-callout-info">
-                <h4 id="什么是黑苹果"><a href="#什么是黑苹果" class="headerlink" title="什么是黑苹果"></a>什么是黑苹果</h4><p>黑苹果就是在自己（非苹果品牌）电脑上面安装的苹果系统。因为苹果官方不允许这样做，所以对于初学者来说，黑苹果的安装绝对比其他系统困难很多。</p>
-
-            </div>
-<h1 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h1><h2 id="买电脑"><a href="#买电脑" class="headerlink" title="买电脑"></a>买电脑</h2><p>如果你还没买电脑，建议咨询咨询已经装过黑苹果的人，尽量买一台配置接近苹果的电脑。<span class="blackout">土豪们可以直接买苹果电脑，反正 Pro 才一万多点，比戴尔的外星人便宜多了，而且还省了高达九成九的麻烦。</span></p>
-<p>绝对不要：</p>
-<ol>
-<li>买联想或惠普的电脑。除非你想知道刷机刷成砖的样子。</li>
-<li>买处理器是 AMD 的电脑。处理器是 AMD，意味着你和黑苹果无缘了。<span class="blackout">其实 AMD 也能装，就是麻烦事儿多点。</span></li>
-</ol>
-<h2 id="做好思想准备"><a href="#做好思想准备" class="headerlink" title="做好思想准备"></a>做好思想准备</h2><ol>
-<li><p>如果你是从头开始，请做好<strong>长期斗争</strong>的准备！</p>
-<p>如果事情一切顺利，大约需要一个星期的时间。如果事情不顺，可能得花几个月时间才能弄得比较好用。</p>
-</li>
-<li><p>安装双系统（3 个系统、4 个系统……）不会对电脑造成破坏，<span class="blackout">除非你脑残或手残。</span></p>
-</li>
-</ol>
-<h2 id="论坛"><a href="#论坛" class="headerlink" title="论坛"></a>论坛</h2><p>请到<a href="http://bbs.pcbeta.com" target="_blank" rel="external">远景论坛</a>上面注册账号。这不是广告，而是各路网友智慧的结晶。</p>
-<p>注册之后请大致扫一眼<a href="http://bbs.pcbeta.com/viewthread-1516108-1-1.html" target="_blank" rel="external">这个目录</a>。以后我们会经常和这个论坛打交道。</p>
-<p>接下来本文会贴一些来自远景论坛的链接。有的需要阅读权限或下载附件，所以你当然要注册账号。</p>
-<h2 id="认识一些概念"><a href="#认识一些概念" class="headerlink" title="认识一些概念"></a>认识一些概念</h2><p>如果对以下问题不感冒，那么请不要拿黑苹果练手。<span class="blackout">先好好练习如何装 Windows 系统，练会了再回来。</span></p>
-<ol>
-<li>苹果系统最新版本是多少？</li>
-<li>装过系统吗？</li>
-<li>你的电脑是 UEFI/Legacy、GPT/MBR？</li>
-<li>什么是引导？</li>
-</ol>
-<h2 id="确定自己电脑能不能安装"><a href="#确定自己电脑能不能安装" class="headerlink" title="确定自己电脑能不能安装"></a>确定自己电脑能不能安装</h2><h3 id="虚拟机"><a href="#虚拟机" class="headerlink" title="虚拟机"></a>虚拟机</h3><p>只要电脑处理器不是 AMD 的，基本上没问题。<span class="blackout">可以直接下载一个已经装好的映像。</span></p>
-<h3 id="笔记本"><a href="#笔记本" class="headerlink" title="笔记本"></a>笔记本</h3><p>只要不是 AMD 处理器，就可以看<a href="http://bbs.pcbeta.com/viewthread-1516108-1-1.html" target="_blank" rel="external">这里</a>。如果 CPU 和显卡符合要求，那么可以继续了。</p>
-<p>苹果系统不支持 AMD 处理器。<span style="background-color: #111">可以通过更换破解之后的内核来安装。因为破解有一定的隐患（例如不能直接升级），所以说，即使能成功，我也不建议在 AMD 处理器电脑上安装。</span></p>
-<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><div class="bs-callout bs-callout-success">
-                <h4 id="提醒"><a href="#提醒" class="headerlink" title="提醒"></a>提醒</h4><p>在正式按照论坛教程安装系统之前，先看这里——</p>
-<p>装系统，不管是安装哪个系统（Windows/Linux/黑苹果），思路都是一样的：</p>
-<ol>
-<li>下载安装盘</li>
-<li>将下载好的安装盘制作成启动盘</li>
-<li>通过启动盘启动安装盘</li>
-<li>运行安装程序</li>
-<li>完成系统安装</li>
-<li>安装驱动</li>
-<li>安装软件，开始使用新系统</li>
-</ol>
-
-            </div>
-<p>由于 Windows 或比较流行的 Linux 发行版都希望用户能够轻松地把系统装到自己电脑上，所以，即使有些概念不太好理解，最终还是可以不太费力地把系统装好。</p>
-<p>而苹果公司并不希望用户在普通电脑上面安装苹果，所以以上每一步操作都有着极大的障碍。而且，苹果是硬件公司，你的电脑很可能因为与苹果硬件不匹配而在半路出现问题！</p>
-<p>装黑苹果感觉很复杂，原因就在此。</p>
-<p>接下来将对以上几步进行讲解，并用 Windows 作对比。希望大家理解之后再去看论坛的教程。</p>
-<h2 id="0-准备"><a href="#0-准备" class="headerlink" title="0. 准备"></a>0. 准备</h2><p>由于黑苹果的特殊性，我们应该做一些准备：</p>
-<ol>
-<li>把电脑硬盘给苹果划出一个分区。如果只想体验体验，那么 50GB 足矣。如果日后可能要作为日常系统使用（事实上很可能如此），并且要安装一些大型软件<span class="blackout">例如黄片</span>，那么就要多分一些，因为苹果系统分区基本上没办法改容量。</li>
-<li>准备一个 PE 启动盘。一旦后悔，可以随时把电脑恢复原状。</li>
-<li>虽然事实上只用 Linux 系统也能把黑苹果装好，但是我建议初学者在 Windows 里操作。因为在 Linux 中一旦出问题，只有那高高在上的<a href="http://cn.uncyclopedia.wikia.com/没有人" target="_blank" rel="external">没有人</a>才会来救你。</li>
-</ol>
-<div class="bs-callout bs-callout-info">
-                <h4 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h4><p>不建议你用 Linux，是因为很难找到一个在 Linux 中刻录 dmg/cdr 格式的软件。如果你已经刻了一个安装盘，或者找到刻录软件了，您请便。只有刻启动盘、安装启动器和处理故障的时候才需要电脑上原有的系统。</p>
-<p>Linux，装上 HFS+ 文件系统支持之后就可以读写 HFS+ 分区了，而且是免费的。</p>
-
-            </div>
-<h2 id="1-下载安装盘"><a href="#1-下载安装盘" class="headerlink" title="1. 下载安装盘"></a>1. 下载安装盘</h2><div class="bs-callout bs-callout-info">
-                <h4 id="Windows-是这样的"><a href="#Windows-是这样的" class="headerlink" title="Windows 是这样的"></a>Windows 是这样的</h4><p>Windows 的安装盘是 ISO 格式的（我从来不考虑 GHO），所以可以很轻松地刻录成安装盘。即使不想刻录，基于 U 盘的解决方案也有很多。</p>
-
-            </div>
-<p>而苹果是这样的——苹果安装盘的映像是 dmg 或 cdr 格式的。不管是哪种，能够读取的软件都很少。而且普通电脑是无法直接拿来引导！</p>
-<p>在远景论坛上面，苹果系统的安装盘一般分三种：</p>
-<ol>
-<li>原版——基于原版制作的安装盘。一般不是“彻底”的原版，而是进行了一些简单的加工，可以用于安装，因为“纯正”的原版在普通电脑上面根本用不了。</li>
-<li>懒人版——经过破解，支持了 MBR 分区（因为苹果系统只支持 EFI+GPT）。除此之外，不要以为懒人版有什么额外的东西了。</li>
-<li>整合版——整合了一些驱动。</li>
-</ol>
-<p>那么如何选择安装盘？这取决于电脑的配置情况——</p>
-<ol>
-<li>UEFI+GPT 优先选择原版。这是最接近原生苹果的搭配。</li>
-<li>Legacy+MBR 当然只能选择懒人版。</li>
-</ol>
-<div class="bs-callout bs-callout-info">
-                <h4 id="个人建议"><a href="#个人建议" class="headerlink" title="个人建议"></a>个人建议</h4><p>我的建议是，如果电脑支持而且你会操作，那么就先把电脑转换成 UEFI+GPT，因为在 MBR 条件下把系统装好，<strong>进行系统升级会带来很大麻烦</strong>，而 UEFI+GPT 可以大大方方地升级而不用担心出错。不过也可以在装完之后再转。<a href="/2014/12/18/legacy-mbr-to-uefi-gpt-hackintosh/">这里</a>是一个装完之后才转换的教程。</p>
-
-            </div>
-<div class="bs-callout bs-callout-warning">
-                <h4 id="看不懂？"><a href="#看不懂？" class="headerlink" title="看不懂？"></a>看不懂？</h4><p>即使看不懂，也要清楚自己电脑到底是 UEFI+GPT，还是 Legacy+MBR，或者是什么方案，否则后面实在无法继续。</p>
-<p>下面是一些简易的区分方法：</p>
-<ol>
-<li>Windows XP：肯定是 Legacy+MBR</li>
-<li>Windows 7：绝大多数系统都是 Legacy+MBR</li>
-<li>Windows 8 或更高：打开“计算机管理”，找到“磁盘管理”。如果里面有几个零碎的、没有盘符的分区，那么就是 UEFI+GPT，否则是 Legacy+MBR。</li>
-<li>Linux：能够装 Linux，那么这个问题不用教了吧？（提示：看 /dev/sda1 后面是 sda2 还是 sda5）</li>
-</ol>
-
-            </div>
-<h2 id="2-将下载好的安装盘制作成启动盘"><a href="#2-将下载好的安装盘制作成启动盘" class="headerlink" title="2. 将下载好的安装盘制作成启动盘"></a>2. 将下载好的安装盘制作成启动盘</h2><div class="bs-callout bs-callout-info">
-                <h4 id="Windows-是这样的"><a href="#Windows-是这样的" class="headerlink" title="Windows 是这样的"></a>Windows 是这样的</h4><p>ISO 格式安装盘可以直接刻录到光盘里。因为现在很少有人使用光盘，所以一般都采用一些软件（例如 UltraISO）将安装盘刻录到 U 盘中。即使不直接刻录，通过 PE 启动盘也可以进行安装。总之解决方案非常多。</p>
-
-            </div>
-<p>由于苹果采用了特殊的文件系统（HFS+），所以在 Windows 中不太容易看到其中的文件。并且，由于没有引导信息，所以即使刻录好也无法直接引导启动（后面再讲如何启动）。</p>
-<p>因此论坛教程会让你安装 <code>TransMac</code>、<code>Leopard 硬盘安装助手</code>之类的软件。这些软件将完成同样的“刻录”过程。</p>
-<p>此外还有一点与 Windows 不同，刻录黑苹果安装盘的时候，有的教程会让你刻录到 U 盘中，有的教程会让你刻录到自己电脑硬盘中。这些都是可行的。</p>
-<p>刻录完毕，有些教程会让你把刻录的磁盘分区的磁盘标记改为 AF（MBR 磁盘）或 {48465300-0000-11AA-AA11-00306543ECAC}。这是为了能让各种软件正确地将分区识别为“苹果系统分区”而不是损坏的分区。</p>
-<h2 id="3-通过启动盘启动安装盘"><a href="#3-通过启动盘启动安装盘" class="headerlink" title="3. 通过启动盘启动安装盘"></a>3. 通过启动盘启动安装盘</h2><div class="bs-callout bs-callout-info">
-                <h4 id="Windows-是这样的"><a href="#Windows-是这样的" class="headerlink" title="Windows 是这样的"></a>Windows 是这样的</h4><p>开机按 F12</p>
-
-            </div>
-<p>黑苹果就麻烦多了……</p>
-<h3 id="启动器"><a href="#启动器" class="headerlink" title="启动器"></a>启动器</h3><p>与刻录出来的 Windows 安装盘不同，苹果系统盘映像不含引导信息（就算有，普通电脑也根本无法引导）。</p>
-<p>因此必须借助一个辅助程序，才能让普通电脑启动苹果系统。目前流行这两个程序：</p>
-<ul>
-<li>Clover (四叶草)——用于 UEFI+GPT 模式</li>
-<li>Chameleon (变色龙)——用于 Legacy+MBR 模式</li>
-</ul>
-<p>变色龙有 Windows 版安装程序，而四叶草没有，因此四叶草的文件需要想办法弄到手。</p>
-<div class="bs-callout bs-callout-info">
-                <h4 id="EFI-引导"><a href="#EFI-引导" class="headerlink" title="EFI 引导"></a>EFI 引导</h4><p>通过 EFI 引导并不需要去“刻录”。以 U 盘为例，只要在 U 盘根目录里有个 EFI 文件夹，EFI 里面有个 BOOT，BOOT 里面有个 bootx64.efi，而且文件正确，电脑就能以 UEFI 模式引导 U 盘了。</p>
-
-            </div>
-<p>以后会经常遇到“-f”、“-x”、“-v”等字样，这些是 Chameleon 的；而“Verbose mode”、“Without caches”等字样是 Clover 的。</p>
-<h3 id="驱动-Kext"><a href="#驱动-Kext" class="headerlink" title="驱动 (Kext)"></a>驱动 (Kext)</h3><p>苹果电脑把驱动叫做“Kext”。以后看到“SLE”（/System/Library/Extensions）、“EE”（/Extra/Extensions，变色龙专用）、“kexts/10.10”（Clover 安装目录/kexts/10.10，Clover 专用）要知道他们在谈论驱动的存放路径。</p>
-<p>由于苹果电脑硬件和普通电脑不完全一样，部分驱动在普通电脑上面会产生错误，因此在正式进入安装程序之前，需要添加或删除一些驱动。</p>
-<p>由于 Windows 无法直接操作苹果分区，所以有的教程会让你安装 HFS+ for Windows，并且够意思地给了一个注册码。（某些 Linux，如 Ubuntu，可以直接读取 HFS+ 分区，不过需要手动用 mount 挂载才能写入。）</p>
-<p>添加和删除哪些驱动呢？看教程怎样说。此外有贴子专门解释了那些需要添加的驱动的作用。</p>
-<h2 id="4-运行安装程序"><a href="#4-运行安装程序" class="headerlink" title="4. 运行安装程序"></a>4. 运行安装程序</h2><div class="bs-callout bs-callout-info">
-                <h4 id="Windows-是这样的"><a href="#Windows-是这样的" class="headerlink" title="Windows 是这样的"></a>Windows 是这样的</h4><p>这一步 Windows 和黑苹果都一样，屏幕上都会出现能让人认识的中国字（虽然连成单词之后不一定知道是什么意思）。只不过，运气不好的话，黑苹果安装程序可以让系统崩溃……</p>
-
-            </div>
-<div class="bs-callout bs-callout-info">
-                <h4 id="学会自救"><a href="#学会自救" class="headerlink" title="学会自救"></a>学会自救</h4><p>在激动人心时刻到来之前，我们必须学会如何自救。</p>
-<p>一般情况下，教程都会告诉你应该用什么参数启动，并让你开启详细模式。但是，毕竟不是官方电脑，所以系统崩溃是正常现象。一旦崩溃，你需要知道如何通过错误信息进行自救。<a href="http://bbs.pcbeta.com/viewthread-863656-1-1.html" target="_blank" rel="external">这里</a>是一个常见错误总结。</p>
-
-            </div>
-<p>进行到这一步时，我们终于要和真正的苹果程序打交道了。</p>
-<p>如果一进去就崩溃了，那么当然要去论坛搜索相关错误现象和错误信息。建议不要直接提问，以免被人鄙视。</p>
-<p>安装向导都是中国字，很好懂。不过千万不要手残，选错了分区……</p>
-<p>安装过程很漫长。即使电脑是固态硬盘，安装时间也不短。这个时候你只能祈祷不出错。</p>
-<p>如果安装坚持到了最后，没崩溃，那么恭喜你！</p>
-<h2 id="5-完成系统安装"><a href="#5-完成系统安装" class="headerlink" title="5. 完成系统安装"></a>5. 完成系统安装</h2><p>有的教程会让你重新删驱动，照做即可。</p>
-<p>如果无法进入系统，那么一定要用“详细模式”引导，记录错误现象，并向论坛寻求帮助。</p>
-<p>如果能够进入系统，那么接下来按照屏幕提示完成系统安装即可。都是中国话，应该没有人看不懂。</p>
-<div class="bs-callout bs-callout-warning">
-                <h4 id="讲解到此为止"><a href="#讲解到此为止" class="headerlink" title="讲解到此为止"></a>讲解到此为止</h4><p>可以逛论坛去了，因为在你真正操作到这一步的时候，麻烦才刚刚开始……</p>
-
-            </div>
-<h2 id="6-安装驱动"><a href="#6-安装驱动" class="headerlink" title="6. 安装驱动"></a>6. 安装驱动</h2><div class="bs-callout bs-callout-warning">
-                <h4 id="先把系统装好"><a href="#先把系统装好" class="headerlink" title="先把系统装好"></a>先把系统装好</h4><p>先把系统装好，然后再讨论装驱动的问题。</p>
-
-            </div>
-<div class="bs-callout bs-callout-info">
-                <h4 id="Windows-是这样的"><a href="#Windows-是这样的" class="headerlink" title="Windows 是这样的"></a>Windows 是这样的</h4><p>下载并按照“驱动精灵”，如果没有网卡驱动就下载集成网卡驱动的版本。全部装完之后把驱动精灵卸载就可以了。</p>
-
-            </div>
-<div class="bs-callout bs-callout-info">
-                <h4 id="白苹果是这样的"><a href="#白苹果是这样的" class="headerlink" title="白苹果是这样的"></a>白苹果是这样的</h4><p>苹果是硬件公司——所有硬件都免驱，系统装好就可以使用了。</p>
-
-            </div>
-<p>安装系统，运气好的（初学者），几个小时就能弄好。运气差的也不会花太多时间。</p>
-<p>因为绝大多数时间都花在驱动上面了。<span style="background-color: #111;">忘记备份驱动和 DSDT<br> 而重装系统也会产生相同的效果。</span></p>
-<p>如果进行到这一步，接下来就要经常和论坛打交道了，例如<a href="http://bbs.pcbeta.com/viewthread-1516108-1-1.html" target="_blank" rel="external">这个导览</a>和<a href="http://bbs.pcbeta.com/viewthread-1470582-1-1.html" target="_blank" rel="external">这个导览</a>。</p>
-<h3 id="网卡"><a href="#网卡" class="headerlink" title="网卡"></a>网卡</h3><p>网络是最关键的问题。有了网络，你才能到论坛上面搜答案。</p>
-<p>有线网卡一般问题不大。到论坛里找到驱动，下载安装即可。</p>
-<p>无线网卡问题很大，大致分为以下几种情况：</p>
-<ol>
-<li>Atheros、Broadcom 牌：如果论坛中提到解决方案，那么太好了。（有些型号免驱，装完系统就能直接用——这是最好的）如果“无解”，那么就得换无线网卡了。</li>
-<li>Intel 牌：直接预备 30 块钱换无线网卡吧。</li>
-<li>USB 无线网卡：弄清楚网卡芯片，然后到论坛上面寻找解决方案（驱动）。<strong>USB 无线网卡不稳定，容易导致系统崩溃。</strong></li>
-</ol>
-<div class="bs-callout bs-callout-info">
-                <h4 id="无线网卡"><a href="#无线网卡" class="headerlink" title="无线网卡"></a>无线网卡</h4><p>到淘宝网即可很方便地买到支持黑苹果的无线网卡，而且价格并不算贵。不过最好先确认一下接口，并且确认应该使用半高还是全高（把电脑拆开就知道是什么意思了）。</p>
-
-            </div>
-<div class="bs-callout bs-callout-info">
-                <h4 id="联想和惠普笔记本"><a href="#联想和惠普笔记本" class="headerlink" title="联想和惠普笔记本"></a>联想和惠普笔记本</h4><p>联想和惠普的笔记本采用了“白名单”机制，也就是说，你更换无线网卡，电脑会拒绝开机，并要求你将“非法的”无线网卡拆下来。</p>
-<p>这时你需要找另外一台笔记本电脑，查看无线网卡的 DEV、VEN 和 SUBSYS 参数，并且按照刷白名单教程，通过一些工具提取 BIOS 固件，将白名单修改成你自己的网卡，并重新刷 BIOS。</p>
-<p><strong>注意，刷机有风险，刷坏会变砖！</strong><span class="blackout">变砖也不怕，只要找到自己电脑型号的盲刷包，对电脑进行盲刷，即可救砖。我的电脑砖过一次，然后就是靠盲刷省了几千块钱……</span></p>
-<p><a href="http://bbs.bios.net.cn/thread-4521994-1-1.html" target="_blank" rel="external">这里是刷白名单的教程</a></p>
-
-            </div>
-<h3 id="显卡"><a href="#显卡" class="headerlink" title="显卡"></a>显卡</h3><p>一般情况下，Intel 核显是能够自动识别的，而 Nvidia 或 AMD 独显无解（即使系统能够识别出来），所以只能用核显。</p>
-<p>大多数基于 Optimus 技术的笔记本是无法屏蔽核显的，这就意味着，N 卡独显在黑苹果中根本没有任何作用，除了多耗你一点电。如果不能把独显屏蔽，请到论坛搜索有关教程（涉及 DSDT，本文后面会提及）。</p>
-<h3 id="声卡"><a href="#声卡" class="headerlink" title="声卡"></a>声卡</h3><p>声卡有两种解决方案：万能声卡驱动和仿冒官方声卡。</p>
-<p>万能声卡驱动是最简单的——只需要安装一个叫做 VoodooHDA 的驱动即可解决问题。不过音量太大的时候可能会爆音。</p>
-<p>而仿冒官方声卡是一个非常麻烦的过程，需要对硬件有一定的了解（需要改 DSDT，本文后面会提及）。对于新手来说，这个过程是非常漫长和复杂的。</p>
-<h3 id="触摸板"><a href="#触摸板" class="headerlink" title="触摸板"></a>触摸板</h3><p>如果苹果系统不支持你的触摸板，那么可以用万能驱动（VoodooController），只不过你很可能体验不了苹果的触摸板手势。</p>
-<h3 id="电池电量"><a href="#电池电量" class="headerlink" title="电池电量"></a>电池电量</h3><p>我是通过一个叫 ACPIBatteryManager 的驱动来解决问题的。如果安装这个驱动导致系统崩溃，那么只能去改 DSDT 了。</p>
-<h3 id="USB-3-0"><a href="#USB-3-0" class="headerlink" title="USB 3.0"></a>USB 3.0</h3><p>我电脑没有 USB 3.0，所以我没做过相关研究。</p>
-<h2 id="6-5-DSDT"><a href="#6-5-DSDT" class="headerlink" title="6.5 DSDT"></a>6.5 DSDT</h2><p>DSDT，简而言之就是用于识别硬件的<span class="blackout">、看多了容易脑残的</span>一些代码。</p>
-<p>一般情况都是先从 Windows 或 Linux 中提取一个原始的 DSDT，然后在苹果系统中通过 DSDT Editor 来编辑。变色龙和四叶草都可以加载自定义 DSDT，所以你需要做的就是，改代码，保存，编译，重启，观察现象然后再改代码，如此反复。</p>
-<p>此外还有一个工具叫做 IORegistryExplorer，是用来查看电脑硬件情况的。DSDT Editor 和它配合使用，效果更好。</p>
-<p><span class="blackout">因为改 DSDT 非常容易导致脑残，所以装黑苹果不仅浪费时间，而且还特别耽误事儿。如果你因此丢了女朋友，我概不负责。</span></p>
-<h3 id="亮度调节"><a href="#亮度调节" class="headerlink" title="亮度调节"></a>亮度调节</h3><h3 id="电池电量-1"><a href="#电池电量-1" class="headerlink" title="电池电量"></a>电池电量</h3><h3 id="原生电源管理"><a href="#原生电源管理" class="headerlink" title="原生电源管理"></a>原生电源管理</h3><div class="bs-callout bs-callout-info">
-                <h4 id="这里是有意留空的"><a href="#这里是有意留空的" class="headerlink" title="这里是有意留空的"></a>这里是有意留空的</h4><p>如果遇到了相关问题，去论坛上面找答案吧。</p>
-
-            </div>
-<h2 id="7-安装软件，开始享受新系统"><a href="#7-安装软件，开始享受新系统" class="headerlink" title="7. 安装软件，开始享受新系统"></a>7. 安装软件，开始享受新系统</h2><p>这个不用解释了吧。</p>
-<p>值得注意的是，尽管苹果系统免费，但是因为苹果公司要求系统只能在苹果设备上运行，所以你的黑苹果仍然是盗版。<span class="blackout">别带着自己电脑去外国嘚瑟，除非你想吃外国的牢饭。</span></p>
-<h1 id="其他问题"><a href="#其他问题" class="headerlink" title="其他问题"></a>其他问题</h1><h2 id="系统升级"><a href="#系统升级" class="headerlink" title="系统升级"></a>系统升级</h2><p>只要你没破解过内核，那么只管放心地从 App Store 升级系统。</p>
-<p>如果你破解了内核（懒人版也是破解了内核），那么请先到论坛里把破解的内核下载好，升级之后重新破解一下。</p>
-<p>如果嫌麻烦，建议你找个时间把自己电脑改成 UEFI+GPT 的。</p>
-<h2 id="iMessage-和-FaceTime"><a href="#iMessage-和-FaceTime" class="headerlink" title="iMessage 和 FaceTime"></a>iMessage 和 FaceTime</h2><p>黑苹果直接登录是登不进去的，因为这两个服务会对系统的真伪进行验证。</p>
-<p>使用变色龙的，变色龙本身有一个功能可以对这两个服务进行破解，从而顺利登录。</p>
-<p>而 Clover 没有类似功能。因此，需要到网上搜一个（或者问一些认识人，或者去苹果专卖店偷）正版电脑的序列号，然后给苹果客服打电话。一般情况下，和苹果客服磨叽磨叽就能解决问题。<span class="blackout">当然，不要让他们知道你的苹果是假的，除非你被 DSDT 折腾脑残了。</span></p>
-<h2 id="iWork-和-iMovie"><a href="#iWork-和-iMovie" class="headerlink" title="iWork 和 iMovie"></a>iWork 和 iMovie</h2><p>这两套软件在新苹果电脑上是免费的，而黑苹果用户到 App Store 里一看，会发现它们价格感人。</p>
-<p>因此，需要到网上搜一下老苹果用户如何免费使用这些软件。大致的思路是，先把电脑系统的语言换成英语，然后下载旧版的软件，接下来蹭 App Store 的优惠活动（免费升级）。升级之后你就成功“购买”了这些软件——以后即使重装也可以随便用了。</p>
-<h2 id="挂载-NTFS-磁盘"><a href="#挂载-NTFS-磁盘" class="headerlink" title="挂载 NTFS 磁盘"></a>挂载 NTFS 磁盘</h2><p>苹果系统可以读取 NTFS 磁盘，但是只读（因为苹果对 NTFS 支持有限，容易出错）。如果真需要写入，可以看<a href="/2015/05/30/enable-ntfs-writing-support-in-os-x/">这里</a>。</p>
-<h2 id="维护相关"><a href="#维护相关" class="headerlink" title="维护相关"></a>维护相关</h2><h3 id="Recovery-HD"><a href="#Recovery-HD" class="headerlink" title="Recovery HD"></a>Recovery HD</h3><p>Recovery HD 是一个相当于 PE 的紧急系统。</p>
-<p>只有原生安装盘才会装出一个 Recovery HD。如果你的电脑没有（例如用了懒人版），那么在转成 UEFI+GPT 之后升级系统，Recovery HD 也会冒出来。</p>
-<h3 id="重装"><a href="#重装" class="headerlink" title="重装"></a>重装</h3><p>如果有 Recovery HD，那么只需进 Recovery HD 里，然后选择重装。总之，具体操作和白苹果是基本相同的，除了开机时不能按 Command-R。</p>
-<p>当然，你应该备份一下自己破解时用的驱动，还有 DSDT。如果弄丢了，你几个星期的辛苦就全白费了。</p>
-<h3 id="调整分区容量"><a href="#调整分区容量" class="headerlink" title="调整分区容量"></a>调整分区容量</h3><p>很少有支持 HFS+ 文件系统的磁盘分区软件。</p>
-<p>对于一般电脑而言，苹果本身的“磁盘工具”会以为你用了 Bootcamp，然后拒绝调整容量。因此要用其他软件——</p>
-<ul>
-<li>Windows 中有 Paragon Partition Manager。</li>
-<li>Linux 中有 GParted，但是只能缩小容量，不能扩大容量。</li>
-</ul>
-
-      
-    </div>
-
-    
-      
-
-    
-
-    <footer class="article-footer">
-      <a data-url="https://vjudge1.github.io/2015/09/13/hackintosh/" data-id="cj2pxh40w001776cm4hkxlmmy" class="article-share-link">
-        <i class="fa fa-share"></i> Share
-      </a>
-      
-        <a href="https://vjudge1.github.io/2015/09/13/hackintosh/#disqus_thread" class="article-comment-link">
-          <i class="fa fa-comment"></i> Comments
-        </a>
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-wineqq" class="article article-type-post" itemscope itemprop="blogPost">
-
-  
-  <header class="article-header">
-    
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/08/20/wineqq/">在 Linux 系统中上 QQ</a>
-    </h1>
-  
-
-
-  </header>
-
-  <div class="article-meta">
-    <div class="article-datetime">
-    <span class="article-date">
-        <time datetime="2015-08-19T16:00:00.000Z" itemprop="datePublished">2015-08-20</time>
-    </span>
-</div>
-
-    
-    
+            
+            
     <div class="article-category">
         <a class="article-category-link" href="/categories/教程/">教程</a>
     </div>
 
 
+            
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/中文/">中文</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/输入法/">输入法</a></li></ul>
+
+
+        </div>
     
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/QQ/">QQ</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wine/">wine</a></li></ul>
 
+    <div class="article-inner">
+        <div class="article-entry" itemprop="articleBody">
+            
+                <p>Linux 是中文输入问题最多的系统了，幸运的是，问题是可以解决的。</p>
+                <p class="article-more-link">
+                    <a role="button" href="/2014/04/01/type-chinese-in-linux/#more"><i class="fa fa-newspaper-o"></i>Read More...</a>
+                </p>
+            
+        </div>
 
-  </div>
-  
-  <div class="article-inner">
+        
 
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>腾讯公司为了商业利益，放弃了 QQ for Linux 的开发。但是中国人又不得不用 QQ，于是……</p>
-<p>Linux 世界出现了几种解决方案：</p>
-<ol>
-<li>WebQQ（腾讯同样放弃了）/SmartQQ</li>
-<li>分析 WebQQ 或什么的协议，自己写客户端</li>
-<li>虚拟机：包括装 Windows 的和装 Android 的（GenyMotion）</li>
-<li>WineQQ</li>
-</ol>
-<p>第一点当然最稳定，只不过功能少点，而且很容易顺手就把浏览器关掉了；第二点容易被封号；第三点当然很稳定，只不过有个虚拟机总给人一种累赘的感觉。</p>
-<p>所以 WineQQ 是一个折中的方案——不稳定，功能够多，不让人觉得累赘。</p>
-<p>最初的 WineQQ 是有 longene 团队开发的，现在他们已经弃坑（毕竟 wineqq 是副业），而深度团队和 CrossOver 合作（当然没有腾讯参与），已经出了比较新的 WineQQ。</p>
-<p>由于 wine 也支持 OS X 系统，所以苹果电脑同样可以用类似的方法使用 QQ。只不过，因为 QQ 有官方的苹果版，所以没有人会在乎这个。</p>
-<h1 id="更新-wine"><a href="#更新-wine" class="headerlink" title="更新 wine"></a>更新 wine</h1><p>因为 Ubuntu 的 wine 比较旧，所以需要将 wine 更新到 1.7 版：</p>
-<pre><code>sudo add-apt-repository ppa:ubuntu-wine/ppa
-sudo apt-get update
-sudo apt-get install wine1.7
-</code></pre><p>其他系统（Fedora、Archlinux等等）可以略过。</p>
-<h1 id="下载和安装-WineQQ"><a href="#下载和安装-WineQQ" class="headerlink" title="下载和安装 WineQQ"></a>下载和安装 WineQQ</h1><p>深度 WineQQ 是个 deb 安装包，但是因为用到了深度专有的软件包，所以 Ubuntu 等系统无法直接安装。</p>
-<p>先把它<a href="http://packages.linuxdeepin.com/deepin/pool/non-free/d/deepinwine-qq/" target="_blank" rel="external">下载</a>下来，当然，不要直接安装。</p>
-<p>使用解压缩软件解压，再将名为 control 的包解压（有的软件识别 deb 格式，看见的就是直接识别出来的内容），将其中的 opt/cxoffice/support/Deepin-QQ 目录解压到某个目录，例如 ~/Deepin-QQ。</p>
-<p>最后，运行命令：<code>WINEPREFIX=~/Deepin-QQ wine &quot;C:\Program Files\Tencent\QQ\Bin\QQ.exe&quot;</code>，WineQQ 就弄好了。</p>
-<p>为了方便，可以将这条命令制作成脚本或启动器。</p>
-<h2 id="启动器"><a href="#启动器" class="headerlink" title="启动器"></a>启动器</h2><p>假如 Deepin-QQ 目录是 /home/ubuntu/Deepin-QQ。</p>
-<p>想办法弄一张 QQ 的图片，保存到 /home/ubuntu/Deepin-QQ/qq.png。这张图将作为启动器（以及应用程序菜单中）的图标。</p>
-<p>建立一个文件 ~/.local/share/applications/qq.desktop，用文本编辑器将其打开，并输入</p>
-{% highlight ini %}
-[Desktop Entry]
-Type=Application
-Categories=Network;InstantMessaging;
-Comment=
-Terminal=false
-Name=QQ
-Exec=/usr/bin/env WINEPREFIX=/home/ubuntu/Deepin-QQ wine "C:\Program Files\Tencent\QQ\Bin\QQ.exe"
-Icon=/home/ubuntu/Deepin-QQ/qq.png
-{% endhighlight %}
-<p>保存之后就可以在应用程序菜单中找到 QQ 了。</p>
-<h2 id="QQ-卡死的处理"><a href="#QQ-卡死的处理" class="headerlink" title="QQ 卡死的处理"></a>QQ 卡死的处理</h2><p>毕竟是 wine，而且是腾讯不支持的项目，卡死崩溃都是正常现象。一旦卡死，可用以下命令结束所有 QQ 进程：</p>
-<pre><code>WINEPREFIX=/home/ubuntu/Deepin-QQ wineserver -k
-</code></pre>
-      
+        <footer class="article-footer">
+            <a data-url="https://vjudge1.github.io/2014/04/01/type-chinese-in-linux/" data-id="cj2qap16j0005wkcmdioub2tb" class="article-share-link">
+                <i class="fa fa-share"></i> Share
+            </a>
+            
+                <a href="https://vjudge1.github.io/2014/04/01/type-chinese-in-linux/#disqus_thread" class="article-comment-link">
+                    <i class="fa fa-comment"></i> Comments
+                </a>
+            
+        </footer>
     </div>
-
     
-      
-
-    
-
-    <footer class="article-footer">
-      <a data-url="https://vjudge1.github.io/2015/08/20/wineqq/" data-id="cj2pxh40u001476cmynddchng" class="article-share-link">
-        <i class="fa fa-share"></i> Share
-      </a>
-      
-        <a href="https://vjudge1.github.io/2015/08/20/wineqq/#disqus_thread" class="article-comment-link">
-          <i class="fa fa-comment"></i> Comments
-        </a>
-      
-    </footer>
-  </div>
-  
 </article>
 
 
 
-  
-    <article id="post-cloud" class="article article-type-post" itemscope itemprop="blogPost">
-
-  
-  <header class="article-header">
     
+        <article id="post-laptop-brightness-in-linux" class="article article-type-post" itemscope itemprop="blogPost">
+
+    
+        <header class="article-header">
+            
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/08/16/cloud/">常见的云服务器</a>
+      <a class="article-title" href="/2014/02/10/laptop-brightness-in-linux/">Ubuntu 调整笔记本电脑屏幕亮度</a>
     </h1>
   
 
 
-  </header>
+        </header>
 
-  <div class="article-meta">
-    <div class="article-datetime">
+        <div class="article-meta">
+            <div class="article-datetime">
     <span class="article-date">
-        <time datetime="2015-08-15T16:00:00.000Z" itemprop="datePublished">2015-08-16</time>
+        <time datetime="2014-02-09T16:00:00.000Z" itemprop="datePublished">2014-02-10</time>
     </span>
 </div>
 
+            
+            
+    <div class="article-category">
+        <a class="article-category-link" href="/categories/折腾记录/">折腾记录</a>
+    </div>
+
+
+            
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
+
+
+        </div>
     
+
+    <div class="article-inner">
+        <div class="article-entry" itemprop="articleBody">
+            
+                <p>装完 Ubuntu 之后没法给笔记本电脑调亮度了。花了很多时间来探索，最后找到了解决方法。这里我只写一写自己电脑（Lenovo V470，Intel HD3000 + Nvidia GT540M）的情况，更详细的资料可见 <a href="https://wiki.archlinux.org/index.php/Backlight" target="_blank" rel="external">Archlinux Wiki</a>。</p>
+                <p class="article-more-link">
+                    <a role="button" href="/2014/02/10/laptop-brightness-in-linux/#more"><i class="fa fa-newspaper-o"></i>Read More...</a>
+                </p>
+            
+        </div>
+
+        
+
+        <footer class="article-footer">
+            <a data-url="https://vjudge1.github.io/2014/02/10/laptop-brightness-in-linux/" data-id="cj2qap15u0000wkcm54falf2g" class="article-share-link">
+                <i class="fa fa-share"></i> Share
+            </a>
+            
+                <a href="https://vjudge1.github.io/2014/02/10/laptop-brightness-in-linux/#disqus_thread" class="article-comment-link">
+                    <i class="fa fa-comment"></i> Comments
+                </a>
+            
+        </footer>
+    </div>
     
+</article>
+
+
+
+    
+        <article id="post-sentences" class="article article-type-post" itemscope itemprop="blogPost">
+
+    
+        <header class="article-header">
+            
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/01/01/sentences/">那些不正确的“名言”们</a>
+    </h1>
+  
+
+
+        </header>
+
+        <div class="article-meta">
+            <div class="article-datetime">
+    <span class="article-date">
+        <time datetime="2012-12-31T16:00:00.000Z" itemprop="datePublished">2013-01-01</time>
+    </span>
+</div>
+
+            
+            
     <div class="article-category">
         <a class="article-category-link" href="/categories/经验总结/">经验总结</a>
     </div>
 
 
+            
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/语文/">语文</a></li></ul>
+
+
+        </div>
     
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/VPS/">VPS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/云/">云</a></li></ul>
 
+    <div class="article-inner">
+        <div class="article-entry" itemprop="articleBody">
+            
+                <p>以下都是些常见的“名言”，只不过，它们要么是假的，要么被人误解了……</p>
+                <p class="article-more-link">
+                    <a role="button" href="/2013/01/01/sentences/#more"><i class="fa fa-newspaper-o"></i>Read More...</a>
+                </p>
+            
+        </div>
 
-  </div>
-  
-  <div class="article-inner">
+        
 
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>做出一个网站，到哪里去找一个合适的服务器呢？</p>
-<div class="bs-callout bs-callout-danger">
-                <h4 id="原作者"><a href="#原作者" class="headerlink" title="原作者"></a>原作者</h4><p>本文原是<a href="http://wangchenyu.net.cn" target="_blank" rel="external">课戴表王晨宇</a>写的，稍微整理了一下格式。转载请标明原作者！</p>
-
-            </div>
-<h1 id="云主机"><a href="#云主机" class="headerlink" title="云主机"></a>云主机</h1><p>没有用过 benchmark 来跑分，但是我用 php 探针检测，腾讯云的可能因为是共享核吧的计算时间比列表中的参考值要大，阿里云的计算时间就比列表中的参考值都要小。我见网上很多人评论阿里云的硬盘速度慢，不过实际上网站的速度决定于 CPU 运算时间长短还有内存够不够用——除非你有别的用处。</p>
-<p>国内的我就用过腾讯云的 512M 共享核、阿里云的 1G 1核、阿里云的 512M 1核。实际上其他的也都不咋地了。</p>
-<p>国外的主机商我用过 DigitalOcean 的 512M 单核、Amazon AWS的各种配置（所有的“通用”型配置都用了一遍）、Windows Azure 4G、7G内存（免费体验嘛…）、vps.me的 128M 单核、HapHost 的 128M 单核、Conoha.jp 日本 1G 双核。</p>
-<p>IBM 的 Softlayer 只能算是应用引擎，所以后面再讲。</p>
-<p>可惜没能用上 Linode，因为不支持我的信用卡。</p>
-<h2 id="阿里云"><a href="#阿里云" class="headerlink" title="阿里云"></a>阿里云</h2><ul>
-<li>价格：512M 单核一年只需 288，但是流量费用另计。不过感觉起来是要比腾讯云划算。</li>
-<li>操控性：可以随意的升级、降级、按月付费。</li>
-<li>网速：下载东西时也是峰值 1~1.5MB/s 良心。不过因为我选择的青岛区域机房，所以在学校（备注：学校在青岛）的 ping 值 10 以下，有时候宿舍甚至是 2ms 1ms 爽。对了，腾讯云的共享核只能选广东。</li>
-<li>系统：可以选择 Debian 5 32位。我选择的是 CentOS，一方面 yum 功能很强大，另一方面阿里云特别优化了 CentOS，装好启动内存在占 14M，我又稍微精简了一下只占 13M。镜像市场比腾讯云丰富的多，甚至有预装了 hhvm 的镜像。</li>
-<li>客服：只能电话或者工单。不过工单一般一天内就回复了，技术类的几分钟就回复。</li>
-<li>赠品：云盾是个好东西，能真的帮忙拦截 web 攻击和 ssh 攻击。不过 ssh 攻击只要主机优化好了也没啥。送 128M 的 OCS（完全兼容 memcached）也是一个大礼，尤其是对于 512M 内存的服务器，简直是雪中送炭。我的网站就在用，目测提速不少。通过 ACE 还可以开通免费的 RDS（rds 可能将来会收费）。</li>
-</ul>
-<h2 id="腾讯云"><a href="#腾讯云" class="headerlink" title="腾讯云"></a>腾讯云</h2><ul>
-<li>价格，一年 360 块钱的共享核能凭借低价吸引很多人。</li>
-<li>操控性：我是贪便宜的上当者，因为买了以后才发现不能升级、不能退款，只能以年为单位续费。所以只好挂一个小网站耗着。也有优点，就是可以直接在后台给 Linux 服务器挂载 SSH 密钥。然而这个小小的优点……有点鸡肋。</li>
-<li>网速：下载东西时 1M 宽带峰值 1~1.5MB/s 良心。</li>
-<li>系统：后台可选择的系统不多，至少没有“专门针对小内存主机”的 Debian 32 位系统。好在服务市场里面免费环境很多。</li>
-<li>客服：比较垃圾。联系很多次有时候等一天都排不上个队。</li>
-</ul>
-<h2 id="DigitalOcean"><a href="#DigitalOcean" class="headerlink" title="DigitalOcean"></a>DigitalOcean</h2><ul>
-<li>网速：网上大批的 do 的评测文章因为邀请一个人注册送 10$，但是国内线路最好的 San Francisco 节点我用起来感觉一点也不好。虽然网速可以达到满但是延迟 200~300 太高，不适合放网站。我装了一个 amh 面板，那个面板打开有时候慢的惊人。</li>
-<li>操控性：提供的系统非常全面，而且可以细分到很多，这一点我非常满意，所以我经常测试各种系统</li>
-<li>价格：512M 的 $5 一个月已经算是非常便宜了。而且推荐别人注册还能送钱。据说容易封号，不过我的账号用了半年了都没被封。</li>
-<li>客服：全英文，不过很友好，回答速度也很快。</li>
-<li>跑分同样是没跑，不过……我就挂了一个 vpn 目前。</li>
-</ul>
-<h2 id="Amazon-AWS"><a href="#Amazon-AWS" class="headerlink" title="Amazon AWS"></a>Amazon AWS</h2><p>因为我在除了 1G 1 核以外其他主机都用的 Windows 系统，所以不说什么了。而且现在没在用，只能凭回忆。不过吐槽一下 4 核 8G 内存的主机挖矿效率很低啊！</p>
-<ul>
-<li>网速：下载速度可以到满速，但是 Oregon 和 San Francisco 到国内延迟就很高，有时候还丢包。东京的很满意，Ping 值有时候 100 左右，而且网速也比较稳定。</li>
-<li>操控性：非常好。可以搜到其他用户共享出来的镜像，所以基本上你想得到的都有。镜像市场更是非常全面。</li>
-<li>客服：一般提交 Ticket 以后就会有客服来打电话，说的英语很标准，而且也很热心。</li>
-<li>赠品：非常多，rds 20G，S3 储存 5G，SSD 磁盘 30G 其他的我都没用过。</li>
-</ul>
-<p>现在注册以后是不能直接用东京节点的服务器的，只能发邮件申请，而且时间相当漫长，好像要一星期。</p>
-<h2 id="免费空间"><a href="#免费空间" class="headerlink" title="免费空间"></a>免费空间</h2><p>vps.me 和 HapHost 我用的都是免费的，性能很垃圾。</p>
-<p>现在 haphost 已经没了，都并入 host1plus 了。</p>
-<p>vps.me 上没有开放ipv4，需要做端口映射，只给了ipv6。</p>
-<p>Conoha.jp 也没怎么用，申请了体验两个月，现在应该还没过期。国内速度可以。操作系统给的很全。因为用的是 kvm，所以可以直接重装系统啊什么的，理论上还能挂一个 Windows 镜像玩玩。只支持信用卡付款。客服没接触过，官网日语难懂，翻译了也难懂。还好系统都是英语的。</p>
-<p>对了，我有两个免费空间十分推荐，提供PHP和Mysql，据我观察他们上面有不少早至2009年就存在的免费网站，简单来说就是他们已经被证实至少6年不删不活跃用户：一个是freehostia.com（注册登陆需要翻墙，但是申请到的空间不需翻墙）一个是summerhost.info（完全开放给国人），summerhost.info 和 byethost.com很类似，都很稳定，不删用户。</p>
-<h1 id="应用引擎"><a href="#应用引擎" class="headerlink" title="应用引擎"></a>应用引擎</h1><p>（此处忘记了 SAE、BAE、GAE、Heroku）</p>
-<p>因为 openshift 支持 ssh 连接，所以基本上算半个 vps 了。</p>
-<p>openshift 用的就是亚马逊的服务器，但是网址被墙了。幸运的是ip没被墙，所以直接ping出来ip然后用一个cdn就能做网站，直接用ip连ssh就能翻墙。提供1.5GRAM和3G的硬盘空间，无限流量，一个用户可以创建3个免费的应用。</p>
-<p>和openshift相似但是没有被屏蔽的有phpcloud appfog 还有一个大家都知道的 SourceForge。</p>
-<ul>
-<li>uhurucloud 支持 .Net。</li>
-<li>Snapphq  asp php mysql</li>
-<li>Jelastic Java php mysql</li>
-<li>CloudBees java php mysql</li>
-<li>Cumulogic java php mysql</li>
-<li>MoPaaS Java Ruby php mysql</li>
-<li>Another Service  Another Service是一个法国的云计算平台</li>
-<li>phpfog和Orchestra和cloudcontrol和dotcloud和pagodabox php+mysql</li>
-<li>Appharbor和Webweb asp asp.net</li>
-</ul>
-<p>需要注意的是，这些免费版（除了 GAE）一般不允许 24 小时连续开机，需要手动启动，除非付钱。</p>
-<p>对了，国内的引擎还有</p>
-<ul>
-<li>阿里的 ACE（目前内侧免费）</li>
-<li>京东的 jae</li>
-<li>腾讯的 cee</li>
-<li>盛大的 CAE</li>
-</ul>
-<h1 id="在线开发平台"><a href="#在线开发平台" class="headerlink" title="在线开发平台"></a>在线开发平台</h1><p>然后就是在线开发平台，比如 cloud9.io、coding.net、nitrous.io、heroku、uhurucloud。值得一提的是这些基本上都支持node.js。</p>
-
-      
+        <footer class="article-footer">
+            <a data-url="https://vjudge1.github.io/2013/01/01/sentences/" data-id="cj2qap1630001wkcmzbv0hwh8" class="article-share-link">
+                <i class="fa fa-share"></i> Share
+            </a>
+            
+                <a href="https://vjudge1.github.io/2013/01/01/sentences/#disqus_thread" class="article-comment-link">
+                    <i class="fa fa-comment"></i> Comments
+                </a>
+            
+        </footer>
     </div>
-
     
-      
-
-    
-
-    <footer class="article-footer">
-      <a data-url="https://vjudge1.github.io/2015/08/16/cloud/" data-id="cj2pxh40s001076cmoq1uq3xw" class="article-share-link">
-        <i class="fa fa-share"></i> Share
-      </a>
-      
-        <a href="https://vjudge1.github.io/2015/08/16/cloud/#disqus_thread" class="article-comment-link">
-          <i class="fa fa-comment"></i> Comments
-        </a>
-      
-    </footer>
-  </div>
-  
 </article>
 
 
 
+    
+        <article id="post-phrase" class="article article-type-post" itemscope itemprop="blogPost">
+
+    
+        <header class="article-header">
+            
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2012/08/29/phrase/">容易出错的成语</a>
+    </h1>
   
 
 
-  <div id="page-nav">
-    <nav><ul class="pagination"><li><a class="page-prev" rel="prev"
+        </header>
+
+        <div class="article-meta">
+            <div class="article-datetime">
+    <span class="article-date">
+        <time datetime="2012-08-28T16:00:00.000Z" itemprop="datePublished">2012-08-29</time>
+    </span>
+</div>
+
+            
+            
+    <div class="article-category">
+        <a class="article-category-link" href="/categories/经验总结/">经验总结</a>
+    </div>
+
+
+            
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/语文/">语文</a></li></ul>
+
+
+        </div>
+    
+
+    <div class="article-inner">
+        <div class="article-entry" itemprop="articleBody">
+            
+                <p>看看你用错了多少……</p>
+                <p class="article-more-link">
+                    <a role="button" href="/2012/08/29/phrase/#more"><i class="fa fa-newspaper-o"></i>Read More...</a>
+                </p>
+            
+        </div>
+
+        
+
+        <footer class="article-footer">
+            <a data-url="https://vjudge1.github.io/2012/08/29/phrase/" data-id="cj2qap16f0004wkcmzekgf306" class="article-share-link">
+                <i class="fa fa-share"></i> Share
+            </a>
+            
+                <a href="https://vjudge1.github.io/2012/08/29/phrase/#disqus_thread" class="article-comment-link">
+                    <i class="fa fa-comment"></i> Comments
+                </a>
+            
+        </footer>
+    </div>
+    
+</article>
+
+
+
+    
+
+
+
+    <div id="page-nav" class="hidden-xs">
+        <nav><ul class="pagination"><li><a class="page-prev" rel="prev"
                 href="/page/3/"><span aria-hidden="true">&laquo;</span> Prev</a></li><li><a class="page-number" href="/">
         1
         </a></li><li><a class="page-number" href="/page/2/">
         2
         </a></li><li><a class="page-number" href="/page/3/">
         3
-        </a></li><li class="active"><span class="page-number">4</span></li><li><a class="page-number" href="/page/5/">
-        5
-        </a></li><li><a class="page-number" href="/page/6/">
-        6
-        </a></li><li><a class="page-number" href="/page/7/">
-        7
-        </a></li><li><a class="page-next" rel="next"
-                href="/page/5/">Next <span aria-hidden="true">&raquo;</span></a></li></ul></nav>
-  </div>
+        </a></li><li class="active"><span class="page-number">4</span></li><li class="disabled"><span class="page-next">Next <span aria-hidden="true">&raquo;</span></span></li></ul></nav>
+    </div>
+
+    <div id="page-nav-mobile" class="visible-xs">
+        <nav><ul class="pagination"><li><a class="page-prev" rel="prev"
+                href="/page/3/"><span aria-hidden="true">&laquo;</span></a></li><li><a class="page-number" href="/">
+        1
+        </a></li><li class="disabled"><span class="page-space">&hellip;</span></li><li class="active"><span class="page-number">4</span></li><li class="disabled"><span class="page-next"><span aria-hidden="true">&raquo;</span></span></li></ul></nav>
+    </div>
 
 
 
             </div>
             <div class="col-sm-3 blog-sidebar">
                 
-  
+    
   <div class="sidebar-module">
     <h4><i class="fa fa-th-list"></i> Categories</h4>
-    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/个人心得/">个人心得</a><span class="sidebar-module-list-count">5</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/其他/">其他</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/备忘录/">备忘录</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/折腾记录/">折腾记录</a><span class="sidebar-module-list-count">6</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/教程/">教程</a><span class="sidebar-module-list-count">13</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/经验总结/">经验总结</a><span class="sidebar-module-list-count">7</span></li></ul>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/个人心得/">个人心得</a><span class="sidebar-module-list-count">5</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/其他/">其他</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/备忘录/">备忘录</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/折腾记录/">折腾记录</a><span class="sidebar-module-list-count">8</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/教程/">教程</a><span class="sidebar-module-list-count">11</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/经验总结/">经验总结</a><span class="sidebar-module-list-count">7</span></li></ul>
   </div>
 
 
 
-  
+    
   <div class="sidebar-module">
     <h4><i class="fa fa-archive"></i> Archives</h4>
     <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/05/">五月 2017</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/11/">十一月 2016</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/10/">十月 2016</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/08/">八月 2016</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/04/">四月 2016</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/03/">三月 2016</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/01/">一月 2016</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/12/">十二月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/11/">十一月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/09/">九月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/08/">八月 2015</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/07/">七月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/05/">五月 2015</a><span class="sidebar-module-list-count">5</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/04/">四月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/02/">二月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/12/">十二月 2014</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/04/">四月 2014</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/02/">二月 2014</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2013/01/">一月 2013</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2012/08/">八月 2012</a><span class="sidebar-module-list-count">1</span></li></ul>
@@ -1023,9 +424,9 @@ Icon=/home/ubuntu/Deepin-QQ/qq.png
 
 
 
-  
+    
   <div class="sidebar-module">
-    <h4><i class="fa fa-newspaper-o"></i> Recents</h4>
+    <h4><i class="fa fa-send-o"></i> Recents</h4>
     <ul class="sidebar-module-list">
       
         <li>
@@ -1053,7 +454,7 @@ Icon=/home/ubuntu/Deepin-QQ/qq.png
 
 
 
-  
+    
   <div class="sidebar-module">
     <h4><i class="fa fa-tags"></i> Tags</h4>
     <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/API/">API</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Atom/">Atom</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/C/">C</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/C/">C#</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/GAE/">GAE</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/GUI/">GUI</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Hackintosh/">Hackintosh</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Hexo/">Hexo</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Java/">Java</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/JavaScript/">JavaScript</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Jekyll/">Jekyll</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/LaTeX/">LaTeX</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Linux/">Linux</a><span class="sidebar-module-list-count">9</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Mac/">Mac</a><span class="sidebar-module-list-count">9</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/MacPorts/">MacPorts</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/NTFS/">NTFS</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Python/">Python</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/QQ/">QQ</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Rails/">Rails</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/UEFI/">UEFI</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/VPS/">VPS</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Visual-Studio/">Visual Studio</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Windows/">Windows</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/npm/">npm</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/wine/">wine</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/zsh/">zsh</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/中文/">中文</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/云/">云</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/单片机/">单片机</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/反汇编/">反汇编</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/平板/">平板</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/插件/">插件</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/教务系统/">教务系统</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/東方Project/">東方Project</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/电幕/">电幕</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/系统维护/">系统维护</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/维基百科/">维基百科</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/编程/">编程</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/语文/">语文</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/输入法/">输入法</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/配置/">配置</a><span class="sidebar-module-list-count">1</span></li></ul>
@@ -1110,6 +511,13 @@ Icon=/home/ubuntu/Deepin-QQ/qq.png
     </div>
 </footer>
 
+    <div id="back-to-top" data-toggle="tooltip" data-placement="left" title="Back to top">
+    <a href="javascript:;" title="Back to top">
+        <div class="arrow"></div>
+        <div class="stick"></div>
+    </a>
+</div>
+
     
 <script>
     var disqus_shortname = 'vjudge1';
@@ -1131,6 +539,7 @@ Icon=/home/ubuntu/Deepin-QQ/qq.png
 
 
 <script src="/js/script.js"></script>
+<script src="/js/back-to-top.js"></script>
 
 </body>
 </html>

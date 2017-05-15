@@ -5,7 +5,7 @@
   <title>Windows in UEFI Mode</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="This article is the summary of my own experience on UEFI and Legacy Mode. So some information may be wrong. Experiences about installing an operating system (e.g., Windows or Linux) are required or yo">
-<meta name="keywords" content="UEFI,系统维护,Windows">
+<meta name="keywords" content="系统维护,UEFI,Windows">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Windows in UEFI Mode">
 <meta property="og:url" content="https://vjudge1.github.io/2015/05/21/windows-in-uefi-mode/index.html">
@@ -14,7 +14,7 @@
 <meta property="og:image" content="https://vjudge1.github.io/2015/05/21/windows-in-uefi-mode/mbr.png">
 <meta property="og:image" content="https://vjudge1.github.io/2015/05/21/windows-in-uefi-mode/gpt1.png">
 <meta property="og:image" content="https://vjudge1.github.io/2015/05/21/windows-in-uefi-mode/gpt2.png">
-<meta property="og:updated_time" content="2017-05-12T19:41:17.057Z">
+<meta property="og:updated_time" content="2017-05-15T18:42:04.483Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Windows in UEFI Mode">
 <meta name="twitter:description" content="This article is the summary of my own experience on UEFI and Legacy Mode. So some information may be wrong. Experiences about installing an operating system (e.g., Windows or Linux) are required or yo">
@@ -111,13 +111,14 @@
             <div class="col-sm-9 blog-main">
                 <article id="post-windows-in-uefi-mode" class="article article-type-post" itemscope itemprop="blogPost">
 
-  
-  <div class="article-inner">
+    
 
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>This article is the summary of my own experience on UEFI and Legacy Mode. So some information may be wrong.</p>
+    <div class="article-inner">
+        <div class="article-entry" itemprop="articleBody">
+            
+                <p>This article is the summary of my own experience on UEFI and Legacy Mode. So some information may be wrong.</p>
 <p>Experiences about installing an operating system (e.g., Windows or Linux) are required or you may feel hard to understand it.</p>
+<a id="more"></a>
 <h1 id="The-origin"><a href="#The-origin" class="headerlink" title="The origin"></a>The origin</h1><p>It was easy to install a Windows system in the past until the popularity of Windows 8. Laptops with Windows 8 pre-installed adopt the newest firmware named UEFI.</p>
 <p>Differences between UEFI and traditional mode are great. While, both of them also exist at the same time. Therefore it’s important to understand these two modes in order to manage to install operating systems in different computers.</p>
 <h1 id="UEFI-vs-Legacy"><a href="#UEFI-vs-Legacy" class="headerlink" title="UEFI vs. Legacy"></a>UEFI vs. Legacy</h1><p><a href="https://en.wikipedia.org/wiki/BIOS" target="_blank" rel="external">BIOS</a>, which names “Basic Input/Output System”, are used in old computers.</p>
@@ -244,71 +245,84 @@
 <p>Hackintosh can’t boot directly without a special bootloader. Currently there are two popular bootloaders - Clover and Chameleon. Chameleon only supports Legacy Mode. Clover supports both UEFI and Legacy.</p>
 <p>OS X only supports GPT. So you must crack the kernel if you want to install it to a MBR drive. It’s not recommended to upgrade the system after cracking the kernel unless you know how to crack it again.</p>
 
-      
+            
+        </div>
+
+        
+            
+
+        
+
+        <footer class="article-footer">
+            <a data-url="https://vjudge1.github.io/2015/05/21/windows-in-uefi-mode/" data-id="cj2qap17f000nwkcm5d1rz6kj" class="article-share-link">
+                <i class="fa fa-share"></i> Share
+            </a>
+            
+                <a href="https://vjudge1.github.io/2015/05/21/windows-in-uefi-mode/#disqus_thread" class="article-comment-link">
+                    <i class="fa fa-comment"></i> Comments
+                </a>
+            
+        </footer>
     </div>
+    
+        
+    <table id="article-nav">
+        
+            <tr role="presentation">
+                <th>Newer post</th>
+                <td>
+                    <a href="/2015/05/22/writing-blogs-in-ubuntu/" id="article-nav-newer" class="article-nav-link-wrap">
+                        <span class="article-nav-link-title">Setup Jekyll in Ubuntu/Windows</span>
+                    </a>
+                </td>
+            </tr>
+        
+        
+            <tr role="presentation">
+                <th>Older post</th>
+                <td>
+                    <a href="/2015/05/20/install-latex/" id="article-nav-older" class="article-nav-link-wrap">
+
+                        <span class="article-nav-link-title">配置 LaTeX 环境</span>
+                    </a>
+                </td>
+            </tr>
+        
+    </table>
+
 
     
-      
-
-    
-
-    <footer class="article-footer">
-      <a data-url="https://vjudge1.github.io/2015/05/21/windows-in-uefi-mode/" data-id="cj2pxh40a000m76cm6d1ondsb" class="article-share-link">
-        <i class="fa fa-share"></i> Share
-      </a>
-      
-        <a href="https://vjudge1.github.io/2015/05/21/windows-in-uefi-mode/#disqus_thread" class="article-comment-link">
-          <i class="fa fa-comment"></i> Comments
-        </a>
-      
-    </footer>
-  </div>
-  
-    
-<ul id="article-nav" class="nav nav-pills nav-justified">
-  
-  <li role="presentation">
-    <a href="/2015/05/20/install-latex/" id="article-nav-older" class="article-nav-link-wrap">
-      <i class="fa fa-chevron-left pull-left"></i>
-      <span class="article-nav-link-title">配置 LaTeX 环境</span>
-    </a>
-  </li>
-  
-  
-  <li role="presentation">
-    <a href="/2015/05/22/writing-blogs-in-ubuntu/" id="article-nav-newer" class="article-nav-link-wrap">
-      <span class="article-nav-link-title">Setup Jekyll in Ubuntu/Windows</span>
-      <i class="fa fa-chevron-right pull-right"></i>
-    </a>
-  </li>
-  
-</ul>
-
-
-  
 </article>
 
 
 <section id="comments">
-  <div id="disqus_thread">
-    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-  </div>
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
 </section>
 
 
+<script src="/js/anchor.min.js"></script>
+<script type="text/javascript">
+// Anchor.js
+if (anchors) {
+    anchors.options.placement="left";
+    anchors.add('.article-entry h1,h2,h3,h4');
+}
+</script>
 
             </div>
             <div class="col-sm-3 blog-sidebar">
                 
-  
+    
   <div class="sidebar-module">
     <h4><i class="fa fa-th-list"></i> Categories</h4>
-    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/个人心得/">个人心得</a><span class="sidebar-module-list-count">5</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/其他/">其他</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/备忘录/">备忘录</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/折腾记录/">折腾记录</a><span class="sidebar-module-list-count">6</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/教程/">教程</a><span class="sidebar-module-list-count">13</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/经验总结/">经验总结</a><span class="sidebar-module-list-count">7</span></li></ul>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/个人心得/">个人心得</a><span class="sidebar-module-list-count">5</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/其他/">其他</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/备忘录/">备忘录</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/折腾记录/">折腾记录</a><span class="sidebar-module-list-count">8</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/教程/">教程</a><span class="sidebar-module-list-count">11</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/经验总结/">经验总结</a><span class="sidebar-module-list-count">7</span></li></ul>
   </div>
 
 
 
-  
+    
   <div class="sidebar-module">
     <h4><i class="fa fa-archive"></i> Archives</h4>
     <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/05/">五月 2017</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/11/">十一月 2016</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/10/">十月 2016</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/08/">八月 2016</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/04/">四月 2016</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/03/">三月 2016</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/01/">一月 2016</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/12/">十二月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/11/">十一月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/09/">九月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/08/">八月 2015</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/07/">七月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/05/">五月 2015</a><span class="sidebar-module-list-count">5</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/04/">四月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/02/">二月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/12/">十二月 2014</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/04/">四月 2014</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/02/">二月 2014</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2013/01/">一月 2013</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2012/08/">八月 2012</a><span class="sidebar-module-list-count">1</span></li></ul>
@@ -316,9 +330,9 @@
 
 
 
-  
+    
   <div class="sidebar-module">
-    <h4><i class="fa fa-newspaper-o"></i> Recents</h4>
+    <h4><i class="fa fa-send-o"></i> Recents</h4>
     <ul class="sidebar-module-list">
       
         <li>
@@ -346,7 +360,7 @@
 
 
 
-  
+    
   <div class="sidebar-module">
     <h4><i class="fa fa-tags"></i> Tags</h4>
     <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/API/">API</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Atom/">Atom</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/C/">C</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/C/">C#</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/GAE/">GAE</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/GUI/">GUI</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Hackintosh/">Hackintosh</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Hexo/">Hexo</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Java/">Java</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/JavaScript/">JavaScript</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Jekyll/">Jekyll</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/LaTeX/">LaTeX</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Linux/">Linux</a><span class="sidebar-module-list-count">9</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Mac/">Mac</a><span class="sidebar-module-list-count">9</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/MacPorts/">MacPorts</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/NTFS/">NTFS</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Python/">Python</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/QQ/">QQ</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Rails/">Rails</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/UEFI/">UEFI</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/VPS/">VPS</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Visual-Studio/">Visual Studio</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Windows/">Windows</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/npm/">npm</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/wine/">wine</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/zsh/">zsh</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/中文/">中文</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/云/">云</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/单片机/">单片机</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/反汇编/">反汇编</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/平板/">平板</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/插件/">插件</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/教务系统/">教务系统</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/東方Project/">東方Project</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/电幕/">电幕</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/系统维护/">系统维护</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/维基百科/">维基百科</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/编程/">编程</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/语文/">语文</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/输入法/">输入法</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/配置/">配置</a><span class="sidebar-module-list-count">1</span></li></ul>
@@ -403,6 +417,13 @@
     </div>
 </footer>
 
+    <div id="back-to-top" data-toggle="tooltip" data-placement="left" title="Back to top">
+    <a href="javascript:;" title="Back to top">
+        <div class="arrow"></div>
+        <div class="stick"></div>
+    </a>
+</div>
+
     
 <script>
     var disqus_shortname = 'vjudge1';
@@ -426,6 +447,7 @@
 
 
 <script src="/js/script.js"></script>
+<script src="/js/back-to-top.js"></script>
 
 </body>
 </html>
