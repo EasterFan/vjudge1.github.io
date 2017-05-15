@@ -3,7 +3,7 @@
         <%- partial('article', {post: post, index: true}) %>
     <% }) %>
 <% } else { %>
-    <% let last; %>
+    <% let last = null; %>
     <% page.posts.each((post, i) => { %>
         <% let year = post.date.year(); %>
         <% if (last !== year) { %>
