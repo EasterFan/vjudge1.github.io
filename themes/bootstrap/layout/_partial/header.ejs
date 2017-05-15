@@ -1,6 +1,98 @@
-<div class="blog-header">
-  <h1 class="blog-title"><%= config.title %></h1>
-  <% if (theme.subtitle){ %>
-    <p class="lead blog-description"><%= theme.subtitle %></p>
-  <% } %>
-</div>
+<% if (is_home()) { %>
+    <div class="jumbotron">
+        <div class="container">
+            <div class="avatar">
+                <a href="https://github.com/<%= theme.github_id %>">
+                    <img src="<%= theme.avatar || gravatar(theme.email || config.title, 170) %>" />
+                </a>
+            </div>
+            <div class="title">
+                <h1 class="maintitle">
+                    <%- config.title %>
+                </h1>
+                <p class="description">
+                    <%- config.description || '&nbsp;' %>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="jumbotron-sub">
+        <div class="container">
+            <div class="title">
+                <% if (theme.github_id) { %>
+                <a href="https://github.com/<%= theme.github_id %>" data-toggle="tooltip" data-placement="bottom" title="GitHub">
+                    <i class="fa fa-github icon"></i>
+                </a>
+                <% } %>
+
+                <% if (theme.twitter_id) { %>
+                <a href="https://twitter.com/<%= theme.twitter_id %>" data-toggle="tooltip" data-placement="bottom" title="Twitter">
+                    <i class="fa fa-twitter icon"></i>
+                </a>
+                <% } %>
+
+                <% if (theme.fb_id) { %>
+                <a href="https://www.facebook.com/<%= theme.fb_id %>" data-toggle="tooltip" data-placement="bottom" title="Facebook">
+                    <i class="fa fa-facebook icon"></i>
+                </a>
+                <% } %>
+
+                <% if (theme.weibo_uid) { %>
+                <a href="http://weibo.com/<%= theme.weibo_uid %>" data-toggle="tooltip" data-placement="bottom" title="Weibo">
+                    <i class="fa fa-weibo icon"></i>
+                </a>
+                <% } %>
+
+                <% if (theme.email) { %>
+                <a href="mailto:<%= theme.email %>" data-toggle="tooltip" data-placement="bottom" title="Email">
+                    <i class="fa fa-envelope-o icon"></i>
+                </a>
+                <% } %>
+
+                <% if (theme.github_id) { %>
+                <a href="https://github.com/<%= theme.github_id %>/<%= theme.github_id %>.github.io" data-toggle="tooltip" data-placement="bottom" title="Source">
+                    <i class="fa fa-code icon"></i>
+                </a>
+                <% } %>
+
+                <a href="/feed.xml" data-toggle="tooltip" data-placement="bottom" title="RSS">
+                    <i class="fa fa-rss icon"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+<% } else if (is_post()) { %>
+    <% post = page; %>
+    <div class="jumbotron">
+        <div class="container">
+            <h1 class="post-title" id="post-title">
+                <a href="<%= config.root %>" title="Back to home">
+                    <%= page.title %>
+                </a>
+            </h1>
+            <div class="article-meta">
+                <%- partial('post/date', {class_name: 'article-date', date_format: null, nolink: true}) %>
+                <% if (post.author){ %>
+                    <div class="article-author"><%= post.author %></div>
+                <% } %>
+                <%- partial('post/category') %>
+                <%- partial('post/tag') %>
+            </div>
+        </div>
+    </div>
+<% } else { %>
+    <div class="jumbotron">
+        <div class="container">
+            <h1 class="post-title" id="post-title">
+                <%= generateTitle(page) %>
+            </h1>
+            <p>
+                <% if (page.subtitle) { %>
+                    <%= page.subtitle %>
+                <% } else { %>
+                    <a href="<%= config.root %>">Back to home</a>
+                <% } %>
+            </p>
+        </div>
+    </div>
+<% } %>

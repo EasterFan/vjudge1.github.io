@@ -1,0 +1,47 @@
+/**
+ * Base Hexo and Theme styles
+ *
+ * This stylesheet is meant to give a baseline style
+ * for the built-in Hexo tags and theme markdown. They shouldn't need
+ * to change as often as the styles in `custom.css` (in theory).
+ */
+
+/* Globals */
+body {
+    font-family: $font-family-base;
+    font-size: $font-size-base;
+    color: $text-color;
+    background-color: $body-bg;
+    line-height: $line-height-base;
+}
+
+h1, .h1,
+h2, .h2,
+h3, .h3,
+h4, .h4,
+h5, .h5,
+h6, .h6 {
+    margin-top: 24px;
+    margin-bottom: 12px;
+    font-family: $font-family-base;
+    font-weight: $headings-font-weight;
+    color: $headings-color;
+    line-height: $headings-line-height;
+}
+
+p {
+    margin: 0 0 12px;
+}
+
+code {
+    background-color: #eeeeee;
+    font-size: 80%;
+}
+
+.fa { margin-right: 0.25em; }
+.left, .alignleft {
+    float: left;
+}
+.right, .alignright {
+    float: right;
+}

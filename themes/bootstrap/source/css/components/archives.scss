@@ -1,0 +1,32 @@
+/* Archives */
+
+.archive-year-wrap {
+    border-bottom: 1px solid #eee;
+    font-size: 2em;
+}
+.archive-article {
+    margin: 30px 0;
+}
+.archive-article h1 {
+    margin: 0;
+    font-size: 1.3em;
+}
+
+/*
+ * Archives
+ */
+
+.archives-wrap {
+    margin-bottom: 30px;
+}
+
+.archive-year-wrap a,
+.archive-article .article-datetime a {
+    color: #333;
+    text-decoration: none;
+}
+
+.archive-article .article-datetime a {
+    color: #999;
+    text-decoration: none;
+}

@@ -1,0 +1,17 @@
+/* prev/next navigation between articles */
+#article-nav {
+    margin-top: 30px;
+}
+#article-nav>li {
+    padding: 2px;
+    font-size: 0.8em;
+}
+#article-nav>li>a {
+    border: 1px solid #337ab7;
+}
+#article-nav>li>a:hover {
+    border: 1px solid #23527c;
+}
+.article-nav-link-wrap .fa {
+    margin: 4px 0;
+}

@@ -1,8 +1,59 @@
 <footer class="blog-footer">
-  <div class="container">
-    <div id="footer-info" class="inner">
-      &copy; <%= date(new Date(), 'YYYY') %> <%= config.author || config.title %><br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    <div class="container">
+        <ol class="footer-list">
+            <% for (let link of theme.footer_links) { %>
+                <li>
+                    <a href="<%= link.url %>">
+                        <%- link.name %>
+                    </a>
+                </li>
+            <% } %>
+        </ol>
+        <ol class="social-media-list">
+            <% if (theme.email) { %>
+                <li>
+                    <a href="mailto:<%= theme.email %>" data-toggle="tooltip" data-placement="top" title="Email">
+                        <i class="fa fa-envelope"></i>
+                    </a>
+                </li>
+            <% } %>
+            <% if (theme.github_id) { %>
+            <li>
+                <a href="https://github.com/<%= theme.github_id %>" data-toggle="tooltip" data-placement="top" title="GitHub">
+                    <i class="fa fa-github"></i>
+                </a>
+            </li>
+            <% } %>
+            <% if (theme.twitter_id) { %>
+            <li>
+                <a href="https://twitter.com/<%= theme.twitter_id %>" data-toggle="tooltip" data-placement="top" title="Twitter">
+                    <i class="fa fa-twitter"></i>
+                </a>
+            </li>
+            <% } %>
+            <% if (theme.fb_id) { %>
+            <li>
+                <a href="https://www.facebook.com/<%= theme.fb_id %>" data-toggle="tooltip" data-placement="top" title="Facebook">
+                    <i class="fa fa-facebook"></i>
+                </a>
+            </li>
+            <% } %>
+            <% if (theme.weibo_uid) { %>
+            <li>
+                <a href="http://weibo.com/<%= theme.weibo_uid %>" data-toggle="tooltip" data-placement="top" title="Weibo">
+                    <i class="fa fa-weibo"></i>
+                </a>
+            </li>
+            <% } %>
+        </ol>
+        <br class="clear" />
+        <div class="footnote">
+            <% if (theme.footnote) { %>
+                <%- theme.footnote %>
+            <% } else { %>
+                &copy; <%= date(new Date(), 'YYYY') %> <%= config.author || config.title %><br>
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+            <% } %>
+        </div>
     </div>
-  </div>
 </footer>

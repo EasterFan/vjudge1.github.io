@@ -3,7 +3,7 @@ navbar_brand: false
 menu:
   Home: index.html
   Archives: archives/
-rss: /atom.xml
+avatar:
 
 # Content
 excerpt_link: Read More
@@ -26,10 +26,19 @@ about_widget_content: >
 archive_type: 'monthly'
 show_count: true
 
+# Footer
+footnote:
+footer_links:
+
 # Miscellaneous
 google_analytics:
 favicon:
+email:
+github_id:
 twitter_id:
 google_plus:
+fb_id:
 fb_admins:
 fb_app_id:
+weibo_uid:
+
