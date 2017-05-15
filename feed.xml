@@ -47,12 +47,9 @@
     <link href="https://vjudge1.github.io/2016/12/16/javascript-extend/"/>
     <id>https://vjudge1.github.io/2016/12/16/javascript-extend/</id>
     <published>2016-12-15T16:00:00.000Z</published>
-    <updated>2017-05-15T19:06:40.547Z</updated>
+    <updated>2017-05-15T19:09:30.227Z</updated>
     
-    <content type="html"><![CDATA[<ul>
-<li>contents<br>{:toc}</li>
-</ul>
-<p>从《JavaScript面向对象编程指南》摘的一些内容，留着收藏。相关概念“原型”和“构造器”的介绍请转到<a href="http://www.ruanyifeng.com/blog/2011/06/designing_ideas_of_inheritance_mechanism_in_javascript.html" target="_blank" rel="external">阮一峰博客的相关文章</a>。</p>
+    <content type="html"><![CDATA[<p>从《JavaScript面向对象编程指南》摘的一些内容，留着收藏。相关概念“原型”和“构造器”的介绍请转到<a href="http://www.ruanyifeng.com/blog/2011/06/designing_ideas_of_inheritance_mechanism_in_javascript.html" target="_blank" rel="external">阮一峰博客的相关文章</a>。</p>
 <a id="more"></a>
 <h1 id="防止翻车"><a href="#防止翻车" class="headerlink" title="防止翻车"></a>防止翻车</h1><p>如果直接替换了构造函数的prototype，那么记得顺便修正原型的constructor属性。</p>
 <h1 id="ES5"><a href="#ES5" class="headerlink" title="ES5"></a>ES5</h1><h2 id="基于构造器"><a href="#基于构造器" class="headerlink" title="基于构造器"></a>基于构造器</h2><h3 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h3><figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">A</span>(<span class="params"></span>) </span>&#123;&#125;</div><div class="line">A.prototype.name = <span class="string">'A'</span>;</div><div class="line">A.prototype.info = <span class="number">1</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">B</span>(<span class="params"></span>) </span>&#123;&#125;</div><div class="line">B.prototype = <span class="keyword">new</span> A();</div><div class="line">B.prototype.constructor = B;</div><div class="line"></div><div class="line">B.prototype.name = <span class="string">'B'</span>;</div><div class="line">B.prototype.data = <span class="number">2</span>;</div></pre></td></tr></table></figure>
@@ -84,10 +81,7 @@
     
     <summary type="html">
     
-      &lt;ul&gt;
-&lt;li&gt;contents&lt;br&gt;{:toc}&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;从《JavaScript面向对象编程指南》摘的一些内容，留着收藏。相关概念“原型”和“构造器”的介绍请转到&lt;a href=&quot;http://www.ruanyifeng.com/blog/2011/06/designing_ideas_of_inheritance_mechanism_in_javascript.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;阮一峰博客的相关文章&lt;/a&gt;。&lt;/p&gt;
+      &lt;p&gt;从《JavaScript面向对象编程指南》摘的一些内容，留着收藏。相关概念“原型”和“构造器”的介绍请转到&lt;a href=&quot;http://www.ruanyifeng.com/blog/2011/06/designing_ideas_of_inheritance_mechanism_in_javascript.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;阮一峰博客的相关文章&lt;/a&gt;。&lt;/p&gt;
     
     </summary>
     
@@ -2488,9 +2482,9 @@ cp /usr/lib/python2.7/site-packages/powerline/bindings/tmux/powerline.conf ~/.tm
       <category term="个人心得" scheme="https://vjudge1.github.io/categories/%E4%B8%AA%E4%BA%BA%E5%BF%83%E5%BE%97/"/>
     
     
-      <category term="Hackintosh" scheme="https://vjudge1.github.io/tags/Hackintosh/"/>
-    
       <category term="Mac" scheme="https://vjudge1.github.io/tags/Mac/"/>
+    
+      <category term="Hackintosh" scheme="https://vjudge1.github.io/tags/Hackintosh/"/>
     
   </entry>
   

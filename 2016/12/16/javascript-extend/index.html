@@ -4,17 +4,17 @@
   <meta charset="utf-8">
   <title>JavaScript继承小结</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="contents{:toc}  从《JavaScript面向对象编程指南》摘的一些内容，留着收藏。相关概念“原型”和“构造器”的介绍请转到阮一峰博客的相关文章。">
+  <meta name="description" content="从《JavaScript面向对象编程指南》摘的一些内容，留着收藏。相关概念“原型”和“构造器”的介绍请转到阮一峰博客的相关文章。">
 <meta name="keywords" content="JavaScript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaScript继承小结">
 <meta property="og:url" content="https://vjudge1.github.io/2016/12/16/javascript-extend/index.html">
 <meta property="og:site_name" content="⑨rz">
-<meta property="og:description" content="contents{:toc}  从《JavaScript面向对象编程指南》摘的一些内容，留着收藏。相关概念“原型”和“构造器”的介绍请转到阮一峰博客的相关文章。">
-<meta property="og:updated_time" content="2017-05-15T19:06:40.547Z">
+<meta property="og:description" content="从《JavaScript面向对象编程指南》摘的一些内容，留着收藏。相关概念“原型”和“构造器”的介绍请转到阮一峰博客的相关文章。">
+<meta property="og:updated_time" content="2017-05-15T19:09:30.227Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript继承小结">
-<meta name="twitter:description" content="contents{:toc}  从《JavaScript面向对象编程指南》摘的一些内容，留着收藏。相关概念“原型”和“构造器”的介绍请转到阮一峰博客的相关文章。">
+<meta name="twitter:description" content="从《JavaScript面向对象编程指南》摘的一些内容，留着收藏。相关概念“原型”和“构造器”的介绍请转到阮一峰博客的相关文章。">
   
     
     <link rel="alternate" href="/feed.xml" title="⑨rz" type="application/atom+xml">
@@ -112,10 +112,7 @@
     <div class="article-inner">
         <div class="article-entry" itemprop="articleBody">
             
-                <ul>
-<li>contents<br>{:toc}</li>
-</ul>
-<p>从《JavaScript面向对象编程指南》摘的一些内容，留着收藏。相关概念“原型”和“构造器”的介绍请转到<a href="http://www.ruanyifeng.com/blog/2011/06/designing_ideas_of_inheritance_mechanism_in_javascript.html" target="_blank" rel="external">阮一峰博客的相关文章</a>。</p>
+                <p>从《JavaScript面向对象编程指南》摘的一些内容，留着收藏。相关概念“原型”和“构造器”的介绍请转到<a href="http://www.ruanyifeng.com/blog/2011/06/designing_ideas_of_inheritance_mechanism_in_javascript.html" target="_blank" rel="external">阮一峰博客的相关文章</a>。</p>
 <a id="more"></a>
 <h1 id="防止翻车"><a href="#防止翻车" class="headerlink" title="防止翻车"></a>防止翻车</h1><p>如果直接替换了构造函数的prototype，那么记得顺便修正原型的constructor属性。</p>
 <h1 id="ES5"><a href="#ES5" class="headerlink" title="ES5"></a>ES5</h1><h2 id="基于构造器"><a href="#基于构造器" class="headerlink" title="基于构造器"></a>基于构造器</h2><h3 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h3><figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">A</span>(<span class="params"></span>) </span>&#123;&#125;</div><div class="line">A.prototype.name = <span class="string">'A'</span>;</div><div class="line">A.prototype.info = <span class="number">1</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">B</span>(<span class="params"></span>) </span>&#123;&#125;</div><div class="line">B.prototype = <span class="keyword">new</span> A();</div><div class="line">B.prototype.constructor = B;</div><div class="line"></div><div class="line">B.prototype.name = <span class="string">'B'</span>;</div><div class="line">B.prototype.data = <span class="number">2</span>;</div></pre></td></tr></table></figure>
@@ -153,7 +150,7 @@
         
 
         <footer class="article-footer">
-            <a data-url="https://vjudge1.github.io/2016/12/16/javascript-extend/" data-id="cj2qi4mly002nfjcm2az4fve9" class="article-share-link">
+            <a data-url="https://vjudge1.github.io/2016/12/16/javascript-extend/" data-id="cj2qi6wpk002rlocm92zrkqvq" class="article-share-link">
                 <i class="fa fa-share"></i> Share
             </a>
             
