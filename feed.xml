@@ -43,6 +43,62 @@
   </entry>
   
   <entry>
+    <title>JavaScript继承小结</title>
+    <link href="https://vjudge1.github.io/2016/12/16/javascript-extend/"/>
+    <id>https://vjudge1.github.io/2016/12/16/javascript-extend/</id>
+    <published>2016-12-15T16:00:00.000Z</published>
+    <updated>2017-05-15T19:06:40.547Z</updated>
+    
+    <content type="html"><![CDATA[<ul>
+<li>contents<br>{:toc}</li>
+</ul>
+<p>从《JavaScript面向对象编程指南》摘的一些内容，留着收藏。相关概念“原型”和“构造器”的介绍请转到<a href="http://www.ruanyifeng.com/blog/2011/06/designing_ideas_of_inheritance_mechanism_in_javascript.html" target="_blank" rel="external">阮一峰博客的相关文章</a>。</p>
+<a id="more"></a>
+<h1 id="防止翻车"><a href="#防止翻车" class="headerlink" title="防止翻车"></a>防止翻车</h1><p>如果直接替换了构造函数的prototype，那么记得顺便修正原型的constructor属性。</p>
+<h1 id="ES5"><a href="#ES5" class="headerlink" title="ES5"></a>ES5</h1><h2 id="基于构造器"><a href="#基于构造器" class="headerlink" title="基于构造器"></a>基于构造器</h2><h3 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h3><figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">A</span>(<span class="params"></span>) </span>&#123;&#125;</div><div class="line">A.prototype.name = <span class="string">'A'</span>;</div><div class="line">A.prototype.info = <span class="number">1</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">B</span>(<span class="params"></span>) </span>&#123;&#125;</div><div class="line">B.prototype = <span class="keyword">new</span> A();</div><div class="line">B.prototype.constructor = B;</div><div class="line"></div><div class="line">B.prototype.name = <span class="string">'B'</span>;</div><div class="line">B.prototype.data = <span class="number">2</span>;</div></pre></td></tr></table></figure>
+<h3 id="只继承于原型"><a href="#只继承于原型" class="headerlink" title="只继承于原型"></a>只继承于原型</h3><p>进行一下改进：不要单独为继承关系创建新对象。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">A</span>(<span class="params"></span>) </span>&#123;&#125;</div><div class="line">A.prototype.name = <span class="string">'A'</span>;</div><div class="line">A.prototype.info = <span class="number">1</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">B</span>(<span class="params"></span>) </span>&#123;&#125;</div><div class="line">B.prototype = A.prototype;</div><div class="line">B.prototype.constructor = B;</div><div class="line"></div><div class="line">B.prototype.name = <span class="string">'B'</span>;</div><div class="line">B.prototype.data = <span class="number">2</span>;</div></pre></td></tr></table></figure>
+<p>不过，由于子对象与父对象指向了同一对象，所以一旦子对象对原型进行了修改，父对象也会跟着被修改：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">a = <span class="keyword">new</span> A();</div><div class="line"><span class="built_in">console</span>.log(a.name);    <span class="comment">// 输出“B”</span></div><div class="line"><span class="built_in">console</span>.log(a.data);    <span class="comment">// 输出“2”</span></div></pre></td></tr></table></figure>
+<h3 id="临时构造器"><a href="#临时构造器" class="headerlink" title="临时构造器"></a>临时构造器</h3><p>使用一个临时的构造函数来防止父子的“连锁”关系，这样既可以扩充子对象，又不会影响父对象。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> extend = <span class="function"><span class="keyword">function</span> (<span class="params">Child, Parent</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> F = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;;</div><div class="line">    F.prototype = Parent.prototype;</div><div class="line">    Child.prototype = <span class="keyword">new</span> F();</div><div class="line">    Child.prototype.constructor = Child;</div><div class="line">    Child.uber = Parent.prototype;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">A</span>(<span class="params"></span>) </span>&#123;&#125;</div><div class="line">A.prototype.name = <span class="string">'A'</span>;</div><div class="line">A.prototype.info = <span class="number">1</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">B</span>(<span class="params"></span>) </span>&#123;&#125;</div><div class="line">extend(B, A);</div><div class="line">B.prototype.name = <span class="string">'B'</span>;</div><div class="line">B.prototype.data = <span class="number">2</span>;</div></pre></td></tr></table></figure>
+<h3 id="属性拷贝"><a href="#属性拷贝" class="headerlink" title="属性拷贝"></a>属性拷贝</h3><p>使用以上几种方法时，name处于父对象，而本方法会把父对象的属性拷贝给子对象（<strong>注意：浅拷贝</strong>）。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> extend2 = <span class="function"><span class="keyword">function</span>(<span class="params">Child, Parent</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> p = Parent.prototype;</div><div class="line">    <span class="keyword">var</span> q = Child.prototype;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i <span class="keyword">in</span> p) &#123;</div><div class="line">        q[i] = p[i];</div><div class="line">    &#125;</div><div class="line">    q.uber = p;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">A</span>(<span class="params"></span>) </span>&#123;&#125;</div><div class="line">A.prototype.name = <span class="string">'A'</span>;</div><div class="line">A.prototype.info = <span class="number">1</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">B</span>(<span class="params"></span>) </span>&#123;&#125;</div><div class="line">extend2(B, A);</div><div class="line">B.prototype.name = <span class="string">'B'</span>;</div><div class="line">B.prototype.data = <span class="number">2</span>;</div></pre></td></tr></table></figure>
+<p>本法用属性拷贝代替原型链查询，效率可能会稍逊一些，但减少了原型链上面的查找。</p>
+<h3 id="借用构造器"><a href="#借用构造器" class="headerlink" title="借用构造器"></a>借用构造器</h3><figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">A</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.info = <span class="number">1</span>;</div><div class="line">&#125;</div><div class="line">A.prototype.name = <span class="string">'A'</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">B</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    A.apply(<span class="keyword">this</span>, <span class="built_in">arguments</span>);</div><div class="line">&#125;</div><div class="line">B.prototype.name = <span class="string">'B'</span>;</div></pre></td></tr></table></figure>
+<p>上面代码只继承父对象本身的属性。如果想继承原型，可以：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">B.prototype = <span class="keyword">new</span> A();</div></pre></td></tr></table></figure>
+<p>但这样父对象构造器会被调用两次。因此可以将借用构造器与原型复制结合：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">B</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    A.apply(<span class="keyword">this</span>, <span class="built_in">arguments</span>);</div><div class="line">&#125;</div><div class="line">extend2(B, A);</div><div class="line">B.prototype.name = <span class="string">'B'</span>;</div></pre></td></tr></table></figure>
+<h2 id="基于对象"><a href="#基于对象" class="headerlink" title="基于对象"></a>基于对象</h2><p>另一种常见的实现是不使用原型、构造器和new关键字。</p>
+<h3 id="属性拷贝-1"><a href="#属性拷贝-1" class="headerlink" title="属性拷贝"></a>属性拷贝</h3><figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> extendCopy = <span class="function"><span class="keyword">function</span> (<span class="params">p</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> c = &#123;&#125;;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i <span class="keyword">in</span> p) &#123;</div><div class="line">        c[i] = p[i];</div><div class="line">    &#125;</div><div class="line">    c.uber = p;</div><div class="line">    <span class="keyword">return</span> c;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> a = &#123;</div><div class="line">    <span class="attr">name</span>: <span class="string">'A'</span>,</div><div class="line">    <span class="attr">info</span>: <span class="number">1</span></div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> b = extendCopy(a);</div><div class="line">b.name = <span class="string">'B'</span>;</div><div class="line">b.data = <span class="number">2</span>;</div></pre></td></tr></table></figure>
+<p>以上仍为<strong>浅拷贝</strong>。下面是深拷贝版本的extendCopy：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> extendCopy = <span class="function"><span class="keyword">function</span>(<span class="params">p, c</span>) </span>&#123;</div><div class="line">    c = c || &#123;&#125;;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i <span class="keyword">in</span> p) &#123;</div><div class="line">        <span class="keyword">if</span> (p.hasOwnProperty(i)) &#123;</div><div class="line">            <span class="keyword">if</span> (<span class="keyword">typeof</span> p[i] === <span class="string">'object'</span>) &#123;</div><div class="line">                c[i] = <span class="built_in">Array</span>.isArray(p[i]) ? [] : &#123;&#125;;</div><div class="line">                extendCopy(p[i], c[i]);</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                c[i] = p[i];</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> c;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>继续修改，也可以做到支持多重继承。</p>
+<h3 id="object"><a href="#object" class="headerlink" title="object()"></a>object()</h3><figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">object</span>(<span class="params">o</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> F = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;;</div><div class="line">    F.prototype = o;</div><div class="line">    <span class="keyword">var</span> n = <span class="keyword">new</span> F();</div><div class="line">    n.uber = o;</div><div class="line">    <span class="keyword">return</span> n;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> a = &#123;</div><div class="line">    <span class="attr">name</span>: <span class="string">'A'</span>,</div><div class="line">    <span class="attr">info</span>: <span class="number">1</span></div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> b = object(a);</div><div class="line">b.name = <span class="string">'B'</span>;</div><div class="line">b.data = <span class="number">2</span>;</div></pre></td></tr></table></figure>
+<p>可以将其与“属性拷贝”结合使用：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">object</span>(<span class="params">o, stuff</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> F = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;;</div><div class="line">    F.prototype = o;</div><div class="line">    <span class="keyword">var</span> n = <span class="keyword">new</span> F();</div><div class="line">    n.uber = o;</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i <span class="keyword">in</span> stuff) &#123;</div><div class="line">        n[i] = stuff[i];</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> n;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样可以一次性地完成对象的扩展。</p>
+<h3 id="寄生式继承"><a href="#寄生式继承" class="headerlink" title="寄生式继承"></a>寄生式继承</h3><figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> b = <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> that = object(a);</div><div class="line">    that.name = <span class="string">'B'</span>;</div><div class="line">    that.data = data;</div><div class="line">    <span class="keyword">return</span> that;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> t = b(<span class="number">2</span>);</div><div class="line"><span class="comment">// 下面的代码也不会出错</span></div><div class="line"><span class="keyword">var</span> t2 = <span class="keyword">new</span> b(<span class="number">2</span>);</div></pre></td></tr></table></figure>
+<h1 id="ES6（未完待续）"><a href="#ES6（未完待续）" class="headerlink" title="ES6（未完待续）"></a>ES6（未完待续）</h1><h1 id="CoffeeScript的实践（未完待续）"><a href="#CoffeeScript的实践（未完待续）" class="headerlink" title="CoffeeScript的实践（未完待续）"></a>CoffeeScript的实践（未完待续）</h1>]]></content>
+    
+    <summary type="html">
+    
+      &lt;ul&gt;
+&lt;li&gt;contents&lt;br&gt;{:toc}&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;从《JavaScript面向对象编程指南》摘的一些内容，留着收藏。相关概念“原型”和“构造器”的介绍请转到&lt;a href=&quot;http://www.ruanyifeng.com/blog/2011/06/designing_ideas_of_inheritance_mechanism_in_javascript.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;阮一峰博客的相关文章&lt;/a&gt;。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="备忘录" scheme="https://vjudge1.github.io/categories/%E5%A4%87%E5%BF%98%E5%BD%95/"/>
+    
+    
+      <category term="JavaScript" scheme="https://vjudge1.github.io/tags/JavaScript/"/>
+    
+  </entry>
+  
+  <entry>
     <title>换成Arch Linux系统的一些记录</title>
     <link href="https://vjudge1.github.io/2016/11/08/move-to-archlinux/"/>
     <id>https://vjudge1.github.io/2016/11/08/move-to-archlinux/</id>
@@ -2500,100 +2556,6 @@ Icon=/home/ubuntu/Deepin-QQ/qq.png
       <category term="wine" scheme="https://vjudge1.github.io/tags/wine/"/>
     
       <category term="QQ" scheme="https://vjudge1.github.io/tags/QQ/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>常见的云服务器</title>
-    <link href="https://vjudge1.github.io/2015/08/16/cloud/"/>
-    <id>https://vjudge1.github.io/2015/08/16/cloud/</id>
-    <published>2015-08-15T16:00:00.000Z</published>
-    <updated>2017-05-15T18:40:43.422Z</updated>
-    
-    <content type="html"><![CDATA[<p>做出一个网站，到哪里去找一个合适的服务器呢？</p>
-<a id="more"></a>
-<div class="bs-callout bs-callout-danger">
-                <h4 id="原作者"><a href="#原作者" class="headerlink" title="原作者"></a>原作者</h4><p>本文原是<a href="http://wangchenyu.net.cn" target="_blank" rel="external">课戴表王晨宇</a>写的，稍微整理了一下格式。转载请标明原作者！</p>
-
-            </div>
-<h1 id="云主机"><a href="#云主机" class="headerlink" title="云主机"></a>云主机</h1><p>没有用过 benchmark 来跑分，但是我用 php 探针检测，腾讯云的可能因为是共享核吧的计算时间比列表中的参考值要大，阿里云的计算时间就比列表中的参考值都要小。我见网上很多人评论阿里云的硬盘速度慢，不过实际上网站的速度决定于 CPU 运算时间长短还有内存够不够用——除非你有别的用处。</p>
-<p>国内的我就用过腾讯云的 512M 共享核、阿里云的 1G 1核、阿里云的 512M 1核。实际上其他的也都不咋地了。</p>
-<p>国外的主机商我用过 DigitalOcean 的 512M 单核、Amazon AWS的各种配置（所有的“通用”型配置都用了一遍）、Windows Azure 4G、7G内存（免费体验嘛…）、vps.me的 128M 单核、HapHost 的 128M 单核、Conoha.jp 日本 1G 双核。</p>
-<p>IBM 的 Softlayer 只能算是应用引擎，所以后面再讲。</p>
-<p>可惜没能用上 Linode，因为不支持我的信用卡。</p>
-<h2 id="阿里云"><a href="#阿里云" class="headerlink" title="阿里云"></a>阿里云</h2><ul>
-<li>价格：512M 单核一年只需 288，但是流量费用另计。不过感觉起来是要比腾讯云划算。</li>
-<li>操控性：可以随意的升级、降级、按月付费。</li>
-<li>网速：下载东西时也是峰值 1~1.5MB/s 良心。不过因为我选择的青岛区域机房，所以在学校（备注：学校在青岛）的 ping 值 10 以下，有时候宿舍甚至是 2ms 1ms 爽。对了，腾讯云的共享核只能选广东。</li>
-<li>系统：可以选择 Debian 5 32位。我选择的是 CentOS，一方面 yum 功能很强大，另一方面阿里云特别优化了 CentOS，装好启动内存在占 14M，我又稍微精简了一下只占 13M。镜像市场比腾讯云丰富的多，甚至有预装了 hhvm 的镜像。</li>
-<li>客服：只能电话或者工单。不过工单一般一天内就回复了，技术类的几分钟就回复。</li>
-<li>赠品：云盾是个好东西，能真的帮忙拦截 web 攻击和 ssh 攻击。不过 ssh 攻击只要主机优化好了也没啥。送 128M 的 OCS（完全兼容 memcached）也是一个大礼，尤其是对于 512M 内存的服务器，简直是雪中送炭。我的网站就在用，目测提速不少。通过 ACE 还可以开通免费的 RDS（rds 可能将来会收费）。</li>
-</ul>
-<h2 id="腾讯云"><a href="#腾讯云" class="headerlink" title="腾讯云"></a>腾讯云</h2><ul>
-<li>价格，一年 360 块钱的共享核能凭借低价吸引很多人。</li>
-<li>操控性：我是贪便宜的上当者，因为买了以后才发现不能升级、不能退款，只能以年为单位续费。所以只好挂一个小网站耗着。也有优点，就是可以直接在后台给 Linux 服务器挂载 SSH 密钥。然而这个小小的优点……有点鸡肋。</li>
-<li>网速：下载东西时 1M 宽带峰值 1~1.5MB/s 良心。</li>
-<li>系统：后台可选择的系统不多，至少没有“专门针对小内存主机”的 Debian 32 位系统。好在服务市场里面免费环境很多。</li>
-<li>客服：比较垃圾。联系很多次有时候等一天都排不上个队。</li>
-</ul>
-<h2 id="DigitalOcean"><a href="#DigitalOcean" class="headerlink" title="DigitalOcean"></a>DigitalOcean</h2><ul>
-<li>网速：网上大批的 do 的评测文章因为邀请一个人注册送 10$，但是国内线路最好的 San Francisco 节点我用起来感觉一点也不好。虽然网速可以达到满但是延迟 200~300 太高，不适合放网站。我装了一个 amh 面板，那个面板打开有时候慢的惊人。</li>
-<li>操控性：提供的系统非常全面，而且可以细分到很多，这一点我非常满意，所以我经常测试各种系统</li>
-<li>价格：512M 的 $5 一个月已经算是非常便宜了。而且推荐别人注册还能送钱。据说容易封号，不过我的账号用了半年了都没被封。</li>
-<li>客服：全英文，不过很友好，回答速度也很快。</li>
-<li>跑分同样是没跑，不过……我就挂了一个 vpn 目前。</li>
-</ul>
-<h2 id="Amazon-AWS"><a href="#Amazon-AWS" class="headerlink" title="Amazon AWS"></a>Amazon AWS</h2><p>因为我在除了 1G 1 核以外其他主机都用的 Windows 系统，所以不说什么了。而且现在没在用，只能凭回忆。不过吐槽一下 4 核 8G 内存的主机挖矿效率很低啊！</p>
-<ul>
-<li>网速：下载速度可以到满速，但是 Oregon 和 San Francisco 到国内延迟就很高，有时候还丢包。东京的很满意，Ping 值有时候 100 左右，而且网速也比较稳定。</li>
-<li>操控性：非常好。可以搜到其他用户共享出来的镜像，所以基本上你想得到的都有。镜像市场更是非常全面。</li>
-<li>客服：一般提交 Ticket 以后就会有客服来打电话，说的英语很标准，而且也很热心。</li>
-<li>赠品：非常多，rds 20G，S3 储存 5G，SSD 磁盘 30G 其他的我都没用过。</li>
-</ul>
-<p>现在注册以后是不能直接用东京节点的服务器的，只能发邮件申请，而且时间相当漫长，好像要一星期。</p>
-<h2 id="免费空间"><a href="#免费空间" class="headerlink" title="免费空间"></a>免费空间</h2><p>vps.me 和 HapHost 我用的都是免费的，性能很垃圾。</p>
-<p>现在 haphost 已经没了，都并入 host1plus 了。</p>
-<p>vps.me 上没有开放ipv4，需要做端口映射，只给了ipv6。</p>
-<p>Conoha.jp 也没怎么用，申请了体验两个月，现在应该还没过期。国内速度可以。操作系统给的很全。因为用的是 kvm，所以可以直接重装系统啊什么的，理论上还能挂一个 Windows 镜像玩玩。只支持信用卡付款。客服没接触过，官网日语难懂，翻译了也难懂。还好系统都是英语的。</p>
-<p>对了，我有两个免费空间十分推荐，提供PHP和Mysql，据我观察他们上面有不少早至2009年就存在的免费网站，简单来说就是他们已经被证实至少6年不删不活跃用户：一个是freehostia.com（注册登陆需要翻墙，但是申请到的空间不需翻墙）一个是summerhost.info（完全开放给国人），summerhost.info 和 byethost.com很类似，都很稳定，不删用户。</p>
-<h1 id="应用引擎"><a href="#应用引擎" class="headerlink" title="应用引擎"></a>应用引擎</h1><p>（此处忘记了 SAE、BAE、GAE、Heroku）</p>
-<p>因为 openshift 支持 ssh 连接，所以基本上算半个 vps 了。</p>
-<p>openshift 用的就是亚马逊的服务器，但是网址被墙了。幸运的是ip没被墙，所以直接ping出来ip然后用一个cdn就能做网站，直接用ip连ssh就能翻墙。提供1.5GRAM和3G的硬盘空间，无限流量，一个用户可以创建3个免费的应用。</p>
-<p>和openshift相似但是没有被屏蔽的有phpcloud appfog 还有一个大家都知道的 SourceForge。</p>
-<ul>
-<li>uhurucloud 支持 .Net。</li>
-<li>Snapphq  asp php mysql</li>
-<li>Jelastic Java php mysql</li>
-<li>CloudBees java php mysql</li>
-<li>Cumulogic java php mysql</li>
-<li>MoPaaS Java Ruby php mysql</li>
-<li>Another Service  Another Service是一个法国的云计算平台</li>
-<li>phpfog和Orchestra和cloudcontrol和dotcloud和pagodabox php+mysql</li>
-<li>Appharbor和Webweb asp asp.net</li>
-</ul>
-<p>需要注意的是，这些免费版（除了 GAE）一般不允许 24 小时连续开机，需要手动启动，除非付钱。</p>
-<p>对了，国内的引擎还有</p>
-<ul>
-<li>阿里的 ACE（目前内侧免费）</li>
-<li>京东的 jae</li>
-<li>腾讯的 cee</li>
-<li>盛大的 CAE</li>
-</ul>
-<h1 id="在线开发平台"><a href="#在线开发平台" class="headerlink" title="在线开发平台"></a>在线开发平台</h1><p>然后就是在线开发平台，比如 cloud9.io、coding.net、nitrous.io、heroku、uhurucloud。值得一提的是这些基本上都支持node.js。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;做出一个网站，到哪里去找一个合适的服务器呢？&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="经验总结" scheme="https://vjudge1.github.io/categories/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/"/>
-    
-    
-      <category term="云" scheme="https://vjudge1.github.io/tags/%E4%BA%91/"/>
-    
-      <category term="VPS" scheme="https://vjudge1.github.io/tags/VPS/"/>
     
   </entry>
   

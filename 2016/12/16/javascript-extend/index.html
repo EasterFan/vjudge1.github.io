@@ -2,19 +2,19 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Enable NTFS writing support in OS X</title>
+  <title>JavaScript继承小结</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="OS X mounts NTFS partitions as read-only parts automatically in default. But how can I access removable disks with NTFS format, or the Windows partition? You may install third-party softwares in order">
-<meta name="keywords" content="Mac,NTFS">
+  <meta name="description" content="contents{:toc}  从《JavaScript面向对象编程指南》摘的一些内容，留着收藏。相关概念“原型”和“构造器”的介绍请转到阮一峰博客的相关文章。">
+<meta name="keywords" content="JavaScript">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Enable NTFS writing support in OS X">
-<meta property="og:url" content="https://vjudge1.github.io/2015/05/29/enable-ntfs-writing-support-in-os-x/index.html">
+<meta property="og:title" content="JavaScript继承小结">
+<meta property="og:url" content="https://vjudge1.github.io/2016/12/16/javascript-extend/index.html">
 <meta property="og:site_name" content="⑨rz">
-<meta property="og:description" content="OS X mounts NTFS partitions as read-only parts automatically in default. But how can I access removable disks with NTFS format, or the Windows partition? You may install third-party softwares in order">
-<meta property="og:updated_time" content="2017-05-15T18:41:07.696Z">
+<meta property="og:description" content="contents{:toc}  从《JavaScript面向对象编程指南》摘的一些内容，留着收藏。相关概念“原型”和“构造器”的介绍请转到阮一峰博客的相关文章。">
+<meta property="og:updated_time" content="2017-05-15T19:06:40.547Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Enable NTFS writing support in OS X">
-<meta name="twitter:description" content="OS X mounts NTFS partitions as read-only parts automatically in default. But how can I access removable disks with NTFS format, or the Windows partition? You may install third-party softwares in order">
+<meta name="twitter:title" content="JavaScript继承小结">
+<meta name="twitter:description" content="contents{:toc}  从《JavaScript面向对象编程指南》摘的一些内容，留着收藏。相关概念“原型”和“构造器”的介绍请转到阮一峰博客的相关文章。">
   
     
     <link rel="alternate" href="/feed.xml" title="⑨rz" type="application/atom+xml">
@@ -76,25 +76,25 @@
         <div class="container">
             <h1 class="post-title" id="post-title">
                 <a href="/" title="Back to home">
-                    Enable NTFS writing support in OS X
+                    JavaScript继承小结
                 </a>
             </h1>
             <div class="article-meta">
                 <div class="article-datetime">
     <span class="article-date">
-        <time datetime="2015-05-28T16:00:00.000Z" itemprop="datePublished">2015-05-29</time>
+        <time datetime="2016-12-15T16:00:00.000Z" itemprop="datePublished">2016-12-16</time>
     </span>
 </div>
 
                 
                 
     <div class="article-category">
-        <a class="article-category-link" href="/categories/教程/">教程</a>
+        <a class="article-category-link" href="/categories/备忘录/">备忘录</a>
     </div>
 
 
                 
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mac/">Mac</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NTFS/">NTFS</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
 
 
             </div>
@@ -105,36 +105,45 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-9 blog-main">
-                <article id="post-enable-ntfs-writing-support-in-os-x" class="article article-type-post" itemscope itemprop="blogPost">
+                <article id="post-javascript-extend" class="article article-type-post" itemscope itemprop="blogPost">
 
     
 
     <div class="article-inner">
         <div class="article-entry" itemprop="articleBody">
             
-                <p>OS X mounts NTFS partitions as read-only parts automatically in default. But how can I access removable disks with NTFS format, or the Windows partition?</p>
-<p>You may install third-party softwares in order to make NTFS partitions writable.</p>
-<p>In fact, OS X has a native support for writing in NTFS parts, if you are brave to enable it.</p>
-<a id="more"></a>
-<p>Take <code>/dev/disk0s4</code> as an example.</p>
-<h1 id="Write-Once"><a href="#Write-Once" class="headerlink" title="Write Once"></a>Write Once</h1><p>Open <code>Terminal</code>, and type the following commands:</p>
-<pre><code>mkdir ~/ntfs
-sudo diskutil unmount /dev/disk0s4
-sudo mount -o rw,auto,nobrowse -t ntfs /dev/disk0s4 ~/ntfs
-</code></pre><p>Then the NTFS partition will be mounted to <code>~/ntfs</code>.</p>
-<p>It’s necessary to add <code>nobrowse</code> or OS X will still mount it in read-only mode.</p>
-<h1 id="Write-Forever"><a href="#Write-Forever" class="headerlink" title="Write Forever"></a>Write Forever</h1><p>If you hear of Linux, you should know <code>/etc/fstab</code>. OS X will read <code>/etc/fstab</code>, too.</p>
-<p>Type <code>sudo vifs</code> in Terminal. Then add the following line:</p>
-<pre><code>/dev/disk0s4 /mypart ntfs rw,auto,nobrowse
-</code></pre><p><em>If you don’t know how to use Vi, press the letter <code>O</code> key, type the code, then press <code>Escape</code> key and <code>ZZ</code> (press <code>Z</code> twice).</em></p>
-<p><code>nobrowse</code> is still required. And it means that the partition will not be shown in Devices in Finder. You can add it to Favorites manually.</p>
-<p>After rebooting, OS X will mount the NTFS partition to <code>/mypart</code> in read-write mode.</p>
-<h1 id="Issues"><a href="#Issues" class="headerlink" title="Issues"></a>Issues</h1><p>It’s NOT recommended to do so because of potential data loss.</p>
-<ul>
-<li>If a file becomes grey, it means no permissions in OS X. You can copy it to a HFS+ partition (password required) before using it. You can also reset its owner and permission in Windows, but the file may be still grey.</li>
-<li>Some files may lose and some directories may be messy sometimes. Use <code>chkdsk /f</code> to repair them in Windows.</li>
+                <ul>
+<li>contents<br>{:toc}</li>
 </ul>
-
+<p>从《JavaScript面向对象编程指南》摘的一些内容，留着收藏。相关概念“原型”和“构造器”的介绍请转到<a href="http://www.ruanyifeng.com/blog/2011/06/designing_ideas_of_inheritance_mechanism_in_javascript.html" target="_blank" rel="external">阮一峰博客的相关文章</a>。</p>
+<a id="more"></a>
+<h1 id="防止翻车"><a href="#防止翻车" class="headerlink" title="防止翻车"></a>防止翻车</h1><p>如果直接替换了构造函数的prototype，那么记得顺便修正原型的constructor属性。</p>
+<h1 id="ES5"><a href="#ES5" class="headerlink" title="ES5"></a>ES5</h1><h2 id="基于构造器"><a href="#基于构造器" class="headerlink" title="基于构造器"></a>基于构造器</h2><h3 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h3><figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">A</span>(<span class="params"></span>) </span>&#123;&#125;</div><div class="line">A.prototype.name = <span class="string">'A'</span>;</div><div class="line">A.prototype.info = <span class="number">1</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">B</span>(<span class="params"></span>) </span>&#123;&#125;</div><div class="line">B.prototype = <span class="keyword">new</span> A();</div><div class="line">B.prototype.constructor = B;</div><div class="line"></div><div class="line">B.prototype.name = <span class="string">'B'</span>;</div><div class="line">B.prototype.data = <span class="number">2</span>;</div></pre></td></tr></table></figure>
+<h3 id="只继承于原型"><a href="#只继承于原型" class="headerlink" title="只继承于原型"></a>只继承于原型</h3><p>进行一下改进：不要单独为继承关系创建新对象。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">A</span>(<span class="params"></span>) </span>&#123;&#125;</div><div class="line">A.prototype.name = <span class="string">'A'</span>;</div><div class="line">A.prototype.info = <span class="number">1</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">B</span>(<span class="params"></span>) </span>&#123;&#125;</div><div class="line">B.prototype = A.prototype;</div><div class="line">B.prototype.constructor = B;</div><div class="line"></div><div class="line">B.prototype.name = <span class="string">'B'</span>;</div><div class="line">B.prototype.data = <span class="number">2</span>;</div></pre></td></tr></table></figure>
+<p>不过，由于子对象与父对象指向了同一对象，所以一旦子对象对原型进行了修改，父对象也会跟着被修改：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">a = <span class="keyword">new</span> A();</div><div class="line"><span class="built_in">console</span>.log(a.name);    <span class="comment">// 输出“B”</span></div><div class="line"><span class="built_in">console</span>.log(a.data);    <span class="comment">// 输出“2”</span></div></pre></td></tr></table></figure>
+<h3 id="临时构造器"><a href="#临时构造器" class="headerlink" title="临时构造器"></a>临时构造器</h3><p>使用一个临时的构造函数来防止父子的“连锁”关系，这样既可以扩充子对象，又不会影响父对象。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> extend = <span class="function"><span class="keyword">function</span> (<span class="params">Child, Parent</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> F = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;;</div><div class="line">    F.prototype = Parent.prototype;</div><div class="line">    Child.prototype = <span class="keyword">new</span> F();</div><div class="line">    Child.prototype.constructor = Child;</div><div class="line">    Child.uber = Parent.prototype;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">A</span>(<span class="params"></span>) </span>&#123;&#125;</div><div class="line">A.prototype.name = <span class="string">'A'</span>;</div><div class="line">A.prototype.info = <span class="number">1</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">B</span>(<span class="params"></span>) </span>&#123;&#125;</div><div class="line">extend(B, A);</div><div class="line">B.prototype.name = <span class="string">'B'</span>;</div><div class="line">B.prototype.data = <span class="number">2</span>;</div></pre></td></tr></table></figure>
+<h3 id="属性拷贝"><a href="#属性拷贝" class="headerlink" title="属性拷贝"></a>属性拷贝</h3><p>使用以上几种方法时，name处于父对象，而本方法会把父对象的属性拷贝给子对象（<strong>注意：浅拷贝</strong>）。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> extend2 = <span class="function"><span class="keyword">function</span>(<span class="params">Child, Parent</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> p = Parent.prototype;</div><div class="line">    <span class="keyword">var</span> q = Child.prototype;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i <span class="keyword">in</span> p) &#123;</div><div class="line">        q[i] = p[i];</div><div class="line">    &#125;</div><div class="line">    q.uber = p;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">A</span>(<span class="params"></span>) </span>&#123;&#125;</div><div class="line">A.prototype.name = <span class="string">'A'</span>;</div><div class="line">A.prototype.info = <span class="number">1</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">B</span>(<span class="params"></span>) </span>&#123;&#125;</div><div class="line">extend2(B, A);</div><div class="line">B.prototype.name = <span class="string">'B'</span>;</div><div class="line">B.prototype.data = <span class="number">2</span>;</div></pre></td></tr></table></figure>
+<p>本法用属性拷贝代替原型链查询，效率可能会稍逊一些，但减少了原型链上面的查找。</p>
+<h3 id="借用构造器"><a href="#借用构造器" class="headerlink" title="借用构造器"></a>借用构造器</h3><figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">A</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.info = <span class="number">1</span>;</div><div class="line">&#125;</div><div class="line">A.prototype.name = <span class="string">'A'</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">B</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    A.apply(<span class="keyword">this</span>, <span class="built_in">arguments</span>);</div><div class="line">&#125;</div><div class="line">B.prototype.name = <span class="string">'B'</span>;</div></pre></td></tr></table></figure>
+<p>上面代码只继承父对象本身的属性。如果想继承原型，可以：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">B.prototype = <span class="keyword">new</span> A();</div></pre></td></tr></table></figure>
+<p>但这样父对象构造器会被调用两次。因此可以将借用构造器与原型复制结合：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">B</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    A.apply(<span class="keyword">this</span>, <span class="built_in">arguments</span>);</div><div class="line">&#125;</div><div class="line">extend2(B, A);</div><div class="line">B.prototype.name = <span class="string">'B'</span>;</div></pre></td></tr></table></figure>
+<h2 id="基于对象"><a href="#基于对象" class="headerlink" title="基于对象"></a>基于对象</h2><p>另一种常见的实现是不使用原型、构造器和new关键字。</p>
+<h3 id="属性拷贝-1"><a href="#属性拷贝-1" class="headerlink" title="属性拷贝"></a>属性拷贝</h3><figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> extendCopy = <span class="function"><span class="keyword">function</span> (<span class="params">p</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> c = &#123;&#125;;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i <span class="keyword">in</span> p) &#123;</div><div class="line">        c[i] = p[i];</div><div class="line">    &#125;</div><div class="line">    c.uber = p;</div><div class="line">    <span class="keyword">return</span> c;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> a = &#123;</div><div class="line">    <span class="attr">name</span>: <span class="string">'A'</span>,</div><div class="line">    <span class="attr">info</span>: <span class="number">1</span></div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> b = extendCopy(a);</div><div class="line">b.name = <span class="string">'B'</span>;</div><div class="line">b.data = <span class="number">2</span>;</div></pre></td></tr></table></figure>
+<p>以上仍为<strong>浅拷贝</strong>。下面是深拷贝版本的extendCopy：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> extendCopy = <span class="function"><span class="keyword">function</span>(<span class="params">p, c</span>) </span>&#123;</div><div class="line">    c = c || &#123;&#125;;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i <span class="keyword">in</span> p) &#123;</div><div class="line">        <span class="keyword">if</span> (p.hasOwnProperty(i)) &#123;</div><div class="line">            <span class="keyword">if</span> (<span class="keyword">typeof</span> p[i] === <span class="string">'object'</span>) &#123;</div><div class="line">                c[i] = <span class="built_in">Array</span>.isArray(p[i]) ? [] : &#123;&#125;;</div><div class="line">                extendCopy(p[i], c[i]);</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                c[i] = p[i];</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> c;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>继续修改，也可以做到支持多重继承。</p>
+<h3 id="object"><a href="#object" class="headerlink" title="object()"></a>object()</h3><figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">object</span>(<span class="params">o</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> F = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;;</div><div class="line">    F.prototype = o;</div><div class="line">    <span class="keyword">var</span> n = <span class="keyword">new</span> F();</div><div class="line">    n.uber = o;</div><div class="line">    <span class="keyword">return</span> n;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> a = &#123;</div><div class="line">    <span class="attr">name</span>: <span class="string">'A'</span>,</div><div class="line">    <span class="attr">info</span>: <span class="number">1</span></div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> b = object(a);</div><div class="line">b.name = <span class="string">'B'</span>;</div><div class="line">b.data = <span class="number">2</span>;</div></pre></td></tr></table></figure>
+<p>可以将其与“属性拷贝”结合使用：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">object</span>(<span class="params">o, stuff</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> F = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;;</div><div class="line">    F.prototype = o;</div><div class="line">    <span class="keyword">var</span> n = <span class="keyword">new</span> F();</div><div class="line">    n.uber = o;</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i <span class="keyword">in</span> stuff) &#123;</div><div class="line">        n[i] = stuff[i];</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> n;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样可以一次性地完成对象的扩展。</p>
+<h3 id="寄生式继承"><a href="#寄生式继承" class="headerlink" title="寄生式继承"></a>寄生式继承</h3><figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> b = <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> that = object(a);</div><div class="line">    that.name = <span class="string">'B'</span>;</div><div class="line">    that.data = data;</div><div class="line">    <span class="keyword">return</span> that;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> t = b(<span class="number">2</span>);</div><div class="line"><span class="comment">// 下面的代码也不会出错</span></div><div class="line"><span class="keyword">var</span> t2 = <span class="keyword">new</span> b(<span class="number">2</span>);</div></pre></td></tr></table></figure>
+<h1 id="ES6（未完待续）"><a href="#ES6（未完待续）" class="headerlink" title="ES6（未完待续）"></a>ES6（未完待续）</h1><h1 id="CoffeeScript的实践（未完待续）"><a href="#CoffeeScript的实践（未完待续）" class="headerlink" title="CoffeeScript的实践（未完待续）"></a>CoffeeScript的实践（未完待续）</h1>
             
         </div>
 
@@ -144,11 +153,11 @@ sudo mount -o rw,auto,nobrowse -t ntfs /dev/disk0s4 ~/ntfs
         
 
         <footer class="article-footer">
-            <a data-url="https://vjudge1.github.io/2015/05/29/enable-ntfs-writing-support-in-os-x/" data-id="cj2qi4mk0000sfjcmgs6josxc" class="article-share-link">
+            <a data-url="https://vjudge1.github.io/2016/12/16/javascript-extend/" data-id="cj2qi4mly002nfjcm2az4fve9" class="article-share-link">
                 <i class="fa fa-share"></i> Share
             </a>
             
-                <a href="https://vjudge1.github.io/2015/05/29/enable-ntfs-writing-support-in-os-x/#disqus_thread" class="article-comment-link">
+                <a href="https://vjudge1.github.io/2016/12/16/javascript-extend/#disqus_thread" class="article-comment-link">
                     <i class="fa fa-comment"></i> Comments
                 </a>
             
@@ -161,8 +170,8 @@ sudo mount -o rw,auto,nobrowse -t ntfs /dev/disk0s4 ~/ntfs
             <tr role="presentation">
                 <th>Newer post</th>
                 <td>
-                    <a href="/2015/05/29/let-jiao-wu-xi-tong-support-linux/" id="article-nav-newer" class="article-nav-link-wrap">
-                        <span class="article-nav-link-title">让“强智”教务系统支持 Linux/OS X</span>
+                    <a href="/2017/05/13/change-to-hexo/" id="article-nav-newer" class="article-nav-link-wrap">
+                        <span class="article-nav-link-title">换成 Hexo</span>
                     </a>
                 </td>
             </tr>
@@ -171,9 +180,9 @@ sudo mount -o rw,auto,nobrowse -t ntfs /dev/disk0s4 ~/ntfs
             <tr role="presentation">
                 <th>Older post</th>
                 <td>
-                    <a href="/2015/05/22/writing-blogs-in-ubuntu/" id="article-nav-older" class="article-nav-link-wrap">
+                    <a href="/2016/11/08/move-to-archlinux/" id="article-nav-older" class="article-nav-link-wrap">
 
-                        <span class="article-nav-link-title">Setup Jekyll in Ubuntu/Windows</span>
+                        <span class="article-nav-link-title">换成Arch Linux系统的一些记录</span>
                     </a>
                 </td>
             </tr>
@@ -318,7 +327,7 @@ if (anchors) {
 <script>
     var disqus_shortname = 'vjudge1';
     
-        var disqus_url = 'https://vjudge1.github.io/2015/05/29/enable-ntfs-writing-support-in-os-x/';
+        var disqus_url = 'https://vjudge1.github.io/2016/12/16/javascript-extend/';
     
     (function(){
         var dsq = document.createElement('script');
