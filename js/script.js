@@ -51,7 +51,9 @@
 
     // Bootstrap table style
     $('.article-entry table').each(function(i, table) {
-        if ($(this).parent().hasClass('table-responsive')) return;
+        if ($(this).parent().hasClass('table-responsive') || $(this).parent().hasClass('highlight')) {
+            return;
+        }
         $(this).addClass('table');
         $(this).wrap('<div class="table-responsive"></div>');
     });

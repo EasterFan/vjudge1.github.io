@@ -2432,9 +2432,9 @@ cp /usr/lib/python2.7/site-packages/powerline/bindings/tmux/powerline.conf ~/.tm
       <category term="个人心得" scheme="https://vjudge1.github.io/categories/%E4%B8%AA%E4%BA%BA%E5%BF%83%E5%BE%97/"/>
     
     
-      <category term="Mac" scheme="https://vjudge1.github.io/tags/Mac/"/>
-    
       <category term="Hackintosh" scheme="https://vjudge1.github.io/tags/Hackintosh/"/>
+    
+      <category term="Mac" scheme="https://vjudge1.github.io/tags/Mac/"/>
     
   </entry>
   
