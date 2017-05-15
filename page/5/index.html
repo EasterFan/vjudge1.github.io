@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>⑨rz</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="我不姓赵，我不嫖娼">
+<meta property="og:type" content="website">
+<meta property="og:title" content="⑨rz">
+<meta property="og:url" content="https://vjudge1.github.io/page/5/index.html">
+<meta property="og:site_name" content="⑨rz">
+<meta property="og:description" content="我不姓赵，我不嫖娼">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="⑨rz">
+<meta name="twitter:description" content="我不姓赵，我不嫖娼">
+  
+    
+    <link rel="alternate" href="/feed.xml" title="⑨rz" type="application/atom+xml">
+  
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="/css/styles.css">
+  
+
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="main-menu-navbar">
+      <ul class="nav navbar-nav">
+        
+          <li class="">
+            <a href="/index.html">Home</a>
+          </li>
+        
+          <li class="">
+            <a href="/archives/">Archives</a>
+          </li>
+        
+      </ul>
+
+      <!--
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+      -->
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+    
+    
+    <div class="jumbotron">
+        <div class="container">
+            <h1 class="post-title" id="post-title">
+                <a href="/" title="Back to home">
+                    换成 Hexo
+                </a>
+            </h1>
+            <div class="article-meta">
+                <div class="article-datetime">
+    <span class="article-date">
+        <time datetime="2017-05-12T16:00:00.000Z" itemprop="datePublished">2017-05-13</time>
+    </span>
+</div>
+
+                
+                
+    <div class="article-category">
+        <a class="article-category-link" href="/categories/其他/">其他</a>
+    </div>
+
+
+                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li></ul>
+
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-9 blog-main">
+                
+  
+    <article id="post-install-rails" class="article article-type-post" itemscope itemprop="blogPost">
+
+  
+  <header class="article-header">
+    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/07/26/install-rails/">Install Rails (Mac/Cygwin/Windows)</a>
+    </h1>
+  
+
+
+  </header>
+
+  <div class="article-meta">
+    <div class="article-datetime">
+    <span class="article-date">
+        <time datetime="2015-07-25T16:00:00.000Z" itemprop="datePublished">2015-07-26</time>
+    </span>
+</div>
+
+    
+    
+    <div class="article-category">
+        <a class="article-category-link" href="/categories/折腾记录/">折腾记录</a>
+    </div>
+
+
+    
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mac/">Mac</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Rails/">Rails</a></li></ul>
+
+
+  </div>
+  
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Macbook is better than computers with Windows or Linux inside because of few developing issues. Except Rails…</p>
+<div class="bs-callout bs-callout-info">
+                <h4 id="中国的朋友们"><a href="#中国的朋友们" class="headerlink" title="中国的朋友们"></a>中国的朋友们</h4><p>如果在安装过程中遇到了“Connection reset”或“Timeout”的错误，那一定是防火的长城干的<span class="blackout">敢在这里污蔑当，一定是勾结了境外反华组织</span>。因此，解决方法有三种：</p>
+<ol>
+<li>用你的科学上网工具（设置 HTTP_PROXY 和 HTTPS_PROXY）</li>
+<li><a href="https://ruby.taobao.org" target="_blank" rel="external">淘宝</a>——淘宝除了可以购物，还可以……</li>
+<li><p>改 /etc/hosts：</p>
+<p>   23.235.40.249 rubygems.global.ssl.fastly.net<br>   54.186.104.15 production.cf.rubygems.org<br>   54.186.104.15 production.s3.rubygems.org</p>
+</li>
+</ol>
+<p>这三种方法都可以——怎么方便怎么来就行。</p>
+
+            </div>
+<h1 id="Install-Rails-on-my-Mac"><a href="#Install-Rails-on-my-Mac" class="headerlink" title="Install Rails on my Mac"></a>Install Rails on my Mac</h1><div class="bs-callout bs-callout-danger">
+                <h4 id="A-better-solution-for-Ubuntu-Mac"><a href="#A-better-solution-for-Ubuntu-Mac" class="headerlink" title="A better solution for Ubuntu/Mac"></a>A better solution for Ubuntu/Mac</h4><p>Because it’s hard to install Rails, there are some special websites that introduce how to setup it. For example, <a href="https://gorails.com" target="_blank" rel="external">GoRails</a> and <a href="https://gorails.com/setup/osx/10.10-yosemite" target="_blank" rel="external">guides</a> in it.</p>
+
+            </div>
+<p>What is installed on my Mac:</p>
+<ul>
+<li>MacPorts</li>
+<li>Xcode</li>
+<li>Ruby 2.2.3: installed by MacPorts, and is the default Ruby interpreter.</li>
+</ul>
+<p>First, gcc is required. If you don’t have gcc, just type</p>
+<pre><code>xcode-select --install
+</code></pre><p>Then it’s ready to type</p>
+<pre><code>sudo gem install rails
+</code></pre><p>BUT…</p>
+<h2 id="nokogiri"><a href="#nokogiri" class="headerlink" title="nokogiri"></a>nokogiri</h2><p>nokogiri is the only troublemaker during the whole installation.</p>
+<h3 id="1-FAILED"><a href="#1-FAILED" class="headerlink" title="1 (FAILED)"></a>1 (FAILED)</h3><p>First I installed nokogiri directly so I failed.</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">Building native extensions.  This could take a while...</div><div class="line">ERROR:  Error installing nokogiri:</div><div class="line">ERROR: Failed to build gem native extension.</div><div class="line"></div><div class="line">......</div><div class="line"></div><div class="line">************************************************************************</div><div class="line">IMPORTANT NOTICE:</div><div class="line"></div><div class="line">Building Nokogiri with a packaged version of libxml2-2.9.2</div><div class="line">with the following patches applied:</div><div class="line">    - 0001-Revert-Missing-initialization-for-the-catalog-module.patch</div><div class="line">    - 0002-Fix-missing-entities-after-CVE-2014-3660-fix.patch</div><div class="line"></div><div class="line">Team Nokogiri will keep on doing their best to provide security</div><div class="line">updates in a timely manner, but if this is a concern for you and want</div><div class="line">to use the system library instead; abort this installation process and</div><div class="line">reinstall nokogiri as follows:</div><div class="line"></div><div class="line">    gem install nokogiri -- --use-system-libraries</div><div class="line">        [--with-xml2-config=/path/to/xml2-config]</div><div class="line">        [--with-xslt-config=/path/to/xslt-config]</div><div class="line"></div><div class="line">If you are using Bundler, tell it to use the option:</div><div class="line"></div><div class="line">    bundle config build.nokogiri --use-system-libraries</div><div class="line">    bundle install</div><div class="line"></div><div class="line">Note, however, that nokogiri is not fully compatible with arbitrary</div><div class="line">versions of libxml2 provided by OS/package vendors.</div><div class="line">************************************************************************</div><div class="line">Extracting libxml2-2.9.2.tar.gz into tmp/x86_64-apple-darwin14/ports/libxml2/2.9.2... OK</div><div class="line">Running patch with /Library/Ruby/Gems/2.0.0/gems/nokogiri-1.6.6.2/ports/patches/libxml2/0001-Revert-Missing-initialization-for-the-catalog-module.patch...</div><div class="line">Running &apos;patch&apos; for libxml2 2.9.2... OK</div><div class="line">Running patch with /Library/Ruby/Gems/2.0.0/gems/nokogiri-1.6.6.2/ports/patches/libxml2/0002-Fix-missing-entities-after-CVE-2014-3660-fix.patch...</div><div class="line">Running &apos;patch&apos; for libxml2 2.9.2... OK</div><div class="line">Running &apos;configure&apos; for libxml2 2.9.2... OK</div><div class="line">Running &apos;compile&apos; for libxml2 2.9.2... ERROR, review &apos;/Library/Ruby/Gems/2.0.0/gems/nokogiri-1.6.6.2/ext/nokogiri/tmp/x86_64-apple-darwin14/ports/libxml2/2.9.2/compile.log&apos; to see what happened.</div><div class="line">*** extconf.rb failed ***</div><div class="line">Could not create Makefile due to some reason, probably lack of necessary</div><div class="line">libraries and/or headers.  Check the mkmf.log file for more details.  You may</div><div class="line">need configuration options.</div><div class="line"></div><div class="line">......</div><div class="line"></div><div class="line">Gem files will remain installed in /Library/Ruby/Gems/2.0.0/gems/nokogiri-1.6.6.2 for inspection.</div><div class="line">Results logged to /Library/Ruby/Gems/2.0.0/extensions/universal-darwin-14/2.0.0/nokogiri-1.6.6.2/gem_make.out</div></pre></td></tr></table></figure>
+<p>So I tried to do as what the message said. However, failed again.</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">Building native extensions with: &apos;--use-system-libraries&apos;</div><div class="line">This could take a while...</div><div class="line">Building nokogiri using system libraries.</div><div class="line">ERROR:  Error installing nokogiri:</div><div class="line">    ERROR: Failed to build gem native extension.</div><div class="line"></div><div class="line">    /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/bin/ruby extconf.rb --use-system-libraries --with-xml2-include=/Users/dwt/Library/Homebrew/opt/libxml2/include/libxml2 --with-xml2-lib=/Users/dwt/Library/Homebrew/opt/libxml2/lib --with-xslt-dir=/Users/dwt/Library/Homebrew/opt/libxslt --with-iconv-include=/Users/dwt/Library/Homebrew/opt/libiconv/include/</div><div class="line">Building nokogiri using system libraries.</div><div class="line">libxml2 version 2.9.0 and later is not yet supported, but proceeding anyway.</div><div class="line">checking for xmlParseDoc() in libxml/parser.h... no</div><div class="line">checking for xmlParseDoc() in -lxml2... no</div><div class="line">checking for xmlParseDoc() in -llibxml2... no</div><div class="line">-----</div><div class="line">libxml2 is missing.  please visit http://nokogiri.org/tutorials/installing_nokogiri.html for help with installing dependencies.</div><div class="line">-----</div><div class="line">*** extconf.rb failed ***</div><div class="line">Could not create Makefile due to some reason, probably lack of necessary</div><div class="line">libraries and/or headers.  Check the mkmf.log file for more details.  You may</div><div class="line">need configuration options.</div></pre></td></tr></table></figure>
+<h3 id="2-FAILED"><a href="#2-FAILED" class="headerlink" title="2 (FAILED)"></a>2 (FAILED)</h3><p>I have read installation documents:</p>
+<ul>
+<li><a href="http://www.nokogiri.org/tutorials/installing_nokogiri.html#mac_os_x" target="_blank" rel="external">http://www.nokogiri.org/tutorials/installing_nokogiri.html#mac_os_x</a></li>
+<li><a href="https://github.com/sparklemotion/nokogiri/wiki/What-to-do-if-libxml2-is-being-a-jerk" target="_blank" rel="external">https://github.com/sparklemotion/nokogiri/wiki/What-to-do-if-libxml2-is-being-a-jerk</a></li>
+</ul>
+<p>According to the document, I tried</p>
+<pre><code>sudo port install libxml2 libxslt
+sudo gem install nokogiri -- --with-xml2-include=/opt/local/include/libxml2 --with-xml2-lib=/opt/local/lib --with-xslt-dir=/opt/local
+</code></pre><p>I have also tried</p>
+<pre><code>sudo gem install nokogiri -- --with-xml2-include=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk/usr/include/libxml2 --use-system-libraries
+</code></pre><p>Of course, it failed again and again.</p>
+<h3 id="3-╯°Д°-╯︵-┻━┻"><a href="#3-╯°Д°-╯︵-┻━┻" class="headerlink" title="3 (╯°Д°)╯︵ ┻━┻"></a>3 (╯°Д°)╯︵ ┻━┻</h3><p>Finally, I gave up on trying and decided to use the system version instead.</p>
+<pre><code>sudo gem install nokogiri -v &apos;1.6.6.2&apos; -- --use-system-libraries --with-xml2-include=/usr/include/libxml2 --with-xml2-lib=/usr/lib
+</code></pre><p>(UPDATE: The newest version is 1.6.7.)</p>
+<p>It’s really Pyrrhic victory.</p>
+<h1 id="Install-nokogiri-in-Windows"><a href="#Install-nokogiri-in-Windows" class="headerlink" title="Install nokogiri in Windows"></a>Install nokogiri in Windows</h1><div class="bs-callout bs-callout-warning">
+                <h4 id="WARNING"><a href="#WARNING" class="headerlink" title="WARNING"></a>WARNING</h4><p>Do not use Rails in Windows unless you like the feel of SLOOOOOOOW.</p>
+
+            </div>
+<p>Because it’s hard to compile in Windows. Nokogiri team has already worked for it. Just use</p>
+<pre><code>gem install nokogiri
+</code></pre><p>and everything will be ok.</p>
+<p>If you intend to do everything from scratch:</p>
+<ol>
+<li>Install Ruby and DevKit</li>
+<li>Download libxml2, libxslt (这俩需要翻墙), iconv and zlib. Unzip them, set PATH variable to gcc, and lots of <code>./configure &amp;&amp; make</code>.<ul>
+<li>libxslt needs libxml2, so you need to give correct parameters before running <code>configure</code>. For example, <code>./configure --with-libxml-src=/c/opt/include/libxml2-2.9.2</code>.</li>
+</ul>
+</li>
+<li><p>The final gem command should look like –</p>
+<pre><code>gem install nokogiri --platform=ruby -- --use-system-libraries --with-xml2-include=C:\opt\include\libxml2-2.9.2\include --with-xml2-lib=C:\opt\include\libxml2-2.9.2\.libs --with-xslt-include=C:\opt\include\libxslt-1.1.28 --with-xslt-lib=c:\opt\include\libxslt-1.1.28\libxslt\.libs --with-exslt-include=c:\opt\include\libxslt-1.1.28 --with-exslt-lib=c:\opt\include\libxslt-1.1.28\libexslt\.libs --with-zlib-lib=C:\opt\include\zlib-1.2.8 --with-zlib-include=C:\opt\include\zlib-1.2.8
+</code></pre></li>
+<li>Enter irb, then type <code>require &#39;nokogiri&#39;</code>. If it returned true, CONGRATULATIONS! <span class="blackout">If error messages show up…(╯°Д°)╯︵ ┻━┻</span></li>
+</ol>
+<h1 id="Install-nokogiri-under-Cygwin"><a href="#Install-nokogiri-under-Cygwin" class="headerlink" title="Install nokogiri under Cygwin"></a>Install nokogiri under Cygwin</h1>{% callout warning %}
+#### WARNING
+
+Do not use Rails in Cygwin unless you like the feel of SLOOOOOOOOOOOOOOOOOOOW.
+{% endcallout %}
+<p>Install <code>ruby</code>, <code>gcc</code>, <code>binutils</code> and <code>make</code>.</p>
+<p>Then install <code>libxml2</code>, <code>libxml2-devel</code>, <code>libxslt</code>, <code>libxslt-devel</code>, and type:</p>
+<pre><code>gem install nokogiri -- --use-system-libraries --with-xml2-include=/usr/include/libxml2 --with-xml2-lib=/usr/lib --with-xslt-dir=/usr/include/libxslt
+</code></pre><h1 id="Vagrant"><a href="#Vagrant" class="headerlink" title="Vagrant"></a>Vagrant</h1><p>For Windows users, you can try <a href="https://www.vagrantup.com/" target="_blank" rel="external">Vagrant</a>. It can be used to create an independent developing environment via virtual machines. And RubyMine supports it.</p>
+<p>With Vagrant, SLOOOOOOOW can reduce to SLOW…It’s much better than SLOOOOOOOW and SLOOOOOOOOOOOOOOOOOOOW.</p>
+<p><span class="blackout">Linux大法好，退Windows保平安</span></p>
+
+      
+    </div>
+
+    
+      
+
+    
+
+    <footer class="article-footer">
+      <a data-url="https://vjudge1.github.io/2015/07/26/install-rails/" data-id="cj2pxeil1000y1tcmpoi8248j" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
+      
+        <a href="https://vjudge1.github.io/2015/07/26/install-rails/#disqus_thread" class="article-comment-link">
+          <i class="fa fa-comment"></i> Comments
+        </a>
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-let-jiao-wu-xi-tong-support-linux" class="article article-type-post" itemscope itemprop="blogPost">
+
+  
+  <header class="article-header">
+    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/05/29/let-jiao-wu-xi-tong-support-linux/">让“强智”教务系统支持 Linux/OS X</a>
+    </h1>
+  
+
+
+  </header>
+
+  <div class="article-meta">
+    <div class="article-datetime">
+    <span class="article-date">
+        <time datetime="2015-05-28T16:00:00.000Z" itemprop="datePublished">2015-05-29</time>
+    </span>
+</div>
+
+    
+    
+    <div class="article-category">
+        <a class="article-category-link" href="/categories/折腾记录/">折腾记录</a>
+    </div>
+
+
+    
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/教务系统/">教务系统</a></li></ul>
+
+
+  </div>
+  
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><em>(坚持用 Windows 和 IE 浏览器的可以无视本文。)</em></p>
+<p>“强智”科技——中国教学教务管理软件领航者！</p>
+<p>旧版系统是各种注入，甚至网上<a href="http://www.wooyun.org/bugs/wooyun-2012-011355" target="_blank" rel="external">改成绩的教程</a>都直接拿这个系统开刀。虽然教程把学校名称挡上了，不过很明显，就是中国石油大学（华东）。</p>
+<p>后来学校升级了教务系统，至少表面上没有注入，不过，只支持旧版本的 IE6 浏览器。微软宣布放弃 XP 之后，学校把系统稍稍修复了一下，支持了其他版本的 IE，但还是不支持其他浏览器（包括 IE11 以及最新的 Edge）。这就意味着……</p>
+<h1 id="合适的解决方案"><a href="#合适的解决方案" class="headerlink" title="合适的解决方案"></a>合适的解决方案</h1><ol>
+<li>最简单的方法：装个虚拟机，或者用别人电脑。</li>
+<li>如果纯粹为了看课表查成绩，可以关注<code>石大助手</code>或者学校<code>官方微信</code>。</li>
+<li>自己写爬虫。</li>
+</ol>
+<p>那本文要做什么事儿呢？本文旨在找到一种从根本上解决问题的方法。只要行政部门接受这个方法，问题就“算是彻底”解决了。</p>
+<h1 id="问题出在哪儿"><a href="#问题出在哪儿" class="headerlink" title="问题出在哪儿"></a>问题出在哪儿</h1><p>中国绝大多数用户都在用 Windows，而且那些学编程的很多都是在 Windows 下学习，所以那些人脑袋里只有 IE 啊！好在现在都 HTML5 了，都有移动设备了，所以这种现象稍微有所改善。但是你得知道，不是谁都那么与时俱进，所以……</p>
+<p>兼容性问题不外乎两方面：一是 ActiveX，二是前端用了不标准的代码 (或者没考虑浏览器兼容性)。</p>
+<p>教务系统的 JavsScript 非常不干净。还好教务系统没用 ActiveX，否则无解 (在这里替各大银行感到悲哀)。</p>
+<h1 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h1><p>思路很明显了：找到不标准的代码，主要是 JavaScript，把它改成兼容各种浏览器的。</p>
+<h2 id="Charles"><a href="#Charles" class="headerlink" title="Charles"></a>Charles</h2><p>人家不可能让你改服务器上的东西吧？所以为了方便调试，我们需要一个工具——<a href="http://www.charlesproxy.com" target="_blank" rel="external">Charles</a>。</p>
+<p>Charles 是一个 HTTP 调试工具，可以抓包也可以代理。</p>
+<p>代理当然不是用来跨越万里长城的，而是——<code>偷梁换柱</code>！一会儿我们就要把服务器的 js 脚本换成我们自己的。</p>
+<p>这个软件是要钱的，作为中国人，知道应该怎么解决这个问题吧？不解释了。</p>
+<h2 id="设置代理"><a href="#设置代理" class="headerlink" title="设置代理"></a>设置代理</h2><p>调试的时候需要把 HTTP 代理设置为 <a href="http://127.0.0.1:8888。" target="_blank" rel="external">http://127.0.0.1:8888。</a></p>
+<p>具体操作不用教了吧？不会？先搞清楚自己用的什么桌面然后去找百度吧……</p>
+<p>还是不会？换 Firefox 浏览器！那个可以单独设置代理。</p>
+<h2 id="劫持"><a href="#劫持" class="headerlink" title="劫持"></a>劫持</h2><ol>
+<li>下载一个文件 <a href="http://jwxt.upc.edu.cn/jwxt/js/core.js" target="_blank" rel="external">http://jwxt.upc.edu.cn/jwxt/js/core.js</a>。把它存到一个合适的地方。</li>
+<li>打开 Charles。</li>
+<li>登一下教务系统，然后会看到一个提示——“不能创建对象！”一会儿我们就让它能创建对象。</li>
+<li><p>切换到 Charles，可以看到 jwxt.upc.edu.cn。</p>
+<img src="/2015/05/29/let-jiao-wu-xi-tong-support-linux/jwxt.png" alt="定位" title="定位">
+</li>
+<li><p>右击 core.js，选择“Map Local…”，把弹出对话框的“Local Path”设置成你刚才下载的那个脚本。</p>
+<img src="/2015/05/29/let-jiao-wu-xi-tong-support-linux/map.png" alt="更换" title="更换">
+<p>建议清除一下浏览器缓存，并且在调试期间禁用缓存。现在再访问教务系统，core.js 就是你自己的版本了。</p>
+</li>
+</ol>
+<h1 id="修改"><a href="#修改" class="headerlink" title="修改"></a>修改</h1><p>现在只有一些小的改动，所以改完之后并不是 100% 兼容，很多功能仍然用不了，但是至少能进去查成绩了。</p>
+<h2 id="jwxt-js-core-js"><a href="#jwxt-js-core-js" class="headerlink" title="/jwxt/js/core.js"></a>/jwxt/js/core.js</h2><ul>
+<li>在代码最开始加入：</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">if</span> (!<span class="built_in">window</span>.ActiveXObject) &#123;</div><div class="line">    XMLDocument.prototype.selectNodes = Element.prototype.selectNodes = <span class="function"><span class="keyword">function</span> (<span class="params">xpath</span>) </span>&#123;</div><div class="line">        <span class="keyword">if</span> (<span class="keyword">typeof</span> XPathEvaluator !== <span class="string">'undefined'</span>) &#123;</div><div class="line">            <span class="keyword">var</span> xpe = <span class="keyword">new</span> XPathEvaluator();</div><div class="line">            <span class="keyword">var</span> nsResolver = xpe.createNSResolver( <span class="keyword">this</span>.ownerDocument == <span class="literal">null</span>?<span class="keyword">this</span>.documentElement : <span class="keyword">this</span>.ownerDocument.documentElement);</div><div class="line">            <span class="keyword">var</span> result = xpe.evaluate(xpath, <span class="keyword">this</span> , nsResolver, <span class="number">0</span> , <span class="literal">null</span> );</div><div class="line">            <span class="keyword">var</span> found = [];</div><div class="line">            <span class="keyword">var</span> res;</div><div class="line">            <span class="keyword">while</span> (res = result.iterateNext())</div><div class="line">                found.push(res);</div><div class="line">            <span class="keyword">return</span> found;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="comment">// IE11 既不支持 selectNodes，又不支持 evaluate</span></div><div class="line">            <span class="keyword">var</span> x = xpath.split(<span class="string">'/'</span>);</div><div class="line">            <span class="keyword">if</span> ( !x || x.length &lt; <span class="number">2</span>) <span class="keyword">return</span> <span class="literal">null</span>;</div><div class="line">            <span class="keyword">var</span> found = <span class="keyword">this</span>.querySelectorAll(x[<span class="number">1</span>]);</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">2</span>; i&lt;x.length; i++) &#123;</div><div class="line">                found = found[<span class="number">0</span>].querySelectorAll(x[i]);</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">return</span> found;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    XMLDocument.prototype.selectSingleNode = Element.prototype.selectSingleNode = <span class="function"><span class="keyword">function</span> (<span class="params">xpath</span>) </span>&#123;</div><div class="line">        <span class="keyword">var</span> x = <span class="keyword">this</span>.selectNodes(xpath)</div><div class="line">        <span class="keyword">if</span> ( ! x || x.length &lt; <span class="number">1</span> ) <span class="keyword">return</span> <span class="literal">null</span> ;</div><div class="line">        <span class="keyword">return</span> x[ <span class="number">0</span> ];</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><p>往下找 <code>send_request</code> 函数。这里有一个笑点——<code>if (什么什么 &amp;&amp; 1 == 2)</code>。那么，里面的代码就算等到中国足球夺冠之后也执行不了吧……</p>
+<p>找到 <code>if(window.XMLHttpRequest &amp;&amp; 1==2 )</code>，把 <code>&amp;&amp; 1==2</code> 直接去掉。</p>
+</li>
+<li><p>还是这个函数，从 <code>var topXml = ...</code> 开始，一直到函数结束，把所有 <code>.text</code> 全部换成 <code>.nodeValue</code>。一共三组（这三组有注释，分别写作“加载顶层菜单开始”、“加载一层菜单开始”和“加载二层菜单开始”）。</p>
+</li>
+</ul>
+<h2 id="全校课表查看（未解决）"><a href="#全校课表查看（未解决）" class="headerlink" title="全校课表查看（未解决）"></a>全校课表查看（未解决）</h2><p>由于这部分代码是动态生成的，所以无法采用替换文件的方式来调试。经过粗略分析，大致是以下位置出现错误：/jwxt/jiaowu/tkgl/queryKbByXzbj1.jsp 以及同一目录中的其他类似文件（如 queryKbByTeacher 等）。</p>
+<p>这些文件中（由于 jsp 是动态语言，因此实际内容不一定正好在这个文件中。但是生成的结果就在这里体现）有一系列 document.getElementById，然而其中的 id 并不存在。在操作这些并不存在的 DOM 元素时发生了错误，后面代码不再执行，因此无法获取全校课表。</p>
+<p>一个有效的修改办法是加入防错处理，或者直接忽略错误。不过目前我还没有在语言层面上找到解决办法。</p>
+<h2 id="选课（未解决）"><a href="#选课（未解决）" class="headerlink" title="选课（未解决）"></a>选课（未解决）</h2><p>虽然选择界面中 js 脚本也是动态生成的（分别为 /jwxt/jiaowu/xkgl/xsxkjmxs_tree.jsp 和 xsxkjmxs_frame.jsp），无法直接更改。不过，因为错误是采用了一个已经过时的 window.showModalDialog()，所以可以从语言层面上打补丁。</p>
+<p>此外 /jwxt/js/jspublic.js 也多处用到了这个函数。</p>
+<p>事实上，这个函数并不一定导致错误（在 Firefox 中可正常使用）。但是，因为 Chrome（Chrome 内核）、Opera 等浏览器不支持，而且没有替代品，所以此问题依然很严重——必须采用其他技术来进行窗口之间的交互，因此需要很大的改动才能彻底解决问题。</p>
+<h2 id="其他已知但未分析的问题"><a href="#其他已知但未分析的问题" class="headerlink" title="其他已知但未分析的问题"></a>其他已知但未分析的问题</h2><ul>
+<li>“任务栏”不能正常恢复窗口。</li>
+<li>凡是出现“对话框”的，例如选课、查看成绩中的平时分，在 Chrome 和 Opera 中均无效（前文已解释原因）。</li>
+</ul>
+<h1 id="重要提示"><a href="#重要提示" class="headerlink" title="重要提示"></a>重要提示</h1><p>由于教务系统是一群不顾质量的码农开发的，并且网站本身未使用 HTTPS、密码明文传输，所以建议大家在使用教务系统的时候，不要设置与其他重要账户相同的密码，以免重要账号被端。</p>
+
+      
+    </div>
+
+    
+      
+
+    
+
+    <footer class="article-footer">
+      <a data-url="https://vjudge1.github.io/2015/05/29/let-jiao-wu-xi-tong-support-linux/" data-id="cj2pxeikx000u1tcmczuaonoa" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
+      
+        <a href="https://vjudge1.github.io/2015/05/29/let-jiao-wu-xi-tong-support-linux/#disqus_thread" class="article-comment-link">
+          <i class="fa fa-comment"></i> Comments
+        </a>
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-enable-ntfs-writing-support-in-os-x" class="article article-type-post" itemscope itemprop="blogPost">
+
+  
+  <header class="article-header">
+    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/05/29/enable-ntfs-writing-support-in-os-x/">Enable NTFS writing support in OS X</a>
+    </h1>
+  
+
+
+  </header>
+
+  <div class="article-meta">
+    <div class="article-datetime">
+    <span class="article-date">
+        <time datetime="2015-05-28T16:00:00.000Z" itemprop="datePublished">2015-05-29</time>
+    </span>
+</div>
+
+    
+    
+    <div class="article-category">
+        <a class="article-category-link" href="/categories/教程/">教程</a>
+    </div>
+
+
+    
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mac/">Mac</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NTFS/">NTFS</a></li></ul>
+
+
+  </div>
+  
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>OS X mounts NTFS partitions as read-only parts automatically in default. But how can I access removable disks with NTFS format, or the Windows partition?</p>
+<p>You may install third-party softwares in order to make NTFS partitions writable.</p>
+<p>In fact, OS X has a native support for writing in NTFS parts, if you are brave to enable it.</p>
+<p>Take <code>/dev/disk0s4</code> as an example.</p>
+<h1 id="Write-Once"><a href="#Write-Once" class="headerlink" title="Write Once"></a>Write Once</h1><p>Open <code>Terminal</code>, and type the following commands:</p>
+<pre><code>mkdir ~/ntfs
+sudo diskutil unmount /dev/disk0s4
+sudo mount -o rw,auto,nobrowse -t ntfs /dev/disk0s4 ~/ntfs
+</code></pre><p>Then the NTFS partition will be mounted to <code>~/ntfs</code>.</p>
+<p>It’s necessary to add <code>nobrowse</code> or OS X will still mount it in read-only mode.</p>
+<h1 id="Write-Forever"><a href="#Write-Forever" class="headerlink" title="Write Forever"></a>Write Forever</h1><p>If you hear of Linux, you should know <code>/etc/fstab</code>. OS X will read <code>/etc/fstab</code>, too.</p>
+<p>Type <code>sudo vifs</code> in Terminal. Then add the following line:</p>
+<pre><code>/dev/disk0s4 /mypart ntfs rw,auto,nobrowse
+</code></pre><p><em>If you don’t know how to use Vi, press the letter <code>O</code> key, type the code, then press <code>Escape</code> key and <code>ZZ</code> (press <code>Z</code> twice).</em></p>
+<p><code>nobrowse</code> is still required. And it means that the partition will not be shown in Devices in Finder. You can add it to Favorites manually.</p>
+<p>After rebooting, OS X will mount the NTFS partition to <code>/mypart</code> in read-write mode.</p>
+<h1 id="Issues"><a href="#Issues" class="headerlink" title="Issues"></a>Issues</h1><p>It’s NOT recommended to do so because of potential data loss.</p>
+<ul>
+<li>If a file becomes grey, it means no permissions in OS X. You can copy it to a HFS+ partition (password required) before using it. You can also reset its owner and permission in Windows, but the file may be still grey.</li>
+<li>Some files may lose and some directories may be messy sometimes. Use <code>chkdsk /f</code> to repair them in Windows.</li>
+</ul>
+
+      
+    </div>
+
+    
+      
+
+    
+
+    <footer class="article-footer">
+      <a data-url="https://vjudge1.github.io/2015/05/29/enable-ntfs-writing-support-in-os-x/" data-id="cj2pxeiku000s1tcmi2yqx5lj" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
+      
+        <a href="https://vjudge1.github.io/2015/05/29/enable-ntfs-writing-support-in-os-x/#disqus_thread" class="article-comment-link">
+          <i class="fa fa-comment"></i> Comments
+        </a>
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-writing-blogs-in-ubuntu" class="article article-type-post" itemscope itemprop="blogPost">
+
+  
+  <header class="article-header">
+    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/05/22/writing-blogs-in-ubuntu/">Setup Jekyll in Ubuntu/Windows</a>
+    </h1>
+  
+
+
+  </header>
+
+  <div class="article-meta">
+    <div class="article-datetime">
+    <span class="article-date">
+        <time datetime="2015-05-21T16:00:00.000Z" itemprop="datePublished">2015-05-22</time>
+    </span>
+</div>
+
+    
+    
+    <div class="article-category">
+        <a class="article-category-link" href="/categories/折腾记录/">折腾记录</a>
+    </div>
+
+
+    
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jekyll/">Jekyll</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
+
+
+  </div>
+  
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>I found that using GitHub Pages and Jekyll to write blogs is really comfortable.</p>
+<p>I used to blog in OS X. The steps of configuration are quite easy:</p>
+<ol>
+<li>Git is a bulit-in command in OS X so we don’t need to install it.</li>
+<li>Download and install <a href="https://mac.github.com" target="_blank" rel="external">GitHub for Mac</a>.</li>
+<li>Install Jekyll: <code>sudo gem install jekyll</code></li>
+<li>Use a favorite editor to write blogs. Use GitHub for Mac to push them to the remote server.</li>
+</ol>
+<p>However, it’s a bit tricky to do so in Linux, for example, Ubuntu. My Ubuntu is 14.04.</p>
+<h1 id="Configure-Git"><a href="#Configure-Git" class="headerlink" title="Configure Git"></a>Configure Git</h1><ol>
+<li><p>Install Git:</p>
+<pre><code>sudo apt-get install git
+</code></pre></li>
+<li><p>Configure your name and email:</p>
+<pre><code>git config --global --add user.name &quot;Your Name&quot;
+git config --global --add user.email &quot;Your Email&quot;
+</code></pre></li>
+<li><p>Avoid an error prompt:</p>
+<pre><code>git config --global push.default simple
+</code></pre></li>
+<li><p>Add a SSH key:</p>
+<pre><code>ssh-keygen -t rsa -C &quot;GitHub&quot;
+cat ~/.ssh/id_rsa
+</code></pre><p> Login to GitHub, and copy the output to “Settings” -&gt; “SSH keys” -&gt; “Add key”.</p>
+<p> Now you can test it by:</p>
+<pre><code>ssh -T git@github.com
+</code></pre><p> If OK, it will output <code>Hi xxxxx! You&#39;ve successfully authenticated, but GitHub does not provide shell access.</code>.</p>
+<p> If you see <code>Agent admitted failure to sign using the key</code>, please run:</p>
+<pre><code>ssh-add ~/.ssh/id_rsa
+</code></pre></li>
+<li><p>Now you can use <code>git clone</code>, <code>git pull</code>, <code>git push</code> or so on to code.</p>
+</li>
+</ol>
+<h1 id="Setup-Jekyll-in-Ubuntu"><a href="#Setup-Jekyll-in-Ubuntu" class="headerlink" title="Setup Jekyll in Ubuntu"></a>Setup Jekyll in Ubuntu</h1><ol>
+<li><p>Install necessary libraries or Jekyll will fail to work:</p>
+<pre><code>sudo apt-get install ruby-dev nodejs
+</code></pre></li>
+<li><p>Install Jekyll &amp; kramdown (Markdown support):</p>
+<pre><code>sudo gem install jekyll kramdown
+</code></pre></li>
+<li><p>Jekyll will work. Use the following commands to test:</p>
+<pre><code>jekyll new test
+cd test
+jekyll serve
+</code></pre><p> Browse <code>http://localhost:4000</code> to see the new blog.</p>
+</li>
+</ol>
+<h1 id="Setup-Jekyll-in-Windows-Not-recommended"><a href="#Setup-Jekyll-in-Windows-Not-recommended" class="headerlink" title="Setup Jekyll in Windows (Not recommended)"></a>Setup Jekyll in Windows (Not recommended)</h1><p>Because nokogiri 1.6.7 is released, there is no problems about nokogiri.</p>
+<ol>
+<li>Install Ruby and DevKit.</li>
+<li><p>Install Jekyll &amp; kramdown (Markdown support):</p>
+<pre><code>gem install jekyll kramdown
+</code></pre></li>
+<li><p>Jekyll will work. Use the following commands to test:</p>
+<pre><code>chcp 65001
+jekyll new test
+cd test
+jekyll serve
+</code></pre></li>
+</ol>
+<p>NOTES:</p>
+<ol>
+<li>Don’t forget <code>chcp 65001</code> (change the encoding of console to UTF-8) before running jekyll. You can add it in the front of <code>jekyll.cmd</code>.</li>
+<li>File Encoding: UTF-8 without BOM. So Do NOT use Notepad.</li>
+<li>Line Endings: either CRLF or LF is ok.</li>
+</ol>
+<h1 id="Visual-Studio-Code"><a href="#Visual-Studio-Code" class="headerlink" title="Visual Studio Code"></a>Visual Studio Code</h1><p><strong>(UPDATE: Atom Editor is much better because of its Jekyll plugin.)</strong></p>
+<p>I recognize that I’m a little lazy and will feel bored after typing too many commands.</p>
+<p>So, let’s get an easy-to-use editor – <a href="https://code.visualstudio.com" target="_blank" rel="external">Visual Studio Code</a>! In fact, I use Code instead of Vim in OS X while writing and customizing blogs.</p>
+<p>After downloading, type</p>
+<pre><code>sudo unzip VSCode-linux-x64.zip -d /opt/Code
+</code></pre><p>Code will be extracted into <code>/opt/Code</code>. It’s not convenient. So,</p>
+<pre><code>sudo ln -s /opt/Code/Code /usr/local/bin/code
+</code></pre><p>To make it easier in graphical environment, type (I use <code>vim</code> rather than gedit):</p>
+<pre><code>gedit ~/.local/share/applications/code.desktop
+</code></pre><p>Add the following codes and save:</p>
+<figure class="highlight ini"><table><tr><td class="code"><pre><div class="line"><span class="section">[Desktop Entry]</span></div><div class="line"><span class="attr">Comment</span>=</div><div class="line"><span class="attr">Terminal</span>=<span class="literal">false</span></div><div class="line"><span class="attr">Name</span>=Visual Studio Code</div><div class="line"><span class="attr">Exec</span>=/opt/Code/Code %F</div><div class="line"><span class="attr">Type</span>=Application</div><div class="line"><span class="attr">Categories</span>=Development;IDE;</div><div class="line"><span class="attr">Icon</span>=/opt/Code/resources/app/vso.png</div></pre></td></tr></table></figure>
+<p>OK. Enjoy coding! And all things can be done via Visual Studio Code.</p>
+<h1 id="Notes"><a href="#Notes" class="headerlink" title="Notes"></a>Notes</h1><h2 id="Clone-URL"><a href="#Clone-URL" class="headerlink" title="Clone URL"></a>Clone URL</h2><p>GitHub provides 3 kinds of URLs for cloning. It’s recommended to use <code>SSH clone URL</code> because we configured SSH just now.</p>
+<p>I tried to clone with HTTPS URL and find a trouble when pushing. So I clone again with SSH URL and succeed.</p>
+<h2 id="中文输入的问题"><a href="#中文输入的问题" class="headerlink" title="中文输入的问题"></a>中文输入的问题</h2><p>默认情况下，Visual Studio Code 不能正常显示汉字——中国字是方块字，结果中国字真变成“方块字”了。</p>
+<p>可以这样解决问题：点击“File”、“Preferences”、“User Settings”，然后在右侧窗口加入一个属性：</p>
+<pre><code>editor.fontFamily: &quot;Droid Sans Mono, Droid Sans Fallback&quot;
+</code></pre><p>“Droid Sans Mono”可能不太好看，如果你电脑有字体的话，可以考虑<code>Consolas</code>或<code>Mocano</code>。</p>
+<p>此外还有一个问题，输入中文标点的时候可能需要按一下<code>空格</code>才能出现。至少用“搜狗拼音输入法”的时候是这样的。</p>
+<h2 id="Gist-被敏感词"><a href="#Gist-被敏感词" class="headerlink" title="Gist 被敏感词"></a>Gist 被<em>敏感词</em></h2><p>GitHub 曾被天朝<em>敏感词</em>给<em>敏感词</em>了。多亏了<a href="http://weibo.com/kaifulee?stat_date=201301&amp;page=4" target="_blank" rel="external">李开复</a>大哥，自从他抗议之后，GitHub 再也没有被<em>敏感词</em>。</p>
+<p>不过唯独那个 GitHub Gist 还一直被<em>敏感词</em>。所以说，我们应该对我们的<code>/etc/hosts</code>做点小改动:</p>
+<pre><code>192.30.252.143    gist.github.com
+23.235.43.133    gist-assets.github.com
+</code></pre><h1 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h1><p>我改用 Hexo 了。</p>
+
+      
+    </div>
+
+    
+      
+
+    
+
+    <footer class="article-footer">
+      <a data-url="https://vjudge1.github.io/2015/05/22/writing-blogs-in-ubuntu/" data-id="cj2pxeikl000m1tcm5vo893ju" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
+      
+        <a href="https://vjudge1.github.io/2015/05/22/writing-blogs-in-ubuntu/#disqus_thread" class="article-comment-link">
+          <i class="fa fa-comment"></i> Comments
+        </a>
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-windows-in-uefi-mode" class="article article-type-post" itemscope itemprop="blogPost">
+
+  
+  <header class="article-header">
+    
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/05/21/windows-in-uefi-mode/">Windows in UEFI Mode</a>
+    </h1>
+  
+
+
+  </header>
+
+  <div class="article-meta">
+    <div class="article-datetime">
+    <span class="article-date">
+        <time datetime="2015-05-20T16:00:00.000Z" itemprop="datePublished">2015-05-21</time>
+    </span>
+</div>
+
+    
+    
+    <div class="article-category">
+        <a class="article-category-link" href="/categories/经验总结/">经验总结</a>
+    </div>
+
+
+    
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/UEFI/">UEFI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Windows/">Windows</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/系统维护/">系统维护</a></li></ul>
+
+
+  </div>
+  
+  <div class="article-inner">
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>This article is the summary of my own experience on UEFI and Legacy Mode. So some information may be wrong.</p>
+<p>Experiences about installing an operating system (e.g., Windows or Linux) are required or you may feel hard to understand it.</p>
+<h1 id="The-origin"><a href="#The-origin" class="headerlink" title="The origin"></a>The origin</h1><p>It was easy to install a Windows system in the past until the popularity of Windows 8. Laptops with Windows 8 pre-installed adopt the newest firmware named UEFI.</p>
+<p>Differences between UEFI and traditional mode are great. While, both of them also exist at the same time. Therefore it’s important to understand these two modes in order to manage to install operating systems in different computers.</p>
+<h1 id="UEFI-vs-Legacy"><a href="#UEFI-vs-Legacy" class="headerlink" title="UEFI vs. Legacy"></a>UEFI vs. Legacy</h1><p><a href="https://en.wikipedia.org/wiki/BIOS" target="_blank" rel="external">BIOS</a>, which names “Basic Input/Output System”, are used in old computers.</p>
+<p>It will be loaded firstly after the computer powers on. Then, the computer will do self-check, load bootloader and boot the OS.</p>
+<p>BIOS is too old to meet the development of computer hardware. For example, addressability of BIOS is just 16-bit, and it’s hard to create an extension for BIOS.</p>
+<p>So there is a substitution and a new standard called EFI. EFI was initially developed by Intel. It was transfered to UEFI Forum and renamed to UEFI.</p>
+<p><a href="https://en.wikipedia.org/wiki/UEFI" target="_blank" rel="external">UEFI</a> (Unified Extensible Firmware Interface) works like a tiny operating system. Some computers have a built-in EFI Shell, so maintainance work can be done without any other tools.</p>
+<h2 id="Booting-via-Legacy-Mode"><a href="#Booting-via-Legacy-Mode" class="headerlink" title="Booting via Legacy Mode"></a>Booting via Legacy Mode</h2><p>The following description is based my experience. You can refer to Wikipedia to read <a href="https://en.wikipedia.org/wiki/Master_boot_record" target="_blank" rel="external">the more accurate process</a>.</p>
+<ul>
+<li>BIOS will read information in <code>Sector 0</code> in the hard drive. Sector 0 is just 512 bytes, including a program, make BIOS locate to the active partition.</li>
+<li>Finding <code>the active partition</code> and read information from it.</li>
+<li>Boot the bootloader according to codes inside the partition.</li>
+<li>Boot the OS by the bootloader.</li>
+</ul>
+<p>Bootloaders of Windows:</p>
+<ul>
+<li>DOS and Windows based on DOS (until Windows Me) are not booting through specialized startup managers. Unless you fix the bootloader manually, NT-based systems can’t be booted if you install Windows 9x after NT.</li>
+<li>Windows NT series (3.5 to 2003) use <code>NTLDR</code>. NTLDR is compatible with older systems via chain loading. The configuration file is called Boot.ini.</li>
+<li>New NT systems (Vista or newer) use <code>Windows Boot Manager</code>. The configuration file is named BCD. BCD is a binary file like a Windows registry file and can be edited by <code>bcdedit.exe</code>. It can even boot an image in WIM format.</li>
+</ul>
+<h2 id="Booting-via-UEFI-Mode"><a href="#Booting-via-UEFI-Mode" class="headerlink" title="Booting via UEFI Mode"></a>Booting via UEFI Mode</h2><p>Nowadays, laptops use 64-bit UEFI. At the same time 32-bit UEFI are used in some tablets.</p>
+<p>UEFI will search and execute <code>EFI\Boot\bootx64.efi</code> in startup disks (e.g., hard drives, CDs or USB flash disks) after power on. Then this program continues to search and execute bootloaders. Finally, the OS is booted.</p>
+<p>Making a bootable USB drive for UEFI mode is quite easy – just extract the installation image to root directory of USB drive by extraction software, and, it’s OK.</p>
+<p>It should be noted that a 32-bit OS can’t be installed via UEFI mode in laptops. However, some tablets may be OK.</p>
+<h2 id="Secure-Boot"><a href="#Secure-Boot" class="headerlink" title="Secure Boot"></a>Secure Boot</h2><p>Secure Boot is a feature of UEFI. If Secure Boot is on, the firmware will verify signature of the bootloader and it will refuse to boot if the signature is not existed or not valid.</p>
+<p>This feature is widely used on Windows 8. It’s considered a restriction because users may not be able to install Linux or other systems (even including Windows 7 and older Windows systems).</p>
+<p>Fortunately, Secure Boot can be closed in PCs and Windows will still work. If a warning message is appeared in the bottom right corner in the desktop, please install patches via Windows Update.</p>
+<p>Microsoft forbids users disable Secure Boot in other devices like Windows RT or phones with Windows installed. So you can’t change OS for these devices.</p>
+<p>Microsoft will force OEMS to enable Secure Boot after Windows 10 published, and whether Secure Boot can be disabled or not will be determined by OEM. Therefore I don’t know whether I can change systems easily in the future.</p>
+<p>Secure Boot can’t be disabled directly in some computers. Please try to set a BIOS password in this case.</p>
+<h2 id="Switch-UEFI-amp-Legacy"><a href="#Switch-UEFI-amp-Legacy" class="headerlink" title="Switch UEFI &amp; Legacy"></a>Switch UEFI &amp; Legacy</h2><p>All of laptops which is not too old adpot EFI mode at present. However there are no switches in some laptops (Although EFI is really used).</p>
+<p>The number of manufacturers of BIOS is small while the number of OEMs is large. OEMs may customize BIOS so details of the following steps will not be the same.</p>
+<p>First Enter <code>BIOS Setup</code> (Maybe F2, F8, Delete or other keys) and get <code>Boot</code> page.</p>
+<ul>
+<li>If you see something like <code>Boot Mode</code> or <code>UEFI Boot Option</code>, you can switch these two modes.</li>
+<li>Some computers have <code>UEFI Priority Order</code> with <code>UEFI First</code> or <code>Legacy First</code>. It’s also a way of changing boot modes (Adjusting the priority).</li>
+<li>Some computers have <code>CSM Support</code>. It is the support of Legacy Mode. However, it’s still UEFI prefered.</li>
+<li>Some computers have no similar options. Just two kinds of circumstances:<ul>
+<li>The computer doesn’t support EFI at all.</li>
+<li>The computer supports EFI and EFI prefered. It will boot via EFI mode as long as bootx64 exists no matter whether boot information for traditional mode exists.</li>
+<li>You can prove this by extracting a 64-bit Windows 8 ISO to a clean USB drive which has no boot code.</li>
+</ul>
+</li>
+</ul>
+<h2 id="Enter-BIOS-Setup-with-Windows-8-pre-installed"><a href="#Enter-BIOS-Setup-with-Windows-8-pre-installed" class="headerlink" title="Enter BIOS Setup with Windows 8 pre-installed"></a>Enter BIOS Setup with Windows 8 pre-installed</h2><p>Some computers don’t show messages like “Press F2 to setup”, don’t enter BIOS Setup by pressing F2 and always startup Windows 8 directly.</p>
+<p>You can do the following steps in this case:</p>
+<ol>
+<li>Go into Windows 8.</li>
+<li>Reboot with <code>Shift</code> key pushed</li>
+<li>A diagnosis interface will show. Select <code>Troubleshooting</code>, <code>Advanced Settings</code>, <code>UEFI Firmware Settings</code>.</li>
+<li>Press <code>Restart</code> button and BIOS Setup will be entered automatically.</li>
+</ol>
+<h1 id="GPT-vs-MBR"><a href="#GPT-vs-MBR" class="headerlink" title="GPT vs. MBR"></a>GPT vs. MBR</h1><p>I will only introduce what they “look like”. I won’t consider SCSI, RAID or dynamic paritions…</p>
+<h2 id="Advantages-of-GPT"><a href="#Advantages-of-GPT" class="headerlink" title="Advantages of GPT"></a>Advantages of GPT</h2><ul>
+<li>GPT supports partitions greater than 2TB.</li>
+<li>GPT supports over 4 main partitions. There are at most 4 main partitions in MBR drives (and logical partitions are used to support more partitions).</li>
+</ul>
+<h2 id="What-MBR-looks-like"><a href="#What-MBR-looks-like" class="headerlink" title="What MBR looks like"></a>What MBR looks like</h2><p>In general, people are used to divide an MBR disk into a primary partition (C:, /dev/sda1) and an extended partition (/dev/sda2). Other partitions are contained in the extended partition (from /dev/sda5).</p>
+<img src="/2015/05/21/windows-in-uefi-mode/mbr.png" alt="MBR" title="MBR">
+<h2 id="What-GPT-looks-like"><a href="#What-GPT-looks-like" class="headerlink" title="What GPT looks like"></a>What GPT looks like</h2><p>All of partitions in GPT disks are primary partition. The first partition using FAT32 filesystem is ESP (EFI System Partition).</p>
+<img src="/2015/05/21/windows-in-uefi-mode/gpt1.png" alt="GPT (1)" title="GPT (1)">
+<h2 id="Brand-name-Computers"><a href="#Brand-name-Computers" class="headerlink" title="Brand-name Computers"></a>Brand-name Computers</h2><p>Some brand-name computers have a easy-to-use recovery tool like “OneKey”. So there are some dedicated partitions saving recovery programs or original system images. You can’t alloc drive letters to these partitions directly.</p>
+<img src="/2015/05/21/windows-in-uefi-mode/gpt2.png" alt="GPT (2)" title="GPT (2)">
+<h1 id="Windows-Support"><a href="#Windows-Support" class="headerlink" title="Windows Support"></a>Windows Support</h1><h2 id="Old-Windows-2003-or-older"><a href="#Old-Windows-2003-or-older" class="headerlink" title="Old Windows (2003 or older)"></a>Old Windows (2003 or older)</h2><p>Windows XP or older only supports Legacy + MBR and can’t detect GPT drives.</p>
+<p>Windows 2003 can detect GPT drives although can’t boot in them.</p>
+<h2 id="New-Windows-Vista-or-newer"><a href="#New-Windows-Vista-or-newer" class="headerlink" title="New Windows (Vista or newer)"></a>New Windows (Vista or newer)</h2><ul>
+<li>32-bit Windows doesn’t support UEFI except some tablets.</li>
+<li>64-bit Windows only supports UEFI + GPT and Legacy + MBR.</li>
+</ul>
+<p>In fact, UEFI &amp; Legacy, GPT &amp; MBR can be combined casually. However, Windows and Windows Installer will only work in supported mode.</p>
+<p>If you got wrong mode when installing Windows, you will find no partition can be installed to and receive an error message like this:</p>
+<ul>
+<li>Windows cannot be installed on this drive. The selected disk has an MBR partition table. On EFI systems, Windows can only be installed to GPT disk.</li>
+<li>Windows cannot be installed on this drive. The selected disk has an GPT partition table.</li>
+</ul>
+<p>In this case, you need reboot and use the correct mode to boot.</p>
+<p>In addition, you can use partitioning tool like <code>diskpart</code> to rebuild partition table if you are not afraid of data loss.</p>
+<h2 id="Loseless-CHANGE"><a href="#Loseless-CHANGE" class="headerlink" title="Loseless CHANGE"></a>Loseless CHANGE</h2><p>Switching GPT/MBR will wipe all datas in the drive. However, this process can be done loselessly with the help of some professional softwares.</p>
+<p>WARNING: It may still cause data loss. So avoid trying this in an important device!</p>
+<p>Before this, you need a startup disk with DiskGenius (It’s Chinese interface). There are plenty of tools in China such as <a href="http://www.dabaicai.com" target="_blank" rel="external">Dabaicai</a> and <a href="http://www.laomaotao.net" target="_blank" rel="external">LaoMaoTao</a>…</p>
+<p>(1) UEFI + GPT =&gt; Legacy + MBR</p>
+<p>DiskGenius can convert GPT from/to MBR loselessly.</p>
+<p>WARNING: Because MBR only supports at most 4 main partitions, data may lose while converting.</p>
+<ul>
+<li>Use DiskGenius to convert.</li>
+<li>Set the partition containing Windows as the active partition.</li>
+<li><p>Fix boot by typing the following command in Command Prompt:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">bcdboot C:\Windows /l zh-CN</div></pre></td></tr></table></figure>
+</li>
+<li><p>Change Boot Mode to Legacy.</p>
+</li>
+</ul>
+<p>(2) Legacy + MBR =&gt; UEFI + GPT</p>
+<ul>
+<li>Use DiskGenius to convert.</li>
+<li>Create two new partitions sized about 200MB and 128MB from header. The 200MB partition will be used as ESP so its filesystem must be FAT32. Alloc a drive letter (for example, X:) to the ESP.</li>
+<li><p>Type these commands in Command Prompt:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">diskpart</div><div class="line">list disk</div><div class="line">sel disk 0</div><div class="line">list part</div><div class="line">sel part 0</div><div class="line">set id=&#123;C12A7328-F81F-11D2-BA4B-00A0C93EC93B&#125;</div><div class="line">sel part 1</div><div class="line">set id=&#123;E3C9E316-0B5C-4DB8-817D-F92DF00215AE&#125;</div><div class="line">quit</div></pre></td></tr></table></figure>
+</li>
+<li><p>Fix boot:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">bcdboot C:\Windows /s X: /f uefi /l zh-cn</div></pre></td></tr></table></figure>
+</li>
+<li><p>Change Boot Mode to UEFI.</p>
+</li>
+</ul>
+<h2 id="Notes-on-installing-Windows"><a href="#Notes-on-installing-Windows" class="headerlink" title="Notes on installing Windows"></a>Notes on installing Windows</h2><ul>
+<li>Windows 7 can be installed via EFI mode. If the installer can’t boot via EFI mode, you can find <code>bootmgfw.efi</code> in the existing Windows, copy it to <code>EFI/Boot/</code> directory and rename it to bootx64.efi.</li>
+<li>Most Chinese won’t want to install Windows 7 via EFI mode except genuine users.</li>
+<li>If you want to make a dual-boot, and have a Windows 8 (or newer), it’s better to disable “Quick Startup” in Power Settings in Control Panel, or partitions can’t be accessed correctly by other systems especially Linux.</li>
+<li>If a error about GPT/MBR occurs while installing Windows, and Legacy Mode is required but the computer can’t switch boot modes, you can try to delete or rename <code>EFI</code> directory in your installation disk.</li>
+</ul>
+<h1 id="Linux-Support"><a href="#Linux-Support" class="headerlink" title="Linux Support"></a>Linux Support</h1><p>Linux supports both GPT and MBR, and supports UEFI and Legacy.</p>
+<p>Old systems use LILO or GRUB as the bootloader. They two don’t support UEFI.</p>
+<p>Now most distributions use GRUB2 and syslinux (in Installation CD). They support UEFI. Few distributions support Secure Boot except Ubuntu and Fedora.</p>
+<p>Of course, 32-bit Linux don’t support UEFI as 32-bit Windows do.</p>
+<p>If you want to switch boot mode, you just need to reinstall the bootloader rather than the whole system.</p>
+<h1 id="OS-X-Support"><a href="#OS-X-Support" class="headerlink" title="OS X Support"></a>OS X Support</h1><h2 id="Mac"><a href="#Mac" class="headerlink" title="Mac"></a>Mac</h2><p>All of Macs use Apple EFI. Apple computers don’t support Legacy Mode.</p>
+<p>Apple computers use GPT and there are only three partitions: ESP, Macintosh HD (HFS+ filesystem), Recovery HD (HFS+ filesystem)/</p>
+<p>Systems in USB drives must support EFI in order to boot in Apple computers. Press <code>Option</code> key after powering on, a boot menu will shown and you can choose the USB drive.</p>
+<p>It’s recommended to use <code>BootCamp Assistant</code> in OS X if you want to install Windows.</p>
+<p>If you use Windows just in few times, you can use virtual machines such as Parallels Desktop, VMware Fusion or VirtualBox.</p>
+<h2 id="Hackintosh"><a href="#Hackintosh" class="headerlink" title="Hackintosh"></a>Hackintosh</h2><p>“Hackintosh” is OS X which installed into a normal computer rather than Apple computers.</p>
+<p>Steps on installing Hackintosh is really complicated. I won’t introduce them.</p>
+<p>Hackintosh can’t boot directly without a special bootloader. Currently there are two popular bootloaders - Clover and Chameleon. Chameleon only supports Legacy Mode. Clover supports both UEFI and Legacy.</p>
+<p>OS X only supports GPT. So you must crack the kernel if you want to install it to a MBR drive. It’s not recommended to upgrade the system after cracking the kernel unless you know how to crack it again.</p>
+
+      
+    </div>
+
+    
+      
+
+    
+
+    <footer class="article-footer">
+      <a data-url="https://vjudge1.github.io/2015/05/21/windows-in-uefi-mode/" data-id="cj2pxeikn000o1tcmvjfmzu7x" class="article-share-link">
+        <i class="fa fa-share"></i> Share
+      </a>
+      
+        <a href="https://vjudge1.github.io/2015/05/21/windows-in-uefi-mode/#disqus_thread" class="article-comment-link">
+          <i class="fa fa-comment"></i> Comments
+        </a>
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+  <div id="page-nav">
+    <nav><ul class="pagination"><li><a class="page-prev" rel="prev"
+                href="/page/4/"><span aria-hidden="true">&laquo;</span> Prev</a></li><li><a class="page-number" href="/">
+        1
+        </a></li><li class="disabled"><span class="page-space">&hellip;</span></li><li><a class="page-number" href="/page/3/">
+        3
+        </a></li><li><a class="page-number" href="/page/4/">
+        4
+        </a></li><li class="active"><span class="page-number">5</span></li><li><a class="page-number" href="/page/6/">
+        6
+        </a></li><li><a class="page-number" href="/page/7/">
+        7
+        </a></li><li><a class="page-next" rel="next"
+                href="/page/6/">Next <span aria-hidden="true">&raquo;</span></a></li></ul></nav>
+  </div>
+
+
+
+            </div>
+            <div class="col-sm-3 blog-sidebar">
+                
+  
+  <div class="sidebar-module">
+    <h4><i class="fa fa-th-list"></i> Categories</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/个人心得/">个人心得</a><span class="sidebar-module-list-count">5</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/其他/">其他</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/备忘录/">备忘录</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/折腾记录/">折腾记录</a><span class="sidebar-module-list-count">6</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/教程/">教程</a><span class="sidebar-module-list-count">13</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/经验总结/">经验总结</a><span class="sidebar-module-list-count">7</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4><i class="fa fa-archive"></i> Archives</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/05/">五月 2017</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/11/">十一月 2016</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/10/">十月 2016</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/08/">八月 2016</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/04/">四月 2016</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/03/">三月 2016</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/01/">一月 2016</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/12/">十二月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/11/">十一月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/09/">九月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/08/">八月 2015</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/07/">七月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/05/">五月 2015</a><span class="sidebar-module-list-count">5</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/04/">四月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/02/">二月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/12/">十二月 2014</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/04/">四月 2014</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/02/">二月 2014</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2013/01/">一月 2013</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2012/08/">八月 2012</a><span class="sidebar-module-list-count">1</span></li></ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4><i class="fa fa-newspaper-o"></i> Recents</h4>
+    <ul class="sidebar-module-list">
+      
+        <li>
+          <a href="/2017/05/13/change-to-hexo/">换成 Hexo</a>
+        </li>
+      
+        <li>
+          <a href="/2016/11/08/move-to-archlinux/">换成Arch Linux系统的一些记录</a>
+        </li>
+      
+        <li>
+          <a href="/2016/10/08/macports/">MacPorts的安装与使用</a>
+        </li>
+      
+        <li>
+          <a href="/2016/10/07/programming-in-wikipedia/">维基百科编程笔记</a>
+        </li>
+      
+        <li>
+          <a href="/2016/10/04/gae/">Google App Engine入门（Python）</a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+
+  
+  <div class="sidebar-module">
+    <h4><i class="fa fa-tags"></i> Tags</h4>
+    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/API/">API</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Atom/">Atom</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/C/">C</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/C/">C#</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/GAE/">GAE</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/GUI/">GUI</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Hackintosh/">Hackintosh</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Hexo/">Hexo</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Java/">Java</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/JavaScript/">JavaScript</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Jekyll/">Jekyll</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/LaTeX/">LaTeX</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Linux/">Linux</a><span class="sidebar-module-list-count">9</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Mac/">Mac</a><span class="sidebar-module-list-count">9</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/MacPorts/">MacPorts</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/NTFS/">NTFS</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Python/">Python</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/QQ/">QQ</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Rails/">Rails</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/UEFI/">UEFI</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/VPS/">VPS</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Visual-Studio/">Visual Studio</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Windows/">Windows</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/npm/">npm</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/wine/">wine</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/zsh/">zsh</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/中文/">中文</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/云/">云</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/单片机/">单片机</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/反汇编/">反汇编</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/平板/">平板</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/插件/">插件</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/教务系统/">教务系统</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/東方Project/">東方Project</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/电幕/">电幕</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/系统维护/">系统维护</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/维基百科/">维基百科</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/编程/">编程</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/语文/">语文</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/输入法/">输入法</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/配置/">配置</a><span class="sidebar-module-list-count">1</span></li></ul>
+  </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+    <footer class="blog-footer">
+    <div class="container">
+        <ol class="footer-list">
+            
+                <li>
+                    <a href="/about/">
+                        关于
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="https://vjudge1.github.io/kuso/sos/">
+                        让我帮你百度一下
+                    </a>
+                </li>
+            
+        </ol>
+        <ol class="social-media-list">
+            
+                <li>
+                    <a href="mailto:vjudge404@gmail.com" data-toggle="tooltip" data-placement="top" title="Email">
+                        <i class="fa fa-envelope"></i>
+                    </a>
+                </li>
+            
+            
+            <li>
+                <a href="https://github.com/vjudge1" data-toggle="tooltip" data-placement="top" title="GitHub">
+                    <i class="fa fa-github"></i>
+                </a>
+            </li>
+            
+            
+            
+            
+        </ol>
+        <br class="clear" />
+        <div class="footnote">
+            
+                <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a> by vjudge1
+            
+        </div>
+    </div>
+</footer>
+
+    
+<script>
+    var disqus_shortname = 'vjudge1';
+    
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" integrity="sha384-8gBf6Y4YYq7Jx97PIqmTwLPin4hxIzQw5aDmUg/DDhul9fFpbbLcLh3nTIIDJKhx" crossorigin="anonymous"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+
+
+<script src="/js/script.js"></script>
+
+</body>
+</html>

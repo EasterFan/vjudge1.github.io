@@ -2,8 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  
-  <title>自己动手写東方Project作弊器（一） | ⑨rz</title>
+  <title>自己动手写東方Project作弊器（一）</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="很久没写程序了，甚至很久没和计算机代码打交道了。为了证明自己没被查水表，我就随便写点什么吧。 最近发现了東方Project，不幸的是，由于天生手残，就连打Easy都有些吃力（除了永夜抄和辉针城）。作为一个猥琐大叔，就这样被萝莉们欺负，能爽吗？所以，为了把她们统统推倒，我要写东方的作弊器（修改器）了！ 原理如果想直接作弊的话，只要搜一下东方的修改器，或者装个金山游侠、Cheat Engine或Gam">
 <meta name="keywords" content="東方Project,反汇编">
@@ -24,13 +23,14 @@
 <meta property="og:image" content="https://vjudge1.github.io/2016/08/12/touhou-cheater/10.png">
 <meta property="og:image" content="https://vjudge1.github.io/2016/08/12/touhou-cheater/11.png">
 <meta property="og:image" content="https://vjudge1.github.io/2016/08/12/touhou-cheater/boring.jpg">
-<meta property="og:updated_time" content="2017-05-12T19:32:06.773Z">
+<meta property="og:updated_time" content="2017-05-12T19:41:17.060Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="自己动手写東方Project作弊器（一）">
 <meta name="twitter:description" content="很久没写程序了，甚至很久没和计算机代码打交道了。为了证明自己没被查水表，我就随便写点什么吧。 最近发现了東方Project，不幸的是，由于天生手残，就连打Easy都有些吃力（除了永夜抄和辉针城）。作为一个猥琐大叔，就这样被萝莉们欺负，能爽吗？所以，为了把她们统统推倒，我要写东方的作弊器（修改器）了！ 原理如果想直接作弊的话，只要搜一下东方的修改器，或者装个金山游侠、Cheat Engine或Gam">
 <meta name="twitter:image" content="https://vjudge1.github.io/2016/08/12/touhou-cheater/1.png">
   
-    <link rel="alternate" href="/atom.xml" title="⑨rz" type="application/atom+xml">
+    
+    <link rel="alternate" href="/feed.xml" title="⑨rz" type="application/atom+xml">
   
   
   
@@ -47,7 +47,7 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-inverse">
+    <nav class="navbar navbar-inverse">
   <div class="container">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -64,18 +64,18 @@
     <div class="collapse navbar-collapse" id="main-menu-navbar">
       <ul class="nav navbar-nav">
         
-          <li><a class=""
-                 href="/index.html">Home</a></li>
+          <li class="">
+            <a href="/index.html">Home</a>
+          </li>
         
-          <li><a class=""
-                 href="/archives/">Archives</a></li>
+          <li class="">
+            <a href="/archives/">Archives</a>
+          </li>
         
       </ul>
 
       <!--
       <ul class="nav navbar-nav navbar-right">
-        
-          <li><a href="/atom.xml" title="RSS Feed"><i class="fa fa-rss"></i></a></li>
         
       </ul>
       -->
@@ -83,40 +83,44 @@
   </div><!-- /.container-fluid -->
 </nav>
 
-  <div class="container">
-    <div class="blog-header">
-  <h1 class="blog-title">⑨rz</h1>
-  
+    
+    
+    <div class="jumbotron">
+        <div class="container">
+            <h1 class="post-title" id="post-title">
+                <a href="/" title="Back to home">
+                    换成 Hexo
+                </a>
+            </h1>
+            <div class="article-meta">
+                <div class="article-datetime">
+    <span class="article-date">
+        <time datetime="2017-05-12T16:00:00.000Z" itemprop="datePublished">2017-05-13</time>
+    </span>
 </div>
 
-    <div class="row">
-        <div class="col-sm-8 blog-main">
-          <article id="post-touhou-cheater" class="article article-type-post" itemscope itemprop="blogPost">
+                
+                
+    <div class="article-category">
+        <a class="article-category-link" href="/categories/其他/">其他</a>
+    </div>
 
-  <header class="article-header">
-    
+
+                
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li></ul>
+
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-9 blog-main">
+                <article id="post-touhou-cheater" class="article article-type-post" itemscope itemprop="blogPost">
+
   
-    <h1 class="article-title" itemprop="name">
-      自己动手写東方Project作弊器（一）
-    </h1>
-  
-
-
-  </header>
-
-  <div class="article-meta">
-    <div class="article-datetime">
-  <a href="/2016/08/12/touhou-cheater/" class="article-date"><time datetime="2016-08-11T16:00:00.000Z" itemprop="datePublished">2016-08-12</time></a>
-</div>
-
-    
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/折腾记录/">折腾记录</a>
-  </div>
-
-
-  </div>
   <div class="article-inner">
 
     <div class="article-entry" itemprop="articleBody">
@@ -214,8 +218,10 @@
 <h1 id="改指令"><a href="#改指令" class="headerlink" title="改指令"></a>改指令</h1><p>深入地思考一下，既然能改残机数，为什么不直接通过修改程序来防止掉残机，或者干脆直接撞不到子弹呢？</p>
 <p>怀着这样猥琐的目的，我草草地学了一下汇编语言。以前看机器码完全看不懂，借助几篇文章（见结尾“参考资料”），终于进步到看着头大的程度了。（说明教程作者具有<em>操纵看代码头疼程度的能力</em>。）</p>
 <p>因为辉针城通关了（Easy不要鄙视我），所以就拿辉针城（版本1.00b）进行一下修改器的探索。其他大作的原理都一样。</p>
-<div class="bs-callout bs-callout-info"><h4 id="高手和拿来主义者"><a href="#高手和拿来主义者" class="headerlink" title="高手和拿来主义者"></a>高手和拿来主义者</h4><p>作为没学过汇编的初学者，我详细地记录了自己的探索过程。如果你是高手或者想直接找地址，可以直接找结尾的“参考资料”。</p>
-</div>
+<div class="bs-callout bs-callout-info">
+                <h4 id="高手和拿来主义者"><a href="#高手和拿来主义者" class="headerlink" title="高手和拿来主义者"></a>高手和拿来主义者</h4><p>作为没学过汇编的初学者，我详细地记录了自己的探索过程。如果你是高手或者想直接找地址，可以直接找结尾的“参考资料”。</p>
+
+            </div>
 <h2 id="残机数量不减"><a href="#残机数量不减" class="headerlink" title="残机数量不减"></a>残机数量不减</h2><p>辉针城残机数量的地址是4F5864，首先用追踪功能（<s>新手嘛，用Game Master试的</s>还是OllyDbg便于装酷）找到写入该地址的代码。</p>
 <img src="/2016/08/12/touhou-cheater/1.png" alt="1.png" title="">
 <p>看到那个<code>dec eax</code>（EAX减1）了吗？直接改成90（NOP，空指令）试一下。</p>
@@ -287,7 +293,7 @@
     
 
     <footer class="article-footer">
-      <a data-url="https://vjudge1.github.io/2016/08/12/touhou-cheater/" data-id="cj2m7q6ie00239ccm3q1abjfl" class="article-share-link">
+      <a data-url="https://vjudge1.github.io/2016/08/12/touhou-cheater/" data-id="cj2pxeimj00211tcmslwoa89q" class="article-share-link">
         <i class="fa fa-share"></i> Share
       </a>
       
@@ -295,10 +301,6 @@
           <i class="fa fa-comment"></i> Comments
         </a>
       
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/反汇编/">反汇编</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/東方Project/">東方Project</a></li></ul>
-
-
     </footer>
   </div>
   
@@ -335,12 +337,12 @@
 
 
 
-        </div>
-        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
-          
+            </div>
+            <div class="col-sm-3 blog-sidebar">
+                
   
   <div class="sidebar-module">
-    <h4>Categories</h4>
+    <h4><i class="fa fa-th-list"></i> Categories</h4>
     <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/个人心得/">个人心得</a><span class="sidebar-module-list-count">5</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/其他/">其他</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/备忘录/">备忘录</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/折腾记录/">折腾记录</a><span class="sidebar-module-list-count">6</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/教程/">教程</a><span class="sidebar-module-list-count">13</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/categories/经验总结/">经验总结</a><span class="sidebar-module-list-count">7</span></li></ul>
   </div>
 
@@ -348,7 +350,7 @@
 
   
   <div class="sidebar-module">
-    <h4>Archives</h4>
+    <h4><i class="fa fa-archive"></i> Archives</h4>
     <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/05/">五月 2017</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/11/">十一月 2016</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/10/">十月 2016</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/08/">八月 2016</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/04/">四月 2016</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/03/">三月 2016</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2016/01/">一月 2016</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/12/">十二月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/11/">十一月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/09/">九月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/08/">八月 2015</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/07/">七月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/05/">五月 2015</a><span class="sidebar-module-list-count">5</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/04/">四月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2015/02/">二月 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/12/">十二月 2014</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/04/">四月 2014</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2014/02/">二月 2014</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2013/01/">一月 2013</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2012/08/">八月 2012</a><span class="sidebar-module-list-count">1</span></li></ul>
   </div>
 
@@ -356,7 +358,7 @@
 
   
   <div class="sidebar-module">
-    <h4>Recents</h4>
+    <h4><i class="fa fa-newspaper-o"></i> Recents</h4>
     <ul class="sidebar-module-list">
       
         <li>
@@ -383,40 +385,77 @@
   </div>
 
 
+
   
   <div class="sidebar-module">
-    <h4>Tags</h4>
+    <h4><i class="fa fa-tags"></i> Tags</h4>
     <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/API/">API</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Atom/">Atom</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/C/">C</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/C/">C#</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/GAE/">GAE</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/GUI/">GUI</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Hackintosh/">Hackintosh</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Hexo/">Hexo</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Java/">Java</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/JavaScript/">JavaScript</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Jekyll/">Jekyll</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/LaTeX/">LaTeX</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Linux/">Linux</a><span class="sidebar-module-list-count">9</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Mac/">Mac</a><span class="sidebar-module-list-count">9</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/MacPorts/">MacPorts</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/NTFS/">NTFS</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Python/">Python</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/QQ/">QQ</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Rails/">Rails</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/UEFI/">UEFI</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/VPS/">VPS</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Visual-Studio/">Visual Studio</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Windows/">Windows</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/npm/">npm</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/wine/">wine</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/zsh/">zsh</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/中文/">中文</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/云/">云</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/单片机/">单片机</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/反汇编/">反汇编</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/平板/">平板</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/插件/">插件</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/教务系统/">教务系统</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/東方Project/">東方Project</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/电幕/">电幕</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/系统维护/">系统维护</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/维基百科/">维基百科</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/编程/">编程</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/语文/">语文</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/输入法/">输入法</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/配置/">配置</a><span class="sidebar-module-list-count">1</span></li></ul>
   </div>
 
 
 
 
+            </div>
         </div>
     </div>
-  </div>
-  <footer class="blog-footer">
-  <div class="container">
-    <div id="footer-info" class="inner">
-      &copy; 2017 vjudge1<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    <footer class="blog-footer">
+    <div class="container">
+        <ol class="footer-list">
+            
+                <li>
+                    <a href="/about/">
+                        关于
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="https://vjudge1.github.io/kuso/sos/">
+                        让我帮你百度一下
+                    </a>
+                </li>
+            
+        </ol>
+        <ol class="social-media-list">
+            
+                <li>
+                    <a href="mailto:vjudge404@gmail.com" data-toggle="tooltip" data-placement="top" title="Email">
+                        <i class="fa fa-envelope"></i>
+                    </a>
+                </li>
+            
+            
+            <li>
+                <a href="https://github.com/vjudge1" data-toggle="tooltip" data-placement="top" title="GitHub">
+                    <i class="fa fa-github"></i>
+                </a>
+            </li>
+            
+            
+            
+            
+        </ol>
+        <br class="clear" />
+        <div class="footnote">
+            
+                <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a> by vjudge1
+            
+        </div>
     </div>
-  </div>
 </footer>
 
-  
+    
 <script>
-  var disqus_shortname = 'vjudge1';
-  
-  var disqus_url = 'https://vjudge1.github.io/2016/08/12/touhou-cheater/';
-  
-  (function(){
-    var dsq = document.createElement('script');
-    dsq.type = 'text/javascript';
-    dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-  })();
+    var disqus_shortname = 'vjudge1';
+    
+        var disqus_url = 'https://vjudge1.github.io/2016/08/12/touhou-cheater/';
+    
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
 </script>
 
 
