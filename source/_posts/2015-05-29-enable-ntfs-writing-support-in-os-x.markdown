@@ -11,7 +11,7 @@ You may install third-party softwares in order to make NTFS partitions writable.
 
 In fact, OS X has a native support for writing in NTFS parts, if you are brave to enable it.
 
-
+<!--more-->
 
 Take `/dev/disk0s4` as an example.
 

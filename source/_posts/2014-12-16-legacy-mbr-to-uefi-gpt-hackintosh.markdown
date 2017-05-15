@@ -8,6 +8,8 @@ tags:
 ---
 This article is written for my Hackintosh. But ideas in the text can be used for other systems.
 
+<!--more-->
+
 # Notes before reading
 
 1. USE AT YOUR OWN RISK!

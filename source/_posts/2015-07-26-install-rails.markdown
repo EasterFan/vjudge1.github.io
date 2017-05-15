@@ -7,6 +7,8 @@ tags:
 ---
 Macbook is better than computers with Windows or Linux inside because of few developing issues. Except Rails...
 
+<!--more-->
+
 {% callout info %}
 #### 中国的朋友们
 

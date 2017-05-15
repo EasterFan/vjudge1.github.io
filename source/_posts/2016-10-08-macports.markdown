@@ -7,6 +7,8 @@ tags:
 ---
 Mac下常用的软件包管理器有MacPorts和Homebrew等。我用的是MacPorts。用上它们之后，就有一种在用Linux的感觉……
 
+<!--more-->
+
 # 安装
 
 首先需要到App Store安装Xcode。安装完成后，还要安装Command Line Tools。第一次进入Xcode之后应该有提示。如果没有，也可以`xcode-select --install`。安装完成后可以试一下`gcc`能不能执行。

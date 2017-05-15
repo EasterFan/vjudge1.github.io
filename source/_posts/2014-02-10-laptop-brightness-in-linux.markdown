@@ -1,10 +1,12 @@
 ---
 title: "Ubuntu 调整笔记本电脑屏幕亮度"
-categories: 教程
+categories: 折腾记录
 tags:
 - Linux
 ---
 装完 Ubuntu 之后没法给笔记本电脑调亮度了。花了很多时间来探索，最后找到了解决方法。这里我只写一写自己电脑（Lenovo V470，Intel HD3000 + Nvidia GT540M）的情况，更详细的资料可见 [Archlinux Wiki](https://wiki.archlinux.org/index.php/Backlight)。
+
+<!--more-->
 
 # 调亮度
 

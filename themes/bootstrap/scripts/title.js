@@ -1,3 +1,6 @@
+/**
+ * Generate titles automatically
+ */
 hexo.extend.helper.register('generateTitle', page => {
     let title = page.title;
 

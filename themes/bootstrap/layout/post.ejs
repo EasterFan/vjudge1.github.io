@@ -1,1 +1,9 @@
 <%- partial('_partial/article', {post: page, index: false}) %>
+<%- js('js/anchor.min') %>
+<script type="text/javascript">
+// Anchor.js
+if (anchors) {
+    anchors.options.placement="left";
+    anchors.add('.article-entry h1,h2,h3,h4');
+}
+</script>

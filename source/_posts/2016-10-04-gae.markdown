@@ -1,6 +1,6 @@
 ---
 title: "Google App Engine入门（Python）"
-categories: 教程
+categories: 折腾记录
 tags:
 - GAE
 - Python
@@ -8,6 +8,8 @@ tags:
 Google App Engine其实是一个非常不错的应用引擎，免费，不用处理审核备案之类的麻烦事，而且文档丰富，感觉上要比新浪SAE或百度BAE好多了。虽说以前用GAE只是为了[GoAgent](https://zh.wikipedia.org/zh/GoAgent)，而且GAE被墙了，但是它免费啊，而且自己可以自行翻墙啊，因此仍然可以拿它做一些个人专用的或者给老外用的应用。
 
 GAE的文档很全，不过内容全是英语，对于我这种英语不好的来说简直就是在赎罪。此外GAE也是个巨坑，在探索过程中我也碰了不少灰，所以正好在本文总结一下坑点。
+
+<!--more-->
 
 # 基础配置
 

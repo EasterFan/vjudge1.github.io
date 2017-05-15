@@ -11,6 +11,8 @@ tags:
 ---
 又写很水的内容了——突然想把系统换成Arch Linux（64位，GNOME 3桌面），所以记录一下一些配置的要点。当然，具体的安装过程就不写了，网上教程很多，搜一下就能找到。
 
+<!--more-->
+
 # 基本
 ## 代理
 稍有常识的人都能看出，如果我们的电脑不挂代理，那些特别的软件难道还能设置得了嘛？
@@ -45,14 +47,12 @@ npm不用代理，直接换[淘宝镜像](https://npm.taobao.org/)：
 npm config set registry https://registry.npm.taobao.org
 npm config set disturl https://npm.taobao.org/dist
 
-npm set registry https://registry.npm.taobao.org
-npm set disturl https://npm.taobao.org/dist
-npm set chromedriver_cdnurl http://cdn.npm.taobao.org/dist/chromedriver
-npm set operadriver_cdnurl http://cdn.npm.taobao.org/dist/operadriver
-npm set phantomjs_cdnurl http://cdn.npm.taobao.org/dist/phantomjs
-npm set fse_binary_host_mirror https://npm.taobao.org/mirrors/fsevents
-npm set sass_binary_site http://cdn.npm.taobao.org/dist/node-sass
-npm set electron_mirror http://cdn.npm.taobao.org/dist/electron/
+npm config set chromedriver_cdnurl http://cdn.npm.taobao.org/dist/chromedriver
+npm config set operadriver_cdnurl http://cdn.npm.taobao.org/dist/operadriver
+npm config set phantomjs_cdnurl http://cdn.npm.taobao.org/dist/phantomjs
+npm config set fse_binary_host_mirror https://npm.taobao.org/mirrors/fsevents
+npm config set sass_binary_site http://cdn.npm.taobao.org/dist/node-sass
+npm config set electron_mirror http://cdn.npm.taobao.org/dist/electron/
 ```
 
 ### gem

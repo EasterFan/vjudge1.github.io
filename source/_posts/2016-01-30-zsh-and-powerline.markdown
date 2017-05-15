@@ -9,6 +9,8 @@ tags:
 ---
 天天用终端，怎么能不搞搞插件呢？
 
+<!--more-->
+
 # zsh
 
 Linux和Mac默认的shell是bash。作为拿来主义者，不如换用zsh，因为——oh-my-zsh，一堆现成的主题和插件。

@@ -10,6 +10,8 @@ This article is the summary of my own experience on UEFI and Legacy Mode. So som
 
 Experiences about installing an operating system (e.g., Windows or Linux) are required or you may feel hard to understand it.
 
+<!--more-->
+
 # The origin
 
 It was easy to install a Windows system in the past until the popularity of Windows 8. Laptops with Windows 8 pre-installed adopt the newest firmware named UEFI.

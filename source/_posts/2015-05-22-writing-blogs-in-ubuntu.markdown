@@ -16,6 +16,8 @@ I used to blog in OS X. The steps of configuration are quite easy:
 
 However, it's a bit tricky to do so in Linux, for example, Ubuntu. My Ubuntu is 14.04.
 
+<!--more-->
+
 # Configure Git
 
 1. Install Git:

@@ -8,6 +8,8 @@ tags:
 ---
 腾讯公司为了商业利益，放弃了 QQ for Linux 的开发。但是中国人又不得不用 QQ，于是……
 
+<!--more-->
+
 Linux 世界出现了几种解决方案：
 
 1. WebQQ（腾讯同样放弃了）/SmartQQ

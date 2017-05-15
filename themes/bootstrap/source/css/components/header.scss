@@ -10,16 +10,24 @@
     @include on-mobile() {
         margin-bottom: 20px !important;
         padding-top: 25px !important;
+        padding-bottom: 5px;
+
+        p {
+            margin-bottom: 12px;
+        }
+
+        h1 {
+            margin-top: 6px;
+        }
     }
     h1 {
         color: $jumbotron-heading-color;
-
         font-size: $jumbotron-heading-font-size;
     }
     p {
         color: $jumbotron-color;
-
         font-size: $jumbotron-font-size;
+        margin-bottom: 6px;
     }
     a, span {
         color: $jumbotron-color;
@@ -70,6 +78,13 @@
             }
         }
     }
+
+    @include on-screen() {
+        .article-meta {
+            margin-top: 12px;
+            margin-bottom: 6px;
+        }
+    }
 }
 .jumbotron-sub {
     margin-top: -50px;
@@ -79,7 +94,7 @@
 
     @include on-mobile() {
         margin-top: -20px;
-        margin-bottom: 10px;
+        margin-bottom: 40px;
     }
     .title {
         padding-top: 5px;
