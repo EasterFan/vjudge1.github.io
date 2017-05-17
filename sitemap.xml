@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://vjudge1.github.io/2016/10/07/programming-in-wikipedia/</loc>
+    
+    <lastmod>2017-05-17T14:44:15.683Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://vjudge1.github.io/2016/12/16/javascript-extend/</loc>
     
     <lastmod>2017-05-15T19:09:30.227Z</lastmod>
@@ -215,13 +222,6 @@
     <loc>https://vjudge1.github.io/2016/10/04/gae/</loc>
     
     <lastmod>2017-05-15T18:39:07.356Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://vjudge1.github.io/2016/10/07/programming-in-wikipedia/</loc>
-    
-    <lastmod>2017-05-15T18:38:39.849Z</lastmod>
     
   </url>
   
